@@ -10,7 +10,7 @@ This tool was created to address a need for a better way to identify knowledge g
 
 ## 🌐 Live Demo
 
-**Try it now**: [https://quiz-dyc.pages.dev](https://quiz-dyc.pages.dev)
+**Try it now**: <a href="https://quiz-dyc.pages.dev" target="_blank" rel="noopener noreferrer">https://quiz-dyc.pages.dev</a>
 
 > **Note**: The live demo on Cloudflare Pages runs in **read-only mode**. The quiz management features (creating/deleting quizzes) require Python server functionality and are only available when running locally. The demo includes pre-loaded sample quizzes for testing.
 
