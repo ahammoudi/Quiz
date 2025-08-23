@@ -17,17 +17,13 @@ body {
   background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
 }
 
-/* Question styling */
-.question { 
-  font-size: 1.1em; 
-  margin-bottom: 20px; 
-  line-height: 1.6;
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 10px;
-  border-left: 4px solid #007bff;
+/* Card header styling */
+.card-header {
+  border-radius: 15px 15px 0 0 !important;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
 }
 
+/* Question number and indicators styling */
 .question-number {
   color: #007bff;
   font-weight: bold;
@@ -42,22 +38,14 @@ body {
   margin-left: 10px;
 }
 
-/* Options styling */
-.options { 
-  margin-bottom: 20px; 
-}
-
-.option { 
-  display: block !important;
-  width: 100%;
-  background: #fff;
-  border: 2px solid #e9ecef;
-  margin-bottom: 10px; 
-  padding: 15px; 
-  border-radius: 8px; 
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-align: left;
+.option-letter {
+  background: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 0.9em;
 }
 
 .option:hover { 
@@ -69,16 +57,6 @@ body {
 .option input { 
   margin-right: 12px;
   transform: scale(1.2);
-}
-
-.option-letter {
-  background: #007bff;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 50%;
-  margin-right: 10px;
-  font-weight: bold;
-  font-size: 0.9em;
 }
 
 /* Timer styling */
@@ -202,7 +180,7 @@ body {
   background: #e9ecef;
   height: 8px;
   border-radius: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   overflow: hidden;
 }
 
@@ -283,4 +261,79 @@ body {
 
 #questionSet {
   margin-bottom: 10px;
+}
+
+/* Reduce spacing between banner and quiz content */
+#quizContent {
+  padding: 0px 15px 15px 15px;
+  margin-top: -20px;
+}
+
+/* Add more padding to question and options area */
+#quiz {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+
+/* Enhanced question styling with better spacing */
+.question { 
+  font-size: 1.1em; 
+  margin-bottom: 25px; 
+  line-height: 1.6;
+  background: #f8f9fa;
+  padding: 20px 25px;
+  border-radius: 10px;
+  border-left: 4px solid #007bff;
+}
+
+/* Enhanced options styling with better spacing */
+.options { 
+  margin-bottom: 25px;
+  padding: 0 5px;
+}
+
+.option { 
+  display: block !important;
+  width: 100%;
+  background: #fff;
+  border: 2px solid #e9ecef;
+  margin-bottom: 12px; 
+  padding: 15px 20px; 
+  border-radius: 8px; 
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* AGGRESSIVE SPACING FIXES - Force override all spacing below buttons */
+.card-body {
+  padding-bottom: 0.2rem !important;
+}
+
+/* Force controls spacing */
+#controls {
+  padding: 0 20px !important;
+  margin: 5px 0 0 0 !important;
+}
+
+/* Force zero spacing on everything after controls */
+#controls + * {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+#result, #review {
+  margin: 0 !important;
+  padding: 10px 25px !important;
+}
+
+/* Force minimal bottom margin on card */
+.card {
+  margin-bottom: 0.5rem !important;
+}
+
+/* Result and review sections spacing */
+#result, #review {
+  padding: 20px 25px;
+  margin-top: 0px;
 }
