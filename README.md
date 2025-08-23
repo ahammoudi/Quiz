@@ -359,6 +359,10 @@ chmod +x start_quiz.sh quick_start.sh
 
 ---
 
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## ⚠️ Disclaimer
 
 **Educational Use Notice:**
