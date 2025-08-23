@@ -1,0 +1,1103 @@
+Question #: 1
+An application processes user-uploaded images by placing a job in an Amazon SQS queue. A fleet of EC2 instances polls the queue to perform the processing. The processing for each image can take up to 10 minutes. What should a solutions architect do to prevent the same image from being processed by multiple instances simultaneously?
+
+A. Increase the number of EC2 instances polling the queue.
+B. Configure the SQS queue's Visibility Timeout to be greater than 10 minutes.
+C. Use an SQS FIFO queue instead of a Standard queue.
+D. Set the Message Retention Period to 10 minutes.
+
+Answer: B
+
+---
+Question #: 2
+A company has a microservices architecture where multiple, independent backend services need to be notified whenever a new customer signs up. The number of services that need this notification is expected to grow. What is the most scalable and decoupled way to distribute the "new customer" event?
+
+A. The customer service should directly call an API endpoint on each interested backend service.
+B. The customer service should publish a message to an Amazon SNS topic, and each backend service should subscribe to that topic.
+C. The customer service should write the event to an SQS queue, which all backend services poll.
+D. The customer service should write the event to a DynamoDB table, and all services should scan the table for new entries.
+
+Answer: B
+
+---
+Question #: 3
+A Lambda function is configured with an SQS standard queue as its event source. The function processes messages and sometimes experiences transient errors, causing it to fail. What happens to a message if the Lambda function execution fails for that message?
+
+A. The message is permanently deleted from the queue.
+B. The message is sent to a dead-letter queue (DLQ), if one is configured.
+C. The message becomes visible in the queue again after the visibility timeout expires and can be processed again.
+D. The SQS queue is automatically disabled.
+
+Answer: C
+
+---
+Question #: 4
+An order processing system needs to ensure that orders are processed in the exact sequence they are received and that no duplicate orders are processed. Which AWS service and feature should be used?
+
+A. Amazon SQS Standard Queue
+B. Amazon SNS Topic
+C. Amazon SQS FIFO (First-In, First-Out) Queue
+D. AWS Lambda with a concurrency limit of 1
+
+Answer: C
+
+---
+Question #: 5
+An SNS topic has three subscribers: an SQS queue, an AWS Lambda function, and an HTTPS endpoint. When a message is published to the topic, what is the expected behavior?
+
+A. SNS will send the message to only one of the subscribers, chosen at random.
+B. SNS will send the message to the SQS queue first, then the Lambda function, then the HTTPS endpoint.
+C. SNS will attempt to deliver a copy of the message to all three subscribers in parallel.
+D. SNS will queue the message and wait for each subscriber to poll for it.
+
+Answer: C
+
+---
+Question #: 6
+A developer is using an SQS FIFO queue and notices that message processing has stalled. No new messages are being received, even though the queue is not empty. What is the most likely cause?
+
+A. The Visibility Timeout is set too low.
+B. A message with a specific Message Group ID is being processed, and all other messages in that same group are blocked until the first one is successfully processed and deleted.
+C. The SQS queue has reached its maximum message limit.
+D. The IAM permissions for the consumer are incorrect.
+
+Answer: B
+
+---
+Question #: 7
+A company wants to send promotional emails to customers, but also send push notifications to customers who have the mobile app installed. The message content for email and the mobile push notification needs to be different. How can this be achieved with a single SNS publish action?
+
+A. Publish two separate messages to the same topic.
+B. Use an SQS queue to transform the message before sending it.
+C. Publish a JSON message with different structures for each delivery protocol (e.g., `default`, `email`, `APNS`).
+D. This is not possible; a separate SNS topic is needed for each message format.
+
+Answer: C
+
+---
+Question #: 8
+What is the primary architectural benefit of decoupling an application's components using a message queue like Amazon SQS?
+
+A. It increases the performance of individual components.
+B. It improves reliability by allowing components to fail independently without causing the entire system to fail.
+C. It reduces the cost of data transfer between components.
+D. It simplifies the application's code by combining components into a monolith.
+
+Answer: B
+
+---
+Question #: 9
+An SQS queue is configured with a dead-letter queue (DLQ). Under what condition is a message sent to the DLQ?
+
+A. When the queue is full.
+B. When a consumer successfully processes the message.
+C. After a consumer fails to process the message a specified number of times (the `maxReceiveCount`).
+D. When the message's visibility timeout expires.
+
+Answer: C
+
+---
+Question #: 10
+An SNS topic needs to send notifications only to subscribers that are interested in certain types of events. For example, some subscribers only want to know about "order_created" events, while others only want "order_shipped" events. How can this be implemented?
+
+A. Use multiple SNS topics, one for each event type.
+B. Publish all events to one topic and let the subscribers filter the messages on their end.
+C. Use SNS subscription filter policies to deliver messages based on message attributes.
+D. Use an SQS queue as a buffer to filter messages before they are published.
+
+Answer: C
+
+---
+Question #: 11
+What is the default message retention period for an Amazon SQS queue?
+
+A. 1 minute
+B. 1 hour
+C. 4 days
+D. 14 days
+
+Answer: C
+
+---
+Question #: 12
+A Lambda function is triggered by messages in an SQS queue. The function needs more than the default 3 seconds to process each message. The function is timing out and causing messages to be reprocessed. What should the developer do? (Choose TWO)
+
+A. Increase the Lambda function's memory allocation.
+B. Increase the SQS queue's Visibility Timeout to be longer than the Lambda function's timeout.
+C. Increase the Lambda function's timeout setting.
+D. Use an SQS FIFO queue instead of a Standard queue.
+E. Decrease the batch size of the Lambda event source mapping.
+
+Answer: B, C
+
+---
+Question #: 13
+An application publishes sensitive messages to an SNS topic. What is the best way to ensure the messages are encrypted at rest within the SNS service?
+
+A. Encrypt the messages in the application before publishing them.
+B. Enable server-side encryption (SSE) on the SNS topic using an AWS KMS key.
+C. Ensure all subscribers use HTTPS endpoints.
+D. This is the default behavior; all SNS messages are encrypted at rest.
+
+Answer: B
+
+---
+Question #: 14
+An SQS queue uses short polling. What is the behavior of the consumer when it makes a `ReceiveMessage` API call and the queue is empty?
+
+A. The call waits for a specified time for messages to arrive.
+B. The call immediately returns an empty response.
+C. The call returns an error.
+D. The call is charged as a full request even if no message is returned.
+
+Answer: B
+
+---
+Question #: 15
+Which of the following is a valid subscriber type for an Amazon SNS topic? (Choose TWO)
+
+A. Amazon EC2 Instance
+B. AWS Lambda function
+C. Amazon SQS queue
+D. Amazon DynamoDB table
+E. An S3 bucket
+
+Answer: B, C
+
+---
+Question #: 16
+A company wants to reduce costs associated with its SQS usage. Their application has consumers that are constantly polling a queue, even when it is often empty. Which SQS feature should they use to reduce the number of empty responses and lower costs?
+
+A. Dead-Letter Queue (DLQ)
+B. Visibility Timeout
+C. Long Polling
+D. Message Timers
+
+Answer: C
+
+---
+Question #: 17
+A fan-out architecture is a common design pattern in event-driven systems. Which combination of AWS services is ideal for implementing this pattern?
+
+A. An SQS queue with multiple consumers.
+B. An SNS topic with multiple SQS queue subscriptions.
+C. A single Lambda function that calls multiple other Lambda functions.
+D. A DynamoDB table with multiple Global Secondary Indexes.
+
+Answer: B
+
+---
+Question #: 18
+A Lambda function needs to process batches of up to 10 messages at a time from an SQS queue. How should this be configured?
+
+A. In the Lambda function's code, make 10 `ReceiveMessage` calls.
+B. In the SQS queue settings, set the maximum batch size to 10.
+C. In the Lambda event source mapping configuration, set the Batch Size to 10.
+D. This is the default behavior and requires no configuration.
+
+Answer: C
+
+---
+Question #: 19
+What is the maximum size of a message that can be sent to Amazon SQS or Amazon SNS?
+
+A. 64 KB
+B. 256 KB
+C. 1 MB
+D. 2 GB
+
+Answer: B
+
+---
+Question #: 20
+A solutions architect is designing a system where a message must be processed by one component, and then a notification about the completion must be sent to multiple other components. Which architecture best fits this use case?
+
+A. A single SNS topic for both processing and notifications.
+B. An SQS queue for the initial processing, with the processing component then publishing a completion message to an SNS topic.
+C. A single SQS queue that all components poll.
+D. An SNS topic that triggers a Lambda function, which then writes to an SQS queue.
+
+Answer: B
+
+---
+Question #: 21
+What is the purpose of the SQS `DelaySeconds` parameter when sending a message?
+
+A. It specifies how long the message will be hidden from other consumers after it's been received.
+B. It postpones the delivery of a new message to the queue for a specified number of seconds.
+C. It sets the retention period for the message.
+D. It specifies how long a consumer should wait for a message to arrive (long polling).
+
+Answer: B
+
+---
+Question #: 22
+A mobile application needs to send direct push notifications to individual users on both iOS and Android platforms. Which AWS service is best suited for managing device tokens and sending platform-specific push notifications?
+
+A. Amazon SQS
+B. Amazon Pinpoint
+C. Amazon SNS (Simple Notification Service)
+D. AWS Lambda
+
+Answer: C
+
+---
+Question #: 23
+When a Lambda function is invoked asynchronously (e.g., from an S3 event or SNS), what is the default retry behavior if the function fails?
+
+A. It is not retried.
+B. It is retried twice, with a delay between retries.
+C. It is retried indefinitely until it succeeds.
+D. It is immediately sent to a Dead-Letter Queue.
+
+Answer: B
+
+---
+Question #: 24
+In an SQS FIFO queue, what is the role of the Message Deduplication ID?
+
+A. It ensures that messages are delivered in the correct order.
+B. It prevents duplicate messages from being sent to the queue within the 5-minute deduplication interval.
+C. It groups messages together for batch processing.
+D. It is used to identify the message when deleting it from the queue.
+
+Answer: B
+
+---
+Question #: 25
+An SNS topic is used to send critical alerts to an operations team via SMS. To ensure redundancy, the team wants the alerts to be sent to two different SQS queues that are monitored in two different regions. How can this be achieved?
+
+A. Create two subscriptions to the SNS topic, one for each SQS queue.
+B. This is not possible; SNS cannot deliver to queues in different regions.
+C. Use SNS message filtering to route the message to both queues.
+D. Configure cross-region replication on the primary SQS queue.
+
+Answer: A
+
+---
+Question #: 26
+When Lambda polls an SQS queue and invokes a function, what happens to the messages in the batch?
+
+A. Lambda deletes the messages from the queue before invoking the function.
+B. Lambda leaves the messages in the queue; the function code must explicitly delete them.
+C. If the function invocation is successful, Lambda deletes the messages from the queue on your behalf.
+D. The messages are automatically moved to a dead-letter queue.
+
+Answer: C
+
+---
+Question #: 27
+A company needs to broadcast a message to thousands of subscribers. The delivery time is not critical, but the cost should be minimized. The subscribers are a mix of email, SMS, and HTTPS endpoints. Which service is the most cost-effective and appropriate choice?
+
+A. Amazon SQS
+B. Amazon Kinesis Data Streams
+C. Amazon SNS
+D. A custom solution using Amazon EC2 and SendGrid.
+
+Answer: C
+
+---
+Question #: 28
+What is the maximum Visibility Timeout for an SQS message?
+
+A. 5 minutes
+B. 30 minutes
+C. 4 hours
+D. 12 hours
+
+Answer: D
+
+---
+Question #: 29
+A Lambda function, triggered by SNS, is designed to update a DynamoDB table. The function is occasionally failing due to throttling exceptions from DynamoDB. What is the most resilient way to handle these failures?
+
+A. Increase the memory of the Lambda function.
+B. Configure a Dead-Letter Queue (DLQ) for the Lambda function to capture the failed SNS events for later reprocessing.
+C. Increase the timeout of the Lambda function.
+D. Add error-handling logic in the Lambda function to catch the throttling exception and retry with exponential backoff.
+
+Answer: B (While D is also a good practice, the DLQ provides a more resilient "catch-all" for persistent failures).
+
+---
+Question #: 30
+An SQS Standard Queue has multiple consumers. A message is added to the queue. Which statement is true?
+
+A. Every consumer will receive a copy of the message.
+B. Only one consumer will receive and process the message.
+C. The message will be delivered to consumers in a strictly ordered sequence.
+D. The message will be visible to all consumers until one of them deletes it.
+
+Answer: B
+
+---
+Question #: 31
+A solutions architect wants to ensure that messages published to an SNS topic are archived for 1 year for compliance reasons. What is the simplest way to achieve this?
+
+A. Configure a subscription to the SNS topic that sends messages to an Amazon Kinesis Data Firehose delivery stream, which then writes them to an S3 bucket with a 1-year retention policy.
+B. Enable logging on the SNS topic itself.
+C. Create a Lambda function that subscribes to the topic and writes each message to a DynamoDB table.
+D. This is not possible with SNS.
+
+Answer: A
+
+---
+Question #: 32
+In an event-driven architecture, a change to an S3 bucket (e.g., an object upload) needs to trigger a workflow. What is the most direct and serverless way to initiate this workflow?
+
+A. Have an EC2 instance constantly poll the S3 bucket for changes.
+B. Configure an S3 event notification to publish to an SNS topic or send to an SQS queue, or directly invoke a Lambda function.
+C. Use Amazon CloudWatch Events to detect the change.
+D. Write the S3 object metadata to a DynamoDB table and use DynamoDB Streams.
+
+Answer: B
+
+---
+Question #: 33
+What is the purpose of an SQS message attribute?
+
+A. To provide structured metadata about the message without having to parse the message body.
+B. To define the priority of the message.
+C. To encrypt the message body.
+D. To specify which consumer should receive the message.
+
+Answer: A
+
+---
+Question #: 34
+An SNS message is published to a topic with a raw message delivery subscription. What does this mean for the subscriber?
+
+A. The message is delivered without the SNS metadata (like Topic ARN, Message ID).
+B. The message is delivered in an unencrypted format.
+C. The subscriber does not need to confirm the subscription.
+D. The message is guaranteed to be delivered only once.
+
+Answer: A
+
+---
+Question #: 35
+A video processing application uses a "worker" tier of EC2 instances to transcode videos. The number of videos to process varies greatly. The goal is to scale the number of worker instances based on the number of jobs waiting to be processed. Which architecture supports this?
+
+A. An Application Load Balancer in front of the EC2 instances.
+B. An SQS queue to hold the video processing jobs, with an Auto Scaling group for the EC2 workers that scales based on the queue length.
+C. A large EC2 instance that handles all transcoding jobs sequentially.
+D. An SNS topic that triggers a single, powerful EC2 instance.
+
+Answer: B
+
+---
+Question #: 36
+A Lambda function processes events from a Kinesis Data Stream. It fails while processing a batch of records. What happens by default?
+
+A. The failed records are sent to a DLQ.
+B. The function skips the failed batch and moves to the next one.
+C. The function retries processing the same batch of records until it succeeds or the records expire from the stream.
+D. The Kinesis Data Stream is disabled.
+
+Answer: C
+
+---
+Question #: 37
+Which of the following is NOT a direct, built-in event source for AWS Lambda?
+
+A. Amazon SQS
+B. Amazon RDS
+C. Amazon SNS
+D. Amazon DynamoDB Streams
+
+Answer: B (While RDS can trigger events via other services like SNS, it is not a direct event source for Lambda).
+
+---
+Question #: 38
+In an SQS FIFO queue, what is the Message Group ID used for?
+
+A. To ensure that all messages are processed by the same consumer.
+B. To provide a deduplication identifier for the message.
+C. To group messages that belong to the same ordered sequence, ensuring strict ordering within that group.
+D. To filter which consumers can receive the message.
+
+Answer: C
+
+---
+Question #: 39
+A company wants to send an alert to an operations team's chat room (via an HTTPS webhook) and also trigger an automated remediation script in AWS Lambda whenever a critical CloudWatch alarm is triggered. What is the most efficient way to route the alarm to both targets?
+
+A. Configure the CloudWatch alarm to have two actions: one for the webhook and one for the Lambda function.
+B. Configure the CloudWatch alarm to publish a message to an SNS topic, and subscribe both the HTTPS webhook and the Lambda function to the topic.
+C. The alarm triggers the Lambda function, which then calls the HTTPS webhook.
+D. The alarm writes to an SQS queue, which is polled by both the webhook and the Lambda function.
+
+Answer: B
+
+---
+Question #: 40
+What is the "fan-in" pattern in a decoupled architecture?
+
+A. A single producer sends messages to multiple consumers.
+B. Multiple producers send messages to a single consumer (e.g., multiple microservices publish events to a central SQS queue for aggregation).
+C. A message is passed sequentially through a series of processing steps.
+D. A consumer processes messages from multiple queues.
+
+Answer: B
+
+---
+Question #: 41
+An application reads messages from an SQS queue. After processing a message, the application crashes before it can delete the message. What prevents another application instance from immediately reprocessing the same message?
+
+A. The Dead-Letter Queue
+B. The Visibility Timeout
+C. Message Deduplication ID
+D. The Cooldown Period
+
+Answer: B
+
+---
+Question #: 42
+You need to send identical notifications to a large number of mobile devices. Which service provides the most efficient "publish/subscribe" (pub/sub) mechanism for this?
+
+A. Amazon SQS
+B. AWS Step Functions
+C. Amazon SNS
+D. Amazon AppSync
+
+Answer: C
+
+---
+Question #: 43
+When a Lambda function is configured with a DLQ, where are failed invocation payloads sent?
+
+A. To another Lambda function.
+B. To an S3 bucket.
+C. To an Amazon SQS queue or an Amazon SNS topic.
+D. To Amazon CloudWatch Logs.
+
+Answer: C
+
+---
+Question #: 44
+A company wants to ensure that messages sent to an SQS queue are available for processing for up to 10 days, even if the consumer fleet is down for an extended period. Which SQS parameter should be configured?
+
+A. Visibility Timeout
+B. Message Retention Period
+C. Receive Message Wait Time
+D. Delay Seconds
+
+Answer: B
+
+---
+Question #: 45
+What is the primary difference in the consumer model between SQS and Kinesis Data Streams?
+
+A. SQS uses a "pull" model (consumers poll for messages), while Kinesis also uses a pull model but with a shared-throughput concept across shards.
+B. SQS uses a "push" model, while Kinesis uses a "pull" model.
+C. With SQS, a message is consumed by one consumer; with Kinesis, multiple consumers can read the same record from a stream.
+D. SQS guarantees message ordering, while Kinesis does not.
+
+Answer: C
+
+---
+Question #: 46
+An event-driven application uses a Lambda function to process new images uploaded to S3. The Lambda function is invoked for every `s3:ObjectCreated:*` event. This is an example of what type of invocation?
+
+A. Synchronous Invocation
+B. Asynchronous Invocation
+C. Stream-based Invocation
+D. Request-Response Invocation
+
+Answer: B
+
+---
+Question #: 47
+A developer sends a message to an SQS FIFO queue but does not provide a Message Deduplication ID. The queue has content-based deduplication enabled. What will SQS do?
+
+A. Reject the message.
+B. Generate a random Message Deduplication ID.
+C. Use a SHA-256 hash of the message body as the Message Deduplication ID.
+D. Place the message in the queue without a deduplication ID, allowing duplicates.
+
+Answer: C
+
+---
+Question #: 48
+An organization needs to send notifications to an email distribution list, a pager system (via HTTPS), and also archive every notification in an S3 bucket. What is the most decoupled way to design this?
+
+A. Publish one message to an SNS topic. Subscribe the email list, the HTTPS endpoint, and an SQS queue to the topic. Have a Lambda function poll the SQS queue to write the message to S3.
+B. Write a single application that performs all three actions sequentially.
+C. Use three separate SNS topics for each destination.
+D. Use Amazon EventBridge to route the event to all three targets directly.
+
+Answer: A (While D is also a very good answer with modern services, A is the classic SNS fan-out pattern).
+
+---
+Question #: 49
+What is the maximum number of messages that can be retrieved in a single `ReceiveMessage` call from an SQS queue?
+
+A. 1
+B. 10
+C. 100
+D. 1000
+
+Answer: B
+
+---
+Question #: 50
+Which scenario best describes a use case for asynchronous invocation of a Lambda function?
+
+A. A user clicks "checkout" on a website, and the function processes the payment and must return a success/failure message immediately.
+B. A user uploads a profile picture, and the function resizes it into several thumbnails in the background without the user having to wait.
+C. An API Gateway endpoint proxies a request to a Lambda function to retrieve data from a database.
+D. A user's request is authenticated by a Lambda authorizer.
+
+Answer: B
+
+---
+Question #: 51
+A company uses SQS to decouple its web front-end from a backend processing service. The company wants to prioritize "premium user" requests over "free user" requests. How can this be achieved with SQS?
+
+A. Use a single SQS FIFO queue and set a higher priority Message Group ID for premium users.
+B. Use a single SQS Standard queue and add a "priority" message attribute.
+C. Use two SQS Standard queues (one for premium, one for free). Configure the backend service to poll the premium queue more frequently or with more instances.
+D. This is not possible with SQS.
+
+Answer: C
+
+---
+Question #: 52
+What is the purpose of an SNS access policy?
+
+A. It controls which users can publish messages to a topic and which services can subscribe.
+B. It filters which messages are delivered to subscribers.
+C. It defines the encryption key for the topic.
+D. It sets the message retention period for the topic.
+
+Answer: A
+
+---
+Question #: 53
+When is it appropriate to use an SQS Dead-Letter Queue (DLQ)?
+
+A. To store messages that have been successfully processed for auditing.
+B. To isolate and set aside problematic "poison pill" messages that cannot be processed successfully, so they can be analyzed later.
+C. To delay the delivery of certain messages.
+D. To archive old messages that have exceeded the retention period.
+
+Answer: B
+
+---
+Question #: 54
+A Lambda function is invoked synchronously via an API Gateway. If the function code throws an unhandled exception, what does API Gateway return to the client?
+
+A. A `200 OK` status code with an error message in the body.
+B. A `502 Bad Gateway` server-side error.
+C. The request is retried automatically.
+D. A `403 Forbidden` error.
+
+Answer: B
+
+---
+Question #: 55
+An SNS topic delivers messages to an SQS queue. The SQS queue's access policy must grant permission to which principal to allow this delivery?
+
+A. The IAM user who created the subscription.
+B. The AWS Lambda service.
+C. The Amazon SNS service principal (`sns.amazonaws.com`).
+D. The root user of the AWS account.
+
+Answer: C
+
+---
+Question #: 56
+What is a key difference between SQS and Amazon MQ?
+
+A. SQS is a proprietary AWS service with a simple API, while Amazon MQ is a managed message broker service for open standards like ActiveMQ and RabbitMQ.
+B. SQS guarantees message ordering, while Amazon MQ does not.
+C. SQS is serverless, while Amazon MQ requires you to manage the underlying EC2 instances.
+D. SQS is more expensive than Amazon MQ for all use cases.
+
+Answer: A
+
+---
+Question #: 57
+A developer wants to test a Lambda function that is subscribed to an SNS topic. What is the easiest way to trigger the function in the AWS Management Console?
+
+A. Manually place a message in the SQS queue that is also subscribed to the topic.
+B. Use the "Test" feature in the Lambda console and configure a test event that mimics the SNS message format.
+C. Upload a file to an S3 bucket that is configured to publish to the SNS topic.
+D. Use the AWS CLI to invoke the function directly.
+
+Answer: B
+
+---
+Question #: 58
+Which of the following are benefits of a decoupled, event-driven architecture? (Choose TWO)
+
+A. Increased developer agility, as teams can work on independent services.
+B. Simplified debugging and tracing of requests.
+C. Improved scalability and resilience.
+D. Reduced operational complexity.
+E. Lower latency for all requests.
+
+Answer: A, C
+
+---
+Question #: 59
+An SQS consumer retrieves a message and begins processing it. The visibility timeout is 60 seconds. The consumer takes 90 seconds to process the message. What is a likely outcome?
+
+A. The consumer will get an error when it tries to delete the message.
+B. The message will become visible in the queue again after 60 seconds, and another consumer may start processing it, leading to duplicate processing.
+C. The visibility timeout will be automatically extended to 90 seconds.
+D. The message will be moved to the DLQ.
+
+Answer: B
+
+---
+Question #: 60
+A single SNS topic needs to deliver notifications to an application in `us-east-1` and another application in `eu-west-1`. What must be configured?
+
+A. Enable cross-region replication on the SNS topic.
+B. This is not possible; SNS is a regional service.
+C. Create subscriptions in each region. SNS supports cross-region delivery to subscribers like SQS and Lambda.
+D. Use a separate topic in each region.
+
+Answer: C
+
+---
+Question #: 61
+A Lambda function that processes SQS messages needs to be updated. What is the best practice for deploying the new version without causing downtime or message processing failures?
+
+A. Stop the SQS queue, update the Lambda function, then restart the queue.
+B. Use Lambda aliases and a deployment strategy like Canary or Blue/Green to gradually shift traffic from the old version to the new version.
+C. Update the function directly; the SQS integration will handle any in-flight messages.
+D. Create a new Lambda function and a new SQS queue, and point the producer to the new queue.
+
+Answer: B
+
+---
+Question #: 62
+An application sends a 500 KB message. The application needs to be decoupled. Which service can handle this message size natively?
+
+A. Amazon SQS
+B. Amazon SNS
+C. Neither SQS nor SNS can handle this message size directly.
+D. Both SQS and SNS can handle this message size.
+
+Answer: C (The maximum is 256 KB. The S3 Extended Client Library is the pattern for larger messages).
+
+---
+Question #: 63
+An SQS queue has long polling enabled with a wait time of 20 seconds. What happens when a consumer makes a `ReceiveMessage` call and the queue is empty?
+
+A. The call returns immediately with no messages.
+B. The call holds the connection open for up to 20 seconds, waiting for a message to arrive before returning.
+C. The call fails with a timeout error after 20 seconds.
+D. The consumer is charged for 20 seconds of API usage.
+
+Answer: B
+
+---
+Question #: 64
+Which service is best for orchestrating a multi-step, long-running workflow that involves several Lambda functions, human approval steps, and complex branching logic?
+
+A. Amazon SQS
+B. Amazon SNS
+C. AWS Step Functions
+D. Amazon EventBridge
+
+Answer: C
+
+---
+Question #: 65
+A company wants to ensure that all messages published to an SNS topic are delivered to a critical SQS queue subscriber, even if the SQS queue is temporarily unavailable. What SNS feature helps with this?
+
+A. SNS Dead-Letter Queue
+B. SNS Subscription Filter Policy
+C. SNS FIFO
+D. SNS Delivery Policy (for retries)
+
+Answer: D
+
+---
+Question #: 66
+What is the "poison pill" message problem in a queueing system?
+
+A. A message that is too large for the queue.
+B. A message that has been in the queue for too long.
+C. A malformed message that causes a consumer to crash repeatedly, preventing other messages from being processed.
+D. An encrypted message that the consumer cannot decrypt.
+
+Answer: C
+
+---
+Question #: 67
+A Lambda function is configured to be triggered by a DynamoDB Stream. What event causes the function to be invoked?
+
+A. A new item is added, an item is updated, or an item is deleted from the DynamoDB table.
+B. A user queries the DynamoDB table.
+C. The number of items in the table exceeds a certain threshold.
+D. A backup of the table is completed.
+
+Answer: A
+
+---
+Question #: 68
+An SNS topic has a subscription to an SQS FIFO queue. What must be true about the SNS topic?
+
+A. The SNS topic must also be a FIFO topic.
+B. The SNS topic must have content-based deduplication enabled.
+C. The SNS topic's name must end in `.fifo`.
+D. The SNS topic must have server-side encryption enabled.
+
+Answer: A
+
+---
+Question #: 69
+A developer wants to introduce a 5-minute delay before a message sent to an SQS queue becomes visible to consumers. Which two methods can achieve this? (Choose TWO)
+
+A. Configure a default Delay Queue on the SQS queue itself with a 300-second delay.
+B. Use the `ChangeMessageVisibility` API call after receiving the message.
+C. Use a message timer when sending the individual message, setting `DelaySeconds` to 300.
+D. Set the queue's Visibility Timeout to 300 seconds.
+E. Use long polling.
+
+Answer: A, C
+
+---
+Question #: 70
+The "serverless" model, exemplified by services like AWS Lambda, offers what primary advantage?
+
+A. It provides root access to the underlying operating system.
+B. It eliminates the need for developers to provision or manage servers.
+C. It is always less expensive than using EC2 instances.
+D. It offers more choices for programming languages than EC2.
+
+Answer: B
+
+---
+Question #: 71
+In an SQS FIFO queue, the `MessageGroupId` is essential for ______ and the `MessageDeduplicationId` is essential for ______.
+
+A. ordering; idempotency
+B. filtering; encryption
+C. batching; priority
+D. idempotency; ordering
+
+Answer: A
+
+---
+Question #: 72
+An application publishes events to an SNS topic. One of the subscribers is an external partner's HTTPS endpoint which is occasionally unreliable. How can the application owner ensure that failed deliveries to this partner do not affect deliveries to other reliable subscribers (like an SQS queue)?
+
+A. SNS handles this automatically; subscriptions are isolated.
+B. Use separate SNS topics for each subscriber.
+C. Configure a delivery retry policy with a dead-letter queue (DLQ) specifically for the failed HTTPS subscription.
+D. This is not possible; a failing subscriber will block the topic.
+
+Answer: C
+
+---
+Question #: 73
+A Lambda function needs to process a large file. The file is too big to fit in the function's memory. What is a common serverless pattern to handle this?
+
+A. Increase the Lambda function's memory to its maximum value.
+B. Pass a reference (e.g., an S3 object key) to the Lambda function, and have the function process the file in chunks or streams directly from the source.
+C. Use an EC2 instance instead of a Lambda function.
+D. Split the file into smaller pieces before invoking the Lambda function.
+
+Answer: B
+
+---
+Question #: 74
+What is the primary difference between Amazon SQS and Amazon Kinesis Data Streams regarding data retention?
+
+A. SQS retains messages for up to 14 days, while Kinesis retains records for up to 1 year by default (extendable).
+B. SQS messages are deleted after being consumed, while Kinesis records remain in the stream for the retention period and can be re-read by multiple consumers.
+C. SQS retains messages for up to 1 year, while Kinesis retains records for 24 hours.
+D. SQS deletes messages after 24 hours, while Kinesis deletes them after consumption.
+
+Answer: B
+
+---
+Question #: 75
+An organization uses AWS Organizations and wants to create a rule that when a new account is created, a default set of IAM roles is automatically provisioned. Which service is best suited to react to the `CreateAccount` event and trigger this automation?
+
+A. Amazon SQS
+B. Amazon EventBridge (CloudWatch Events)
+C. Amazon SNS
+D. AWS CloudFormation
+
+Answer: B
+
+---
+Question #: 76
+A Lambda function processes messages from an SQS queue. The function is observed to be running constantly, even when there are no messages, leading to high costs. What is the most likely misconfiguration?
+
+A. The SQS queue is not configured for long polling, causing the Lambda service to poll very rapidly.
+B. The Lambda function has a memory leak.
+C. The visibility timeout of the queue is set to 0.
+D. The Lambda function's timeout is set too high.
+
+Answer: A (This behavior is more typical of self-polling applications, but in the context of Lambda's polling, a lack of long polling can lead to more invocations, some of which may be empty). *A more accurate answer might be a misconfigured wait time in the event source mapping, but A is the closest concept.*
+
+---
+Question #: 77
+A message is published to an SNS FIFO topic. The topic has three SQS FIFO queue subscribers. What is true about the message delivery?
+
+A. The message will be delivered to all three queues in a non-deterministic order.
+B. The message will be delivered to all three queues, preserving the order relative to other messages within the same message group.
+C. Only one of the three queues will receive the message.
+D. The message delivery will fail because SNS FIFO cannot have multiple subscribers.
+
+Answer: B
+
+---
+Question #: 78
+Which service provides a point-to-point, one-to-one messaging pattern?
+
+A. Amazon SNS
+B. Amazon SQS
+C. Amazon EventBridge
+D. AWS Lambda
+
+Answer: B
+
+---
+Question #: 79
+A developer wants to ensure that a Lambda function is only invoked once every 5 minutes, even if it receives multiple triggers from an SNS topic within that period. How can this be achieved?
+
+A. Set the Lambda concurrency limit to 1.
+B. This must be handled within the Lambda function's logic, for example, by using a DynamoDB table to track the last execution time.
+C. Configure a delay queue on the SNS topic.
+D. Set the batch window on the event source mapping to 300 seconds.
+
+Answer: B
+
+---
+Question #: 80
+Which of the following best describes the "fan-out" pattern?
+
+A. A producer sends a message to a queue, and one of many consumers processes it.
+B. A producer sends a message to a topic, which then delivers a copy of the message to multiple subscribers.
+C. Multiple producers send messages to a single queue.
+D. A message is processed by a chain of services one after another.
+
+Answer: B
+
+---
+Question #: 81
+A consumer application polling an SQS queue needs to extend the processing time for a specific, complex message beyond the queue's default visibility timeout. Which API call should be used?
+
+A. `SendMessage`
+B. `DeleteMessage`
+C. `ChangeMessageVisibility`
+D. `SetQueueAttributes`
+
+Answer: C
+
+---
+Question #: 82
+A Lambda function, triggered from API Gateway, needs to start a process that will take 20 minutes to complete. What is the best architectural approach?
+
+A. Increase the Lambda function timeout to 20 minutes.
+B. The Lambda function should perform the task synchronously and return the result to API Gateway.
+C. The Lambda function should take the request, place a job message in an SQS queue, and immediately return a `202 Accepted` response. A separate, long-running process (like another Lambda function or an EC2 worker) will process the job from the queue.
+D. Use a bigger memory size for the Lambda function.
+
+Answer: C (Lambda has a 15-minute maximum timeout).
+
+---
+Question #: 83
+An SQS queue has a message retention period of 4 days. A message is sent to the queue and is not processed. What happens to the message after 4 days?
+
+A. It is sent to the Dead-Letter Queue (DLQ).
+B. It is automatically deleted from the SQS queue.
+C. It remains in the queue indefinitely until processed.
+D. An SNS notification is sent to the account owner.
+
+Answer: B
+
+---
+Question #: 84
+To implement a request-response pattern with SQS, a client sends a message and needs to receive a reply. What is a common way to achieve this?
+
+A. The client polls the same queue for a response message.
+B. The client sends a message containing a `ReplyTo` attribute that specifies a temporary queue where the server should send the response.
+C. The client includes its IP address in the message body.
+D. This pattern is not possible with SQS.
+
+Answer: B
+
+---
+Question #: 85
+An SNS subscription for an HTTPS endpoint is in the "PendingConfirmation" state. What must be done for it to start receiving messages?
+
+A. The endpoint must be publicly accessible.
+B. The owner of the endpoint must visit the `SubscribeURL` sent by SNS to confirm the subscription.
+C. The SNS topic's access policy must be updated.
+D. Nothing, it will be confirmed automatically after a few minutes.
+
+Answer: B
+
+---
+Question #: 86
+What is a key benefit of using a message queue like SQS between a web application and a service that generates reports?
+
+A. It makes the report generation process faster.
+B. It ensures reports are generated in the exact order requests were received.
+C. It improves the responsiveness of the web application by allowing it to offload the long-running task and immediately respond to the user.
+D. It reduces the number of EC2 instances needed for the web application.
+
+Answer: C
+
+---
+Question #: 87
+Which of the following is a key characteristic of an event-driven architecture?
+
+A. Components communicate through tightly coupled, synchronous API calls.
+B. Services are aware of the implementation details of other services.
+C. Components react to events as they happen, promoting loose coupling and scalability.
+D. The entire system is deployed as a single, monolithic unit.
+
+Answer: C
+
+---
+Question #: 88
+A Lambda function is configured with an SQS queue as a trigger. The queue has a high volume of messages. The Lambda function's concurrency is being throttled. What should a solutions architect investigate to allow the function to scale up further? (Choose TWO)
+
+A. The SQS queue's visibility timeout.
+B. The Lambda function's reserved concurrency setting.
+C. The AWS account's overall concurrent execution limit for the region.
+D. The batch size configured on the event source mapping.
+E. The SQS queue's message retention period.
+
+Answer: B, C
+
+---
+Question #: 89
+A message is sent to an SQS standard queue. Is there a guarantee that it will be delivered only once?
+
+A. Yes, SQS standard queues guarantee exactly-once delivery.
+B. No, standard queues provide at-least-once delivery, meaning a message might be delivered more than once in rare circumstances.
+C. No, standard queues provide at-most-once delivery, meaning messages might be lost.
+D. It depends on the `maxReceiveCount` configuration.
+
+Answer: B
+
+---
+Question #: 90
+An organization wants to build a central event bus that allows different applications (producers) to publish events without knowing anything about the applications that will consume them (consumers). Consumers should be able to filter events based on their content. Which AWS service is explicitly designed to act as a serverless event bus?
+
+A. Amazon SQS
+B. Amazon SNS
+C. Amazon EventBridge
+D. Amazon Kinesis
+
+Answer: C
+
+---
+Question #: 91
+When using an SQS FIFO queue, what is the maximum throughput (API calls per second) it can support by default in most regions?
+
+A. 300 messages per second.
+B. 3,000 messages per second (or 300 API calls with batching).
+C. 10,000 messages per second.
+D. Unlimited.
+
+Answer: B
+
+---
+Question #: 92
+A Lambda function processes sensitive data and is invoked by an S3 event. The security team requires a full audit trail of every time the function is invoked, including the invoker's identity. Which service provides this?
+
+A. Amazon CloudWatch Logs
+B. AWS X-Ray
+C. AWS CloudTrail (by logging the S3 event that invoked the function)
+D. VPC Flow Logs
+
+Answer: C
+
+---
+Question #: 93
+Which service is most appropriate for a scenario where you need to buffer a massive, real-time stream of data (e.g., clickstream data from a website) before it is loaded into a data warehouse?
+
+A. Amazon SQS
+B. Amazon SNS
+C. Amazon Kinesis Data Firehose
+D. AWS Step Functions
+
+Answer: C
+
+---
+Question #: 94
+A message is published to an SNS topic, which fans out to 5 SQS queues. How many times is the user billed for the SNS publish action?
+
+A. Once for the publish to the topic.
+B. Six times (once for the publish and once for each of the 5 deliveries).
+C. Five times (once for each delivery).
+D. The publish action is free; only the deliveries are billed.
+
+Answer: A (Publish actions are billable, as are deliveries. The question asks about the publish action itself).
+
+---
+Question #: 95
+To achieve decoupling, a web server needs to send a job to a backend processor. The web server does not need to wait for a reply. This is an example of what kind of communication?
+
+A. Synchronous communication
+B. Asynchronous communication
+C. Stateful communication
+D. Request/Response communication
+
+Answer: B
+
+---
+Question #: 96
+An SQS message consumer needs to process a message for 20 minutes. The SQS queue's maximum visibility timeout is 12 hours. What is a potential problem with this design?
+
+A. The message will be deleted before processing is finished.
+B. The consumer might be considered "stuck" and the message may not be re-processed in case of a real failure. This long processing time is better suited for a different pattern, like Step Functions.
+C. The SQS queue will not allow a timeout this long.
+D. The cost of the SQS queue will be excessively high.
+
+Answer: B
+
+---
+Question #: 97
+What is the primary function of Amazon EventBridge?
+
+A. To provide long-term, ordered storage for event records.
+B. To act as a serverless, event-driven integration service that connects application components with data from various sources.
+C. To guarantee the processing order of events.
+D. To provide a simple pub/sub messaging service for high-throughput notifications.
+
+Answer: B
+
+---
+Question #: 98
+A company wants to send a one-time password (OTP) to a user's mobile phone via SMS as part of a multi-factor authentication system. Which service is most suitable for sending the SMS message?
+
+A. Amazon SQS
+B. Amazon SNS
+C. AWS Lambda
+D. Amazon Pinpoint
+
+Answer: B (or D, as Pinpoint is also for user engagement, but SNS is the direct service for SMS).
+
+---
+Question #: 99
+A developer uses the `ChangeMessageVisibility` call to extend the timeout for a message in an SQS queue. What is a key limitation of this call?
+
+A. It can only be called once per message.
+B. It can only shorten the timeout, not extend it.
+C. It requires special IAM permissions that are not granted by default.
+D. It can only extend the timeout up to the queue's configured maximum visibility timeout (max 12 hours).
+
+Answer: D
+
+---
+Question #: 100
+Which of the following represents the most decoupled architecture?
+
+A. A monolithic application where all components are in a single codebase.
+B. A microservices architecture where services communicate with each other via synchronous REST API calls.
+C. A microservices architecture where services communicate by publishing and subscribing to events on a message bus like SNS or EventBridge.
+D. A two-tier architecture with a web server directly writing to a relational database.
+
+Answer: C

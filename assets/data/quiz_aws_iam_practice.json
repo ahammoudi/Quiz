@@ -1,0 +1,1542 @@
+[
+  {
+    "id": 1,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 2,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 3,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 4,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 5,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 6,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 7,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 8,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 9,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 10,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 11,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 12,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 13,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 14,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 15,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 16,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 17,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 18,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 19,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 20,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 21,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 22,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 23,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 24,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 25,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 26,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 27,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 28,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 29,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 30,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 31,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 32,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 33,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 34,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 35,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 36,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 37,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 38,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 39,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 40,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 41,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 42,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 43,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 44,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 45,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 46,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 47,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 48,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 49,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 50,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 51,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 52,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 53,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 54,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 55,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 56,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 57,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 58,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 59,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 60,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 61,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 62,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 63,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 64,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 65,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 66,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 67,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 68,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 69,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 70,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 71,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 72,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 73,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 74,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 75,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 76,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 77,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 78,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 79,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 80,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 81,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 82,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 83,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 84,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 85,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 86,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 87,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 88,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 89,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 90,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 91,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 92,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 93,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 94,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 95,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  },
+  {
+    "id": 96,
+    "question": "Which IAM entity is best suited for granting temporary access to AWS resources for applications running on EC2 instances?",
+    "options": [
+      "IAM User",
+      "IAM Group",
+      "IAM Role",
+      "Access Keys",
+      "IAM Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 97,
+    "question": "An IAM user must manage only Amazon S3 buckets. Which action will achieve the principle of least privilege?",
+    "options": [
+      "Attach AdministratorAccess policy",
+      "Attach AmazonS3FullAccess policy",
+      "Attach a custom policy allowing only s3:* actions",
+      "Make the user part of the PowerUser group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 98,
+    "question": "Which TWO are true about IAM policies? (Choose TWO)",
+    "options": [
+      "Policies can be attached to groups",
+      "Policies can be attached to IAM roles",
+      "Policies can be attached directly to EC2 instances",
+      "Policies can deny as well as allow access",
+      "Policies cannot be attached to IAM users"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 99,
+    "question": "Which IAM feature allows enforcing Multi-Factor Authentication (MFA) before performing specific actions like deleting S3 buckets?",
+    "options": [
+      "IAM Role",
+      "IAM Policy with Condition",
+      "IAM Group",
+      "IAM Access Analyzer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 100,
+    "question": "Which TWO statements about IAM roles are correct? (Choose TWO)",
+    "options": [
+      "Roles are used by trusted entities",
+      "Roles require long-term credentials",
+      "Roles can be assumed by AWS services",
+      "Roles can only be assigned to users",
+      "Roles can provide temporary security credentials"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "multiple": true
+  }
+]

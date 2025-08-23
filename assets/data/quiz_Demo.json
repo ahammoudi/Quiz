@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "question": "A company needs to run a workload that starts and stops at unpredictable times. The company does not want to commit to long-term contracts. Which EC2 purchasing option is the MOST cost-effective?",
+    "options": [
+      "Dedicated Hosts",
+      "On-Demand Instances",
+      "Reserved Instances",
+      "Spot Instances"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 2,
+    "question": "A company is designing a data lake solution on AWS. The solution must provide durable, scalable storage for both structured and unstructured data. Which AWS service should the company use?",
+    "options": [
+      "Amazon RDS",
+      "Amazon Redshift",
+      "Amazon S3",
+      "Amazon EFS"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 3,
+    "question": "A company wants to improve the security of their web application hosted on EC2 instances. Which combination of AWS services can help protect against DDoS attacks? (Choose TWO)",
+    "options": [
+      "AWS Shield",
+      "AWS WAF",
+      "Amazon Macie",
+      "Amazon Inspector",
+      "AWS Trusted Advisor"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "multiple": true
+  },
+  {
+    "id": 4,
+    "question": "A solutions architect needs to design a system that automatically adjusts capacity based on demand. Which service or feature should be used?",
+    "options": [
+      "Amazon CloudFront",
+      "Auto Scaling",
+      "AWS Batch",
+      "AWS Data Pipeline"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 5,
+    "question": "A company is storing sensitive data in Amazon S3. Compliance requires that the data must be encrypted at rest using AWS-managed keys. Which option should the company choose?",
+    "options": [
+      "SSE-S3",
+      "SSE-KMS",
+      "Client-Side Encryption",
+      "Plaintext storage with IAM policies"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 6,
+    "question": "A company needs to migrate an application with minimal changes. The application runs on a traditional server with a web server and background jobs. Which AWS service is the BEST fit?",
+    "options": [
+      "AWS Lambda",
+      "Amazon EC2",
+      "AWS Fargate",
+      "AWS Elastic Beanstalk"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 7,
+    "question": "A development team wants to store configuration data centrally and securely so that multiple applications can retrieve it. Which AWS service is MOST appropriate?",
+    "options": [
+      "Amazon DynamoDB",
+      "AWS Systems Manager Parameter Store",
+      "AWS CloudFormation",
+      "Amazon S3"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 8,
+    "question": "A company has multiple VPCs across several Regions and needs to establish connectivity between them. Which AWS service should the company use?",
+    "options": [
+      "VPC Endpoints",
+      "VPC Peering",
+      "AWS Transit Gateway",
+      "Direct Connect"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 9,
+    "question": "A company needs to provide developers with temporary access to AWS resources. The solution must follow best practices for security. Which options should the company implement? (Choose TWO)",
+    "options": [
+      "Use IAM roles with temporary security credentials",
+      "Share long-term IAM user access keys",
+      "Enable AWS STS for temporary tokens",
+      "Store IAM user passwords in Amazon S3",
+      "Hardcode credentials in the application"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 10,
+    "question": "A company wants to optimize costs by moving infrequently accessed data to a lower-cost storage class, while still keeping it available within minutes when needed. Which S3 storage class should they use?",
+    "options": [
+      "S3 Standard",
+      "S3 One Zone-IA",
+      "S3 Glacier Deep Archive",
+      "S3 Standard-IA"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  }
+]

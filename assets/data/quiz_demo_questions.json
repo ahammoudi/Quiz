@@ -1,0 +1,131 @@
+[
+  {
+    "id": 1,
+    "question": "What is the primary purpose of a database management system (DBMS)?",
+    "options": [
+      "To create web applications",
+      "To organize, store, and retrieve data efficiently",
+      "To design user interfaces",
+      "To manage network connections"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 2,
+    "question": "Which of the following are fundamental principles of object-oriented programming? (Choose TWO)",
+    "options": [
+      "Encapsulation",
+      "Linear programming",
+      "Inheritance",
+      "Static typing"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 3,
+    "question": "In networking, what does HTTP stand for?",
+    "options": [
+      "HyperText Transfer Protocol",
+      "High-Level Text Transfer Process",
+      "Hyperlink Text Transmission Protocol",
+      "HTML Text Transfer Protocol"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 4,
+    "question": "Which data structure follows the Last-In-First-Out (LIFO) principle?",
+    "options": [
+      "Queue",
+      "Stack",
+      "Array",
+      "Linked List"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 5,
+    "question": "What are the main advantages of cloud computing? (Choose TWO)",
+    "options": [
+      "Scalability on demand",
+      "Higher hardware costs",
+      "Cost efficiency",
+      "Limited accessibility"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 6,
+    "question": "In software development, what does API stand for?",
+    "options": [
+      "Application Programming Interface",
+      "Advanced Programming Integration",
+      "Automated Process Interface",
+      "Application Process Integration"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 7,
+    "question": "Which of the following are common types of software testing? (Choose TWO)",
+    "options": [
+      "Unit testing",
+      "Color testing",
+      "Integration testing",
+      "Font testing"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 8,
+    "question": "What is the main purpose of version control systems like Git?",
+    "options": [
+      "To compile code",
+      "To track changes in files and coordinate work among developers",
+      "To create databases",
+      "To design user interfaces"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 9,
+    "question": "In cybersecurity, what does the principle of 'least privilege' mean?",
+    "options": [
+      "Give users maximum access rights",
+      "Grant users only the minimum access rights needed to perform their job",
+      "Remove all access rights from users",
+      "Allow unrestricted access to all systems"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  }
+]

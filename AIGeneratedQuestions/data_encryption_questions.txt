@@ -1,0 +1,1050 @@
+Question #: 1
+Which AWS service is primarily used for creating and managing encryption keys?
+
+A. AWS Secrets Manager
+B. AWS Certificate Manager
+C. AWS KMS
+D. Amazon Cognito
+
+Answer: C
+
+Question #: 2
+Which TWO statements about AWS KMS are correct? (Choose TWO)
+
+A. KMS keys can be customer-managed
+B. KMS supports automatic key rotation
+C. KMS can only encrypt objects larger than 4 KB directly
+D. KMS integrates with S3, EBS, and RDS
+E. KMS is only available in a single AWS region
+
+Answer: A,B,D
+
+Question #: 3
+How does Amazon S3 provide encryption at rest?
+
+A. Using AWS KMS-managed keys (SSE-KMS)
+B. Using server-side encryption with Amazon S3-managed keys (SSE-S3)
+C. Using client-side encryption
+D. All of the above
+
+Answer: D
+
+Question #: 4
+Which TWO are valid methods for encrypting Amazon EBS volumes? (Choose TWO)
+
+A. Enable EBS encryption when creating a volume
+B. Encrypt the root volume after EC2 instance launch without downtime
+C. Copy an unencrypted snapshot to an encrypted snapshot
+D. Attach an IAM role with encryption permissions
+E. Use an external VPN tunnel
+
+Answer: A,C
+
+Question #: 5
+Which is the best practice for encrypting RDS databases at rest?
+
+A. Enable encryption when creating the RDS instance
+B. Enable SSL connections
+C. Attach a Security Group
+D. Configure IAM roles
+
+Answer: A
+
+Question #: 6
+Which TWO methods can be used to encrypt data in transit to an Amazon RDS database? (Choose TWO)
+
+A. Use SSL/TLS connections
+B. Enable IAM authentication
+C. Encrypt the storage layer
+D. Configure client applications to require SSL
+E. Attach a KMS key directly to SQL queries
+
+Answer: A,D
+
+Question #: 7
+Which statement is true about SSL/TLS encryption in AWS?
+
+A. It only applies to S3
+B. It encrypts data in transit between clients and services
+C. It encrypts data at rest automatically
+D. It replaces IAM policies
+
+Answer: B
+
+Question #: 8
+Which TWO services support enabling default encryption for all new resources? (Choose TWO)
+
+A. Amazon S3
+B. Amazon EC2
+C. Amazon EBS
+D. Amazon Route 53
+E. AWS Lambda
+
+Answer: A,C
+
+Question #: 9
+Which AWS service manages SSL/TLS certificates for use with CloudFront and Elastic Load Balancers?
+
+A. AWS KMS
+B. AWS Certificate Manager (ACM)
+C. AWS Shield
+D. AWS Secrets Manager
+
+Answer: B
+
+Question #: 10
+Which TWO actions are possible with Customer Managed Keys (CMKs) in KMS? (Choose TWO)
+
+A. Schedule key deletion
+B. Rotate keys manually
+C. Attach them directly to IAM groups
+D. Use them to encrypt/decrypt data keys
+E. Export them for external use
+
+Answer: A,B,D
+
+Question #: 11
+Which AWS service is primarily used for creating and managing encryption keys?
+
+A. AWS Secrets Manager
+B. AWS Certificate Manager
+C. AWS KMS
+D. Amazon Cognito
+
+Answer: C
+
+Question #: 12
+Which TWO statements about AWS KMS are correct? (Choose TWO)
+
+A. KMS keys can be customer-managed
+B. KMS supports automatic key rotation
+C. KMS can only encrypt objects larger than 4 KB directly
+D. KMS integrates with S3, EBS, and RDS
+E. KMS is only available in a single AWS region
+
+Answer: A,B,D
+
+Question #: 13
+How does Amazon S3 provide encryption at rest?
+
+A. Using AWS KMS-managed keys (SSE-KMS)
+B. Using server-side encryption with Amazon S3-managed keys (SSE-S3)
+C. Using client-side encryption
+D. All of the above
+
+Answer: D
+
+Question #: 14
+Which TWO are valid methods for encrypting Amazon EBS volumes? (Choose TWO)
+
+A. Enable EBS encryption when creating a volume
+B. Encrypt the root volume after EC2 instance launch without downtime
+C. Copy an unencrypted snapshot to an encrypted snapshot
+D. Attach an IAM role with encryption permissions
+E. Use an external VPN tunnel
+
+Answer: A,C
+
+Question #: 15
+Which is the best practice for encrypting RDS databases at rest?
+
+A. Enable encryption when creating the RDS instance
+B. Enable SSL connections
+C. Attach a Security Group
+D. Configure IAM roles
+
+Answer: A
+
+Question #: 16
+Which TWO methods can be used to encrypt data in transit to an Amazon RDS database? (Choose TWO)
+
+A. Use SSL/TLS connections
+B. Enable IAM authentication
+C. Encrypt the storage layer
+D. Configure client applications to require SSL
+E. Attach a KMS key directly to SQL queries
+
+Answer: A,D
+
+Question #: 17
+Which statement is true about SSL/TLS encryption in AWS?
+
+A. It only applies to S3
+B. It encrypts data in transit between clients and services
+C. It encrypts data at rest automatically
+D. It replaces IAM policies
+
+Answer: B
+
+Question #: 18
+Which TWO services support enabling default encryption for all new resources? (Choose TWO)
+
+A. Amazon S3
+B. Amazon EC2
+C. Amazon EBS
+D. Amazon Route 53
+E. AWS Lambda
+
+Answer: A,C
+
+Question #: 19
+Which AWS service manages SSL/TLS certificates for use with CloudFront and Elastic Load Balancers?
+
+A. AWS KMS
+B. AWS Certificate Manager (ACM)
+C. AWS Shield
+D. AWS Secrets Manager
+
+Answer: B
+
+Question #: 20
+Which TWO actions are possible with Customer Managed Keys (CMKs) in KMS? (Choose TWO)
+
+A. Schedule key deletion
+B. Rotate keys manually
+C. Attach them directly to IAM groups
+D. Use them to encrypt/decrypt data keys
+E. Export them for external use
+
+Answer: A,B,D
+
+Question #: 21
+Which AWS service is primarily used for creating and managing encryption keys?
+
+A. AWS Secrets Manager
+B. AWS Certificate Manager
+C. AWS KMS
+D. Amazon Cognito
+
+Answer: C
+
+Question #: 22
+Which TWO statements about AWS KMS are correct? (Choose TWO)
+
+A. KMS keys can be customer-managed
+B. KMS supports automatic key rotation
+C. KMS can only encrypt objects larger than 4 KB directly
+D. KMS integrates with S3, EBS, and RDS
+E. KMS is only available in a single AWS region
+
+Answer: A,B,D
+
+Question #: 23
+How does Amazon S3 provide encryption at rest?
+
+A. Using AWS KMS-managed keys (SSE-KMS)
+B. Using server-side encryption with Amazon S3-managed keys (SSE-S3)
+C. Using client-side encryption
+D. All of the above
+
+Answer: D
+
+Question #: 24
+Which TWO are valid methods for encrypting Amazon EBS volumes? (Choose TWO)
+
+A. Enable EBS encryption when creating a volume
+B. Encrypt the root volume after EC2 instance launch without downtime
+C. Copy an unencrypted snapshot to an encrypted snapshot
+D. Attach an IAM role with encryption permissions
+E. Use an external VPN tunnel
+
+Answer: A,C
+
+Question #: 25
+Which is the best practice for encrypting RDS databases at rest?
+
+A. Enable encryption when creating the RDS instance
+B. Enable SSL connections
+C. Attach a Security Group
+D. Configure IAM roles
+
+Answer: A
+
+Question #: 26
+Which TWO methods can be used to encrypt data in transit to an Amazon RDS database? (Choose TWO)
+
+A. Use SSL/TLS connections
+B. Enable IAM authentication
+C. Encrypt the storage layer
+D. Configure client applications to require SSL
+E. Attach a KMS key directly to SQL queries
+
+Answer: A,D
+
+Question #: 27
+Which statement is true about SSL/TLS encryption in AWS?
+
+A. It only applies to S3
+B. It encrypts data in transit between clients and services
+C. It encrypts data at rest automatically
+D. It replaces IAM policies
+
+Answer: B
+
+Question #: 28
+Which TWO services support enabling default encryption for all new resources? (Choose TWO)
+
+A. Amazon S3
+B. Amazon EC2
+C. Amazon EBS
+D. Amazon Route 53
+E. AWS Lambda
+
+Answer: A,C
+
+Question #: 29
+Which AWS service manages SSL/TLS certificates for use with CloudFront and Elastic Load Balancers?
+
+A. AWS KMS
+B. AWS Certificate Manager (ACM)
+C. AWS Shield
+D. AWS Secrets Manager
+
+Answer: B
+
+Question #: 30
+Which TWO actions are possible with Customer Managed Keys (CMKs) in KMS? (Choose TWO)
+
+A. Schedule key deletion
+B. Rotate keys manually
+C. Attach them directly to IAM groups
+D. Use them to encrypt/decrypt data keys
+E. Export them for external use
+
+Answer: A,B,D
+
+Question #: 31
+Which AWS service is primarily used for creating and managing encryption keys?
+
+A. AWS Secrets Manager
+B. AWS Certificate Manager
+C. AWS KMS
+D. Amazon Cognito
+
+Answer: C
+
+Question #: 32
+Which TWO statements about AWS KMS are correct? (Choose TWO)
+
+A. KMS keys can be customer-managed
+B. KMS supports automatic key rotation
+C. KMS can only encrypt objects larger than 4 KB directly
+D. KMS integrates with S3, EBS, and RDS
+E. KMS is only available in a single AWS region
+
+Answer: A,B,D
+
+Question #: 33
+How does Amazon S3 provide encryption at rest?
+
+A. Using AWS KMS-managed keys (SSE-KMS)
+B. Using server-side encryption with Amazon S3-managed keys (SSE-S3)
+C. Using client-side encryption
+D. All of the above
+
+Answer: D
+
+Question #: 34
+Which TWO are valid methods for encrypting Amazon EBS volumes? (Choose TWO)
+
+A. Enable EBS encryption when creating a volume
+B. Encrypt the root volume after EC2 instance launch without downtime
+C. Copy an unencrypted snapshot to an encrypted snapshot
+D. Attach an IAM role with encryption permissions
+E. Use an external VPN tunnel
+
+Answer: A,C
+
+Question #: 35
+Which is the best practice for encrypting RDS databases at rest?
+
+A. Enable encryption when creating the RDS instance
+B. Enable SSL connections
+C. Attach a Security Group
+D. Configure IAM roles
+
+Answer: A
+
+Question #: 36
+Which TWO methods can be used to encrypt data in transit to an Amazon RDS database? (Choose TWO)
+
+A. Use SSL/TLS connections
+B. Enable IAM authentication
+C. Encrypt the storage layer
+D. Configure client applications to require SSL
+E. Attach a KMS key directly to SQL queries
+
+Answer: A,D
+
+Question #: 37
+Which statement is true about SSL/TLS encryption in AWS?
+
+A. It only applies to S3
+B. It encrypts data in transit between clients and services
+C. It encrypts data at rest automatically
+D. It replaces IAM policies
+
+Answer: B
+
+Question #: 38
+Which TWO services support enabling default encryption for all new resources? (Choose TWO)
+
+A. Amazon S3
+B. Amazon EC2
+C. Amazon EBS
+D. Amazon Route 53
+E. AWS Lambda
+
+Answer: A,C
+
+Question #: 39
+Which AWS service manages SSL/TLS certificates for use with CloudFront and Elastic Load Balancers?
+
+A. AWS KMS
+B. AWS Certificate Manager (ACM)
+C. AWS Shield
+D. AWS Secrets Manager
+
+Answer: B
+
+Question #: 40
+Which TWO actions are possible with Customer Managed Keys (CMKs) in KMS? (Choose TWO)
+
+A. Schedule key deletion
+B. Rotate keys manually
+C. Attach them directly to IAM groups
+D. Use them to encrypt/decrypt data keys
+E. Export them for external use
+
+Answer: A,B,D
+
+Question #: 41
+Which AWS service is primarily used for creating and managing encryption keys?
+
+A. AWS Secrets Manager
+B. AWS Certificate Manager
+C. AWS KMS
+D. Amazon Cognito
+
+Answer: C
+
+Question #: 42
+Which TWO statements about AWS KMS are correct? (Choose TWO)
+
+A. KMS keys can be customer-managed
+B. KMS supports automatic key rotation
+C. KMS can only encrypt objects larger than 4 KB directly
+D. KMS integrates with S3, EBS, and RDS
+E. KMS is only available in a single AWS region
+
+Answer: A,B,D
+
+Question #: 43
+How does Amazon S3 provide encryption at rest?
+
+A. Using AWS KMS-managed keys (SSE-KMS)
+B. Using server-side encryption with Amazon S3-managed keys (SSE-S3)
+C. Using client-side encryption
+D. All of the above
+
+Answer: D
+
+Question #: 44
+Which TWO are valid methods for encrypting Amazon EBS volumes? (Choose TWO)
+
+A. Enable EBS encryption when creating a volume
+B. Encrypt the root volume after EC2 instance launch without downtime
+C. Copy an unencrypted snapshot to an encrypted snapshot
+D. Attach an IAM role with encryption permissions
+E. Use an external VPN tunnel
+
+Answer: A,C
+
+Question #: 45
+Which is the best practice for encrypting RDS databases at rest?
+
+A. Enable encryption when creating the RDS instance
+B. Enable SSL connections
+C. Attach a Security Group
+D. Configure IAM roles
+
+Answer: A
+
+Question #: 46
+Which TWO methods can be used to encrypt data in transit to an Amazon RDS database? (Choose TWO)
+
+A. Use SSL/TLS connections
+B. Enable IAM authentication
+C. Encrypt the storage layer
+D. Configure client applications to require SSL
+E. Attach a KMS key directly to SQL queries
+
+Answer: A,D
+
+Question #: 47
+Which statement is true about SSL/TLS encryption in AWS?
+
+A. It only applies to S3
+B. It encrypts data in transit between clients and services
+C. It encrypts data at rest automatically
+D. It replaces IAM policies
+
+Answer: B
+
+Question #: 48
+Which TWO services support enabling default encryption for all new resources? (Choose TWO)
+
+A. Amazon S3
+B. Amazon EC2
+C. Amazon EBS
+D. Amazon Route 53
+E. AWS Lambda
+
+Answer: A,C
+
+Question #: 49
+Which AWS service manages SSL/TLS certificates for use with CloudFront and Elastic Load Balancers?
+
+A. AWS KMS
+B. AWS Certificate Manager (ACM)
+C. AWS Shield
+D. AWS Secrets Manager
+
+Answer: B
+
+Question #: 50
+Which TWO actions are possible with Customer Managed Keys (CMKs) in KMS? (Choose TWO)
+
+A. Schedule key deletion
+B. Rotate keys manually
+C. Attach them directly to IAM groups
+D. Use them to encrypt/decrypt data keys
+E. Export them for external use
+
+Answer: A,B,D
+
+Question #: 51
+Which AWS service is primarily used for creating and managing encryption keys?
+
+A. AWS Secrets Manager
+B. AWS Certificate Manager
+C. AWS KMS
+D. Amazon Cognito
+
+Answer: C
+
+Question #: 52
+Which TWO statements about AWS KMS are correct? (Choose TWO)
+
+A. KMS keys can be customer-managed
+B. KMS supports automatic key rotation
+C. KMS can only encrypt objects larger than 4 KB directly
+D. KMS integrates with S3, EBS, and RDS
+E. KMS is only available in a single AWS region
+
+Answer: A,B,D
+
+Question #: 53
+How does Amazon S3 provide encryption at rest?
+
+A. Using AWS KMS-managed keys (SSE-KMS)
+B. Using server-side encryption with Amazon S3-managed keys (SSE-S3)
+C. Using client-side encryption
+D. All of the above
+
+Answer: D
+
+Question #: 54
+Which TWO are valid methods for encrypting Amazon EBS volumes? (Choose TWO)
+
+A. Enable EBS encryption when creating a volume
+B. Encrypt the root volume after EC2 instance launch without downtime
+C. Copy an unencrypted snapshot to an encrypted snapshot
+D. Attach an IAM role with encryption permissions
+E. Use an external VPN tunnel
+
+Answer: A,C
+
+Question #: 55
+Which is the best practice for encrypting RDS databases at rest?
+
+A. Enable encryption when creating the RDS instance
+B. Enable SSL connections
+C. Attach a Security Group
+D. Configure IAM roles
+
+Answer: A
+
+Question #: 56
+Which TWO methods can be used to encrypt data in transit to an Amazon RDS database? (Choose TWO)
+
+A. Use SSL/TLS connections
+B. Enable IAM authentication
+C. Encrypt the storage layer
+D. Configure client applications to require SSL
+E. Attach a KMS key directly to SQL queries
+
+Answer: A,D
+
+Question #: 57
+Which statement is true about SSL/TLS encryption in AWS?
+
+A. It only applies to S3
+B. It encrypts data in transit between clients and services
+C. It encrypts data at rest automatically
+D. It replaces IAM policies
+
+Answer: B
+
+Question #: 58
+Which TWO services support enabling default encryption for all new resources? (Choose TWO)
+
+A. Amazon S3
+B. Amazon EC2
+C. Amazon EBS
+D. Amazon Route 53
+E. AWS Lambda
+
+Answer: A,C
+
+Question #: 59
+Which AWS service manages SSL/TLS certificates for use with CloudFront and Elastic Load Balancers?
+
+A. AWS KMS
+B. AWS Certificate Manager (ACM)
+C. AWS Shield
+D. AWS Secrets Manager
+
+Answer: B
+
+Question #: 60
+Which TWO actions are possible with Customer Managed Keys (CMKs) in KMS? (Choose TWO)
+
+A. Schedule key deletion
+B. Rotate keys manually
+C. Attach them directly to IAM groups
+D. Use them to encrypt/decrypt data keys
+E. Export them for external use
+
+Answer: A,B,D
+
+Question #: 61
+Which AWS service is primarily used for creating and managing encryption keys?
+
+A. AWS Secrets Manager
+B. AWS Certificate Manager
+C. AWS KMS
+D. Amazon Cognito
+
+Answer: C
+
+Question #: 62
+Which TWO statements about AWS KMS are correct? (Choose TWO)
+
+A. KMS keys can be customer-managed
+B. KMS supports automatic key rotation
+C. KMS can only encrypt objects larger than 4 KB directly
+D. KMS integrates with S3, EBS, and RDS
+E. KMS is only available in a single AWS region
+
+Answer: A,B,D
+
+Question #: 63
+How does Amazon S3 provide encryption at rest?
+
+A. Using AWS KMS-managed keys (SSE-KMS)
+B. Using server-side encryption with Amazon S3-managed keys (SSE-S3)
+C. Using client-side encryption
+D. All of the above
+
+Answer: D
+
+Question #: 64
+Which TWO are valid methods for encrypting Amazon EBS volumes? (Choose TWO)
+
+A. Enable EBS encryption when creating a volume
+B. Encrypt the root volume after EC2 instance launch without downtime
+C. Copy an unencrypted snapshot to an encrypted snapshot
+D. Attach an IAM role with encryption permissions
+E. Use an external VPN tunnel
+
+Answer: A,C
+
+Question #: 65
+Which is the best practice for encrypting RDS databases at rest?
+
+A. Enable encryption when creating the RDS instance
+B. Enable SSL connections
+C. Attach a Security Group
+D. Configure IAM roles
+
+Answer: A
+
+Question #: 66
+Which TWO methods can be used to encrypt data in transit to an Amazon RDS database? (Choose TWO)
+
+A. Use SSL/TLS connections
+B. Enable IAM authentication
+C. Encrypt the storage layer
+D. Configure client applications to require SSL
+E. Attach a KMS key directly to SQL queries
+
+Answer: A,D
+
+Question #: 67
+Which statement is true about SSL/TLS encryption in AWS?
+
+A. It only applies to S3
+B. It encrypts data in transit between clients and services
+C. It encrypts data at rest automatically
+D. It replaces IAM policies
+
+Answer: B
+
+Question #: 68
+Which TWO services support enabling default encryption for all new resources? (Choose TWO)
+
+A. Amazon S3
+B. Amazon EC2
+C. Amazon EBS
+D. Amazon Route 53
+E. AWS Lambda
+
+Answer: A,C
+
+Question #: 69
+Which AWS service manages SSL/TLS certificates for use with CloudFront and Elastic Load Balancers?
+
+A. AWS KMS
+B. AWS Certificate Manager (ACM)
+C. AWS Shield
+D. AWS Secrets Manager
+
+Answer: B
+
+Question #: 70
+Which TWO actions are possible with Customer Managed Keys (CMKs) in KMS? (Choose TWO)
+
+A. Schedule key deletion
+B. Rotate keys manually
+C. Attach them directly to IAM groups
+D. Use them to encrypt/decrypt data keys
+E. Export them for external use
+
+Answer: A,B,D
+
+Question #: 71
+Which AWS service is primarily used for creating and managing encryption keys?
+
+A. AWS Secrets Manager
+B. AWS Certificate Manager
+C. AWS KMS
+D. Amazon Cognito
+
+Answer: C
+
+Question #: 72
+Which TWO statements about AWS KMS are correct? (Choose TWO)
+
+A. KMS keys can be customer-managed
+B. KMS supports automatic key rotation
+C. KMS can only encrypt objects larger than 4 KB directly
+D. KMS integrates with S3, EBS, and RDS
+E. KMS is only available in a single AWS region
+
+Answer: A,B,D
+
+Question #: 73
+How does Amazon S3 provide encryption at rest?
+
+A. Using AWS KMS-managed keys (SSE-KMS)
+B. Using server-side encryption with Amazon S3-managed keys (SSE-S3)
+C. Using client-side encryption
+D. All of the above
+
+Answer: D
+
+Question #: 74
+Which TWO are valid methods for encrypting Amazon EBS volumes? (Choose TWO)
+
+A. Enable EBS encryption when creating a volume
+B. Encrypt the root volume after EC2 instance launch without downtime
+C. Copy an unencrypted snapshot to an encrypted snapshot
+D. Attach an IAM role with encryption permissions
+E. Use an external VPN tunnel
+
+Answer: A,C
+
+Question #: 75
+Which is the best practice for encrypting RDS databases at rest?
+
+A. Enable encryption when creating the RDS instance
+B. Enable SSL connections
+C. Attach a Security Group
+D. Configure IAM roles
+
+Answer: A
+
+Question #: 76
+Which TWO methods can be used to encrypt data in transit to an Amazon RDS database? (Choose TWO)
+
+A. Use SSL/TLS connections
+B. Enable IAM authentication
+C. Encrypt the storage layer
+D. Configure client applications to require SSL
+E. Attach a KMS key directly to SQL queries
+
+Answer: A,D
+
+Question #: 77
+Which statement is true about SSL/TLS encryption in AWS?
+
+A. It only applies to S3
+B. It encrypts data in transit between clients and services
+C. It encrypts data at rest automatically
+D. It replaces IAM policies
+
+Answer: B
+
+Question #: 78
+Which TWO services support enabling default encryption for all new resources? (Choose TWO)
+
+A. Amazon S3
+B. Amazon EC2
+C. Amazon EBS
+D. Amazon Route 53
+E. AWS Lambda
+
+Answer: A,C
+
+Question #: 79
+Which AWS service manages SSL/TLS certificates for use with CloudFront and Elastic Load Balancers?
+
+A. AWS KMS
+B. AWS Certificate Manager (ACM)
+C. AWS Shield
+D. AWS Secrets Manager
+
+Answer: B
+
+Question #: 80
+Which TWO actions are possible with Customer Managed Keys (CMKs) in KMS? (Choose TWO)
+
+A. Schedule key deletion
+B. Rotate keys manually
+C. Attach them directly to IAM groups
+D. Use them to encrypt/decrypt data keys
+E. Export them for external use
+
+Answer: A,B,D
+
+Question #: 81
+Which AWS service is primarily used for creating and managing encryption keys?
+
+A. AWS Secrets Manager
+B. AWS Certificate Manager
+C. AWS KMS
+D. Amazon Cognito
+
+Answer: C
+
+Question #: 82
+Which TWO statements about AWS KMS are correct? (Choose TWO)
+
+A. KMS keys can be customer-managed
+B. KMS supports automatic key rotation
+C. KMS can only encrypt objects larger than 4 KB directly
+D. KMS integrates with S3, EBS, and RDS
+E. KMS is only available in a single AWS region
+
+Answer: A,B,D
+
+Question #: 83
+How does Amazon S3 provide encryption at rest?
+
+A. Using AWS KMS-managed keys (SSE-KMS)
+B. Using server-side encryption with Amazon S3-managed keys (SSE-S3)
+C. Using client-side encryption
+D. All of the above
+
+Answer: D
+
+Question #: 84
+Which TWO are valid methods for encrypting Amazon EBS volumes? (Choose TWO)
+
+A. Enable EBS encryption when creating a volume
+B. Encrypt the root volume after EC2 instance launch without downtime
+C. Copy an unencrypted snapshot to an encrypted snapshot
+D. Attach an IAM role with encryption permissions
+E. Use an external VPN tunnel
+
+Answer: A,C
+
+Question #: 85
+Which is the best practice for encrypting RDS databases at rest?
+
+A. Enable encryption when creating the RDS instance
+B. Enable SSL connections
+C. Attach a Security Group
+D. Configure IAM roles
+
+Answer: A
+
+Question #: 86
+Which TWO methods can be used to encrypt data in transit to an Amazon RDS database? (Choose TWO)
+
+A. Use SSL/TLS connections
+B. Enable IAM authentication
+C. Encrypt the storage layer
+D. Configure client applications to require SSL
+E. Attach a KMS key directly to SQL queries
+
+Answer: A,D
+
+Question #: 87
+Which statement is true about SSL/TLS encryption in AWS?
+
+A. It only applies to S3
+B. It encrypts data in transit between clients and services
+C. It encrypts data at rest automatically
+D. It replaces IAM policies
+
+Answer: B
+
+Question #: 88
+Which TWO services support enabling default encryption for all new resources? (Choose TWO)
+
+A. Amazon S3
+B. Amazon EC2
+C. Amazon EBS
+D. Amazon Route 53
+E. AWS Lambda
+
+Answer: A,C
+
+Question #: 89
+Which AWS service manages SSL/TLS certificates for use with CloudFront and Elastic Load Balancers?
+
+A. AWS KMS
+B. AWS Certificate Manager (ACM)
+C. AWS Shield
+D. AWS Secrets Manager
+
+Answer: B
+
+Question #: 90
+Which TWO actions are possible with Customer Managed Keys (CMKs) in KMS? (Choose TWO)
+
+A. Schedule key deletion
+B. Rotate keys manually
+C. Attach them directly to IAM groups
+D. Use them to encrypt/decrypt data keys
+E. Export them for external use
+
+Answer: A,B,D
+
+Question #: 91
+Which AWS service is primarily used for creating and managing encryption keys?
+
+A. AWS Secrets Manager
+B. AWS Certificate Manager
+C. AWS KMS
+D. Amazon Cognito
+
+Answer: C
+
+Question #: 92
+Which TWO statements about AWS KMS are correct? (Choose TWO)
+
+A. KMS keys can be customer-managed
+B. KMS supports automatic key rotation
+C. KMS can only encrypt objects larger than 4 KB directly
+D. KMS integrates with S3, EBS, and RDS
+E. KMS is only available in a single AWS region
+
+Answer: A,B,D
+
+Question #: 93
+How does Amazon S3 provide encryption at rest?
+
+A. Using AWS KMS-managed keys (SSE-KMS)
+B. Using server-side encryption with Amazon S3-managed keys (SSE-S3)
+C. Using client-side encryption
+D. All of the above
+
+Answer: D
+
+Question #: 94
+Which TWO are valid methods for encrypting Amazon EBS volumes? (Choose TWO)
+
+A. Enable EBS encryption when creating a volume
+B. Encrypt the root volume after EC2 instance launch without downtime
+C. Copy an unencrypted snapshot to an encrypted snapshot
+D. Attach an IAM role with encryption permissions
+E. Use an external VPN tunnel
+
+Answer: A,C
+
+Question #: 95
+Which is the best practice for encrypting RDS databases at rest?
+
+A. Enable encryption when creating the RDS instance
+B. Enable SSL connections
+C. Attach a Security Group
+D. Configure IAM roles
+
+Answer: A
+
+Question #: 96
+Which TWO methods can be used to encrypt data in transit to an Amazon RDS database? (Choose TWO)
+
+A. Use SSL/TLS connections
+B. Enable IAM authentication
+C. Encrypt the storage layer
+D. Configure client applications to require SSL
+E. Attach a KMS key directly to SQL queries
+
+Answer: A,D
+
+Question #: 97
+Which statement is true about SSL/TLS encryption in AWS?
+
+A. It only applies to S3
+B. It encrypts data in transit between clients and services
+C. It encrypts data at rest automatically
+D. It replaces IAM policies
+
+Answer: B
+
+Question #: 98
+Which TWO services support enabling default encryption for all new resources? (Choose TWO)
+
+A. Amazon S3
+B. Amazon EC2
+C. Amazon EBS
+D. Amazon Route 53
+E. AWS Lambda
+
+Answer: A,C
+
+Question #: 99
+Which AWS service manages SSL/TLS certificates for use with CloudFront and Elastic Load Balancers?
+
+A. AWS KMS
+B. AWS Certificate Manager (ACM)
+C. AWS Shield
+D. AWS Secrets Manager
+
+Answer: B
+
+Question #: 100
+Which TWO actions are possible with Customer Managed Keys (CMKs) in KMS? (Choose TWO)
+
+A. Schedule key deletion
+B. Rotate keys manually
+C. Attach them directly to IAM groups
+D. Use them to encrypt/decrypt data keys
+E. Export them for external use
+
+Answer: A,B,D
+

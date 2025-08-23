@@ -1,0 +1,36 @@
+{
+  "quiz-sets": {
+    "quiz_Demo.json": {
+      "name": "Demo Questions (10 questions)",
+      "description": "This is a demo questions.",
+      "difficulty": "Mixed",
+      "question_count": 10,
+      "auto_generated": true,
+      "created_date": "2025-08-23",
+      "source": "automated_conversion",
+      "default": true,
+      "verified": true,
+      "recommended": true,
+      "quality": "High"
+    },
+    "quiz_aws_iam_practice.json": {
+      "name": "AWS IAM (100 questions)",
+      "description": "aws iam practice set",
+      "difficulty": "Mixed",
+      "question_count": 100,
+      "auto_generated": true,
+      "created_date": "2025-08-23",
+      "source": "automated_conversion"
+    }
+  },
+  "metadata": {
+    "total_quiz_sets": 2,
+    "last_updated": "2025-08-23 17:28:04",
+    "version": "1.0.0",
+    "quality_assured": true,
+    "notes": "Clean quiz platform ready for new quiz uploads",
+    "topics_available": [
+      "general"
+    ]
+  }
+}

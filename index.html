@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Practice Quiz Platform</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/quiz.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-8">
+        <div class="card shadow-lg mt-4 mb-4">
+          <div class="card-header bg-primary text-white text-center py-3">
+            <h1 class="mb-3"><i class="bi bi-award me-2"></i>Interactive Practice Quiz Platform</h1>
+            <a href="config.html" class="btn btn-light btn-sm" id="manageQuizBtn">
+              <i class="bi bi-gear-fill me-1"></i>Manage Quizzes
+            </a>
+          </div>
+          <div class="card-body p-4">
+            <!-- Quiz Setup Screen -->
+            <div id="quizSetup" class="text-center">
+              <div class="row justify-content-center">
+                <div class="col-md-10">
+                  <h3 class="mb-4"><i class="bi bi-gear me-2"></i>Quiz Configuration</h3>
+                  
+                  <!-- Question Set Selection -->
+                  <div class="row mb-4">
+                    <div class="col-12 mb-3">
+                      <label for="questionSet" class="form-label fw-bold">Question Set</label>
+                      <select class="form-select form-select-lg" id="questionSet">
+                        <option value="">Loading question sets...</option>
+                      </select>
+                      <div class="form-text">Choose which set of questions to practice with</div>
+                      <div id="setDescription" class="mt-2"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                      <label for="questionCount" class="form-label fw-bold">Number of Questions</label>
+                      <select class="form-select form-select-lg" id="questionCount">
+                        <option value="10">10 Questions</option>
+                        <option value="25">25 Questions</option>
+                        <option value="50" selected>50 Questions</option>
+                        <option value="100">100 Questions</option>
+                        <option value="all">All Questions</option>
+                      </select>
+                      <div class="form-text">Select how many questions you want to answer</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="timeLimit" class="form-label fw-bold">Time Limit</label>
+                      <select class="form-select form-select-lg" id="timeLimit">
+                        <option value="30">30 Minutes</option>
+                        <option value="60">60 Minutes</option>
+                        <option value="100" selected>100 Minutes</option>
+                        <option value="120">120 Minutes</option>
+                        <option value="180">180 Minutes</option>
+                        <option value="unlimited">Unlimited</option>
+                      </select>
+                      <div class="form-text">Choose your time limit for the quiz</div>
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <div class="alert alert-info">
+                      <i class="bi bi-info-circle me-2"></i>
+                      <strong>Quiz Information:</strong> Choose from multiple question sets, each with different focus areas and difficulty levels. 
+                      Questions are randomly selected from your chosen set. Some questions have multiple correct answers. You can skip questions if needed.
+                    </div>
+                  </div>
+                  <button class="btn btn-primary btn-lg px-5" onclick="startQuizWithConfig()">
+                    <i class="bi bi-play-circle me-2"></i>Start Quiz
+                  </button>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Quiz Content (hidden initially) -->
+            <div id="quizContent" style="display: none;">
+              <div id="pauseResumeContainer"></div>
+              <div id="quiz"></div>
+              <div id="controls" class="text-center mt-4"></div>
+              <div id="result"></div>
+              <div id="review"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="assets/js/quiz.js"></script>
+</body>
+</html>
