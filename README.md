@@ -4,6 +4,10 @@ A fully automated, web-based quiz platform with dynamic scoring and automated qu
 
 This tool was created to address a need for a better way to identify knowledge gaps in specific training material. After finding existing solutions to be either overpriced or unsuitable, I developed this tool and am now making it publicly available.
 
+## ⚠️ Important Notice
+
+**All questions in this platform are AI-generated** and are designed specifically to help identify knowledge gaps in training material. These questions are **not intended to simulate actual exams** and should be used exclusively for educational and self-assessment purposes. The content is meant to support learning and knowledge reinforcement, not exam preparation.
+
 ## 🌐 Live Demo
 
 **Try it now**: [https://quiz-dyc.pages.dev](https://quiz-dyc.pages.dev)
