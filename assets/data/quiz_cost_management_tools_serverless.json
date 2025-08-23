@@ -1,0 +1,1408 @@
+[
+  {
+    "id": 1,
+    "question": "A company wants to receive an email alert when their total monthly AWS costs are forecasted to exceed $5,000. Which AWS service should they use to configure this alert?",
+    "options": [
+      "AWS Cost Explorer",
+      "AWS Budgets",
+      "Amazon CloudWatch",
+      "AWS Trusted Advisor"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 2,
+    "question": "A developer is optimizing a Lambda function and notices that increasing the memory from 128 MB to 256 MB significantly decreases the execution time. How does this memory change affect the overall cost of the Lambda function?",
+    "options": [
+      "The cost will always increase because the per-millisecond rate is higher for more memory.",
+      "The cost will always decrease because the execution time is shorter.",
+      "The cost may increase, decrease, or stay the same, depending on whether the reduction in duration outweighs the increase in the per-millisecond price.",
+      "The cost is only based on the number of invocations, so the memory change has no effect."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 3,
+    "question": "An application uses Amazon SQS standard queues to decouple its components. The consumer instances are constantly polling the queue, even when it's empty, leading to high API usage costs. What is the most cost-effective way to reduce the number of empty receive requests?",
+    "options": [
+      "Use an SQS FIFO queue instead.",
+      "Increase the number of consumer instances.",
+      "Enable Long Polling on the SQS queue or in the `ReceiveMessage` API call.",
+      "Decrease the visibility timeout of the queue."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 4,
+    "question": "A company wants to visualize their AWS spending over the last 6 months, grouped by service and filtered by a specific project tag. Which tool is best suited for this ad-hoc analysis?",
+    "options": [
+      "AWS Budgets",
+      "AWS Pricing Calculator",
+      "AWS Cost Explorer",
+      "AWS Trusted Advisor"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 5,
+    "question": "Which AWS Lambda feature can help reduce latency for frequently invoked functions but may incur a cost even when the function is not running?",
+    "options": [
+      "Using environment variables.",
+      "Increasing the function's memory.",
+      "Configuring Provisioned Concurrency.",
+      "Using Lambda Layers."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 6,
+    "question": "A company is deciding between Amazon API Gateway REST APIs and HTTP APIs for a new high-volume, low-latency service. From a cost perspective, what is a key difference?",
+    "options": [
+      "REST APIs are typically cheaper and offer more features.",
+      "HTTP APIs are typically cheaper and designed for higher performance with fewer features.",
+      "Both API types have the exact same pricing model.",
+      "HTTP APIs are billed per hour, while REST APIs are billed per request."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 7,
+    "question": "A team is using Amazon DynamoDB and performs a `Scan` operation on a very large table to find a small number of items. Why is this an expensive and inefficient operation from a cost perspective?",
+    "options": [
+      "A Scan operation consumes Write Capacity Units (WCUs).",
+      "A Scan operation reads every item in the table, consuming Read Capacity Units (RCUs) for all items, not just the ones returned.",
+      "Scan operations have a high per-request fee.",
+      "Scan operations require the use of a Global Secondary Index, which adds cost."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 8,
+    "question": "A company wants to track costs for different departments (e.g., Marketing, Engineering). What is the most effective way to categorize and track these costs in AWS Cost Explorer?",
+    "options": [
+      "Use a separate AWS account for each department.",
+      "Implement a consistent tagging strategy and activate the tags as cost allocation tags.",
+      "Manually download the bill each month and analyze it in a spreadsheet.",
+      "Use a different AWS Region for each department."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 9,
+    "question": "What is the primary pricing component for AWS Step Functions Standard Workflows?",
+    "options": [
+      "The number of state transitions.",
+      "The duration of the entire workflow execution.",
+      "The amount of memory used by the workflow.",
+      "The number of steps in the workflow definition."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 10,
+    "question": "An organization has enabled AWS Trusted Advisor. Which of the following is a cost optimization recommendation that Trusted Advisor can provide? (Choose TWO)",
+    "options": [
+      "Identifying idle Amazon RDS instances.",
+      "Recommending security group rules that are too permissive.",
+      "Identifying Amazon EC2 instances with low utilization.",
+      "Alerting on service limit breaches.",
+      "Checking for exposed access keys."
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 11,
+    "question": "How is AWS Lambda billed?",
+    "options": [
+      "A fixed monthly fee per function.",
+      "An hourly rate based on the memory allocated.",
+      "A combination of the number of requests and the duration of the execution (in GB-seconds).",
+      "Based on the amount of data transferred out of the function."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 12,
+    "question": "A company is using Amazon S3 to store data. To save costs, they have created a lifecycle policy to move data to S3 Glacier Flexible Retrieval after 90 days. What cost is incurred when they need to access this archived data?",
+    "options": [
+      "There is no cost to access data from S3 Glacier.",
+      "A per-GB retrieval fee, in addition to the request fees.",
+      "Only a fee for the S3 PUT request to restore the object.",
+      "A fee based on the amount of time the object was stored in S3 Glacier."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 13,
+    "question": "For an application with a spiky and unpredictable traffic pattern, which DynamoDB capacity mode is generally more cost-effective and easier to manage?",
+    "options": [
+      "Provisioned Capacity Mode",
+      "On-Demand Capacity Mode",
+      "Reserved Capacity Mode",
+      "Spot Capacity Mode"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 14,
+    "question": "Which of the following is an example of a \"pay-per-use\" serverless service?",
+    "options": [
+      "An m5.large EC2 instance running 24/7.",
+      "An RDS instance with a Reserved Instance commitment.",
+      "An AWS Lambda function that runs in response to an event.",
+      "A Dedicated Host."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 15,
+    "question": "A company sets up an AWS Budget for their monthly EC2 costs. What action can be triggered directly from AWS Budgets when a threshold is exceeded?",
+    "options": [
+      "Automatically terminate all EC2 instances.",
+      "Send a notification to an Amazon SNS topic.",
+      "Apply an SCP to restrict launching new instances.",
+      "Reduce the performance of existing EC2 instances."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 16,
+    "question": "A developer is choosing an architecture for a new API. The API is expected to have very low traffic. Which architecture would have the lowest cost if the API is called only 100 times per month?",
+    "options": [
+      "An Application Load Balancer with an Auto Scaling group of t3.micro EC2 instances.",
+      "A single m5.large EC2 instance running a web server.",
+      "Amazon API Gateway with an AWS Lambda function as the backend.",
+      "A containerized application on an Amazon EKS cluster with 3 nodes."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 17,
+    "question": "What is the key benefit of a serverless architecture from a cost perspective?",
+    "options": [
+      "The cost is always lower than an equivalent server-based architecture.",
+      "There are no costs for idle resources; you only pay when your code is running or your service is being used.",
+      "Serverless services have no data transfer fees.",
+      "The pricing is a fixed monthly fee, which is easy to predict."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 18,
+    "question": "Which AWS tool is best suited for creating a custom report of your AWS costs and usage that you can save and access later?",
+    "options": [
+      "AWS Budgets",
+      "AWS Cost Explorer",
+      "AWS Pricing Calculator",
+      "AWS Personal Health Dashboard"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 19,
+    "question": "A Lambda function processes images uploaded to an S3 bucket. The function is written in Python. To improve performance and potentially reduce costs, the developer can package dependencies (like an image processing library) into which feature?",
+    "options": [
+      "Environment Variables",
+      "Lambda Layers",
+      "A separate S3 bucket",
+      "The `/tmp` directory"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 20,
+    "question": "How are AWS Fargate costs calculated?",
+    "options": [
+      "A flat fee per container.",
+      "Based on the number of EC2 instances in the underlying cluster.",
+      "Based on the amount of vCPU and memory resources consumed by your containerized tasks per second.",
+      "A per-request fee similar to Lambda."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 21,
+    "question": "Which of the following is NOT a primary component of the AWS Lambda pricing model?",
+    "options": [
+      "Number of requests",
+      "Execution duration",
+      "Memory allocated",
+      "Number of active versions"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 22,
+    "question": "A company wants to forecast their AWS spending for the next three months based on their historical usage. Which service provides this capability?",
+    "options": [
+      "AWS Budgets",
+      "AWS Cost Explorer",
+      "AWS Trusted Advisor",
+      "Amazon CloudWatch"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 23,
+    "question": "What is the key difference between AWS Step Functions Standard Workflows and Express Workflows in terms of their pricing and use case?",
+    "options": [
+      "Standard Workflows are cheaper and designed for short-duration, high-volume workloads.",
+      "Express Workflows are cheaper, designed for high-volume event processing, and have a shorter maximum duration.",
+      "Both have the same price, but Express Workflows are for long-running tasks.",
+      "Standard Workflows are billed by duration, while Express Workflows are billed by state transitions."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 24,
+    "question": "In a serverless application, an API Gateway endpoint triggers a Lambda function, which then reads from a DynamoDB table. Where do costs accumulate in this architecture?",
+    "options": [
+      "Only for the Lambda function execution.",
+      "For API Gateway requests, Lambda execution, and DynamoDB read requests.",
+      "Only for the API Gateway requests and DynamoDB reads.",
+      "There are no costs if the usage is within the free tier."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 25,
+    "question": "The AWS Free Tier for Lambda includes 1 million free requests per month. What is the other major component of the Lambda free tier?",
+    "options": [
+      "1 TB of data transfer.",
+      "400,000 GB-seconds of compute time per month.",
+      "100 GB of temporary storage.",
+      "Unlimited execution duration."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 26,
+    "question": "A company is analyzing its AWS bill and sees a significant charge for \"Data Transfer - Inter-AZ\". What does this charge represent?",
+    "options": [
+      "Data transferred from an S3 bucket to the internet.",
+      "Data transferred from an EC2 instance in `us-east-1a` to an EC2 instance in `us-east-1b`.",
+      "Data transferred from AWS to their on-premises data center.",
+      "Data transferred between two different AWS Regions."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 27,
+    "question": "To reduce the execution time and cost of a Lambda function, a developer can choose to run it on an ARM-based AWS Graviton2 processor. How is this configured?",
+    "options": [
+      "By selecting the \"Graviton\" option in the IAM role.",
+      "It is enabled by default for all functions.",
+      "By selecting the `arm64` architecture in the function's configuration.",
+      "By using a specific runtime, like `python-arm64`."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 28,
+    "question": "Which of the following services has a pricing model based on \"GB-hours\" for provisioned storage?",
+    "options": [
+      "AWS Lambda",
+      "Amazon S3",
+      "Amazon RDS",
+      "Amazon API Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 29,
+    "question": "A company wants to ensure that its developers do not launch oversized, expensive EC2 instances. Which AWS service can be used to enforce policies that restrict the launch of certain instance types at an organizational level?",
+    "options": [
+      "AWS Budgets",
+      "AWS Identity and Access Management (IAM)",
+      "AWS Organizations using Service Control Policies (SCPs)",
+      "AWS Trusted Advisor"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 30,
+    "question": "An application built with API Gateway and Lambda is experiencing high latency. Analysis shows that the Lambda function's \"cold start\" time is a major contributor. Which feature can mitigate this issue?",
+    "options": [
+      "Increasing the API Gateway timeout.",
+      "Using a Lambda Layer.",
+      "Configuring Lambda Provisioned Concurrency.",
+      "Caching responses at the API Gateway level."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 31,
+    "question": "What is a \"GB-second\" in the context of AWS Lambda pricing?",
+    "options": [
+      "A measure of network throughput.",
+      "A unit of billing that combines memory allocated (in GB) with the execution time (in seconds).",
+      "The amount of data that can be stored in the function's temporary directory.",
+      "A unit for the number of requests per second."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 32,
+    "question": "A company is using AWS Cost Explorer and wants to understand the amortization of their Reserved Instance purchases. What does \"amortized cost\" show?",
+    "options": [
+      "The total upfront fee paid for the RI on the day it was purchased.",
+      "The effective daily cost of the RI, distributing the upfront payment over the entire term.",
+      "The undiscounted On-Demand cost of the instance.",
+      "The potential savings from the RI."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 33,
+    "question": "A key principle of a cost-optimized serverless architecture is:",
+    "options": [
+      "Provisioning for peak capacity.",
+      "Using the largest possible Lambda memory size.",
+      "Avoiding idle resources by using event-driven, pay-per-use services.",
+      "Running a small EC2 instance 24/7 to act as an orchestrator."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 34,
+    "question": "What is the AWS Pricing Calculator used for?",
+    "options": [
+      "To view your current AWS bill.",
+      "To explore and analyze your historical costs.",
+      "To estimate the cost of your planned AWS architecture before you build it.",
+      "To set alerts when your costs exceed a certain threshold."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 35,
+    "question": "A Lambda function is invoked by an SQS queue. The function's event source mapping has a `BatchSize` of 10. If there are 25 messages in the queue, how many times will the Lambda function be invoked (assuming successful processing)?",
+    "options": [
+      "25 times",
+      "10 times",
+      "3 times (two batches of 10, one batch of 5)",
+      "1 time (with all 25 messages)"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 36,
+    "question": "For a long-running, predictable workflow that involves orchestrating multiple Lambda functions and other AWS services, which option is generally more cost-effective than a custom solution that uses SQS and DynamoDB for state management?",
+    "options": [
+      "A single, large Lambda function.",
+      "AWS Step Functions.",
+      "A fleet of EC2 instances.",
+      "Amazon Kinesis."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 37,
+    "question": "How can you track the costs associated with a specific microservice that is composed of multiple Lambda functions, a DynamoDB table, and an API Gateway?",
+    "options": [
+      "By assigning the same tag to all the resources belonging to that microservice.",
+      "By running the service in its own dedicated AWS Region.",
+      "By analyzing the CloudWatch logs for each service.",
+      "It is not possible to track costs at this level of granularity."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 38,
+    "question": "What happens to the cost if a Lambda function's execution time is rounded up to the nearest millisecond?",
+    "options": [
+      "The cost is calculated based on the exact execution time in nanoseconds.",
+      "The cost is calculated based on the execution time rounded up to the nearest millisecond.",
+      "The execution time is always rounded up to the nearest 100 milliseconds.",
+      "The execution time is rounded up to the nearest second."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 39,
+    "question": "An application uses DynamoDB with provisioned throughput. During peak traffic, the application is throttled. During off-peak hours, the provisioned capacity is largely unused. What native DynamoDB feature can help optimize costs for this workload?",
+    "options": [
+      "DynamoDB Streams",
+      "DynamoDB Auto Scaling",
+      "DynamoDB Accelerator (DAX)",
+      "Point-in-time recovery"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 40,
+    "question": "A company wants to receive daily reports on the status of checks performed by AWS Trusted Advisor. How can this be automated?",
+    "options": [
+      "By configuring notifications in the AWS Budgets console.",
+      "By subscribing to Trusted Advisor notifications in the AWS Personal Health Dashboard.",
+      "This is a default feature and requires no configuration.",
+      "By setting up weekly notifications in the Trusted Advisor console for services like AWS Support."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 41,
+    "question": "Which serverless service is priced based on the number of state transitions?",
+    "options": [
+      "AWS Lambda",
+      "Amazon SQS",
+      "AWS Step Functions",
+      "Amazon SNS"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 42,
+    "question": "A company is using the free tier for AWS Lambda. This month, they have made 500,000 requests and used 300,000 GB-seconds of compute. How much will they be charged for Lambda?",
+    "options": [
+      "They will be charged for 100,000 GB-seconds.",
+      "They will be charged for 500,000 requests.",
+      "They will be charged for both requests and compute.",
+      "They will not be charged, as their usage is within the free tier."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 43,
+    "question": "Which of the following is an example of a cost that is NOT directly associated with a running Lambda function?",
+    "options": [
+      "The cost of API Gateway requests that trigger the function.",
+      "The cost of data transfer out from the function to the internet.",
+      "The cost of CloudWatch Logs for storing the function's logs.",
+      "All of the above are associated costs."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 44,
+    "question": "A developer is trying to decide between a 128 MB Lambda function and a 256 MB Lambda function. The 256 MB function runs twice as fast. Assuming the GB-second price for 256 MB is twice that of 128 MB, what is the cost difference?",
+    "options": [
+      "The 256 MB function is more expensive.",
+      "The 128 MB function is more expensive.",
+      "The cost for compute duration is approximately the same for both.",
+      "It's impossible to tell without knowing the number of requests."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 45,
+    "question": "What is the purpose of a cost allocation tag?",
+    "options": [
+      "To apply a discount to a resource.",
+      "To associate a cost with a specific owner, project, or department for tracking purposes.",
+      "To prevent a resource from being deleted.",
+      "To trigger a budget alert."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 46,
+    "question": "A serverless application uses S3 event notifications to trigger a Lambda function whenever a new object is uploaded. What is the cost for the S3 event notification itself?",
+    "options": [
+      "There is a fee for each event notification sent.",
+      "There is no charge for event notifications, but you pay for the Lambda invocation.",
+      "The cost is included in the S3 storage price.",
+      "There is a monthly fee for enabling event notifications."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 47,
+    "question": "Which service would you use to find out which specific S3 bucket is contributing the most to your data storage costs?",
+    "options": [
+      "AWS Budgets",
+      "AWS Trusted Advisor",
+      "S3 Storage Lens or AWS Cost Explorer with resource-level filtering.",
+      "S3 Analytics"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 48,
+    "question": "For a serverless API, which service is responsible for authentication, throttling, and routing requests to the correct backend service (like a Lambda function)?",
+    "options": [
+      "Elastic Load Balancer",
+      "Amazon SQS",
+      "Amazon API Gateway",
+      "AWS WAF"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 49,
+    "question": "A company has a Lambda function that is part of a VPC. When the function is invoked for the first time after a period of inactivity, it takes a long time to start. This is often due to the time it takes to create a new Elastic Network Interface (ENI). How can this \"VPC cold start\" be mitigated?",
+    "options": [
+      "By increasing the function's memory.",
+      "By using Provisioned Concurrency.",
+      "By taking the function out of the VPC.",
+      "By using a NAT Gateway."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 50,
+    "question": "Which of the following services are considered \"serverless\"? (Choose TWO)",
+    "options": [
+      "Amazon EC2",
+      "Amazon DynamoDB",
+      "Amazon RDS",
+      "AWS Lambda",
+      "Amazon ElastiCache"
+    ],
+    "correctAnswers": [
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 51,
+    "question": "A company wants to set a budget that alerts them if their S3 Standard storage usage exceeds 10 TB. What type of budget should they create?",
+    "options": [
+      "Cost Budget",
+      "Usage Budget",
+      "Reservation Budget",
+      "Savings Plan Budget"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 52,
+    "question": "What is the most cost-effective way to run a Lambda function that needs a constant level of concurrency and must have no cold starts?",
+    "options": [
+      "Use On-Demand concurrency.",
+      "Set a high memory size for the function.",
+      "Configure Provisioned Concurrency for the required number of instances.",
+      "Use a larger batch size."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 53,
+    "question": "A developer is building an API using API Gateway and Lambda. The API will be used by an internal application and does not require features like usage plans or custom authorizers. Which type of API Gateway offers a lower price point for this scenario?",
+    "options": [
+      "REST API (Edge-optimized)",
+      "REST API (Regional)",
+      "WebSocket API",
+      "HTTP API"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 54,
+    "question": "In Cost Explorer, what does enabling \"resource and tag level detail\" allow you to do?",
+    "options": [
+      "It allows you to get a larger discount.",
+      "It provides a more granular view of costs, breaking them down by individual resources (like a specific EC2 instance ID or S3 bucket).",
+      "It enables the Cost Anomaly Detection feature.",
+      "It automatically applies tags to all of your resources."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 55,
+    "question": "A serverless application ingests data using Kinesis Data Streams and processes it with a Lambda function. The Kinesis stream has 5 shards. How does this affect the concurrency of the Lambda function?",
+    "options": [
+      "The Lambda service will invoke up to 5 concurrent instances of the function, one for each shard.",
+      "The number of shards has no impact on Lambda concurrency.",
+      "Only one Lambda function can be invoked at a time, regardless of the shard count.",
+      "The concurrency will be equal to the number of records in the stream."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 56,
+    "question": "A company wants to reduce its data transfer costs. Which of the following data transfer types is typically free of charge?",
+    "options": [
+      "Data transfer from an EC2 instance to the internet.",
+      "Data transfer between EC2 instances in different Availability Zones.",
+      "Data transfer from an S3 bucket to a CloudFront distribution.",
+      "Data transfer between EC2 instances in different AWS Regions."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 57,
+    "question": "How does using a Lambda Layer with a common dependency (e.g., the AWS SDK) potentially save costs?",
+    "options": [
+      "It reduces the size of the function's deployment package, which can speed up deployments.",
+      "It does not directly save costs but improves performance.",
+      "Lambda Layers are billed at a lower rate than function code.",
+      "It reduces the number of required invocations."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 58,
+    "question": "Which AWS service allows you to orchestrate a serverless workflow and visualize it as a state machine?",
+    "options": [
+      "Amazon SQS",
+      "AWS Lambda",
+      "AWS Step Functions",
+      "Amazon SNS"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 59,
+    "question": "A company wants to find all of its S3 buckets that are publicly accessible, which could lead to unexpected data transfer costs. Which service can provide this check?",
+    "options": [
+      "AWS Cost Explorer",
+      "AWS Budgets",
+      "AWS Trusted Advisor",
+      "Amazon S3 Storage Lens"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 60,
+    "question": "An application uses API Gateway, Lambda, and DynamoDB. The Lambda function is configured with 512 MB of memory and runs for 200 ms per invocation. What are the billable components of a single request?",
+    "options": [
+      "One API Gateway request, one Lambda request, and 512 MB-seconds of Lambda compute.",
+      "One API Gateway request, one Lambda request, and 128,000 MB-milliseconds (512 * 200) of Lambda compute, plus the DynamoDB operation.",
+      "One API Gateway request and one Lambda request (compute is free).",
+      "Only the DynamoDB operation."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 61,
+    "question": "Which of the following is a characteristic of a serverless database like DynamoDB?",
+    "options": [
+      "You must provision and patch the underlying server.",
+      "It requires you to configure a fixed amount of storage upfront.",
+      "It scales automatically and you do not manage servers.",
+      "It can only be accessed from within a VPC."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 62,
+    "question": "A cost anomaly is detected by AWS Cost Anomaly Detection. What is the next step that the service takes?",
+    "options": [
+      "It automatically terminates the resource causing the anomaly.",
+      "It performs a root cause analysis and sends you an alert with details about the service and usage type that changed.",
+      "It applies a budget to prevent further spending.",
+      "It opens a support case on your behalf."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 63,
+    "question": "A Lambda function needs to connect to an RDS database inside a VPC. What is a potential performance and cost implication of this architecture?",
+    "options": [
+      "There are no implications; this is a standard pattern.",
+      "The function may experience longer cold start times due to ENI creation, and there will be data transfer costs if the RDS instance is in a different AZ.",
+      "The RDS database will be more expensive.",
+      "The Lambda function will have a higher per-request cost."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 64,
+    "question": "A company wants to compare the cost of running a workload on EC2 versus running it on AWS Fargate. Which tool should they use?",
+    "options": [
+      "AWS Cost Explorer",
+      "AWS Budgets",
+      "AWS Pricing Calculator",
+      "AWS Trusted Advisor"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 65,
+    "question": "In a serverless architecture, which service is most appropriate for creating a \"fan-out\" pattern, where one event triggers multiple independent actions?",
+    "options": [
+      "Amazon SQS",
+      "Amazon SNS",
+      "AWS Step Functions",
+      "Amazon DynamoDB"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 66,
+    "question": "What is the most cost-effective S3 storage class for data that needs to be archived but might need to be retrieved within a few minutes?",
+    "options": [
+      "S3 Standard-IA",
+      "S3 Glacier Flexible Retrieval",
+      "S3 Glacier Deep Archive",
+      "S3 Glacier Instant Retrieval"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 67,
+    "question": "A Lambda function is consistently using only 60 MB of memory but is allocated 512 MB. From a cost-optimization perspective, what should a developer do?",
+    "options": [
+      "Leave the memory allocation as is, since more memory means faster CPU.",
+      "Decrease the memory allocation to 128 MB and test to see if performance is still acceptable, as this will lower the GB-second cost.",
+      "Increase the memory to 1024 MB to make it even faster.",
+      "Switch the function to the `arm64` architecture."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 68,
+    "question": "A company wants to create a budget that tracks their usage of EC2 `t3.micro` instances in the `us-east-1` region. How can they configure this in AWS Budgets?",
+    "options": [
+      "Create a cost budget and hope it only applies to t3.micro instances.",
+      "Create a usage budget and apply filters for the service (EC2), instance type, and region.",
+      "This is not possible; budgets can only be set for total costs.",
+      "Use AWS Cost Explorer instead."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 69,
+    "question": "What is a key principle of designing cost-effective, event-driven architectures?",
+    "options": [
+      "Use synchronous API calls between all services.",
+      "Provision all resources for peak load.",
+      "Use loosely coupled services that react to events, allowing each component to scale and be paid for independently.",
+      "Combine all logic into a single, large Lambda function."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 70,
+    "question": "Which of the following would NOT be considered a serverless service?",
+    "options": [
+      "Amazon S3",
+      "Amazon RDS",
+      "Amazon SNS",
+      "Amazon API Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 71,
+    "question": "How can AWS Organizations be used to manage costs?",
+    "options": [
+      "It allows you to create a single bill for all member accounts and can share volume discounts (like for S3 storage) across accounts.",
+      "It provides a larger Lambda free tier for each member account.",
+      "It automatically applies Reserved Instances purchased in one account to all other accounts.",
+      "It prevents member accounts from using expensive services."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 72,
+    "question": "A serverless application is processing a high volume of events. The developers need to orchestrate a workflow that has many steps and branching logic. Which option would likely be more cost-effective and resilient than a custom orchestrator built with Lambda and DynamoDB?",
+    "options": [
+      "AWS Batch",
+      "AWS Step Functions",
+      "Amazon SQS",
+      "A single, monolithic Lambda function."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 73,
+    "question": "Which view in AWS Cost Explorer is useful for seeing how your Reserved Instance or Savings Plan coverage is affecting your costs?",
+    "options": [
+      "The daily cost view.",
+      "The service cost view.",
+      "The RI/SP coverage report.",
+      "The forecasting view."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 74,
+    "question": "A company is using S3 Intelligent-Tiering. What is the monthly cost component for this service, in addition to storage and request fees?",
+    "options": [
+      "There are no additional fees.",
+      "A small monthly fee for monitoring and automation per object.",
+      "A fee for each time an object is moved between tiers.",
+      "A fee based on the total number of objects in the bucket."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 75,
+    "question": "If a Lambda function's code is idempotent, what does this mean?",
+    "options": [
+      "The function will run faster on subsequent invocations.",
+      "The function can be called multiple times with the same input, and the result will be the same as if it were called only once.",
+      "The function does not have any external dependencies.",
+      "The function is guaranteed to execute successfully on the first try."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 76,
+    "question": "A company wants to give its finance team read-only access to billing information and cost management tools, without granting them access to other AWS services. Which IAM managed policy is most appropriate?",
+    "options": [
+      "`AdministratorAccess`",
+      "`ReadOnlyAccess`",
+      "`Billing`",
+      "`PowerUserAccess`"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 77,
+    "question": "What is the most cost-effective way to handle an infrequent, scheduled task that runs for 5 minutes once a week?",
+    "options": [
+      "A `t3.nano` EC2 instance that runs continuously.",
+      "A scheduled AWS Lambda function.",
+      "A container running on an Amazon EKS cluster.",
+      "A Reserved Instance."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 78,
+    "question": "Which service is most suitable for building a serverless backend for a mobile application, providing features like authentication, data storage, and APIs?",
+    "options": [
+      "AWS Amplify",
+      "Amazon EC2",
+      "Amazon RDS",
+      "AWS Elastic Beanstalk"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 79,
+    "question": "A company is using a third-party monitoring service that needs to analyze their detailed AWS billing data. What is the most secure and automated way to provide this data?",
+    "options": [
+      "Give the third party an IAM user with access to the billing console.",
+      "Manually download the CSV bill each month and email it to them.",
+      "Configure the Cost & Usage Report (CUR) to be delivered to an S3 bucket, and grant the third party read access to that bucket.",
+      "Use the AWS Pricing Calculator to generate a report for them."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 80,
+    "question": "Which statement is true about the cost of data transfer between a Lambda function and an S3 bucket in the same AWS Region?",
+    "options": [
+      "It is always free.",
+      "It is free if a VPC endpoint for S3 is used.",
+      "It is charged at the standard inter-AZ data transfer rate.",
+      "It is charged at the standard internet data transfer rate."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 81,
+    "question": "A team is building a serverless application. They need a database that can automatically scale its capacity up or down to zero when not in use. Which AWS database service offers this capability?",
+    "options": [
+      "Amazon RDS for MySQL",
+      "Amazon Aurora Serverless",
+      "Amazon Redshift",
+      "Amazon ElastiCache"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 82,
+    "question": "The AWS Cost & Usage Report (CUR) provides the most comprehensive set of cost and usage data available. Where is this report delivered?",
+    "options": [
+      "To your email address.",
+      "To an Amazon S3 bucket.",
+      "To the AWS Cost Explorer console.",
+      "To an Amazon CloudWatch dashboard."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 83,
+    "question": "A Lambda function is timing out. To troubleshoot, a developer increases the memory from 256 MB to 1024 MB. What is a likely side effect of this change?",
+    "options": [
+      "The function will have access to more vCPU power and may run faster.",
+      "The function will have a lower per-request cost.",
+      "The function's cold start time will increase.",
+      "The function will no longer be able to write logs to CloudWatch."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 84,
+    "question": "A company wants to create a budget that alerts them if their forecasted monthly usage of Data Transfer exceeds 10 TB. Which service should they use?",
+    "options": [
+      "AWS Trusted Advisor",
+      "AWS Cost Explorer",
+      "AWS Budgets",
+      "Amazon CloudWatch"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 85,
+    "question": "Which of the following is a key benefit of a serverless, event-driven architecture?",
+    "options": [
+      "It simplifies state management.",
+      "It allows for tight coupling between services.",
+      "It allows services to scale independently and reduces the cost of idle resources.",
+      "It eliminates the need for monitoring and logging."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 86,
+    "question": "How does Amazon S3 pricing work?",
+    "options": [
+      "A flat monthly fee per bucket.",
+      "Based on the number of EC2 instances that access the bucket.",
+      "Based on the amount of data stored, the number and type of requests, and data transferred out.",
+      "Based only on the amount of data stored."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 87,
+    "question": "A company wants to identify which IAM user or role is responsible for creating an expensive resource that caused a cost spike. Which service would provide this audit trail?",
+    "options": [
+      "AWS Cost Explorer",
+      "AWS Budgets",
+      "AWS CloudTrail",
+      "AWS Trusted Advisor"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 88,
+    "question": "A Lambda function needs to be invoked every hour to perform a cleanup task. What is the most cost-effective, serverless way to schedule this?",
+    "options": [
+      "Use a cron job on a `t3.nano` EC2 instance.",
+      "Create an Amazon EventBridge (CloudWatch Events) rule with a scheduled expression to trigger the Lambda function.",
+      "Run a `while` loop with a `sleep` command inside the Lambda function.",
+      "Use a Step Functions workflow with a wait state."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 89,
+    "question": "A company is using Amazon SNS to send notifications. How is SNS priced?",
+    "options": [
+      "A fixed monthly fee per topic.",
+      "Based on the number of messages published and the number and type of deliveries (e.g., to email, SMS, SQS).",
+      "Based on the amount of data stored in the topic.",
+      "It is a free service."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 90,
+    "question": "What is a primary goal of \"right-sizing\" in AWS cost optimization?",
+    "options": [
+      "To use the newest available instance types.",
+      "To match the provisioned resources (like EC2 instance size or Lambda memory) as closely as possible to the workload's actual demand to avoid paying for waste.",
+      "To consolidate all resources into a single AWS Region.",
+      "To use only the largest possible instance types to ensure performance."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 91,
+    "question": "Which of the following is a cost associated with an Amazon EKS cluster that a user must pay for?",
+    "options": [
+      "The cost of the EKS control plane.",
+      "The cost of the EC2 instances or Fargate resources that run the container workloads (worker nodes).",
+      "The cost of data transfer between pods.",
+      "Both A and B."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 92,
+    "question": "A company is concerned about its rising AWS costs. Which AWS service provides a high-level check across five categories, including cost optimization, and gives specific recommendations?",
+    "options": [
+      "AWS Cost Explorer",
+      "AWS Budgets",
+      "AWS Trusted Advisor",
+      "AWS Well-Architected Tool"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 93,
+    "question": "In a serverless architecture, you want to transform data from an S3 upload event and then load it into a Redshift warehouse. Which service is best suited to orchestrate this multi-step process?",
+    "options": [
+      "A single Lambda function.",
+      "Amazon SQS.",
+      "AWS Step Functions.",
+      "Amazon SNS."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 94,
+    "question": "A company is using DynamoDB in provisioned mode. To save costs, they want to reduce the provisioned write capacity to zero overnight when the application is not used. Is this possible?",
+    "options": [
+      "Yes, you can scale provisioned capacity down to 1 RCU and 1 WCU, but not to zero.",
+      "Yes, you can scale down to zero.",
+      "No, you cannot change provisioned capacity after a table is created.",
+      "No, the minimum provisioned capacity is 5 RCU and 5 WCU."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 95,
+    "question": "A Lambda function is written using the Node.js runtime. The deployment package is 10 MB. This is an example of what kind of cost?",
+    "options": [
+      "There is no cost for code storage.",
+      "There is a small cost for storing the deployment package in an underlying S3 bucket.",
+      "There is a monthly \"Lambda Code Storage\" fee.",
+      "The cost is included in the per-request fee."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 96,
+    "question": "The \"Power Tuning\" process for AWS Lambda is used to:",
+    "options": [
+      "Overclock the CPU for a function.",
+      "Find the optimal memory configuration for a function to balance performance and cost.",
+      "Set the provisioned concurrency for a function.",
+      "Choose the best runtime for a function."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 97,
+    "question": "What is a key benefit of using tags for cost allocation?",
+    "options": [
+      "It provides a discount on the tagged resources.",
+      "It allows you to filter and group costs in tools like Cost Explorer to understand spending by project, team, or application.",
+      "It encrypts the resource.",
+      "It prevents the resource from being accidentally deleted."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 98,
+    "question": "A serverless API needs to return a response to the user within 29 seconds. The backend process, however, takes 3 minutes to complete. What is a suitable architecture?",
+    "options": [
+      "A single Lambda function with a 3-minute timeout, integrated with API Gateway.",
+      "A synchronous Step Functions workflow.",
+      "An API Gateway that triggers a Lambda function. The function starts an asynchronous process (e.g., by sending a message to SQS or starting a Step Functions workflow) and immediately returns a success response to the client.",
+      "Use an EC2 instance instead of Lambda."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 99,
+    "question": "Which of the following contributes to the total cost of ownership (TCO) of an on-premises data center but is handled by AWS in a serverless model? (Choose TWO)",
+    "options": [
+      "Application development and coding.",
+      "Server hardware procurement and maintenance.",
+      "Power, cooling, and physical data center security.",
+      "Paying for software licenses.",
+      "Performing user acceptance testing."
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 100,
+    "question": "A company wants to analyze its AWS Cost & Usage Report (CUR) using standard SQL queries. What is the most cost-effective, serverless way to do this?",
+    "options": [
+      "Load the CUR files into an Amazon RDS database.",
+      "Spin up an EC2 instance and use a script to parse the files.",
+      "Leave the CUR files in S3 and use Amazon Athena to query them directly.",
+      "Use AWS Cost Explorer's API."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  }
+]

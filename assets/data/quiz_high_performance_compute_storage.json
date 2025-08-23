@@ -1,0 +1,1404 @@
+[
+  {
+    "id": 1,
+    "question": "A company runs a high-performance computing (HPC) workload that requires very low network latency and high network throughput between a tightly-coupled cluster of EC2 instances. Which EC2 feature should be used to facilitate this?",
+    "options": [
+      "Enhanced Networking",
+      "An Elastic Fabric Adapter (EFA)",
+      "An EC2 placement group with a spread strategy",
+      "An EC2 Auto Scaling group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 2,
+    "question": "A database application requires a storage solution that can provide a consistent 50,000 IOPS. The business requires the highest level of durability for this critical system. Which EBS volume type is the most appropriate choice?",
+    "options": [
+      "General Purpose SSD (gp3)",
+      "Provisioned IOPS SSD (io2 Block Express)",
+      "Throughput Optimized HDD (st1)",
+      "Cold HDD (sc1)"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 3,
+    "question": "A team is migrating a large-scale web application to AWS. The application consists of hundreds of web servers that need simultaneous, shared access to a file system to store and serve website assets. Which storage service is designed for this use case?",
+    "options": [
+      "Amazon EBS",
+      "Amazon S3",
+      "Amazon EFS",
+      "Amazon Instance Store"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 4,
+    "question": "A data analytics workload involves processing large sequential data sets (e.g., log processing with Hadoop). The primary performance metric is throughput (MB/s), not IOPS. What is the most cost-effective EBS volume type for this workload?",
+    "options": [
+      "General Purpose SSD (gp3)",
+      "Provisioned IOPS SSD (io2)",
+      "Throughput Optimized HDD (st1)",
+      "Cold HDD (sc1)"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 5,
+    "question": "A developer is uploading a 100 GB file to Amazon S3. To maximize upload performance and resilience, which S3 feature should be used?",
+    "options": [
+      "S3 Transfer Acceleration",
+      "S3 Versioning",
+      "Multipart Upload",
+      "S3 Cross-Region Replication"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 6,
+    "question": "A company is using General Purpose SSD (gp2) EBS volumes and is satisfied with the IOPS performance, but they consistently need higher throughput than what is provided. They want to upgrade without changing the volume size. What is the best path forward?",
+    "options": [
+      "Switch to a Provisioned IOPS (io2) volume.",
+      "Migrate the data to a new, larger gp2 volume to get more throughput.",
+      "Migrate the volume to a General Purpose SSD (gp3) type and provision the required throughput independently.",
+      "Switch to a Throughput Optimized HDD (st1) volume."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 7,
+    "question": "An application running on an EC2 instance requires extremely low-latency, temporary block storage for caching and scratch space. The data does not need to persist if the instance is stopped or terminated. Which storage option is the best fit?",
+    "options": [
+      "Amazon EBS",
+      "Amazon EFS",
+      "Amazon Instance Store",
+      "Amazon S3"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 8,
+    "question": "A media company is designing a workflow on AWS. They need a storage service that can be mounted concurrently on thousands of EC2 instances for a video rendering farm. The service must scale its throughput automatically as the file system grows. Which EFS mode should they choose?",
+    "options": [
+      "EFS Bursting Throughput mode",
+      "EFS Provisioned Throughput mode",
+      "EFS General Purpose performance mode",
+      "EFS Max I/O performance mode"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 9,
+    "question": "A company is launching a new application on EC2 instances that are optimized for running containerized workloads and microservices. These instances provide a balance of compute, memory, and networking resources. Which instance family is most suitable for this general-purpose workload?",
+    "options": [
+      "C-series (Compute Optimized)",
+      "R-series (Memory Optimized)",
+      "M-series (General Purpose)",
+      "I-series (Storage Optimized)"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 10,
+    "question": "To improve the performance of S3 GET requests for objects that are frequently accessed from around the world, which service should be placed in front of the S3 bucket?",
+    "options": [
+      "Elastic Load Balancer",
+      "Amazon CloudFront",
+      "S3 Transfer Acceleration",
+      "AWS Global Accelerator"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 11,
+    "question": "What is a primary advantage of using a gp3 EBS volume over a gp2 volume?",
+    "options": [
+      "gp3 volumes have higher durability than gp2 volumes.",
+      "gp3 volumes allow you to provision IOPS and throughput independently of storage size.",
+      "gp3 volumes are HDD-based and cheaper for large storage amounts.",
+      "gp3 volumes support being attached to multiple EC2 instances simultaneously."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 12,
+    "question": "A scientific research application performs complex computational fluid dynamics simulations. The workload is heavily dependent on the processing power of the CPU. Which EC2 instance family is specifically designed for such CPU-bound workloads?",
+    "options": [
+      "T-series",
+      "R-series",
+      "C-series",
+      "G-series"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 13,
+    "question": "When designing for high performance on Amazon S3, how should you name your object prefixes to maximize parallelization of requests?",
+    "options": [
+      "Use sequential prefixes, like `log-2023-10-01/`, `log-2023-10-02/`.",
+      "Use a random hash or reversed timestamp at the beginning of the prefix to ensure keys are distributed across multiple partitions.",
+      "Store all objects in the root of the bucket with no prefixes.",
+      "Prefix naming has no impact on S3 performance."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 14,
+    "question": "A company runs a large in-memory database on an EC2 instance. The entire dataset must fit into RAM for the application to perform optimally. Which instance family is the best choice for this workload?",
+    "options": [
+      "C-series (Compute Optimized)",
+      "M-series (General Purpose)",
+      "T-series (Burstable)",
+      "R-series or X-series (Memory Optimized)"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 15,
+    "question": "An Amazon EFS file system is configured with the General Purpose performance mode. This mode is ideal for which type of workload?",
+    "options": [
+      "Workloads that require the absolute highest aggregate throughput, like big data analytics.",
+      "Latency-sensitive workloads where every file operation must be as fast as possible.",
+      "The majority of file system workloads, which are sensitive to latency for file operations.",
+      "Workloads that only need to store archive data."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 16,
+    "question": "An application requires an EBS volume that can sustain 1,000 IOPS. A 200 GiB gp3 volume is created with the default settings. What needs to be done to meet the IOPS requirement?",
+    "options": [
+      "Nothing, the default IOPS for a 200 GiB gp3 volume is sufficient.",
+      "The volume must be increased in size to 334 GiB.",
+      "The IOPS for the gp3 volume must be provisioned to 1,000.",
+      "A gp3 volume cannot meet this requirement; an io2 volume must be used."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 17,
+    "question": "A company is deploying a machine learning training workload on AWS. The job requires powerful GPUs to accelerate the model training process. Which EC2 instance family is designed for this purpose?",
+    "options": [
+      "M-series",
+      "C-series",
+      "P-series or G-series",
+      "I-series"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 18,
+    "question": "What is the key difference between Amazon EFS and Amazon FSx for Lustre?",
+    "options": [
+      "EFS is a POSIX-compliant file system for Linux, while FSx for Lustre is a high-performance file system optimized for HPC and machine learning workloads.",
+      "EFS can only be accessed by one EC2 instance at a time.",
+      "FSx for Lustre is a fully managed service, while EFS is not.",
+      "EFS is designed for Windows workloads, while FSx is for Linux."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 19,
+    "question": "A database running on an EC2 instance with an io2 EBS volume requires the highest possible performance and lowest latency. The instance type supports it. Which feature can be enabled to achieve sub-millisecond latency for the EBS volume?",
+    "options": [
+      "EBS Multi-Attach",
+      "EBS-optimized instances",
+      "Provisioning the volume as an io2 Block Express volume",
+      "Using an instance with an Elastic Fabric Adapter (EFA)"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 20,
+    "question": "A company needs to frequently upload large files (multi-GB) to an S3 bucket in a different continent from their office location. Which service can improve upload performance by routing traffic over the AWS global network backbone?",
+    "options": [
+      "AWS Direct Connect",
+      "Amazon CloudFront",
+      "S3 Transfer Acceleration",
+      "AWS Global Accelerator"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 21,
+    "question": "An application requires a shared file system that can be mounted by both Linux and Windows EC2 instances simultaneously. Which AWS storage service supports this?",
+    "options": [
+      "Amazon EFS",
+      "Amazon EBS Multi-Attach",
+      "Amazon FSx for Windows File Server",
+      "Amazon S3 File Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 22,
+    "question": "Which of the following EC2 instance types are designed to provide a baseline level of CPU performance with the ability to burst to a higher level when required?",
+    "options": [
+      "M-series",
+      "C-series",
+      "T-series",
+      "R-series"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 23,
+    "question": "A workload requires a single EC2 instance to have access to a very large amount of fast, local NVMe SSD storage. The workload is a real-time analytics engine that processes data from disk. Which instance family is optimized for this high I/O workload?",
+    "options": [
+      "R-series",
+      "C-series",
+      "I-series",
+      "M-series"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 24,
+    "question": "What is the key benefit of enabling the \"EBS-optimized\" option for an EC2 instance?",
+    "options": [
+      "It encrypts all attached EBS volumes by default.",
+      "It provides dedicated network bandwidth between the EC2 instance and its EBS volumes.",
+      "It allows an EBS volume to be attached to multiple instances.",
+      "It automatically selects the best EBS volume type for the instance."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 25,
+    "question": "A company needs to store a massive amount of data (petabytes) at the lowest possible cost. The data is accessed infrequently and sequentially. Which EBS volume type is most suitable?",
+    "options": [
+      "General Purpose SSD (gp3)",
+      "Throughput Optimized HDD (st1)",
+      "Cold HDD (sc1)",
+      "Provisioned IOPS SSD (io2)"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 26,
+    "question": "An Amazon EFS file system is configured with Provisioned Throughput mode. Why would an administrator choose this over Bursting Throughput mode?",
+    "options": [
+      "To save costs, as Provisioned Throughput is always cheaper.",
+      "When the application's throughput requirement is high and consistent, exceeding the baseline throughput provided by the bursting model.",
+      "To allow the file system to be mounted by Windows instances.",
+      "When the file system is very small and does not have enough data to generate sufficient burst credits."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 27,
+    "question": "A company has a legacy application that must be deployed on physical, dedicated hardware due to software licensing restrictions. They also want to leverage the benefits of the AWS cloud. Which EC2 purchasing option should they use?",
+    "options": [
+      "On-Demand Instances",
+      "Spot Instances",
+      "Dedicated Hosts",
+      "Reserved Instances"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 28,
+    "question": "Which feature of Amazon S3 allows you to retrieve a subset of data from an object using SQL expressions, reducing the amount of data transferred and accelerating query performance?",
+    "options": [
+      "S3 Inventory",
+      "S3 Analytics",
+      "S3 Select",
+      "S3 Batch Operations"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 29,
+    "question": "A solutions architect needs to attach a single EBS volume to multiple EC2 instances within the same Availability Zone. All instances need to have full read/write access to the volume. Which feature must be enabled?",
+    "options": [
+      "This is not a supported configuration for EBS.",
+      "The EBS Multi-Attach feature on an io1 or io2 volume.",
+      "EBS-optimized instances must be used.",
+      "The instances must be part of a cluster placement group."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 30,
+    "question": "Which storage service provides object-level storage and is accessed via an API, not by mounting it like a file system?",
+    "options": [
+      "Amazon EFS",
+      "Amazon EBS",
+      "Amazon S3",
+      "Amazon FSx"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 31,
+    "question": "A workload experiences predictable, daily peaks in traffic. For example, it needs 10 instances during the day and only 2 at night. What is the most cost-effective and automated way to manage capacity for this workload?",
+    "options": [
+      "Use an Auto Scaling group with scheduled scaling actions.",
+      "Manually launch and terminate instances every day.",
+      "Use an Auto Scaling group with a target tracking policy based on CPU.",
+      "Run 10 instances continuously using Reserved Instances."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 32,
+    "question": "A company is running a data warehousing application that requires a large amount of dense, local HDD storage. The data is distributed across multiple instances, and they can tolerate the loss of a single instance. Which instance family is designed for this dense-storage use case?",
+    "options": [
+      "M-series",
+      "R-series",
+      "I-series",
+      "D-series"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 33,
+    "question": "An EFS file system is performing slower than expected. The file system is very small (a few GiB). What is the most likely reason for the poor performance in Bursting Throughput mode?",
+    "options": [
+      "The performance mode is set to Max I/O.",
+      "The file system is too small to accumulate a sufficient number of burst credits for the workload's needs.",
+      "The wrong EC2 instance type is being used.",
+      "The file system is not mounted correctly."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 34,
+    "question": "Which of the following statements is true regarding EBS volume durability?",
+    "options": [
+      "EBS volumes are automatically replicated across multiple Availability Zones.",
+      "EBS volumes are designed for high durability by being automatically replicated within a single Availability Zone.",
+      "The durability of an EBS volume depends on the EC2 instance it is attached to.",
+      "To make an EBS volume durable, you must manually create snapshots."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 35,
+    "question": "A video transcoding application is being designed. The process involves reading a source file from S3, transcoding it on an EC2 instance, and writing the output file back to S3. The transcoding process is CPU-intensive. Which instance type is the MOST cost-effective choice?",
+    "options": [
+      "Memory Optimized (R-series)",
+      "General Purpose (M-series)",
+      "Storage Optimized (I-series)",
+      "Compute Optimized (C-series)"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 36,
+    "question": "What is the primary difference between Amazon S3 Standard and S3 Standard-Infrequent Access (S3 Standard-IA)?",
+    "options": [
+      "S3 Standard-IA has lower data durability.",
+      "S3 Standard-IA has lower storage costs but charges a per-GB retrieval fee.",
+      "S3 Standard-IA is designed for data that is accessed many times per day.",
+      "S3 Standard-IA has higher latency for the first byte."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 37,
+    "question": "An EC2 instance is launched with a T3 (burstable) instance type. It runs a background process that consistently uses a moderate amount of CPU. After several hours, the application performance degrades significantly. What is the most likely cause?",
+    "options": [
+      "The instance has run out of CPU credits.",
+      "The attached EBS volume is too slow.",
+      "The instance has network connectivity issues.",
+      "The AMI used was incorrect."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 38,
+    "question": "A company wants to provide a shared file storage solution for their team of data scientists who use Linux-based EC2 instances. The file system needs to be simple to manage and scale automatically. Which service is the best fit?",
+    "options": [
+      "Amazon EBS",
+      "Amazon S3",
+      "Amazon EFS",
+      "Amazon FSx for Windows"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 39,
+    "question": "A financial services application requires an EBS volume with the highest possible durability and an extremely low annual failure rate (AFR). Which volume type is designed to meet these stringent requirements?",
+    "options": [
+      "gp3",
+      "st1",
+      "io2",
+      "sc1"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 40,
+    "question": "When should you choose the Max I/O performance mode for an Amazon EFS file system over General Purpose mode?",
+    "options": [
+      "For all latency-sensitive applications.",
+      "When your workload needs to scale to very high levels of aggregate throughput and IOPS, and you can tolerate slightly higher latencies for file operations.",
+      "When the file system is very small.",
+      "When you need to mount the file system on Windows instances."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 41,
+    "question": "A company runs a web application on EC2 instances with gp2 EBS volumes for the root disk. They want to ensure they can recover quickly from an instance or volume failure. What is the most important operational task they should perform regularly?",
+    "options": [
+      "Take regular snapshots of the EBS volumes.",
+      "Increase the size of the EBS volumes.",
+      "Defragment the EBS volumes.",
+      "Monitor the CPU credit balance of the instances."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 42,
+    "question": "Which statement accurately describes the performance characteristics of an Amazon S3 bucket?",
+    "options": [
+      "Performance is limited by the size of the EC2 instance accessing it.",
+      "Performance degrades as more objects are added to the bucket.",
+      "It offers virtually unlimited scalability and high throughput, capable of thousands of requests per second per prefix.",
+      "Performance is highest when using a single, sequential prefix for all objects."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 43,
+    "question": "An application requires at least 200 MB/s of sequential throughput for its storage. A 500 GB gp3 volume is provisioned with 4,000 IOPS. What must be done to meet the throughput requirement?",
+    "options": [
+      "Nothing, the default throughput for a 500 GB gp3 volume is sufficient.",
+      "The volume size must be increased.",
+      "The provisioned IOPS must be increased.",
+      "The throughput for the gp3 volume must be provisioned to 200 MB/s."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 44,
+    "question": "A tightly-coupled HPC workload requires that all instances be placed in the same rack within a single Availability Zone to minimize latency. Which type of placement group should be used?",
+    "options": [
+      "Partition Placement Group",
+      "Spread Placement Group",
+      "Cluster Placement Group",
+      "Host Placement Group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 45,
+    "question": "What is a key use case for Amazon FSx for Lustre?",
+    "options": [
+      "Serving a corporate website's static assets.",
+      "A shared home directory for a small team of developers.",
+      "A high-performance file system for HPC, machine learning, and media processing workloads that links to S3.",
+      "A shared file system for a Microsoft SharePoint deployment."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 46,
+    "question": "An EC2 instance is running an application that performs a mix of small, random I/O operations. The business wants a balance of cost and performance for its block storage. Which EBS volume type is the default and most common choice for this scenario?",
+    "options": [
+      "Provisioned IOPS SSD (io2)",
+      "Throughput Optimized HDD (st1)",
+      "General Purpose SSD (gp3)",
+      "Cold HDD (sc1)"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 47,
+    "question": "A developer is trying to mount an EFS file system on an EC2 instance in a different VPC. The mount command is failing. What is a likely cause of the issue?",
+    "options": [
+      "EFS file systems cannot be mounted across different VPCs.",
+      "The EC2 instance's security group does not allow outbound NFS traffic on port 2049.",
+      "The EFS mount target's security group does not allow inbound NFS traffic on port 2049 from the EC2 instance.",
+      "The EFS file system is in Provisioned Throughput mode."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 48,
+    "question": "Which of the following is a characteristic of an EC2 instance store?",
+    "options": [
+      "Data persists when the instance is stopped.",
+      "It can be detached from one instance and attached to another.",
+      "It provides the highest I/O performance of all storage options.",
+      "It is ideal for long-term, durable data storage."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 49,
+    "question": "To optimize costs for a test environment, a company wants to use the cheapest EC2 instances available, but they can tolerate interruptions. Which EC2 purchasing option is the most cost-effective?",
+    "options": [
+      "On-Demand",
+      "Reserved Instances",
+      "Spot Instances",
+      "Dedicated Hosts"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 50,
+    "question": "A company has a 10 TB data warehouse running on an EC2 instance. The workload consists of large, sequential reads. They need a cost-effective storage solution. Which EBS volume type is suitable?",
+    "options": [
+      "Provisioned IOPS SSD (io2)",
+      "General Purpose SSD (gp3)",
+      "Throughput Optimized HDD (st1)",
+      "Instance Store"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 51,
+    "question": "A company wants to ensure that a set of critical EC2 instances are placed on distinct underlying hardware to reduce the impact of a hardware failure. Which type of placement group should be used?",
+    "options": [
+      "Cluster Placement Group",
+      "Partition Placement Group",
+      "Spread Placement Group",
+      "Host Placement Group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 52,
+    "question": "When an EC2 instance with a T-series instance type is configured to run in \"unlimited\" mode, what happens when it runs out of CPU credits?",
+    "options": [
+      "The instance's CPU performance is throttled to its baseline level.",
+      "The instance is stopped automatically.",
+      "The instance incurs charges for the extra CPU cycles it uses.",
+      "The instance's CPU credits are reset to their maximum value."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 53,
+    "question": "An application reads and writes small, latency-sensitive files to a shared file system from multiple EC2 instances. Which EFS performance mode should be selected?",
+    "options": [
+      "Max I/O",
+      "General Purpose",
+      "Bursting Throughput",
+      "Provisioned Throughput"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 54,
+    "question": "A company wants to encrypt their EBS volumes. Which of the following statements is true about EBS encryption?",
+    "options": [
+      "Encryption can only be enabled when a volume is first created.",
+      "An unencrypted volume can be encrypted directly by modifying its attributes.",
+      "Data in transit between an EC2 instance and an encrypted EBS volume is automatically encrypted.",
+      "Encryption is not supported on HDD-based volumes like st1 or sc1."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 55,
+    "question": "A research team needs to launch a large number of EC2 instances for a one-time data processing job. The job can be interrupted and resumed. To minimize costs, which instance purchasing option should they use?",
+    "options": [
+      "On-Demand Instances",
+      "Spot Instances",
+      "Reserved Instances",
+      "Dedicated Instances"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 56,
+    "question": "Which of the following services is a regional service?",
+    "options": [
+      "Amazon S3",
+      "Amazon CloudFront",
+      "AWS IAM",
+      "Amazon EFS"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 57,
+    "question": "A key difference between EBS and Instance Store is that...",
+    "options": [
+      "EBS is object storage, while Instance Store is block storage.",
+      "EBS provides persistent block storage, while Instance Store is ephemeral (non-persistent).",
+      "EBS volumes can only be attached to one instance, while Instance Store can be shared.",
+      "EBS is free, while Instance Store is a paid add-on."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 58,
+    "question": "A company is designing a system that requires a shared storage layer for a cluster of Windows-based EC2 instances that will run a .NET application. The application requires a file system that supports SMB protocol and Active Directory integration. Which service is the best fit?",
+    "options": [
+      "Amazon EFS",
+      "Amazon EBS",
+      "Amazon FSx for Windows File Server",
+      "Amazon S3"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 59,
+    "question": "For an S3 bucket, what does enabling versioning do?",
+    "options": [
+      "It encrypts all objects in the bucket.",
+      "It allows you to keep multiple variants of an object in the same bucket, providing protection against accidental overwrites or deletions.",
+      "It speeds up object uploads.",
+      "It automatically transitions objects to a cheaper storage class."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 60,
+    "question": "An application requires a minimum of 10,000 IOPS and 500 MB/s of throughput. Which EBS volume type should be selected as a starting point?",
+    "options": [
+      "General Purpose SSD (gp3)",
+      "Throughput Optimized HDD (st1)",
+      "Provisioned IOPS SSD (io2)",
+      "Cold HDD (sc1)"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 61,
+    "question": "Which EC2 instance family would be a poor choice for a CPU-intensive video encoding application?",
+    "options": [
+      "C-series",
+      "M-series",
+      "T-series",
+      "Z-series (a type of C-series)"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 62,
+    "question": "A company needs to host a file share that is accessible from their on-premises servers and from EC2 instances. The file system should scale automatically. Which architecture would work?",
+    "options": [
+      "Create an EFS file system and connect to it from on-premises via AWS Direct Connect or VPN.",
+      "Create an EBS volume and share it over the internet.",
+      "Use an S3 bucket with an on-premises file gateway.",
+      "Both A and C are viable options."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 63,
+    "question": "The performance of a gp2 EBS volume is directly tied to what?",
+    "options": [
+      "The EC2 instance type it is attached to.",
+      "The size of the volume; larger volumes get more baseline IOPS and can burst higher.",
+      "The AWS Region it is in.",
+      "The number of snapshots it has."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 64,
+    "question": "An application performs a large number of small, random disk reads and writes. This workload is said to be...",
+    "options": [
+      "Throughput-intensive",
+      "IOPS-intensive",
+      "CPU-intensive",
+      "Memory-intensive"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 65,
+    "question": "Why would a company use S3 Transfer Acceleration?",
+    "options": [
+      "To speed up data transfer between S3 and EC2 instances in the same region.",
+      "To provide a CDN for static assets stored in S3.",
+      "To accelerate long-distance uploads and downloads to and from S3 for users over the public internet.",
+      "To accelerate S3 Cross-Region Replication."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 66,
+    "question": "What happens to the data on an EBS volume when the EC2 instance it is attached to is stopped?",
+    "options": [
+      "The data is deleted.",
+      "The data persists on the volume, and the volume can be reattached.",
+      "The volume is automatically snapshotted.",
+      "The volume becomes read-only."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 67,
+    "question": "A company is running a database that is licensed per CPU core. They need an instance with a very high amount of memory but want to limit the number of visible CPU cores to save on licensing costs. Which EC2 feature allows this?",
+    "options": [
+      "Using a T-series instance type.",
+      "Optimizing CPU options at launch to specify a custom number of cores.",
+      "Using a placement group.",
+      "Using an instance with an EFA."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 68,
+    "question": "An EFS file system is mounted on an EC2 instance. Where do you configure the security rules to control which instances can access the file system?",
+    "options": [
+      "In the EC2 instance's security group.",
+      "In the EFS mount target's security group.",
+      "In an IAM policy attached to the EC2 instance.",
+      "In the VPC's Network ACL."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 69,
+    "question": "Which statement is correct regarding S3 performance?",
+    "options": [
+      "S3 has high latency for the first byte but provides high data throughput.",
+      "S3 provides sub-millisecond latency for all object requests.",
+      "S3 performance is best for transactional, database-like workloads.",
+      "Encrypting objects in S3 significantly slows down read performance."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 70,
+    "question": "You are choosing between an EBS volume and an EFS file system. What is a key deciding factor?",
+    "options": [
+      "EBS is object storage, while EFS is block storage.",
+      "EBS is for Linux only, while EFS is for Windows only.",
+      "EBS can be attached to only one instance at a time (usually), while EFS is designed for shared access from many instances.",
+      "EBS is a global service, while EFS is regional."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 71,
+    "question": "A company needs to launch a group of EC2 instances that will host a critical, interdependent application. They want to ensure that if one instance's underlying hardware fails, the other instances are not affected. Which placement group strategy is appropriate?",
+    "options": [
+      "Cluster",
+      "Partition",
+      "Spread",
+      "Host"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 72,
+    "question": "What is the primary benefit of using a partition placement group?",
+    "options": [
+      "It provides the lowest possible latency between instances.",
+      "It distributes instances across different racks (partitions) to reduce the impact of correlated hardware failures, which is useful for large distributed workloads like HDFS or Cassandra.",
+      "It ensures each instance is on its own dedicated hardware.",
+      "It guarantees that instances can burst their CPU performance."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 73,
+    "question": "An application requires a file system that scales its performance as the amount of data stored grows. The workload is unpredictable. Which EFS throughput mode is the default and best fits this need?",
+    "options": [
+      "Provisioned",
+      "Max I/O",
+      "Bursting",
+      "General Purpose"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 74,
+    "question": "A company needs to launch an EC2 instance with a specific amount of RAM and a specific number of vCPUs. This configuration does not match any of the standard instance types. What is a possible solution?",
+    "options": [
+      "Use an M-series instance and hope for the best.",
+      "This is not possible; you must use a standard instance type.",
+      "Use Amazon Lightsail, which offers more flexible configurations.",
+      "Some instance families (like R-series and X-series on bare metal) offer flexible sizing. However, for most virtualized types, this is not an option."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 75,
+    "question": "What is the maximum size of a single object that can be uploaded to Amazon S3?",
+    "options": [
+      "1 GB",
+      "100 GB",
+      "5 TB",
+      "Unlimited"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 76,
+    "question": "A major difference between Throughput Optimized HDD (st1) and Cold HDD (sc1) is that...",
+    "options": [
+      "st1 is designed for frequently accessed, high-throughput data, while sc1 is for infrequently accessed data.",
+      "st1 is SSD-based, while sc1 is HDD-based.",
+      "st1 volumes can be used as boot volumes, while sc1 cannot.",
+      "st1 has higher durability than sc1."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 77,
+    "question": "A solutions architect is comparing EFS and FSx for Windows. Which of the following is a feature of EFS but NOT FSx for Windows?",
+    "options": [
+      "It supports the SMB protocol.",
+      "It offers a POSIX-compliant interface for Linux instances.",
+      "It integrates with Microsoft Active Directory.",
+      "It can be accessed from on-premises servers."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 78,
+    "question": "An EC2 instance needs to be able to access the internet to download patches, but it should not be accessible from the public internet. The instance is in a private subnet. What needs to be configured in the VPC?",
+    "options": [
+      "An Internet Gateway",
+      "A NAT Gateway or NAT Instance",
+      "A VPC Endpoint for S3",
+      "A Virtual Private Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 79,
+    "question": "Which of the following is a good use case for an EC2 compute-optimized (C-series) instance?",
+    "options": [
+      "Running a large in-memory database.",
+      "High-performance scientific modeling and batch processing.",
+      "A small development web server.",
+      "A file server for a small office."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 80,
+    "question": "Which statement about EBS snapshots is true?",
+    "options": [
+      "Snapshots are stored in a different Availability Zone than the volume.",
+      "Snapshots are incremental, meaning only the blocks that have changed since the last snapshot are saved.",
+      "You must detach an EBS volume before you can take a snapshot of it.",
+      "Snapshots cannot be shared with other AWS accounts."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 81,
+    "question": "A company wants to provision a 100 GiB EBS volume. They need to guarantee at least 500 MB/s of throughput. Which volume type can meet this requirement?",
+    "options": [
+      "General Purpose SSD (gp3)",
+      "Provisioned IOPS SSD (io2)",
+      "Throughput Optimized HDD (st1)",
+      "Both A and B."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 82,
+    "question": "A company is deploying an application that uses a large number of open-source libraries. The security team needs to ensure that the EC2 instances are not vulnerable to known exploits in these libraries. Which AWS service can scan the instances for common vulnerabilities and exposures (CVEs)?",
+    "options": [
+      "AWS Shield",
+      "Amazon GuardDuty",
+      "Amazon Inspector",
+      "AWS WAF"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 83,
+    "question": "An S3 bucket is used to store images. A Lambda function is triggered to create a thumbnail every time a new image is uploaded. This is an example of what kind of high-performance architecture?",
+    "options": [
+      "Tightly-coupled architecture",
+      "Monolithic architecture",
+      "Event-driven serverless architecture",
+      "Batch processing architecture"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 84,
+    "question": "An EC2 instance is launched into a VPC with an associated Internet Gateway. The instance has a public IP address, and its security group allows inbound SSH traffic from 0.0.0.0/0. However, you cannot SSH into the instance. What is a likely misconfiguration in the VPC?",
+    "options": [
+      "The Network ACL is blocking inbound SSH traffic.",
+      "The Route Table for the public subnet does not have a route to the Internet Gateway.",
+      "The instance does not have an IAM role attached.",
+      "Both A and B are possible causes."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 85,
+    "question": "Which of the following would be a good use case for an EBS io2 volume?",
+    "options": [
+      "Storing backups that are rarely accessed.",
+      "A large data warehouse with sequential read patterns.",
+      "A critical, latency-sensitive transactional database like Oracle or SQL Server.",
+      "A shared file system for a web farm."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 86,
+    "question": "How is throughput for an EFS file system in Bursting mode calculated?",
+    "options": [
+      "It is based on the number of EC2 instances connected to it.",
+      "It is a fixed amount based on the AWS Region.",
+      "It is based on the size of the file system; larger file systems have higher baseline throughput.",
+      "It is configured manually by the user."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 87,
+    "question": "A company wants to retrieve objects from an S3 bucket in the `us-west-2` region from an EC2 instance in the same region. To ensure the best performance and avoid traversing the public internet, what should be configured?",
+    "options": [
+      "S3 Transfer Acceleration",
+      "A VPC Gateway Endpoint for S3",
+      "A NAT Gateway",
+      "AWS Direct Connect"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 88,
+    "question": "A workload requires an EC2 instance with access to a high-performance parallel file system that can be used for HPC workloads. The data is temporarily stored and processed, then archived to S3. Which storage service is the best fit?",
+    "options": [
+      "Amazon EFS",
+      "Amazon EBS io2 Block Express",
+      "Amazon FSx for Lustre",
+      "Amazon S3 Standard"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 89,
+    "question": "A company is using T2 instances for its development environment. Developers complain that the application becomes very slow after they run a build process. What is the reason for this?",
+    "options": [
+      "The T2 instance has run out of CPU Credits after the high-utilization build process.",
+      "The EBS volume is too slow.",
+      "The security group is blocking traffic.",
+      "The Network ACL is misconfigured."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 90,
+    "question": "What is a key performance benefit of Amazon S3?",
+    "options": [
+      "Low latency for transactional updates.",
+      "The ability to be mounted as a POSIX-compliant file system.",
+      "Massive parallelization and request rates, allowing very high throughput.",
+      "Strong consistency for all read and write operations."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 91,
+    "question": "An EC2 instance is terminated. What happens to the data on its instance store volumes?",
+    "options": [
+      "The data persists until the volume is manually deleted.",
+      "The data is automatically moved to an S3 bucket.",
+      "The data is permanently deleted.",
+      "The data is archived in Amazon Glacier."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 92,
+    "question": "You need to provision an EBS volume that will be used for a boot volume for a variety of general-purpose EC2 instances. You want a cost-effective option that provides a consistent baseline of performance. Which volume type is the best choice?",
+    "options": [
+      "io2",
+      "gp3",
+      "st1",
+      "sc1"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 93,
+    "question": "Which of the following are characteristics of SSD-based EBS volumes (gp3, io2)? (Choose TWO)",
+    "options": [
+      "They are best suited for large, sequential I/O operations.",
+      "They are optimized for small, random I/O operations.",
+      "Their primary performance metric is IOPS.",
+      "Their primary performance metric is Throughput (MB/s).",
+      "They are the most cost-effective option for storing large amounts of cold data."
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 94,
+    "question": "An application is being migrated to AWS. It requires a shared storage solution that can be accessed by hundreds of Linux EC2 instances. The storage must be highly durable and scalable. The best AWS service for this is:",
+    "options": [
+      "A large EBS io2 volume with Multi-Attach enabled.",
+      "An Amazon S3 bucket.",
+      "An Amazon EFS file system.",
+      "A Storage Gateway Volume Gateway."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 95,
+    "question": "A company is analyzing performance metrics for their EC2 instances and notices a high `EBSByteBalance%` metric for their `st1` volumes. What does this indicate?",
+    "options": [
+      "The volume has plenty of burst bucket credits remaining and is performing well.",
+      "The volume has exhausted its burst bucket credits and its performance may be throttled.",
+      "The volume is running low on storage space.",
+      "The volume has a high number of IOPS."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 96,
+    "question": "Which EC2 feature allows an instance to communicate directly with other instances in its placement group, bypassing the virtualization layer for lower latency?",
+    "options": [
+      "Enhanced Networking",
+      "Elastic Fabric Adapter (EFA)",
+      "EBS Optimization",
+      "CPU Core Optimization"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 97,
+    "question": "A company has an application that writes millions of small log files to an S3 bucket. They notice that the GET and PUT performance is not as high as expected. What is a likely cause?",
+    "options": [
+      "The S3 bucket is in the wrong region.",
+      "The high number of small objects is less efficient than writing fewer, larger objects. Performance could be improved by batching logs into larger files before uploading.",
+      "S3 Transfer Acceleration is not enabled.",
+      "The bucket does not have versioning enabled."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 98,
+    "question": "You are choosing between an I-series and a D-series instance for a data-intensive workload. What is the key difference?",
+    "options": [
+      "I-series instances provide dense, local NVMe SSD storage, while D-series instances provide dense, local HDD storage.",
+      "I-series instances are memory-optimized, while D-series are compute-optimized.",
+      "I-series instances are for Windows, and D-series are for Linux.",
+      "I-series instances are older and have been replaced by D-series."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 99,
+    "question": "A company needs to attach an EBS volume to an EC2 instance. The volume and the instance must be in the same:",
+    "options": [
+      "AWS Region",
+      "Availability Zone",
+      "VPC",
+      "Subnet"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 100,
+    "question": "For a workload that requires sustained, high throughput for sequential reads and writes, such as a Kafka cluster or a data warehouse, which HDD-based EBS volume type is the better choice?",
+    "options": [
+      "General Purpose SSD (gp3)",
+      "Cold HDD (sc1)",
+      "Provisioned IOPS SSD (io2)",
+      "Throughput Optimized HDD (st1)"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  }
+]

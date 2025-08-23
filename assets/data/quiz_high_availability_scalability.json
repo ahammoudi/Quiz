@@ -1,0 +1,1414 @@
+[
+  {
+    "id": 1,
+    "question": "A web application experiences heavy traffic during business hours and very little traffic at night. The company wants to ensure they have enough capacity to handle the peak load while minimizing costs during off-peak hours. Which AWS service and feature should be used to automatically adjust the number of EC2 instances?",
+    "options": [
+      "Elastic Load Balancing with sticky sessions",
+      "Auto Scaling group with a scheduled scaling policy",
+      "An Amazon CloudWatch alarm that stops instances at night",
+      "A Multi-AZ deployment for the EC2 instances"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 2,
+    "question": "An Application Load Balancer (ALB) is configured with a target group of EC2 instances. One of the instances has failed its health check. What will the ALB do?",
+    "options": [
+      "It will terminate the unhealthy instance.",
+      "It will stop routing traffic to the unhealthy instance.",
+      "It will replace the unhealthy instance with a new one.",
+      "It will send a notification to the administrator via Amazon SNS."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 3,
+    "question": "A company needs to design a database architecture that can withstand the failure of an entire Availability Zone with minimal downtime and no data loss. Which Amazon RDS feature should they use?",
+    "options": [
+      "Read Replicas",
+      "Multi-AZ deployment",
+      "Automated backups",
+      "Database snapshots"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 4,
+    "question": "An Auto Scaling group is configured with a desired capacity of 3, a minimum size of 2, and a maximum size of 5. Currently, there are 3 instances running. An administrator manually terminates one of the instances. What will the Auto Scaling group do?",
+    "options": [
+      "It will do nothing, as the instance count (2) is within the minimum/maximum range.",
+      "It will launch a new instance to maintain the desired capacity of 3.",
+      "It will terminate another instance to reach the minimum size of 2.",
+      "It will increase the desired capacity to 4."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 5,
+    "question": "You are designing an architecture for a global application that serves both HTTP and HTTPS traffic. You need to route users to different backend services based on the URL path (e.g., `/api` goes to one target group, `/images` goes to another). Which type of Elastic Load Balancer should you use?",
+    "options": [
+      "Network Load Balancer",
+      "Classic Load Balancer",
+      "Gateway Load Balancer",
+      "Application Load Balancer"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 6,
+    "question": "A solutions architect wants to ensure that when an EC2 instance in an Auto Scaling group is scheduled for termination, a custom script is run on the instance to safely drain connections and back up log files before it is shut down. Which feature should be used?",
+    "options": [
+      "Cooldown Period",
+      "Lifecycle Hook",
+      "Scheduled Scaling",
+      "Termination Policy"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 7,
+    "question": "What is the primary benefit of enabling cross-zone load balancing on an Application Load Balancer?",
+    "options": [
+      "It reduces the cost of data transfer between Availability Zones.",
+      "It distributes traffic evenly across all registered instances in all enabled Availability Zones.",
+      "It encrypts traffic between the load balancer and the target instances.",
+      "It allows the load balancer to have a static IP address."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 8,
+    "question": "A stateful application stores user session data on the local disk of the web server. The application is placed behind an Application Load Balancer. Users are complaining that they are being logged out intermittently. What feature should be enabled on the ALB to resolve this issue?",
+    "options": [
+      "SSL Termination",
+      "Health Checks",
+      "Sticky Sessions (Session Affinity)",
+      "Path-based routing"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 9,
+    "question": "An Auto Scaling group is configured with an ELB health check. An instance in the group is running but has a malfunctioning application, causing it to fail the ELB health check. The EC2 status checks are still passing. What action will the Auto Scaling group take?",
+    "options": [
+      "It will do nothing because the EC2 status checks are passing.",
+      "It will detach the instance from the group, but leave it running.",
+      "It will terminate the instance and launch a replacement.",
+      "It will stop the instance and try to restart it."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 10,
+    "question": "Which of the following services are inherently highly available and fault-tolerant by design, without needing specific multi-AZ configuration by the user? (Choose TWO)",
+    "options": [
+      "Amazon S3",
+      "Amazon EC2",
+      "Amazon EBS",
+      "Amazon DynamoDB",
+      "Amazon RDS"
+    ],
+    "correctAnswers": [
+      0,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 11,
+    "question": "A Network Load Balancer (NLB) is chosen over an Application Load Balancer (ALB) for which of the following reasons? (Choose TWO)",
+    "options": [
+      "The application requires path-based routing.",
+      "The application requires a static IP address for the load balancer.",
+      "The application requires extreme performance and low latency for TCP traffic.",
+      "The application requires X-Forwarded-For headers to get the client's IP.",
+      "The application needs to block traffic based on country of origin."
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 12,
+    "question": "What is the key difference between a Launch Configuration and a Launch Template for an Auto Scaling group?",
+    "options": [
+      "Launch Configurations can specify multiple instance types, while Launch Templates cannot.",
+      "Launch Templates support versioning and can be used for more advanced configurations like Spot and On-Demand instances in one ASG.",
+      "Launch Configurations are required for scheduled scaling, while Launch Templates are not.",
+      "Launch Templates are deprecated and Launch Configurations are the recommended approach."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 13,
+    "question": "An Auto Scaling group has a target tracking scaling policy configured to maintain an average CPU utilization of 50%. If the average CPU across the fleet rises to 70%, what will the policy do?",
+    "options": [
+      "It will trigger a CloudWatch alarm and send a notification.",
+      "It will launch new instances to bring the average CPU utilization down towards 50%.",
+      "It will do nothing until the CPU utilization reaches 100%.",
+      "It will terminate existing instances to increase the CPU load on the remaining ones."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 14,
+    "question": "In an Amazon RDS Multi-AZ configuration, what is the replication method used between the primary and standby instances?",
+    "options": [
+      "Asynchronous replication",
+      "Read-only replication",
+      "Synchronous replication",
+      "Snapshot-based replication"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 15,
+    "question": "An Application Load Balancer listener is configured to handle HTTPS traffic. Where is the SSL/TLS certificate installed to enable this?",
+    "options": [
+      "On each target EC2 instance.",
+      "On the Application Load Balancer listener.",
+      "In an IAM role associated with the load balancer.",
+      "In the security group of the load balancer."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 16,
+    "question": "What is the purpose of the cooldown period in an Auto Scaling group?",
+    "options": [
+      "To define how long to wait before terminating an unhealthy instance.",
+      "To ensure the Auto Scaling group does not launch or terminate additional instances before the effects of a previous scaling activity are visible.",
+      "To specify a \"warm-up\" time for a new instance before it receives traffic.",
+      "To prevent the Auto Scaling group from scaling down during business hours."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 17,
+    "question": "A solutions architect is designing a two-tier application with a web layer and a database layer. To achieve high availability, how should the resources be deployed?",
+    "options": [
+      "All EC2 instances and the RDS database in a single, large Availability Zone.",
+      "EC2 instances in an Auto Scaling group across multiple Availability Zones and an RDS Multi-AZ database.",
+      "A single EC2 instance for the web tier and a single-AZ RDS database, with frequent snapshots.",
+      "EC2 instances in one Availability Zone and the RDS database in a different Availability Zone."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 18,
+    "question": "A company wants to use a single Application Load Balancer to serve traffic for two different websites, `www.example.com` and `www.anotherexample.com`. How can the ALB route traffic to the correct target group for each website?",
+    "options": [
+      "Using path-based routing rules.",
+      "Using host-based routing rules.",
+      "By configuring two separate listeners on different ports.",
+      "By using sticky sessions."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 19,
+    "question": "Which Auto Scaling group termination policy will remove the instance that was launched from the oldest launch configuration first?",
+    "options": [
+      "`OldestInstance`",
+      "`NewestInstance`",
+      "`OldestLaunchConfiguration`",
+      "`Default`"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 20,
+    "question": "What is a key characteristic of the architecture of Amazon S3, which makes it suitable for storing critical data?",
+    "options": [
+      "Data is automatically replicated to another AWS Region.",
+      "Data is stored across multiple devices and facilities (Availability Zones) within a selected Region.",
+      "All data is encrypted by default using customer-managed keys.",
+      "S3 has a built-in failover mechanism to a standby S3 bucket."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 21,
+    "question": "An Auto Scaling group is not scaling out as expected during a period of high traffic. What is a possible reason? (Choose TWO)",
+    "options": [
+      "The maximum size of the Auto Scaling group has been reached.",
+      "The cooldown period is set too high.",
+      "The scaling policy's alarm threshold has not been breached for the required evaluation period.",
+      "Cross-zone load balancing is disabled on the attached ELB.",
+      "The instance type specified in the launch template is too small."
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 22,
+    "question": "When you create an Application Load Balancer, you must associate it with at least two subnets. Why?",
+    "options": [
+      "One subnet is for the public-facing listener, and the other is for the backend targets.",
+      "To ensure the load balancer itself is highly available by having nodes in multiple Availability Zones.",
+      "One subnet is for IPv4 traffic, and the other is for IPv6 traffic.",
+      "To allow the ALB to communicate with the Auto Scaling service."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 23,
+    "question": "The primary purpose of an Amazon RDS Read Replica is to...",
+    "options": [
+      "provide a hot standby for disaster recovery.",
+      "offload read traffic from the primary database instance to improve performance.",
+      "automatically scale the write capacity of the database.",
+      "serve as a long-term backup for the database."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 24,
+    "question": "A Network Load Balancer is distributing TCP traffic on port 8080 to a set of EC2 instances. Which of the following is a feature of the NLB?",
+    "options": [
+      "It can terminate SSL/TLS traffic.",
+      "It can modify HTTP headers.",
+      "It preserves the source IP address of the client when forwarding traffic to the targets.",
+      "It supports path-based routing."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 25,
+    "question": "An Auto Scaling group needs to pre-warm its capacity every weekday morning at 8:00 AM before employees start work. Which type of scaling policy should be used?",
+    "options": [
+      "Target Tracking Scaling",
+      "Step Scaling",
+      "Simple Scaling",
+      "Scheduled Scaling"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 26,
+    "question": "To achieve a loosely coupled architecture and improve fault tolerance between a web application tier and a backend processing tier, which service can be used as a buffer?",
+    "options": [
+      "Amazon SQS (Simple Queue Service)",
+      "Amazon ElastiCache",
+      "Elastic Load Balancing",
+      "AWS Direct Connect"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 27,
+    "question": "An Application Load Balancer is configured with a health check that requests the `/health.html` page from each instance. An instance will be considered healthy if it returns a `200 OK` status code. What happens to an instance if the health check request times out?",
+    "options": [
+      "The instance is immediately terminated.",
+      "The instance is considered unhealthy after a configurable number of consecutive failed checks.",
+      "The instance continues to receive traffic, but a CloudWatch alarm is triggered.",
+      "The health check is automatically retried on a different port."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 28,
+    "question": "Which of the following is the BEST way to design a scalable and highly available architecture for a stateless web application on AWS?",
+    "options": [
+      "A single large EC2 instance with a large EBS volume.",
+      "An Elastic Load Balancer distributing traffic to a single EC2 instance, with a second instance ready to be launched manually.",
+      "An Auto Scaling group of EC2 instances spread across multiple Availability Zones, with an Application Load Balancer.",
+      "Two EC2 instances in a primary/standby configuration using a script to fail over the Elastic IP address."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 29,
+    "question": "In the default termination policy for an Auto Scaling group, if there are multiple instances in an Availability Zone that could be terminated, which instance will be chosen?",
+    "options": [
+      "The one with the highest CPU utilization.",
+      "The one that was launched most recently.",
+      "The one that will bring the number of instances closest to the desired capacity.",
+      "The one launched from the oldest launch configuration or template."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 30,
+    "question": "A solutions architect wants to use an Application Load Balancer to route traffic to a fleet of EC2 instances and also to a serverless application running on AWS Lambda. Is this possible?",
+    "options": [
+      "No, ALBs can only have EC2 instances as targets.",
+      "Yes, an ALB can have a Lambda function as a target in a target group.",
+      "No, a Network Load Balancer is required to route traffic to Lambda.",
+      "Yes, but only if the EC2 instances and the Lambda function are in the same VPC."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 31,
+    "question": "What is a key difference in how an RDS Multi-AZ deployment provides high availability compared to a Read Replica?",
+    "options": [
+      "Multi-AZ involves asynchronous replication, while Read Replicas use synchronous replication.",
+      "Multi-AZ is designed for automatic failover, while Read Replicas are for scaling read traffic and must be manually promoted.",
+      "Multi-AZ places the standby in a different AWS Region, while Read Replicas are in the same Region.",
+      "You can connect to and read from a Multi-AZ standby, but not from a Read Replica."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 32,
+    "question": "An Auto Scaling group is configured with a desired capacity of 5. One of the instances is manually stopped from the EC2 console. What will Auto Scaling do?",
+    "options": [
+      "It will start the stopped instance.",
+      "It will terminate the stopped instance and launch a new one to replace it.",
+      "It will do nothing, as the instance still exists.",
+      "It will reduce the desired capacity to 4."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 33,
+    "question": "A company hosts a critical application that requires an unchanging, public-facing IP address that can handle failover between resources. They are using a Network Load Balancer. How can they achieve this?",
+    "options": [
+      "NLBs are assigned a static Elastic IP address per Availability Zone.",
+      "By placing an Elastic IP address in front of the NLB's DNS name.",
+      "This is not possible; only ALBs have static IPs.",
+      "By using Amazon Route 53 to point a domain to the NLB."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 34,
+    "question": "A web application uses an ALB. The security team wants to ensure that all traffic between the clients and the load balancer is encrypted. What should be configured?",
+    "options": [
+      "A security group rule on the EC2 instances allowing port 443.",
+      "An HTTPS listener on the ALB with an SSL/TLS certificate.",
+      "SSL/TLS certificates on each of the backend EC2 instances.",
+      "An IAM policy that enforces encrypted traffic."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 35,
+    "question": "An Auto Scaling group has a lifecycle hook configured for the `instance-terminating` state. A scale-in event occurs. What is the sequence of events?",
+    "options": [
+      "The instance is terminated, the lifecycle hook is invoked, the hook completes, the instance is removed from the ASG.",
+      "The scale-in event is triggered, the instance enters the `Terminating:Wait` state, the lifecycle hook is invoked, the hook completes, the termination proceeds.",
+      "The lifecycle hook is invoked, the instance enters a `Pending:Wait` state, the instance is terminated.",
+      "The instance is detached from the ELB, the lifecycle hook is invoked, the instance is terminated."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 36,
+    "question": "A company's website is built on a microservices architecture. A single Application Load Balancer needs to route traffic to different services based on the hostname in the request (e.g., `api.example.com` and `cart.example.com`). This is an example of:",
+    "options": [
+      "Path-based routing",
+      "Target group routing",
+      "Host-based routing",
+      "Query string routing"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 37,
+    "question": "If an RDS database in a Multi-AZ deployment fails, what is the role of the CNAME (DNS record)?",
+    "options": [
+      "The CNAME is manually updated to point to the new primary instance.",
+      "AWS automatically updates the CNAME to point to the standby instance, which has been promoted to primary.",
+      "The CNAME is deleted, and a new one is created.",
+      "The CNAME is used for read-only traffic and is not involved in the failover process."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 38,
+    "question": "A scaling policy for an Auto Scaling group is triggered, but no new instances are launched. A review of the Auto Scaling history shows an error message indicating that the requested instance type is not available in the selected Availability Zone. How can this be prevented in the future for better availability?",
+    "options": [
+      "Configure the Auto Scaling group to launch instances across multiple Availability Zones.",
+      "Choose a smaller instance type.",
+      "Increase the maximum size of the Auto Scaling group.",
+      "Decrease the cooldown period for the scaling policy."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 39,
+    "question": "Which of the following is a valid target for a Network Load Balancer? (Choose TWO)",
+    "options": [
+      "EC2 Instances",
+      "AWS Lambda Functions",
+      "IP Addresses",
+      "S3 Buckets",
+      "Application Load Balancers"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 40,
+    "question": "The \"health check grace period\" in an Auto Scaling group is useful for what purpose?",
+    "options": [
+      "It defines the time to wait before checking the health of an instance that has been in service for a long time.",
+      "It allows time for a newly launched instance to boot up and start its application before it is subjected to health checks.",
+      "It is the time an instance can be unhealthy before it is terminated.",
+      "It specifies how long the ELB should wait for a response to a health check probe."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 41,
+    "question": "A company wants to build a highly available architecture. Their strategy is to have idle resources in a separate region, ready to take over in case of a regional disaster. Data is backed up to the second region periodically. What is this disaster recovery strategy called?",
+    "options": [
+      "Backup and Restore",
+      "Pilot Light",
+      "Warm Standby",
+      "Multi-site Active-Active"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 42,
+    "question": "An Application Load Balancer has a listener rule that forwards requests for `/static/*` to a target group named `TG-Static`. All other requests are forwarded to a target group named `TG-App`. This is an example of:",
+    "options": [
+      "Host-based routing",
+      "Path-based routing",
+      "Query string parameter-based routing",
+      "Source IP-based routing"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 43,
+    "question": "What happens to the data on an EBS volume if the associated EC2 instance, managed by an Auto Scaling group, is terminated?",
+    "options": [
+      "The EBS volume is always detached and preserved.",
+      "By default, the root EBS volume is deleted, and any other attached EBS volumes are detached and preserved.",
+      "By default, the root EBS volume is deleted. The deletion behavior for other attached volumes can be configured in the launch template.",
+      "All EBS volumes are always deleted along with the instance."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 44,
+    "question": "Which service provides a managed, scalable, and highly available Domain Name System (DNS) web service?",
+    "options": [
+      "Elastic Load Balancing",
+      "Amazon CloudFront",
+      "Amazon Route 53",
+      "AWS Direct Connect"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 45,
+    "question": "An Auto Scaling group uses a launch template that specifies an AMI that no longer exists. What will happen when a scale-out event occurs?",
+    "options": [
+      "The Auto Scaling group will use the most recent valid AMI in the account.",
+      "The launch will fail, and the Auto Scaling group will enter a disabled state.",
+      "The launch will fail, and no new instance will be provisioned. The ASG will continue to try launching.",
+      "The Auto Scaling group will automatically create a new AMI."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 46,
+    "question": "A company has a legacy application that uses a TCP-based protocol on a non-standard port and requires the client's source IP to be preserved. The company needs a scalable, highly available load balancing solution. Which ELB type is the best fit?",
+    "options": [
+      "Application Load Balancer",
+      "Classic Load Balancer",
+      "Network Load Balancer",
+      "Gateway Load Balancer"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 47,
+    "question": "What does it mean for an application to be \"stateless\"?",
+    "options": [
+      "The application does not require a database.",
+      "The application does not store any client session data on the server where it is running.",
+      "The application runs without a traditional operating system.",
+      "The application does not have a user interface."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 48,
+    "question": "An Auto Scaling group is configured with a minimum size of 2 and a maximum size of 10. There are currently 6 instances running. A scheduled action is configured to set the desired capacity to 8 at 9 AM. What will happen at 9 AM?",
+    "options": [
+      "Two new instances will be launched.",
+      "Eight new instances will be launched.",
+      "The maximum size will be changed to 8.",
+      "Nothing, as the current capacity is within the min/max range."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 49,
+    "question": "The `X-Forwarded-For` header is a feature of which load balancer type that helps identify the original IP address of a client?",
+    "options": [
+      "Network Load Balancer",
+      "Gateway Load Balancer",
+      "Application Load Balancer",
+      "It is a feature of all load balancer types."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 50,
+    "question": "To achieve high availability, a solutions architect has deployed an application across three Availability Zones: `us-east-1a`, `us-east-1b`, and `us-east-1c`. This is an example of what kind of architecture?",
+    "options": [
+      "Cross-Region architecture",
+      "Multi-AZ (Intra-Region) architecture",
+      "Hybrid cloud architecture",
+      "On-premises architecture"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 51,
+    "question": "A company is running a popular flash sale website. They anticipate sudden, massive spikes in traffic. Which Auto Scaling policy would be most effective at rapidly adding capacity to meet this demand?",
+    "options": [
+      "Scheduled Scaling",
+      "Simple Scaling",
+      "Step Scaling",
+      "Target Tracking Scaling"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 52,
+    "question": "Can a single Application Load Balancer route traffic to target groups that contain different types of targets, such as EC2 instances and on-premises servers registered by IP address?",
+    "options": [
+      "No, all target groups must contain the same target type.",
+      "Yes, an ALB can route to different target groups with different target types.",
+      "No, on-premises servers cannot be targets for an ALB.",
+      "Yes, but only if the on-premises servers are connected via AWS Direct Connect."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 53,
+    "question": "In a failover scenario for an RDS Multi-AZ instance, what is the typical downtime?",
+    "options": [
+      "It is typically zero, with no interruption to service.",
+      "It is typically 1 to 2 minutes while the DNS CNAME is flipped to the standby.",
+      "It is typically 10 to 15 minutes while the standby instance is provisioned.",
+      "It depends on the size of the database and can take hours."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 54,
+    "question": "What is the purpose of an instance refresh for an Auto Scaling group?",
+    "options": [
+      "To reboot all instances in the group.",
+      "To gradually replace existing instances with new instances based on an updated launch template.",
+      "To temporarily increase the capacity of the group for a short period.",
+      "To run a health check on all instances in the group."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 55,
+    "question": "A solutions architect is designing a system that requires routing traffic to a fleet of third-party security appliances (e.g., firewalls, IDS/IPS) before the traffic reaches the application servers. Which ELB type is designed for this \"bump-in-the-wire\" use case?",
+    "options": [
+      "Application Load Balancer",
+      "Network Load Balancer",
+      "Classic Load Balancer",
+      "Gateway Load Balancer"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 56,
+    "question": "An Auto Scaling group's scaling policy is based on the SQS metric `ApproximateNumberOfMessagesVisible`. What is the goal of this configuration?",
+    "options": [
+      "To scale out the number of SQS queues.",
+      "To scale out the number of EC2 instances (consumers) when the number of messages in the queue grows, in order to process them faster.",
+      "To scale out the number of message producers.",
+      "To clear the queue if the number of messages exceeds a threshold."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 57,
+    "question": "When creating a listener for an Application Load Balancer, what are the two main components you must configure?",
+    "options": [
+      "A protocol/port and a default action (like forwarding to a target group).",
+      "An instance type and an AMI.",
+      "A security group and an IAM role.",
+      "A static IP address and a DNS name."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 58,
+    "question": "Which AWS Route 53 routing policy would you use to distribute traffic across multiple resources in different AWS Regions for a globally available application?",
+    "options": [
+      "Simple Routing",
+      "Failover Routing",
+      "Geolocation Routing",
+      "Latency Routing"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 59,
+    "question": "An Auto Scaling group is configured to span three Availability Zones (AZs). It currently has a desired capacity of 4. When it scales out, how will it attempt to place the new instances?",
+    "options": [
+      "It will place all new instances in a single AZ.",
+      "It will attempt to balance the number of instances evenly across the configured AZs.",
+      "It will place new instances in the AZ with the lowest latency.",
+      "It will randomly select an AZ for each new instance."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 60,
+    "question": "An ALB is configured with sticky sessions using a duration-based cookie. What happens if the instance that a user is \"stuck\" to becomes unhealthy?",
+    "options": [
+      "The user's session is lost, and they will get an error.",
+      "The ALB will automatically route the user's next request to a healthy instance, and a new session will be established.",
+      "The ALB will wait for the original instance to become healthy again before routing the request.",
+      "The user will be redirected to a static error page configured on the ALB."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 61,
+    "question": "Which of the following are benefits of creating a decoupled architecture using services like Amazon SQS? (Choose TWO)",
+    "options": [
+      "It increases the performance of the database layer.",
+      "It allows components to scale independently.",
+      "It improves fault tolerance by preventing a failure in one component from cascading to another.",
+      "It reduces the cost of EC2 instances.",
+      "It simplifies the process of SSL/TLS termination."
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 62,
+    "question": "You are using a Classic Load Balancer and need to know the IP address of the original client. Where can you find this information?",
+    "options": [
+      "In the `X-Forwarded-For` header.",
+      "The source IP of the packet will be the original client's IP.",
+      "It is not possible to get the client's IP with a Classic Load Balancer.",
+      "In the `Proxy-Protocol` header."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 63,
+    "question": "An Auto Scaling group is set up with a launch template that does not have an associated key pair. What is the implication of this?",
+    "options": [
+      "The instances will fail to launch.",
+      "You will not be able to connect to the instances via SSH.",
+      "The instances will be less secure and more vulnerable to attack.",
+      "You will be prompted to create a key pair each time the group scales out."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 64,
+    "question": "What is the primary difference between the goals of scalability and elasticity?",
+    "options": [
+      "Scalability is about handling more load by adding resources (scaling up or out), while elasticity is the ability to automatically acquire and release those resources as needed.",
+      "Scalability is about running in multiple regions, while elasticity is about running in multiple AZs.",
+      "Scalability refers to databases, while elasticity refers to compute instances.",
+      "There is no difference; the terms are interchangeable."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 65,
+    "question": "A company wants to ensure high availability for their NAT gateway. What is the recommended AWS architecture?",
+    "options": [
+      "Create a single NAT gateway in one Availability Zone.",
+      "Create a NAT gateway in each Availability Zone and configure route tables accordingly for resources in each AZ.",
+      "Place a Network Load Balancer in front of a single NAT gateway.",
+      "Create an Auto Scaling group of NAT gateways."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 66,
+    "question": "Which type of ELB operates at Layer 4 of the OSI model and deals with TCP and UDP traffic?",
+    "options": [
+      "Application Load Balancer",
+      "Network Load Balancer",
+      "Classic Load Balancer",
+      "It depends on the listener configuration."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 67,
+    "question": "An Auto Scaling group is configured with a health check grace period of 300 seconds. What does this mean?",
+    "options": [
+      "Instances must become healthy within 300 seconds or they will be terminated.",
+      "The ASG will wait 300 seconds after an instance launches before performing the first health check.",
+      "If an instance fails a health check, it has 300 seconds to recover.",
+      "The ELB health check will have a timeout of 300 seconds."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 68,
+    "question": "A company wants to serve web content to users with the lowest possible latency. They have application endpoints in several AWS Regions around the world. Which Route 53 routing policy is best for this scenario?",
+    "options": [
+      "Geolocation Routing",
+      "Simple Routing",
+      "Latency-based Routing",
+      "Weighted Routing"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 69,
+    "question": "Which of the following is true about an Amazon RDS Multi-AZ deployment?",
+    "options": [
+      "The standby database can be used to serve read traffic.",
+      "It provides a different DNS endpoint for the standby instance.",
+      "The failover to the standby instance is an automatic process.",
+      "You are responsible for patching the standby database."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 70,
+    "question": "An Application Load Balancer can natively support which of the following tasks to simplify application architecture? (Choose TWO)",
+    "options": [
+      "Authenticating users via social identity providers like Google or Facebook.",
+      "Running a relational database engine.",
+      "Terminating HTTPS traffic so that backend instances receive unencrypted HTTP.",
+      "Caching static content at the edge.",
+      "Performing SQL injection filtering."
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 71,
+    "question": "What is the purpose of an Auto Scaling group's suspension process, like `Suspend-AddToLoadBalancer`?",
+    "options": [
+      "It permanently stops the ASG from adding new instances to the load balancer.",
+      "It allows you to temporarily stop the ASG from performing a specific process (like registering new instances) while you perform maintenance.",
+      "It suspends the entire Auto Scaling group, preventing any scaling activities.",
+      "It detaches all current instances from the load balancer."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 72,
+    "question": "A company is deploying a fleet of EC2 instances that will process large volumes of streaming data using a custom UDP protocol. High throughput and low latency are critical. Which load balancer is the most appropriate choice?",
+    "options": [
+      "Application Load Balancer",
+      "Classic Load Balancer",
+      "Network Load Balancer",
+      "Gateway Load Balancer"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 73,
+    "question": "What does the term \"vertical scaling\" (scaling up) mean in the context of AWS?",
+    "options": [
+      "Adding more EC2 instances to a fleet.",
+      "Increasing the size and compute power of a single EC2 instance (e.g., from t2.micro to m5.large).",
+      "Spreading instances across more Availability Zones.",
+      "Increasing the number of EBS volumes attached to an instance."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 74,
+    "question": "You need to create a launch specification for an Auto Scaling group that allows you to use a mix of On-Demand and Spot Instances and specify multiple instance types to optimize for cost and availability. Which should you use?",
+    "options": [
+      "Launch Configuration",
+      "Launch Template",
+      "AMI",
+      "Instance Metadata"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 75,
+    "question": "An RDS Read Replica is created from a primary database. What type of replication is used by default?",
+    "options": [
+      "Synchronous",
+      "Asynchronous",
+      "Parallel",
+      "Log-based"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 76,
+    "question": "A target group for an Application Load Balancer contains three healthy instances. The ALB receives six requests. Assuming no sticky sessions, how will the traffic be distributed?",
+    "options": [
+      "All six requests will go to the first instance in the target group.",
+      "The ALB will use a round-robin algorithm to distribute two requests to each of the three instances.",
+      "The first three requests will go to one instance, and the next three will go to another.",
+      "The distribution is random and cannot be predicted."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 77,
+    "question": "If an Auto Scaling group fails to launch instances for an extended period (e.g., due to an invalid AMI), it will eventually enter which state?",
+    "options": [
+      "`Pending:Wait`",
+      "`Suspended`",
+      "`Terminating:Wait`",
+      "`Disabled`"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 78,
+    "question": "Which AWS service can be used in front of an Application Load Balancer to cache content closer to users and provide an additional layer of DDoS protection?",
+    "options": [
+      "Amazon S3",
+      "Amazon ElastiCache",
+      "Amazon CloudFront",
+      "AWS Global Accelerator"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 79,
+    "question": "The default Auto Scaling termination policy will terminate instances to do what first?",
+    "options": [
+      "Terminate the oldest instance.",
+      "Terminate the newest instance.",
+      "Attempt to balance the number of instances across Availability Zones.",
+      "Terminate the instance with the highest CPU usage."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 80,
+    "question": "Which of the following is NOT a valid trigger for an Auto Scaling action?",
+    "options": [
+      "A CloudWatch metric (e.g., average CPU utilization).",
+      "A schedule (e.g., every day at 5 PM).",
+      "The health status of another resource (e.g., an RDS database).",
+      "Manual intervention via the AWS Management Console or CLI."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 81,
+    "question": "A company wants to route traffic for `example.com` to a set of servers in the US and traffic for `example.co.uk` to a set of servers in Europe. Which Route 53 routing policy would be most appropriate for directing users based on their geographic location?",
+    "options": [
+      "Latency-based Routing",
+      "Failover Routing",
+      "Geolocation Routing",
+      "Weighted Routing"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 82,
+    "question": "When an Application Load Balancer's health check marks an instance as unhealthy, what happens to existing, long-running connections to that instance?",
+    "options": [
+      "The connections are immediately terminated by the load balancer.",
+      "The load balancer stops sending new requests but allows existing connections to continue until they close or time out.",
+      "The instance is immediately terminated by the Auto Scaling group.",
+      "The connections are automatically transferred to a healthy instance."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 83,
+    "question": "To achieve high availability, you should always design your applications to run in at least how many Availability Zones?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 84,
+    "question": "What is a key benefit of using a Launch Template over a Launch Configuration?",
+    "options": [
+      "They are less expensive to use.",
+      "They allow you to modify the template without having to create a new one, using versioning.",
+      "They can only be used with Spot Instances.",
+      "They are globally replicated, while Launch Configurations are regional."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 85,
+    "question": "An ELB health check has the following settings: Interval: 30 seconds, Timeout: 5 seconds, Unhealthy Threshold: 2, Healthy Threshold: 10. How long will it take for an instance to be marked as unhealthy after it stops responding?",
+    "options": [
+      "30 seconds",
+      "10 seconds",
+      "60 seconds (2 failed checks * 30 seconds apart)",
+      "300 seconds (10 successful checks * 30 seconds apart)"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 86,
+    "question": "You have a fleet of web servers behind an Application Load Balancer. The web servers need to know the protocol (HTTP or HTTPS) that the client used to connect to the load balancer. Which HTTP header provides this information?",
+    "options": [
+      "`X-Forwarded-For`",
+      "`X-Forwarded-Port`",
+      "`X-Forwarded-Proto`",
+      "`Host`"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 87,
+    "question": "An Auto Scaling group is attached to an ELB. Which type of health check should be used to ensure that instances are terminated if the application on them stops responding, even if the instance OS is running?",
+    "options": [
+      "EC2 Health Check",
+      "ELB Health Check",
+      "TCP Health Check",
+      "Custom Health Check"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 88,
+    "question": "Which architectural principle is demonstrated by using an SQS queue to handle requests between a front-end web service and a back-end processing service?",
+    "options": [
+      "Vertical Scaling",
+      "Tight Coupling",
+      "Decoupling",
+      "High Cohesion"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 89,
+    "question": "A company wants to use an Application Load Balancer to serve multiple websites that require different SSL certificates (e.g., `site1.com`, `site2.com`). Which ALB feature allows a single listener to use multiple certificates?",
+    "options": [
+      "Cross-Zone Load Balancing",
+      "Server Name Indication (SNI)",
+      "Path-based Routing",
+      "Sticky Sessions"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 90,
+    "question": "If you are designing for high availability, what is the relationship between Availability Zones and AWS Regions?",
+    "options": [
+      "A Region is a collection of Availability Zones.",
+      "An Availability Zone is a collection of Regions.",
+      "They are independent of each other.",
+      "An Availability Zone is another name for a Region."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 91,
+    "question": "An Auto Scaling group has a scale-out alarm on CPU > 70% and a scale-in alarm on CPU < 30%. Both alarms are triggered simultaneously (which is unlikely but possible with metric fluctuations). What happens?",
+    "options": [
+      "The scale-out policy takes precedence to ensure availability.",
+      "The scale-in policy takes precedence to save costs.",
+      "Both actions are cancelled out, and no scaling occurs.",
+      "The Auto Scaling group becomes suspended."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 92,
+    "question": "What is the purpose of connection draining (deregistration delay) on a load balancer?",
+    "options": [
+      "To ensure that an instance is fully booted before receiving traffic.",
+      "To allow in-flight requests to complete before an instance is removed from service during a scale-in or deployment event.",
+      "To limit the number of connections an instance can receive.",
+      "To drain malicious connections from the load balancer."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 93,
+    "question": "A solutions architect needs to improve the read performance of a heavily used RDS database. The application is read-heavy. What is the most effective solution?",
+    "options": [
+      "Enable Multi-AZ on the RDS instance.",
+      "Increase the size of the RDS instance (scale up).",
+      "Create one or more Read Replicas and direct read queries to them.",
+      "Take more frequent database snapshots."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 94,
+    "question": "Which of these is NOT a component of an Auto Scaling group configuration?",
+    "options": [
+      "A launch template or launch configuration.",
+      "The minimum, maximum, and desired number of instances.",
+      "A specification of which Availability Zones to use.",
+      "An IAM role to grant the Auto Scaling group permissions to other services."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 95,
+    "question": "A company wants to distribute incoming traffic to their application between their on-premises data center and their AWS environment. Which AWS service can help achieve this hybrid load balancing?",
+    "options": [
+      "Application Load Balancer",
+      "AWS Global Accelerator",
+      "Amazon Route 53 with weighted routing",
+      "AWS Direct Connect"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 96,
+    "question": "If a target group for an Application Load Balancer contains no healthy, registered instances, what will the ALB do with incoming requests?",
+    "options": [
+      "It will return a 503 Service Unavailable error.",
+      "It will queue the requests until an instance becomes healthy.",
+      "It will drop the traffic silently.",
+      "It will redirect the request to a fallback URL."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 97,
+    "question": "Which of the following describes \"horizontal scaling\" (scaling out)?",
+    "options": [
+      "Increasing the RAM and CPU of an existing server.",
+      "Adding more servers (instances) to a pool of resources.",
+      "Upgrading the network connection to a server.",
+      "Installing a more efficient application on an existing server."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 98,
+    "question": "A company has a stateful application that requires a user to be sent to the same server for every request. They are using a Classic Load Balancer. What feature should they use?",
+    "options": [
+      "Proxy Protocol",
+      "Cross-Zone Load Balancing",
+      "Connection Draining",
+      "Session Affinity (Sticky Sessions)"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 99,
+    "question": "A Multi-AZ RDS deployment is primarily designed to improve ________, while a Read Replica is primarily designed to improve ________.",
+    "options": [
+      "availability; performance",
+      "performance; availability",
+      "security; cost-effectiveness",
+      "durability; security"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 100,
+    "question": "An Auto Scaling group has a desired capacity of 5. All 5 instances are healthy. An administrator changes the desired capacity to 3. Which policy will the ASG use to determine which 2 instances to terminate?",
+    "options": [
+      "The Health Check Policy",
+      "The Scaling Policy",
+      "The Termination Policy",
+      "The Lifecycle Policy"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  }
+]

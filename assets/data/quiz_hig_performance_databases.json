@@ -1,0 +1,1408 @@
+[
+  {
+    "id": 1,
+    "question": "An e-commerce application is experiencing high read traffic on its main Amazon RDS for MySQL database, causing performance degradation during peak hours. The application can tolerate slightly stale data for product catalog lookups. What is the most effective solution to improve read performance?",
+    "options": [
+      "Enable Multi-AZ on the RDS instance.",
+      "Increase the instance size of the RDS database.",
+      "Create an RDS Read Replica and direct all read queries for the product catalog to it.",
+      "Take more frequent database snapshots."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 2,
+    "question": "A development team is building a new application that requires a database with single-digit millisecond latency for both reads and writes, regardless of scale. The data model is a simple key-value store. Which AWS database service is the best fit for this requirement?",
+    "options": [
+      "Amazon RDS for PostgreSQL",
+      "Amazon Aurora",
+      "Amazon DynamoDB",
+      "Amazon Redshift"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 3,
+    "question": "A company is using Amazon DynamoDB for a high-traffic application. The application experiences intense, short-lived bursts of read activity on a specific set of popular items, leading to throttling. The data can be cached for a few minutes. Which service should be used to reduce latency and absorb these read bursts?",
+    "options": [
+      "An RDS Read Replica",
+      "Amazon ElastiCache for Redis",
+      "DynamoDB Accelerator (DAX)",
+      "DynamoDB Global Tables"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 4,
+    "question": "An Amazon Aurora DB cluster has one writer instance and two reader instances (replicas). If the writer instance fails, what is the expected behavior?",
+    "options": [
+      "The entire cluster becomes read-only until the writer is manually recovered.",
+      "Aurora automatically promotes one of the reader instances to be the new writer.",
+      "All reader instances are terminated and must be recreated.",
+      "The cluster automatically fails over to a different AWS Region."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 5,
+    "question": "A solutions architect is designing a caching layer for a web application to store user session data. The cache must be highly available and support features like pub/sub and sorted sets. Which caching engine in Amazon ElastiCache is the most appropriate choice?",
+    "options": [
+      "Memcached",
+      "Redis",
+      "DAX",
+      "A custom engine on EC2"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 6,
+    "question": "What is a key architectural difference between Amazon Aurora and a standard Amazon RDS for MySQL instance?",
+    "options": [
+      "Aurora uses a traditional monolithic storage volume, while RDS uses a log-structured storage system.",
+      "Aurora separates the compute and storage layers, using a shared, distributed, and self-healing storage volume.",
+      "Aurora can only be deployed in a single Availability Zone.",
+      "Aurora does not support Read Replicas."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 7,
+    "question": "A company wants to offload analytical queries from its primary OLTP RDS database. The queries are long-running and do not require real-time data. The company creates an RDS Read Replica. What is the replication type between the primary and the read replica?",
+    "options": [
+      "Synchronous",
+      "Asynchronous",
+      "Parallel",
+      "Block-level"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 8,
+    "question": "A DynamoDB table is configured with 10 Read Capacity Units (RCUs) in provisioned capacity mode. Which of the following read workloads can it handle without being throttled? (Assume standard, eventually consistent reads of items up to 4 KB in size).",
+    "options": [
+      "15 strongly consistent reads per second.",
+      "20 eventually consistent reads per second.",
+      "10 eventually consistent reads per second of 10 KB items.",
+      "5 strongly consistent reads per second of 10 KB items."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 9,
+    "question": "An application is heavily using Amazon ElastiCache for Memcached as a caching layer. The developers notice that when a node in the cache cluster fails, a large portion of the application's data is lost, leading to a \"cache stampede\" on the database. Why does this happen with Memcached?",
+    "options": [
+      "Memcached does not support replication or high availability features natively.",
+      "The ElastiCache service is misconfigured.",
+      "Memcached uses synchronous replication which fails.",
+      "The application is not using the correct endpoint."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 10,
+    "question": "An Amazon Aurora cluster is configured with a primary writer and several Aurora Replicas. How does this configuration improve performance?",
+    "options": [
+      "It allows write operations to be distributed across all instances in the cluster.",
+      "It provides a separate endpoint for the replicas, allowing read traffic to be scaled out and isolated from the writer instance.",
+      "It encrypts the data at rest.",
+      "It automatically archives old data to Amazon S3."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 11,
+    "question": "What is the primary purpose of a DynamoDB Accelerator (DAX) cluster?",
+    "options": [
+      "To provide a SQL interface for DynamoDB.",
+      "To act as a fully managed, in-memory cache for DynamoDB, providing microsecond read performance.",
+      "To enable multi-region, active-active replication for DynamoDB.",
+      "To provide long-term backup and restore capabilities for DynamoDB."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 12,
+    "question": "You need to promote an Amazon RDS Read Replica to become a standalone database instance. What is the impact of this action on replication?",
+    "options": [
+      "The new standalone instance will continue to replicate from the original primary.",
+      "The replication link between the original primary and the newly promoted instance is broken.",
+      "The original primary instance is automatically demoted to a read replica.",
+      "All other read replicas are automatically pointed to the new primary."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 13,
+    "question": "Which feature of Amazon Aurora allows a database to \"rewind\" to a specific point in time within the backup retention period without restoring from a backup?",
+    "options": [
+      "Snapshots",
+      "Point-in-time recovery",
+      "Backtrack",
+      "Cloning"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 14,
+    "question": "A gaming application uses a DynamoDB table to store player scores. The table has a primary key of `PlayerID` and a sort key of `GameID`. The application needs to frequently query for the top 10 scores for a specific game across all players. How can this query be made efficient?",
+    "options": [
+      "By performing a Scan operation with a filter on `GameID`.",
+      "By creating a Global Secondary Index (GSI) with a primary key of `GameID` and a sort key of `Score`.",
+      "By creating a Local Secondary Index (LSI) with a sort key of `Score`.",
+      "By exporting the data to S3 and using Athena."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 15,
+    "question": "An ElastiCache for Redis cluster is configured with Multi-AZ and automatic failover enabled. If the primary node in a shard fails, what happens?",
+    "options": [
+      "The entire cluster becomes unavailable until the node is replaced.",
+      "ElastiCache automatically promotes a replica node to become the new primary.",
+      "The application must manually update its endpoint to point to a replica.",
+      "Data stored on the failed primary node is permanently lost."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 16,
+    "question": "What is the maximum number of Read Replicas that can be created for an Amazon Aurora DB cluster?",
+    "options": [
+      "1",
+      "5",
+      "15",
+      "30"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 17,
+    "question": "A DynamoDB table is configured in On-Demand capacity mode. What is the primary benefit of this mode?",
+    "options": [
+      "It provides a fixed, predictable monthly cost.",
+      "It automatically scales read and write capacity to handle the application's traffic without any capacity planning, paying per request.",
+      "It offers higher performance than provisioned capacity mode.",
+      "It allows for ACID transactions across multiple tables."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 18,
+    "question": "A company is using ElastiCache for Memcached. They need to scale their caching layer horizontally to handle more traffic and store more data. What is the correct approach?",
+    "options": [
+      "Increase the instance size of the existing cache node (vertical scaling).",
+      "Add more nodes to the Memcached cluster (horizontal scaling).",
+      "Enable Multi-AZ on the cluster.",
+      "Create a read replica of the cache cluster."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 19,
+    "question": "An RDS Read Replica in a different region from its primary is being created. What is this configuration useful for? (Choose TWO)",
+    "options": [
+      "Providing a hot standby for automatic failover.",
+      "Reducing read latency for users in the replica's region.",
+      "Serving as part of a disaster recovery strategy.",
+      "Scaling write operations globally.",
+      "Encrypting the primary database."
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 20,
+    "question": "How does DynamoDB achieve \"single-digit millisecond latency\"?",
+    "options": [
+      "By using an in-memory caching layer for all requests.",
+      "By storing data on solid-state drives (SSDs) and using a distributed, partitioned architecture.",
+      "By running on extremely powerful EC2 instances.",
+      "By pre-warming the database before traffic arrives."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 21,
+    "question": "An Aurora Serverless v1 DB cluster is configured with a minimum capacity of 2 ACUs and a maximum of 16 ACUs. The database is not used for several hours overnight. What will happen to the cluster?",
+    "options": [
+      "It will remain running at 2 ACUs.",
+      "It will scale down to 0 ACUs and pause, automatically resuming when a new connection is made.",
+      "It will be terminated to save costs.",
+      "It will scale down to 1 ACU."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 22,
+    "question": "A DynamoDB table has a very large number of items, but the application only needs to read a small subset of the attributes for most queries. To optimize costs and performance for these queries, what should the developer do?",
+    "options": [
+      "Use a Scan operation instead of a Query operation.",
+      "Create a Global Secondary Index (GSI) and project only the required attributes into the index.",
+      "Increase the Read Capacity Units (RCUs) on the main table.",
+      "Store the data in a compressed format."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 23,
+    "question": "A company is deciding between ElastiCache for Memcached and Redis. They need the ability to take snapshots of their cache for backup and recovery. Which service supports this feature?",
+    "options": [
+      "Memcached only",
+      "Redis only",
+      "Both Memcached and Redis",
+      "Neither service supports snapshots."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 24,
+    "question": "What is the endpoint used to connect to an Amazon Aurora cluster for read-only queries if you want the load to be distributed across all available Aurora Replicas?",
+    "options": [
+      "The cluster endpoint.",
+      "The instance endpoint of one of the replicas.",
+      "The reader endpoint.",
+      "A custom endpoint."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 25,
+    "question": "A DynamoDB Scan operation is being performed on a large table. The operation is consuming a large number of Read Capacity Units and impacting the performance of other critical operations. How can the developer reduce the impact of the Scan operation?",
+    "options": [
+      "Increase the Write Capacity Units (WCUs) of the table.",
+      "Perform the Scan operation with a smaller `PageSize` and add delays between page requests.",
+      "Create a Global Secondary Index and scan the index instead.",
+      "Use a parallel scan."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 26,
+    "question": "Can you create an RDS Read Replica of another Read Replica?",
+    "options": [
+      "Yes, this is called a cascaded read replica.",
+      "No, a read replica can only be created from a primary source instance.",
+      "Yes, but only for the MySQL engine.",
+      "Yes, but only if the source read replica is in a different region."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 27,
+    "question": "A DynamoDB table uses a composite primary key (partition key and sort key). You need to retrieve multiple items that share the same partition key. Which API call is the most efficient?",
+    "options": [
+      "`GetItem`",
+      "`Scan`",
+      "`BatchGetItem`",
+      "`Query`"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 28,
+    "question": "Which of the following is a key feature of Amazon Aurora's storage architecture?",
+    "options": [
+      "The storage volume is a single, large EBS volume.",
+      "The storage is striped across hundreds of volumes, spread across 3 Availability Zones, and data is replicated 6 ways.",
+      "The storage is hosted on an EFS file system for scalability.",
+      "The storage is ephemeral and data is lost if the cluster is stopped."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 29,
+    "question": "An application uses DAX to accelerate reads from a DynamoDB table. A developer writes a new item to the DynamoDB table directly, bypassing DAX. What will happen when the application tries to read this new item through DAX?",
+    "options": [
+      "DAX will immediately find the new item in DynamoDB.",
+      "DAX will return a cached (stale) version of the item if one exists. If not, it performs an eventually consistent `GetItem` from DynamoDB, retrieves the new item, and caches it.",
+      "The read operation will fail.",
+      "DAX will perform a strongly consistent read from DynamoDB."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 30,
+    "question": "A company is using ElastiCache for Redis. They need to group a set of related keys together to ensure they are all stored on the same shard in a clustered Redis setup. What Redis feature should they use?",
+    "options": [
+      "Pub/Sub",
+      "Transactions",
+      "Hash Tags",
+      "Sorted Sets"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 31,
+    "question": "What is a primary use case for Amazon RDS Read Replicas?",
+    "options": [
+      "To improve the durability of the database.",
+      "To scale read-heavy workloads and offload reporting queries.",
+      "To provide a hot standby for automatic failover.",
+      "To scale write-heavy workloads."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 32,
+    "question": "In DynamoDB, what is the difference between a Scan and a Query?",
+    "options": [
+      "A Query is more expensive than a Scan.",
+      "A Scan operation examines every item in the table, while a Query efficiently finds items based on the primary key.",
+      "A Query can only be used on tables with a simple primary key.",
+      "A Scan returns all attributes, while a Query only returns the primary key."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 33,
+    "question": "An Aurora Global Database consists of a primary cluster in one region and a secondary cluster in another. What is the primary benefit of this architecture?",
+    "options": [
+      "It allows you to scale read operations across multiple regions with low latency and provides a robust disaster recovery solution.",
+      "It reduces the cost of the Aurora cluster.",
+      "It increases the write performance of the primary cluster.",
+      "It allows you to use different database engines in each region."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 34,
+    "question": "An ElastiCache for Redis cluster is running in cluster mode. What is the purpose of this mode?",
+    "options": [
+      "It enables automatic failover between nodes.",
+      "It allows data to be partitioned (sharded) across multiple nodes, enabling horizontal scaling of storage and throughput.",
+      "It encrypts all data at rest.",
+      "It allows the cluster to be accessed from multiple VPCs."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 35,
+    "question": "An application makes a `GetItem` request to a DAX cluster, and the item is not in the DAX cache (a cache miss). What does DAX do?",
+    "options": [
+      "It returns a \"not found\" error to the application.",
+      "It sends the `GetItem` request to the underlying DynamoDB table, gets the result, and caches it before returning it to the application.",
+      "It waits for the next cache refresh cycle.",
+      "It tells the application to query DynamoDB directly."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 36,
+    "question": "A company has an RDS for PostgreSQL database. They want to create a copy of this database for a development team to run tests against. The copy should be a static, independent database. What is the easiest way to create this?",
+    "options": [
+      "Create a Read Replica and promote it.",
+      "Take a manual snapshot of the production database and restore it as a new RDS instance.",
+      "Enable Multi-AZ.",
+      "Use AWS Database Migration Service (DMS)."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 37,
+    "question": "A DynamoDB table is designed to store IoT data, using the `DeviceID` as the partition key and `Timestamp` as the sort key. A large number of writes are coming from a single `DeviceID`. This is causing performance issues. What is this problem called?",
+    "options": [
+      "A Cold Start",
+      "A Hot Partition",
+      "A Read Replica Lag",
+      "A Cache Miss"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 38,
+    "question": "What is the \"Writer Endpoint\" in an Aurora DB cluster?",
+    "options": [
+      "An endpoint that load balances read traffic across all replicas.",
+      "The DNS CNAME that always points to the current primary (writer) instance in the cluster.",
+      "The endpoint used for creating new replicas.",
+      "The endpoint used for taking manual snapshots."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 39,
+    "question": "A solutions architect is choosing a caching strategy. The application requires the simplest possible client configuration and is tolerant of losing the entire cache during a node failure. Which service and caching strategy is most appropriate?",
+    "options": [
+      "ElastiCache for Redis with clustering enabled.",
+      "ElastiCache for Memcached.",
+      "A self-managed Redis cluster on EC2.",
+      "DAX."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 40,
+    "question": "Which of the following database engines are supported by Amazon Aurora? (Choose TWO)",
+    "options": [
+      "Microsoft SQL Server",
+      "Oracle",
+      "MySQL",
+      "PostgreSQL",
+      "MariaDB"
+    ],
+    "correctAnswers": [
+      2,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 41,
+    "question": "A DynamoDB table is configured with 5 Write Capacity Units (WCUs). How many 1 KB writes per second can this table sustain?",
+    "options": [
+      "1",
+      "5",
+      "10",
+      "It depends on the item size."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 42,
+    "question": "An application requires a caching layer. The developers need to store simple key-value pairs and want the highest possible performance for GET/SET operations. The caching logic will be handled by the application. Which ElastiCache engine is a good fit?",
+    "options": [
+      "Redis in Cluster Mode",
+      "Redis in a single-node configuration",
+      "Memcached",
+      "DAX"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 43,
+    "question": "You are creating a cross-region RDS Read Replica. What must be enabled on the source RDS instance?",
+    "options": [
+      "Multi-AZ deployment",
+      "Automated backups (with a retention period greater than 0)",
+      "Encryption at rest",
+      "Performance Insights"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 44,
+    "question": "A company wants to provide a low-latency API backed by a DynamoDB table to users located globally. Which DynamoDB feature should be used to replicate the table across multiple AWS Regions automatically?",
+    "options": [
+      "DynamoDB Streams",
+      "DynamoDB Accelerator (DAX)",
+      "DynamoDB Global Tables",
+      "A cross-region Read Replica"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 45,
+    "question": "What does the \"lazy loading\" caching strategy involve?",
+    "options": [
+      "Loading all possible data into the cache before it is needed.",
+      "The application checks the cache for data. If the data is not there (a cache miss), the application fetches it from the database and writes it to the cache.",
+      "The application writes data to both the cache and the database simultaneously.",
+      "The cache is only loaded during off-peak hours."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 46,
+    "question": "An Aurora Serverless cluster can be useful for which type of workload?",
+    "options": [
+      "A steady, high-performance production database that runs 24/7.",
+      "An intermittent or unpredictable workload, such as a development or test database.",
+      "A database that requires more than 128 TiB of storage.",
+      "A database that requires a specific, older version of MySQL."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 47,
+    "question": "A DynamoDB `Query` operation returns a `LastEvaluatedKey` in its response. What does this indicate?",
+    "options": [
+      "The query has completed and found the last key in the table.",
+      "An error occurred during the query.",
+      "The query result was larger than 1 MB, and there are more items to retrieve in a subsequent query request.",
+      "The query has been throttled."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 48,
+    "question": "A company is using ElastiCache for Redis as a distributed cache. They have an R5.large instance that is reaching its memory capacity. What is the best way to add more cache memory to the cluster?",
+    "options": [
+      "Upgrade the R5.large to an R5.xlarge (scaling vertically).",
+      "Add another R5.large node to the cluster (scaling horizontally, if in cluster mode).",
+      "Enable Multi-AZ.",
+      "Take a snapshot and restore it to a larger cluster."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 49,
+    "question": "What is a key benefit of using Amazon Aurora over a self-managed database on EC2?",
+    "options": [
+      "It provides root access to the underlying operating system.",
+      "It is a fully managed service that handles patching, backups, and failover.",
+      "It is always cheaper than running a database on EC2.",
+      "It supports any database engine."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 50,
+    "question": "An application using DAX performs a strongly consistent read. What will DAX do?",
+    "options": [
+      "It will return the data from its cache if available.",
+      "It will bypass its own cache and fetch the data directly from the underlying DynamoDB table.",
+      "It will return an error, as DAX does not support strongly consistent reads.",
+      "It will check its cache and then validate the result with DynamoDB."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 51,
+    "question": "Can an RDS Read Replica be in a different Availability Zone than the primary instance?",
+    "options": [
+      "No, they must be in the same AZ.",
+      "Yes, this is a common configuration for improving availability.",
+      "Only if the primary is also in a Multi-AZ configuration.",
+      "Only for the PostgreSQL engine."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 52,
+    "question": "To minimize the cost of a DynamoDB table used for development, which capacity mode should be chosen for this unpredictable and infrequent workload?",
+    "options": [
+      "Provisioned",
+      "On-Demand",
+      "Reserved",
+      "Spot"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 53,
+    "question": "Which ElastiCache engine supports data persistence through snapshots?",
+    "options": [
+      "Memcached",
+      "Redis",
+      "Both",
+      "Neither"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 54,
+    "question": "An Aurora DB cluster's storage volume automatically grows in 10 GB increments up to a maximum of:",
+    "options": [
+      "16 TiB",
+      "64 TiB",
+      "128 TiB",
+      "256 TiB"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 55,
+    "question": "A DynamoDB table stores user session data. To automatically purge sessions that are older than 24 hours, what feature should be used?",
+    "options": [
+      "A scheduled Lambda function that scans the table and deletes old items.",
+      "A Global Secondary Index.",
+      "DynamoDB Streams.",
+      "The Time to Live (TTL) feature on a timestamp attribute."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 56,
+    "question": "A company wants to implement a caching layer that is simple and offers a multi-threaded architecture to handle high traffic. Which ElastiCache engine is known for its multi-threaded capabilities?",
+    "options": [
+      "Redis",
+      "Memcached",
+      "DAX",
+      "Both Redis and Memcached are multi-threaded."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 57,
+    "question": "When you promote a Read Replica, what happens to the other Read Replicas that were attached to the same original master?",
+    "options": [
+      "They are automatically repointed to the new master.",
+      "They are deleted.",
+      "They continue replicating from the old master, which is now a standalone instance.",
+      "They stop replicating and become standalone instances."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 58,
+    "question": "What is a DynamoDB Global Secondary Index (GSI)?",
+    "options": [
+      "A copy of the table in another AWS Region.",
+      "An index that has a different partition key and an optional sort key from the base table.",
+      "An index that has the same partition key but a different sort key from the base table.",
+      "A built-in cache for a DynamoDB table."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 59,
+    "question": "Which of the following is a good use case for ElastiCache? (Choose TWO)",
+    "options": [
+      "Storing the primary, authoritative copy of user data.",
+      "Reducing latency for database read operations.",
+      "Storing temporary user session data.",
+      "Long-term archival of application logs.",
+      "Running complex analytical queries."
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 60,
+    "question": "An Aurora cluster is configured with one writer and one reader. You are connected to the reader endpoint. What happens if you try to execute an `INSERT` statement?",
+    "options": [
+      "The statement is executed successfully on the reader.",
+      "The statement is automatically forwarded to the writer instance and executed.",
+      "The statement fails because the reader endpoint is read-only.",
+      "The reader is automatically promoted to a writer."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 61,
+    "question": "How are Read Capacity Units (RCUs) and Write Capacity Units (WCUs) consumed for a Global Secondary Index (GSI) in DynamoDB?",
+    "options": [
+      "They are consumed from the base table's provisioned capacity.",
+      "GSIs do not consume any capacity units.",
+      "A GSI has its own provisioned RCU and WCU capacity, separate from the base table.",
+      "Reads consume from the GSI, but writes consume from the base table."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 62,
+    "question": "A company is using DAX for their DynamoDB table. They have a \"write-through\" requirement where any data written must be immediately available in the cache. How can this be achieved?",
+    "options": [
+      "DAX supports this natively with a write-through option.",
+      "This is not the purpose of DAX; the application logic must write to DAX and then to DynamoDB.",
+      "Configure DAX for strongly consistent reads.",
+      "The application must write the item to DynamoDB and then use the DAX client to write the same item to the DAX cache."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 63,
+    "question": "An RDS database is experiencing high CPU utilization due to a few inefficient, long-running queries. Which AWS service can help developers visualize the database load and identify the exact queries causing the bottleneck?",
+    "options": [
+      "Amazon CloudWatch",
+      "AWS CloudTrail",
+      "RDS Performance Insights",
+      "AWS X-Ray"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 64,
+    "question": "What is the maximum number of Aurora Replicas you can have in a single Aurora DB cluster?",
+    "options": [
+      "5",
+      "10",
+      "15",
+      "20"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 65,
+    "question": "A company is deciding between ElastiCache for Redis and Memcached. They require support for complex data types like lists, hashes, and sorted sets. Which engine should they choose?",
+    "options": [
+      "Memcached",
+      "Redis",
+      "Either engine supports these data types.",
+      "DAX"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 66,
+    "question": "What is a DynamoDB Local Secondary Index (LSI)?",
+    "options": [
+      "An index that has a different partition key and sort key from the base table.",
+      "An index that has the same partition key but a different sort key from the base table.",
+      "A copy of the table in the same AWS Region.",
+      "An index that can only be queried with strongly consistent reads."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 67,
+    "question": "You can create a Read Replica from which of the following RDS configurations?",
+    "options": [
+      "Only a single-AZ instance.",
+      "Only a Multi-AZ instance.",
+      "Both a single-AZ and a Multi-AZ instance.",
+      "Only from another Read Replica."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 68,
+    "question": "An application needs to store and retrieve user profiles. Each profile is about 500 KB in size. Can this be stored as a single item in DynamoDB?",
+    "options": [
+      "Yes, the maximum item size is 1 MB.",
+      "No, the maximum item size is 400 KB.",
+      "Yes, but it will consume a large number of WCUs.",
+      "No, DynamoDB is only for small items."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 69,
+    "question": "What is a key benefit of Amazon Aurora Serverless?",
+    "options": [
+      "It provides higher performance than provisioned Aurora.",
+      "It automatically starts up, shuts down, and scales capacity based on application demand, making it ideal for infrequent workloads.",
+      "It has lower storage costs than provisioned Aurora.",
+      "It supports more database engines than provisioned Aurora."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 70,
+    "question": "Which of the following is a characteristic of a DynamoDB `Scan` operation?",
+    "options": [
+      "It is the most efficient way to retrieve a large number of items.",
+      "It becomes more efficient as the table size grows.",
+      "It can be very inefficient and costly on large tables because it reads every item.",
+      "It consumes Write Capacity Units."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 71,
+    "question": "What is the \"write-through\" caching strategy?",
+    "options": [
+      "Data is written only to the cache.",
+      "Data is written to the cache and then asynchronously written to the database.",
+      "Data is written to the database first, and then the cache is updated.",
+      "Data is written to both the cache and the database at the same time, and the write is only confirmed once both are successful."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 72,
+    "question": "An Aurora cluster has a primary instance and two replicas. All instances are healthy. You are connected to the cluster endpoint. Where will your write operations be directed?",
+    "options": [
+      "To the primary instance only.",
+      "To the primary and one of the replicas.",
+      "To all three instances simultaneously.",
+      "To the replica with the lowest load."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 73,
+    "question": "A DynamoDB table is used for a leaderboard application. The primary key is `GameID`, and there is a `Score` attribute. To get the top 10 players for a specific game, a Query is performed. How can you ensure the results are returned from highest score to lowest?",
+    "options": [
+      "Use a filter expression on the `Score` attribute.",
+      "Set the `ScanIndexForward` parameter to `false` on the Query (assuming `Score` is the sort key).",
+      "Sort the results in the application after receiving them from DynamoDB.",
+      "DynamoDB always returns results in ascending order."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 74,
+    "question": "A company wants to implement a caching solution that is fully managed and requires minimal operational overhead. The client application is already written to use Redis commands. Which AWS service is the best fit?",
+    "options": [
+      "A self-managed Redis cluster on EC2.",
+      "Amazon ElastiCache for Redis.",
+      "Amazon DynamoDB.",
+      "Amazon S3."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 75,
+    "question": "What is a DynamoDB Stream?",
+    "options": [
+      "A time-ordered sequence of item-level modifications (inserts, updates, deletes) in a DynamoDB table.",
+      "A feature that provides a SQL interface for DynamoDB.",
+      "A backup of a DynamoDB table.",
+      "A cache for a DynamoDB table."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 76,
+    "question": "Can you create a Read Replica of an RDS for SQL Server database in a different region?",
+    "options": [
+      "Yes, this is a standard feature.",
+      "No, cross-region read replicas are not supported for SQL Server.",
+      "Only if the source instance is using Always On Availability Groups.",
+      "Only if you use AWS Database Migration Service (DMS)."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 77,
+    "question": "A company is using DynamoDB. They need to perform complex analytical queries on their data, including joins and aggregations, without impacting the performance of the production table. What is a suitable approach?",
+    "options": [
+      "Perform parallel scans on the main table during off-peak hours.",
+      "Use DynamoDB Streams to replicate the data to Amazon Redshift or S3 for analysis with Athena.",
+      "Create multiple Global Secondary Indexes for each query pattern.",
+      "Increase the provisioned throughput on the table."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 78,
+    "question": "What is Aurora Multi-Master?",
+    "options": [
+      "A cluster where all instances are read replicas.",
+      "A cluster where multiple instances can accept write operations, useful for applications that require continuous write availability.",
+      "The standard configuration for all Aurora clusters.",
+      "An Aurora cluster that spans multiple AWS Regions."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 79,
+    "question": "What is the Time to Live (TTL) in the context of a cache like ElastiCache?",
+    "options": [
+      "The time it takes for a cache node to start up.",
+      "The amount of time an item will remain in the cache before it is automatically expired.",
+      "The network latency between the application and the cache.",
+      "The version number of the caching engine."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 80,
+    "question": "A company has a requirement for a database that can scale to millions of requests per second with predictable latency. The data schema is flexible and may change over time. Which database is the best fit?",
+    "options": [
+      "Amazon RDS for MySQL with Multi-AZ.",
+      "Amazon Aurora.",
+      "Amazon DynamoDB.",
+      "Amazon Redshift."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 81,
+    "question": "You need to create a new, independent copy of an Aurora DB cluster for testing. The new cluster should contain all the data from the production cluster at the time of creation but should not impact the production cluster's performance. What is the fastest and most efficient way to do this?",
+    "options": [
+      "Take a snapshot and restore it.",
+      "Create a new Read Replica and promote it.",
+      "Use the database cloning feature for Aurora.",
+      "Use AWS Database Migration Service."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 82,
+    "question": "A DynamoDB table has a Global Secondary Index. When you write an item to the base table that includes the attributes for the GSI, what happens?",
+    "options": [
+      "The application must also write the item to the GSI.",
+      "DynamoDB asynchronously replicates the data to the GSI.",
+      "The write operation waits until the data is written to both the base table and the GSI.",
+      "The GSI is updated once every 24 hours."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 83,
+    "question": "An application uses ElastiCache for Redis to store a real-time leaderboard using a Sorted Set. Which Redis command would be used to add a player's score?",
+    "options": [
+      "`SET`",
+      "`LPUSH`",
+      "`HSET`",
+      "`ZADD`"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 84,
+    "question": "What is a key benefit of Amazon Aurora's custom log-structured storage system?",
+    "options": [
+      "It reduces network I/O and improves performance by only writing redo log records to storage, not full database pages.",
+      "It allows you to use SQL Server as the database engine.",
+      "It makes the database cheaper than RDS for MySQL.",
+      "It eliminates the need for backups."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 85,
+    "question": "An application is reading data from a DynamoDB table. The reads are eventually consistent. What does this mean?",
+    "options": [
+      "The read is guaranteed to have the most up-to-date data.",
+      "The read might not reflect the results of a recently completed write operation.",
+      "The read operation is slower than a strongly consistent read.",
+      "The read operation consumes half the capacity units."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 86,
+    "question": "A solutions architect wants to implement a caching layer for an RDS database. The goal is to cache the results of complex SQL queries. Which service is most appropriate?",
+    "options": [
+      "DynamoDB Accelerator (DAX)",
+      "S3 Transfer Acceleration",
+      "Amazon ElastiCache",
+      "An RDS Read Replica"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 87,
+    "question": "Which of the following can be used to trigger a Lambda function?",
+    "options": [
+      "An Amazon RDS database instance",
+      "An Amazon ElastiCache node",
+      "An Amazon DynamoDB Stream",
+      "A DAX cluster"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 88,
+    "question": "An Aurora Global Database is being used. In the event of a regional disaster affecting the primary region, what is the procedure to fail over to the secondary region?",
+    "options": [
+      "The failover is fully automatic and takes less than a minute.",
+      "The secondary cluster must be detached from the global database and promoted to a standalone read/write cluster.",
+      "A new cluster must be created in the secondary region by restoring from a snapshot.",
+      "The DNS CNAME must be manually updated to point to the secondary cluster."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 89,
+    "question": "A developer is trying to create a Local Secondary Index (LSI) on an existing DynamoDB table. The operation is failing. Why?",
+    "options": [
+      "The table already has the maximum number of LSIs.",
+      "LSIs can only be created when the table is first created.",
+      "The IAM user does not have permission to create indexes.",
+      "The table is in On-Demand mode."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 90,
+    "question": "What is the primary difference in high-availability between ElastiCache for Redis and ElastiCache for Memcached?",
+    "options": [
+      "Memcached supports Multi-AZ with automatic failover, while Redis does not.",
+      "Redis supports replication and Multi-AZ with automatic failover, while Memcached does not have these features natively.",
+      "Both services have identical high-availability features.",
+      "Redis is single-AZ only, while Memcached is Multi-AZ."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 91,
+    "question": "An application reads the same few items from a DynamoDB table millions of times per second. This is resulting in very high provisioned RCU costs. The data can be stale for up to 5 minutes. What is the MOST cost-effective solution?",
+    "options": [
+      "Use DynamoDB On-Demand capacity.",
+      "Place a DAX cluster in front of the DynamoDB table.",
+      "Use an ElastiCache cluster to cache the items.",
+      "Perform eventually consistent reads instead of strongly consistent reads."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 92,
+    "question": "You have an RDS for MySQL instance and a Read Replica. You need to apply a security patch to the database. How should you apply the patch with minimal downtime for read operations?",
+    "options": [
+      "Apply the patch to the primary first, which will cause it to reboot, then apply it to the replica.",
+      "Apply the patch to the Read Replica first, then promote the replica to be the new primary, and finally patch the old primary.",
+      "The patches are applied automatically by AWS with no downtime.",
+      "You must delete the Read Replica before patching the primary."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 93,
+    "question": "Which feature allows you to export a point-in-time snapshot of a DynamoDB table to Amazon S3 for analytics?",
+    "options": [
+      "DynamoDB Streams",
+      "Global Tables",
+      "Point-in-time recovery (PITR)",
+      "Export to S3"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 94,
+    "question": "Which Aurora feature allows you to create up to 15 low-latency read replicas that share the same underlying storage as the writer instance?",
+    "options": [
+      "Aurora Global Database",
+      "Aurora Replicas",
+      "Aurora Serverless",
+      "Aurora Cloning"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 95,
+    "question": "A company wants to cache database query results. The results are complex objects. Which ElastiCache engine is better suited for storing these complex, serialized objects?",
+    "options": [
+      "Redis, because it supports various data structures.",
+      "Memcached, because it is simpler and can be faster for basic GET/SET operations on strings/objects.",
+      "Both are equally suited.",
+      "Neither can store complex objects."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 96,
+    "question": "How does a DynamoDB Query operation consume Read Capacity Units?",
+    "options": [
+      "It consumes 1 RCU for every 4 KB of data returned, rounded up.",
+      "It is based on the number of items scanned, not the number of items returned.",
+      "It consumes a fixed number of RCUs per query.",
+      "Query operations do not consume RCUs."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 97,
+    "question": "An application using an RDS Read Replica is reporting that the data is several seconds out of date compared to the primary. What is this phenomenon called?",
+    "options": [
+      "Network Jitter",
+      "Throttling",
+      "Replica Lag",
+      "A Hot Partition"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 98,
+    "question": "What is a key consideration when choosing a partition key for a DynamoDB table to ensure high performance?",
+    "options": [
+      "The key should have low cardinality (few unique values).",
+      "The key should have high cardinality, and access patterns should be evenly distributed across its values to avoid hot spots.",
+      "The key should be a timestamp.",
+      "The key should be a sequentially increasing number."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 99,
+    "question": "Which of the following is NOT a feature of Amazon Aurora?",
+    "options": [
+      "A self-healing, auto-scaling storage layer.",
+      "Support for the Microsoft SQL Server engine.",
+      "Fast database cloning.",
+      "Integration with AWS Lambda functions via triggers."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 100,
+    "question": "An application requires a cache where the most frequently accessed data is kept in memory, but the full dataset (which is larger than memory) is available. This allows for fast access to popular items while still having access to the \"long tail\" of data. What is this caching pattern called?",
+    "options": [
+      "Write-Through",
+      "Lazy Loading",
+      "Cache-Aside",
+      "This is a primary function of DAX and ElastiCache, acting as a cache in front of a larger database."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  }
+]

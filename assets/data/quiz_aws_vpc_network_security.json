@@ -1,0 +1,1472 @@
+[
+  {
+    "id": 1,
+    "question": "Which AWS resource acts as a virtual firewall at the instance level to control inbound and outbound traffic?",
+    "options": [
+      "Network ACL",
+      "Security Group",
+      "Bastion Host",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 2,
+    "question": "Which TWO statements are correct about Network ACLs? (Choose TWO)",
+    "options": [
+      "They operate at the subnet level",
+      "They are stateful",
+      "They support both allow and deny rules",
+      "They can only allow traffic",
+      "They apply at the instance level"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 3,
+    "question": "You have a web server in a public subnet that needs to connect to the internet. Which resource must be present in the subnet route table?",
+    "options": [
+      "NAT Gateway",
+      "Internet Gateway",
+      "Virtual Private Gateway",
+      "Security Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 4,
+    "question": "Which AWS resource enables instances in a private subnet to access the internet while preventing inbound connections from the internet?",
+    "options": [
+      "Internet Gateway",
+      "Bastion Host",
+      "NAT Gateway",
+      "VPC Peering"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 5,
+    "question": "Which TWO are best practices when using a Bastion Host? (Choose TWO)",
+    "options": [
+      "Place it in a public subnet",
+      "Use Security Groups to limit SSH access",
+      "Place it in a private subnet",
+      "Assign a public IP address",
+      "Use it for all application traffic"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 6,
+    "question": "Which is TRUE about Security Groups?",
+    "options": [
+      "They are stateless",
+      "They evaluate rules in order",
+      "They only support allow rules",
+      "They apply at the subnet level"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 7,
+    "question": "What is the main difference between a public and private subnet in AWS?",
+    "options": [
+      "Public subnet has a route to an Internet Gateway",
+      "Private subnet can never use NAT",
+      "Private subnet is always more secure",
+      "Public subnet cannot contain EC2 instances"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 8,
+    "question": "Which TWO statements are correct about NAT Gateways? (Choose TWO)",
+    "options": [
+      "They support inbound connections from the internet",
+      "They are used by private subnets to access the internet",
+      "They must be deployed in a public subnet",
+      "They replace Security Groups",
+      "They provide DNS resolution for VPCs"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 9,
+    "question": "Which AWS feature allows connecting VPCs across accounts and regions privately?",
+    "options": [
+      "VPN Connection",
+      "VPC Endpoint",
+      "VPC Peering",
+      "Transit Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 10,
+    "question": "You need to securely manage EC2 instances in private subnets. Which resource should you deploy?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway",
+      "Bastion Host",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 11,
+    "question": "Which AWS resource acts as a virtual firewall at the instance level to control inbound and outbound traffic?",
+    "options": [
+      "Network ACL",
+      "Security Group",
+      "Bastion Host",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 12,
+    "question": "Which TWO statements are correct about Network ACLs? (Choose TWO)",
+    "options": [
+      "They operate at the subnet level",
+      "They are stateful",
+      "They support both allow and deny rules",
+      "They can only allow traffic",
+      "They apply at the instance level"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 13,
+    "question": "You have a web server in a public subnet that needs to connect to the internet. Which resource must be present in the subnet route table?",
+    "options": [
+      "NAT Gateway",
+      "Internet Gateway",
+      "Virtual Private Gateway",
+      "Security Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 14,
+    "question": "Which AWS resource enables instances in a private subnet to access the internet while preventing inbound connections from the internet?",
+    "options": [
+      "Internet Gateway",
+      "Bastion Host",
+      "NAT Gateway",
+      "VPC Peering"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 15,
+    "question": "Which TWO are best practices when using a Bastion Host? (Choose TWO)",
+    "options": [
+      "Place it in a public subnet",
+      "Use Security Groups to limit SSH access",
+      "Place it in a private subnet",
+      "Assign a public IP address",
+      "Use it for all application traffic"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 16,
+    "question": "Which is TRUE about Security Groups?",
+    "options": [
+      "They are stateless",
+      "They evaluate rules in order",
+      "They only support allow rules",
+      "They apply at the subnet level"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 17,
+    "question": "What is the main difference between a public and private subnet in AWS?",
+    "options": [
+      "Public subnet has a route to an Internet Gateway",
+      "Private subnet can never use NAT",
+      "Private subnet is always more secure",
+      "Public subnet cannot contain EC2 instances"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 18,
+    "question": "Which TWO statements are correct about NAT Gateways? (Choose TWO)",
+    "options": [
+      "They support inbound connections from the internet",
+      "They are used by private subnets to access the internet",
+      "They must be deployed in a public subnet",
+      "They replace Security Groups",
+      "They provide DNS resolution for VPCs"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 19,
+    "question": "Which AWS feature allows connecting VPCs across accounts and regions privately?",
+    "options": [
+      "VPN Connection",
+      "VPC Endpoint",
+      "VPC Peering",
+      "Transit Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 20,
+    "question": "You need to securely manage EC2 instances in private subnets. Which resource should you deploy?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway",
+      "Bastion Host",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 21,
+    "question": "Which AWS resource acts as a virtual firewall at the instance level to control inbound and outbound traffic?",
+    "options": [
+      "Network ACL",
+      "Security Group",
+      "Bastion Host",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 22,
+    "question": "Which TWO statements are correct about Network ACLs? (Choose TWO)",
+    "options": [
+      "They operate at the subnet level",
+      "They are stateful",
+      "They support both allow and deny rules",
+      "They can only allow traffic",
+      "They apply at the instance level"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 23,
+    "question": "You have a web server in a public subnet that needs to connect to the internet. Which resource must be present in the subnet route table?",
+    "options": [
+      "NAT Gateway",
+      "Internet Gateway",
+      "Virtual Private Gateway",
+      "Security Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 24,
+    "question": "Which AWS resource enables instances in a private subnet to access the internet while preventing inbound connections from the internet?",
+    "options": [
+      "Internet Gateway",
+      "Bastion Host",
+      "NAT Gateway",
+      "VPC Peering"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 25,
+    "question": "Which TWO are best practices when using a Bastion Host? (Choose TWO)",
+    "options": [
+      "Place it in a public subnet",
+      "Use Security Groups to limit SSH access",
+      "Place it in a private subnet",
+      "Assign a public IP address",
+      "Use it for all application traffic"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 26,
+    "question": "Which is TRUE about Security Groups?",
+    "options": [
+      "They are stateless",
+      "They evaluate rules in order",
+      "They only support allow rules",
+      "They apply at the subnet level"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 27,
+    "question": "What is the main difference between a public and private subnet in AWS?",
+    "options": [
+      "Public subnet has a route to an Internet Gateway",
+      "Private subnet can never use NAT",
+      "Private subnet is always more secure",
+      "Public subnet cannot contain EC2 instances"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 28,
+    "question": "Which TWO statements are correct about NAT Gateways? (Choose TWO)",
+    "options": [
+      "They support inbound connections from the internet",
+      "They are used by private subnets to access the internet",
+      "They must be deployed in a public subnet",
+      "They replace Security Groups",
+      "They provide DNS resolution for VPCs"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 29,
+    "question": "Which AWS feature allows connecting VPCs across accounts and regions privately?",
+    "options": [
+      "VPN Connection",
+      "VPC Endpoint",
+      "VPC Peering",
+      "Transit Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 30,
+    "question": "You need to securely manage EC2 instances in private subnets. Which resource should you deploy?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway",
+      "Bastion Host",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 31,
+    "question": "Which AWS resource acts as a virtual firewall at the instance level to control inbound and outbound traffic?",
+    "options": [
+      "Network ACL",
+      "Security Group",
+      "Bastion Host",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 32,
+    "question": "Which TWO statements are correct about Network ACLs? (Choose TWO)",
+    "options": [
+      "They operate at the subnet level",
+      "They are stateful",
+      "They support both allow and deny rules",
+      "They can only allow traffic",
+      "They apply at the instance level"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 33,
+    "question": "You have a web server in a public subnet that needs to connect to the internet. Which resource must be present in the subnet route table?",
+    "options": [
+      "NAT Gateway",
+      "Internet Gateway",
+      "Virtual Private Gateway",
+      "Security Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 34,
+    "question": "Which AWS resource enables instances in a private subnet to access the internet while preventing inbound connections from the internet?",
+    "options": [
+      "Internet Gateway",
+      "Bastion Host",
+      "NAT Gateway",
+      "VPC Peering"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 35,
+    "question": "Which TWO are best practices when using a Bastion Host? (Choose TWO)",
+    "options": [
+      "Place it in a public subnet",
+      "Use Security Groups to limit SSH access",
+      "Place it in a private subnet",
+      "Assign a public IP address",
+      "Use it for all application traffic"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 36,
+    "question": "Which is TRUE about Security Groups?",
+    "options": [
+      "They are stateless",
+      "They evaluate rules in order",
+      "They only support allow rules",
+      "They apply at the subnet level"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 37,
+    "question": "What is the main difference between a public and private subnet in AWS?",
+    "options": [
+      "Public subnet has a route to an Internet Gateway",
+      "Private subnet can never use NAT",
+      "Private subnet is always more secure",
+      "Public subnet cannot contain EC2 instances"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 38,
+    "question": "Which TWO statements are correct about NAT Gateways? (Choose TWO)",
+    "options": [
+      "They support inbound connections from the internet",
+      "They are used by private subnets to access the internet",
+      "They must be deployed in a public subnet",
+      "They replace Security Groups",
+      "They provide DNS resolution for VPCs"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 39,
+    "question": "Which AWS feature allows connecting VPCs across accounts and regions privately?",
+    "options": [
+      "VPN Connection",
+      "VPC Endpoint",
+      "VPC Peering",
+      "Transit Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 40,
+    "question": "You need to securely manage EC2 instances in private subnets. Which resource should you deploy?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway",
+      "Bastion Host",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 41,
+    "question": "Which AWS resource acts as a virtual firewall at the instance level to control inbound and outbound traffic?",
+    "options": [
+      "Network ACL",
+      "Security Group",
+      "Bastion Host",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 42,
+    "question": "Which TWO statements are correct about Network ACLs? (Choose TWO)",
+    "options": [
+      "They operate at the subnet level",
+      "They are stateful",
+      "They support both allow and deny rules",
+      "They can only allow traffic",
+      "They apply at the instance level"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 43,
+    "question": "You have a web server in a public subnet that needs to connect to the internet. Which resource must be present in the subnet route table?",
+    "options": [
+      "NAT Gateway",
+      "Internet Gateway",
+      "Virtual Private Gateway",
+      "Security Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 44,
+    "question": "Which AWS resource enables instances in a private subnet to access the internet while preventing inbound connections from the internet?",
+    "options": [
+      "Internet Gateway",
+      "Bastion Host",
+      "NAT Gateway",
+      "VPC Peering"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 45,
+    "question": "Which TWO are best practices when using a Bastion Host? (Choose TWO)",
+    "options": [
+      "Place it in a public subnet",
+      "Use Security Groups to limit SSH access",
+      "Place it in a private subnet",
+      "Assign a public IP address",
+      "Use it for all application traffic"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 46,
+    "question": "Which is TRUE about Security Groups?",
+    "options": [
+      "They are stateless",
+      "They evaluate rules in order",
+      "They only support allow rules",
+      "They apply at the subnet level"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 47,
+    "question": "What is the main difference between a public and private subnet in AWS?",
+    "options": [
+      "Public subnet has a route to an Internet Gateway",
+      "Private subnet can never use NAT",
+      "Private subnet is always more secure",
+      "Public subnet cannot contain EC2 instances"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 48,
+    "question": "Which TWO statements are correct about NAT Gateways? (Choose TWO)",
+    "options": [
+      "They support inbound connections from the internet",
+      "They are used by private subnets to access the internet",
+      "They must be deployed in a public subnet",
+      "They replace Security Groups",
+      "They provide DNS resolution for VPCs"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 49,
+    "question": "Which AWS feature allows connecting VPCs across accounts and regions privately?",
+    "options": [
+      "VPN Connection",
+      "VPC Endpoint",
+      "VPC Peering",
+      "Transit Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 50,
+    "question": "You need to securely manage EC2 instances in private subnets. Which resource should you deploy?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway",
+      "Bastion Host",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 51,
+    "question": "Which AWS resource acts as a virtual firewall at the instance level to control inbound and outbound traffic?",
+    "options": [
+      "Network ACL",
+      "Security Group",
+      "Bastion Host",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 52,
+    "question": "Which TWO statements are correct about Network ACLs? (Choose TWO)",
+    "options": [
+      "They operate at the subnet level",
+      "They are stateful",
+      "They support both allow and deny rules",
+      "They can only allow traffic",
+      "They apply at the instance level"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 53,
+    "question": "You have a web server in a public subnet that needs to connect to the internet. Which resource must be present in the subnet route table?",
+    "options": [
+      "NAT Gateway",
+      "Internet Gateway",
+      "Virtual Private Gateway",
+      "Security Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 54,
+    "question": "Which AWS resource enables instances in a private subnet to access the internet while preventing inbound connections from the internet?",
+    "options": [
+      "Internet Gateway",
+      "Bastion Host",
+      "NAT Gateway",
+      "VPC Peering"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 55,
+    "question": "Which TWO are best practices when using a Bastion Host? (Choose TWO)",
+    "options": [
+      "Place it in a public subnet",
+      "Use Security Groups to limit SSH access",
+      "Place it in a private subnet",
+      "Assign a public IP address",
+      "Use it for all application traffic"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 56,
+    "question": "Which is TRUE about Security Groups?",
+    "options": [
+      "They are stateless",
+      "They evaluate rules in order",
+      "They only support allow rules",
+      "They apply at the subnet level"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 57,
+    "question": "What is the main difference between a public and private subnet in AWS?",
+    "options": [
+      "Public subnet has a route to an Internet Gateway",
+      "Private subnet can never use NAT",
+      "Private subnet is always more secure",
+      "Public subnet cannot contain EC2 instances"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 58,
+    "question": "Which TWO statements are correct about NAT Gateways? (Choose TWO)",
+    "options": [
+      "They support inbound connections from the internet",
+      "They are used by private subnets to access the internet",
+      "They must be deployed in a public subnet",
+      "They replace Security Groups",
+      "They provide DNS resolution for VPCs"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 59,
+    "question": "Which AWS feature allows connecting VPCs across accounts and regions privately?",
+    "options": [
+      "VPN Connection",
+      "VPC Endpoint",
+      "VPC Peering",
+      "Transit Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 60,
+    "question": "You need to securely manage EC2 instances in private subnets. Which resource should you deploy?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway",
+      "Bastion Host",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 61,
+    "question": "Which AWS resource acts as a virtual firewall at the instance level to control inbound and outbound traffic?",
+    "options": [
+      "Network ACL",
+      "Security Group",
+      "Bastion Host",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 62,
+    "question": "Which TWO statements are correct about Network ACLs? (Choose TWO)",
+    "options": [
+      "They operate at the subnet level",
+      "They are stateful",
+      "They support both allow and deny rules",
+      "They can only allow traffic",
+      "They apply at the instance level"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 63,
+    "question": "You have a web server in a public subnet that needs to connect to the internet. Which resource must be present in the subnet route table?",
+    "options": [
+      "NAT Gateway",
+      "Internet Gateway",
+      "Virtual Private Gateway",
+      "Security Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 64,
+    "question": "Which AWS resource enables instances in a private subnet to access the internet while preventing inbound connections from the internet?",
+    "options": [
+      "Internet Gateway",
+      "Bastion Host",
+      "NAT Gateway",
+      "VPC Peering"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 65,
+    "question": "Which TWO are best practices when using a Bastion Host? (Choose TWO)",
+    "options": [
+      "Place it in a public subnet",
+      "Use Security Groups to limit SSH access",
+      "Place it in a private subnet",
+      "Assign a public IP address",
+      "Use it for all application traffic"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 66,
+    "question": "Which is TRUE about Security Groups?",
+    "options": [
+      "They are stateless",
+      "They evaluate rules in order",
+      "They only support allow rules",
+      "They apply at the subnet level"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 67,
+    "question": "What is the main difference between a public and private subnet in AWS?",
+    "options": [
+      "Public subnet has a route to an Internet Gateway",
+      "Private subnet can never use NAT",
+      "Private subnet is always more secure",
+      "Public subnet cannot contain EC2 instances"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 68,
+    "question": "Which TWO statements are correct about NAT Gateways? (Choose TWO)",
+    "options": [
+      "They support inbound connections from the internet",
+      "They are used by private subnets to access the internet",
+      "They must be deployed in a public subnet",
+      "They replace Security Groups",
+      "They provide DNS resolution for VPCs"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 69,
+    "question": "Which AWS feature allows connecting VPCs across accounts and regions privately?",
+    "options": [
+      "VPN Connection",
+      "VPC Endpoint",
+      "VPC Peering",
+      "Transit Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 70,
+    "question": "You need to securely manage EC2 instances in private subnets. Which resource should you deploy?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway",
+      "Bastion Host",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 71,
+    "question": "Which AWS resource acts as a virtual firewall at the instance level to control inbound and outbound traffic?",
+    "options": [
+      "Network ACL",
+      "Security Group",
+      "Bastion Host",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 72,
+    "question": "Which TWO statements are correct about Network ACLs? (Choose TWO)",
+    "options": [
+      "They operate at the subnet level",
+      "They are stateful",
+      "They support both allow and deny rules",
+      "They can only allow traffic",
+      "They apply at the instance level"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 73,
+    "question": "You have a web server in a public subnet that needs to connect to the internet. Which resource must be present in the subnet route table?",
+    "options": [
+      "NAT Gateway",
+      "Internet Gateway",
+      "Virtual Private Gateway",
+      "Security Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 74,
+    "question": "Which AWS resource enables instances in a private subnet to access the internet while preventing inbound connections from the internet?",
+    "options": [
+      "Internet Gateway",
+      "Bastion Host",
+      "NAT Gateway",
+      "VPC Peering"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 75,
+    "question": "Which TWO are best practices when using a Bastion Host? (Choose TWO)",
+    "options": [
+      "Place it in a public subnet",
+      "Use Security Groups to limit SSH access",
+      "Place it in a private subnet",
+      "Assign a public IP address",
+      "Use it for all application traffic"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 76,
+    "question": "Which is TRUE about Security Groups?",
+    "options": [
+      "They are stateless",
+      "They evaluate rules in order",
+      "They only support allow rules",
+      "They apply at the subnet level"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 77,
+    "question": "What is the main difference between a public and private subnet in AWS?",
+    "options": [
+      "Public subnet has a route to an Internet Gateway",
+      "Private subnet can never use NAT",
+      "Private subnet is always more secure",
+      "Public subnet cannot contain EC2 instances"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 78,
+    "question": "Which TWO statements are correct about NAT Gateways? (Choose TWO)",
+    "options": [
+      "They support inbound connections from the internet",
+      "They are used by private subnets to access the internet",
+      "They must be deployed in a public subnet",
+      "They replace Security Groups",
+      "They provide DNS resolution for VPCs"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 79,
+    "question": "Which AWS feature allows connecting VPCs across accounts and regions privately?",
+    "options": [
+      "VPN Connection",
+      "VPC Endpoint",
+      "VPC Peering",
+      "Transit Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 80,
+    "question": "You need to securely manage EC2 instances in private subnets. Which resource should you deploy?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway",
+      "Bastion Host",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 81,
+    "question": "Which AWS resource acts as a virtual firewall at the instance level to control inbound and outbound traffic?",
+    "options": [
+      "Network ACL",
+      "Security Group",
+      "Bastion Host",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 82,
+    "question": "Which TWO statements are correct about Network ACLs? (Choose TWO)",
+    "options": [
+      "They operate at the subnet level",
+      "They are stateful",
+      "They support both allow and deny rules",
+      "They can only allow traffic",
+      "They apply at the instance level"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 83,
+    "question": "You have a web server in a public subnet that needs to connect to the internet. Which resource must be present in the subnet route table?",
+    "options": [
+      "NAT Gateway",
+      "Internet Gateway",
+      "Virtual Private Gateway",
+      "Security Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 84,
+    "question": "Which AWS resource enables instances in a private subnet to access the internet while preventing inbound connections from the internet?",
+    "options": [
+      "Internet Gateway",
+      "Bastion Host",
+      "NAT Gateway",
+      "VPC Peering"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 85,
+    "question": "Which TWO are best practices when using a Bastion Host? (Choose TWO)",
+    "options": [
+      "Place it in a public subnet",
+      "Use Security Groups to limit SSH access",
+      "Place it in a private subnet",
+      "Assign a public IP address",
+      "Use it for all application traffic"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 86,
+    "question": "Which is TRUE about Security Groups?",
+    "options": [
+      "They are stateless",
+      "They evaluate rules in order",
+      "They only support allow rules",
+      "They apply at the subnet level"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 87,
+    "question": "What is the main difference between a public and private subnet in AWS?",
+    "options": [
+      "Public subnet has a route to an Internet Gateway",
+      "Private subnet can never use NAT",
+      "Private subnet is always more secure",
+      "Public subnet cannot contain EC2 instances"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 88,
+    "question": "Which TWO statements are correct about NAT Gateways? (Choose TWO)",
+    "options": [
+      "They support inbound connections from the internet",
+      "They are used by private subnets to access the internet",
+      "They must be deployed in a public subnet",
+      "They replace Security Groups",
+      "They provide DNS resolution for VPCs"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 89,
+    "question": "Which AWS feature allows connecting VPCs across accounts and regions privately?",
+    "options": [
+      "VPN Connection",
+      "VPC Endpoint",
+      "VPC Peering",
+      "Transit Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 90,
+    "question": "You need to securely manage EC2 instances in private subnets. Which resource should you deploy?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway",
+      "Bastion Host",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 91,
+    "question": "Which AWS resource acts as a virtual firewall at the instance level to control inbound and outbound traffic?",
+    "options": [
+      "Network ACL",
+      "Security Group",
+      "Bastion Host",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 92,
+    "question": "Which TWO statements are correct about Network ACLs? (Choose TWO)",
+    "options": [
+      "They operate at the subnet level",
+      "They are stateful",
+      "They support both allow and deny rules",
+      "They can only allow traffic",
+      "They apply at the instance level"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 93,
+    "question": "You have a web server in a public subnet that needs to connect to the internet. Which resource must be present in the subnet route table?",
+    "options": [
+      "NAT Gateway",
+      "Internet Gateway",
+      "Virtual Private Gateway",
+      "Security Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 94,
+    "question": "Which AWS resource enables instances in a private subnet to access the internet while preventing inbound connections from the internet?",
+    "options": [
+      "Internet Gateway",
+      "Bastion Host",
+      "NAT Gateway",
+      "VPC Peering"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 95,
+    "question": "Which TWO are best practices when using a Bastion Host? (Choose TWO)",
+    "options": [
+      "Place it in a public subnet",
+      "Use Security Groups to limit SSH access",
+      "Place it in a private subnet",
+      "Assign a public IP address",
+      "Use it for all application traffic"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 96,
+    "question": "Which is TRUE about Security Groups?",
+    "options": [
+      "They are stateless",
+      "They evaluate rules in order",
+      "They only support allow rules",
+      "They apply at the subnet level"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 97,
+    "question": "What is the main difference between a public and private subnet in AWS?",
+    "options": [
+      "Public subnet has a route to an Internet Gateway",
+      "Private subnet can never use NAT",
+      "Private subnet is always more secure",
+      "Public subnet cannot contain EC2 instances"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 98,
+    "question": "Which TWO statements are correct about NAT Gateways? (Choose TWO)",
+    "options": [
+      "They support inbound connections from the internet",
+      "They are used by private subnets to access the internet",
+      "They must be deployed in a public subnet",
+      "They replace Security Groups",
+      "They provide DNS resolution for VPCs"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 99,
+    "question": "Which AWS feature allows connecting VPCs across accounts and regions privately?",
+    "options": [
+      "VPN Connection",
+      "VPC Endpoint",
+      "VPC Peering",
+      "Transit Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 100,
+    "question": "You need to securely manage EC2 instances in private subnets. Which resource should you deploy?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway",
+      "Bastion Host",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  }
+]

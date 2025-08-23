@@ -1,0 +1,1416 @@
+[
+  {
+    "id": 1,
+    "question": "A company's web application, running behind an Application Load Balancer, has been targeted by a series of SQL injection attacks. Which AWS service is specifically designed to mitigate this type of threat?",
+    "options": [
+      "AWS Shield Advanced",
+      "AWS WAF",
+      "Network ACLs",
+      "Security Groups"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 2,
+    "question": "An administrator needs to find out who terminated a specific EC2 instance last week. Which AWS service provides a log of all API calls made in the account, including the identity of the caller?",
+    "options": [
+      "Amazon CloudWatch Logs",
+      "VPC Flow Logs",
+      "AWS CloudTrail",
+      "AWS Config"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 3,
+    "question": "You want to receive an email notification whenever the CPU Utilization of a critical EC2 instance exceeds 80% for 5 consecutive minutes. Which combination of services should you use? (Choose TWO)",
+    "options": [
+      "AWS CloudTrail",
+      "Amazon CloudWatch Metrics",
+      "AWS Shield",
+      "Amazon Simple Notification Service (SNS)",
+      "AWS Lambda"
+    ],
+    "correctAnswers": [
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 4,
+    "question": "A gaming company is preparing for a major online game launch and anticipates large-scale, sophisticated DDoS attacks. They require 24/7 access to the AWS DDoS Response Team (DRT) for assistance during an attack. Which service should they subscribe to?",
+    "options": [
+      "AWS Shield Standard",
+      "AWS WAF with a rate-based rule",
+      "AWS Shield Advanced",
+      "Amazon GuardDuty"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 5,
+    "question": "A solutions architect wants to block web traffic from a specific country known for malicious activity. How can this be configured using AWS WAF?",
+    "options": [
+      "By creating a custom rule with an IP set condition.",
+      "By using a managed rule group for geographic blocking.",
+      "By creating a geographic match rule.",
+      "By configuring a rate-based rule."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 6,
+    "question": "Which of the following is a feature of AWS Shield Standard?",
+    "options": [
+      "Protection against application layer DDoS attacks (e.g., HTTP floods).",
+      "Access to the AWS DDoS Response Team (DRT).",
+      "DDoS cost protection for scaling charges.",
+      "Automatic protection against common network and transport layer DDoS attacks."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 7,
+    "question": "A security team wants to ensure that all API activity within their AWS account is logged and the log files are encrypted and cannot be tampered with. Which feature of AWS CloudTrail should they enable?",
+    "options": [
+      "CloudTrail Insights",
+      "Event History",
+      "Log File Integrity Validation",
+      "Management Events logging"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 8,
+    "question": "An application running on EC2 instances generates custom log files. The operations team wants to centralize these logs for analysis and set up alarms based on specific error patterns (e.g., \"ERROR_500\"). What is the best approach?",
+    "options": [
+      "Store logs in S3 and use Amazon Athena for queries.",
+      "Install the CloudWatch Logs agent on the EC2 instances to stream logs to CloudWatch Logs.",
+      "Write a custom script to periodically push logs to an Amazon SQS queue.",
+      "Enable VPC Flow Logs for the EC2 instances' ENIs."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 9,
+    "question": "What is the primary function of a Web ACL in AWS WAF?",
+    "options": [
+      "To define a set of AWS resources that you want to protect.",
+      "To contain a collection of rules that are evaluated for web requests.",
+      "To monitor, filter, and block DNS queries.",
+      "To provide detailed logs of all allowed web traffic."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 10,
+    "question": "CloudTrail logs can be delivered to which of the following destinations? (Choose TWO)",
+    "options": [
+      "Amazon DynamoDB",
+      "Amazon S3",
+      "Amazon CloudWatch Logs",
+      "Amazon Kinesis Data Streams",
+      "Amazon EC2 Instance Store"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 11,
+    "question": "A company is using an Application Load Balancer (ALB). They want to allow all traffic by default but explicitly block a list of malicious IP addresses. What is the correct configuration in their AWS WAF Web ACL?",
+    "options": [
+      "Set the default action to ALLOW and create a rule with an IP set match condition that has its action set to BLOCK.",
+      "Set the default action to BLOCK and create a rule with an IP set match condition that has its action set to ALLOW.",
+      "Create two rules: one to allow all traffic and another to block the specific IP addresses.",
+      "Configure the ALB's security group to deny the malicious IP addresses."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 12,
+    "question": "A solutions architect has configured a CloudWatch alarm to trigger when a metric breaches a threshold. What is a possible action that this alarm can take?",
+    "options": [
+      "Create a new IAM user.",
+      "Stop, terminate, or reboot an EC2 instance.",
+      "Create a new S3 bucket.",
+      "Attach a new security group to an EC2 instance."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 13,
+    "question": "AWS CloudTrail is enabled by default for all AWS accounts and records the last 90 days of management events. Where can you view this information?",
+    "options": [
+      "In the AWS Config timeline.",
+      "In the CloudTrail Event History.",
+      "In an S3 bucket named `cloudtrail-default-<account-id>`.",
+      "In the Amazon CloudWatch Logs console."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 14,
+    "question": "Which service provides real-time metrics and near real-time visibility into the health and performance of your AWS resources, applications, and services?",
+    "options": [
+      "AWS CloudTrail",
+      "AWS X-Ray",
+      "Amazon CloudWatch",
+      "AWS Trusted Advisor"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 15,
+    "question": "A web application is experiencing a high volume of requests from a few specific IP addresses, potentially a web-scraping attack. Which AWS WAF rule type is best suited to automatically block IPs that exceed a certain number of requests in a 5-minute period?",
+    "options": [
+      "SQL injection match rule",
+      "Geo match rule",
+      "Rate-based rule",
+      "Cross-site scripting match rule"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 16,
+    "question": "AWS Shield Advanced provides protection for which of the following resources? (Choose TWO)",
+    "options": [
+      "Amazon EC2 instances",
+      "Amazon CloudFront distributions",
+      "AWS Lambda functions",
+      "Application Load Balancers",
+      "Amazon S3 buckets"
+    ],
+    "correctAnswers": [
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 17,
+    "question": "What type of CloudTrail events should be enabled to record API activity related to creating, modifying, or deleting resources like S3 buckets or EC2 instances?",
+    "options": [
+      "Data Events",
+      "Management Events",
+      "Insights Events",
+      "Read-only Events"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 18,
+    "question": "You are using CloudWatch Logs and want to search for a specific error code across multiple log groups simultaneously. What feature allows this?",
+    "options": [
+      "Metric Filters",
+      "CloudWatch Logs Insights",
+      "Subscription Filters",
+      "Log Streams"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 19,
+    "question": "An organization wants to use a pre-configured set of rules in AWS WAF to protect against threats listed in the OWASP Top 10. What is the easiest way to accomplish this?",
+    "options": [
+      "Create custom rules for each OWASP Top 10 threat.",
+      "Subscribe to a Managed Rule Group from the AWS Marketplace.",
+      "Use the AWS Managed Rules for WAF.",
+      "Use AWS Shield Advanced, which includes these protections automatically."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 20,
+    "question": "A company has multiple AWS accounts and wants to consolidate all AWS CloudTrail logs into a single, central S3 bucket for security analysis. What is the best way to achieve this?",
+    "options": [
+      "Configure CloudTrail in each account to deliver logs to the central S3 bucket and apply the necessary bucket policy.",
+      "Manually download logs from each account's S3 bucket and upload them to the central bucket.",
+      "Use AWS Organizations to create an organization trail.",
+      "Use an S3 replication rule on each account's log bucket."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 21,
+    "question": "What is a CloudWatch metric?",
+    "options": [
+      "A log of API calls made within your AWS account.",
+      "A time-ordered set of data points that represent a variable over time.",
+      "A rule that triggers a notification based on a specific event.",
+      "A detailed record of network traffic to and from your resources."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 22,
+    "question": "A security engineer wants to be alerted if there is an unusually high number of IAM policy changes or EC2 instance terminations in the account, which could indicate a compromise. Which service can detect this anomalous API activity?",
+    "options": [
+      "Amazon GuardDuty",
+      "Amazon Inspector",
+      "CloudTrail Insights",
+      "AWS Security Hub"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 23,
+    "question": "AWS WAF rules can be applied to which of the following AWS resources? (Choose TWO)",
+    "options": [
+      "Amazon Route 53",
+      "Amazon API Gateway",
+      "Network Load Balancer",
+      "Amazon CloudFront",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1,
+      3
+    ],
+    "multiple": true
+  },
+  {
+    "id": 24,
+    "question": "What is the primary difference between a Security Group and AWS WAF?",
+    "options": [
+      "Security Groups operate at the instance level (Layer 4), while WAF operates at the application level (Layer 7).",
+      "Security Groups can block traffic from specific countries, while WAF cannot.",
+      "Security Groups are stateful, while WAF is stateless.",
+      "Security Groups are a regional service, while WAF is a global service."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 25,
+    "question": "You need to record all object-level API activity (e.g., `GetObject`, `PutObject`) for a specific, sensitive S3 bucket. How do you configure this in CloudTrail?",
+    "options": [
+      "This is enabled by default for all buckets.",
+      "Enable Management Events for S3 in your trail's settings.",
+      "Configure a trail and enable Data Events, specifying the S3 bucket.",
+      "Create a CloudWatch alarm that monitors S3 bucket access."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 26,
+    "question": "A CloudWatch alarm has three states. What are they?",
+    "options": [
+      "OK, ALARM, INSUFFICIENT_DATA",
+      "GREEN, YELLOW, RED",
+      "PASS, FAIL, PENDING",
+      "ACTIVE, INACTIVE, DELETED"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 27,
+    "question": "If you are using AWS Shield Advanced and your protected resource experiences a DDoS attack that causes a spike in usage charges, what benefit might you be eligible for?",
+    "options": [
+      "A free consultation with the AWS DDoS Response Team.",
+      "A credit for the usage charges incurred as a result of the attack (DDoS cost protection).",
+      "Automatic deployment of an AWS WAF Web ACL.",
+      "A 50% discount on your next month's AWS bill."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 28,
+    "question": "Which part of a web request can an AWS WAF rule inspect? (Choose TWO)",
+    "options": [
+      "The TCP sequence number",
+      "The source IP address",
+      "The HTTP headers",
+      "The Ethernet frame MAC address",
+      "The SSL/TLS handshake version"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 29,
+    "question": "To ensure compliance with a new regulation, a company must retain all audit logs for 7 years. How can they configure AWS CloudTrail to meet this requirement?",
+    "options": [
+      "CloudTrail automatically stores logs indefinitely.",
+      "Configure the trail to deliver logs to an S3 bucket and set up an S3 Lifecycle policy to archive logs to S3 Glacier Deep Archive.",
+      "The maximum retention for CloudTrail is 1 year.",
+      "Configure the trail to deliver logs to CloudWatch Logs and set the retention period to 7 years."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 30,
+    "question": "What is a CloudWatch dashboard?",
+    "options": [
+      "A service that automatically responds to security findings.",
+      "A customizable home page in the CloudWatch console for monitoring resources in a single view.",
+      "A log of all metrics available in an AWS account.",
+      "A configuration template for creating new alarms."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 31,
+    "question": "A company wants to prevent users from embedding malicious scripts in the query strings of their URLs (Cross-site scripting). Which AWS WAF rule is designed for this?",
+    "options": [
+      "A size constraint rule.",
+      "An IP match rule.",
+      "A SQL injection match rule.",
+      "A cross-site scripting (XSS) match rule."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 32,
+    "question": "Is AWS Shield Standard an optional, paid service?",
+    "options": [
+      "Yes, you must opt-in and pay a monthly fee.",
+      "No, it is automatically enabled for all AWS customers at no additional charge.",
+      "It is free, but you must manually enable it for each resource.",
+      "It is only available for Enterprise support customers."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 33,
+    "question": "A developer is troubleshooting an issue where an IAM role permission is not working as expected. They want to see a history of all API calls made by that specific IAM role. How can they filter the CloudTrail Event History to find this?",
+    "options": [
+      "By filtering by Event Source.",
+      "By filtering by Resource Name.",
+      "By filtering by User Name and selecting the role's name.",
+      "This level of filtering is not possible in Event History."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 34,
+    "question": "You have created a custom metric in CloudWatch (e.g., `user_logins`). What is the default resolution at which this metric data is stored?",
+    "options": [
+      "1 second",
+      "10 seconds",
+      "1 minute",
+      "5 minutes"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 35,
+    "question": "An ALB is protected by an AWS WAF Web ACL. A new rule is added to the Web ACL to block a new threat. How long does it typically take for this rule to be propagated and take effect?",
+    "options": [
+      "About an hour",
+      "10-15 minutes",
+      "Under a minute",
+      "24 hours"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 36,
+    "question": "Which of the following is an example of an application layer (Layer 7) DDoS attack that AWS Shield Advanced helps protect against?",
+    "options": [
+      "UDP reflection attack",
+      "TCP SYN flood",
+      "HTTP flood",
+      "DNS amplification attack"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 37,
+    "question": "By default, CloudTrail log files stored in S3 are encrypted using which method?",
+    "options": [
+      "SSE-KMS",
+      "SSE-C",
+      "SSE-S3",
+      "They are not encrypted by default."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 38,
+    "question": "A metric filter in CloudWatch Logs is used to...",
+    "options": [
+      "search for terms and patterns in log data and turn them into a CloudWatch metric.",
+      "deliver a real-time feed of log events to another service like Lambda or Kinesis.",
+      "archive old log data to Amazon S3.",
+      "define the retention period for a log group."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 39,
+    "question": "A solutions architect has configured a Web ACL in AWS WAF. They notice that some legitimate traffic is being blocked. What feature can be used to test a new rule without actually blocking traffic?",
+    "options": [
+      "The rule's \"Override\" action.",
+      "The rule's \"Count\" action.",
+      "The Web ACL's \"Dry Run\" mode.",
+      "The rule's \"Allow\" action."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 40,
+    "question": "An organization has a requirement that all AWS API calls must originate from within their corporate network. Which AWS service can be used to enforce this policy by logging all API calls and their source IP addresses for auditing?",
+    "options": [
+      "Amazon CloudWatch",
+      "AWS Config",
+      "AWS WAF",
+      "AWS CloudTrail"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 41,
+    "question": "What is a dimension in Amazon CloudWatch?",
+    "options": [
+      "The time period over which a metric is aggregated.",
+      "The unit of a metric (e.g., Percent, Bytes).",
+      "A name-value pair that uniquely identifies a metric.",
+      "The state of an alarm."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 42,
+    "question": "You are using AWS Shield Advanced and are under a DDoS attack. You need immediate help. What is the first step you should take?",
+    "options": [
+      "Create a new AWS WAF rule to block the traffic.",
+      "Open a high-priority support case with the AWS DDoS Response Team.",
+      "Increase the capacity of your backend fleet.",
+      "Shut down the application until the attack subsides."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 43,
+    "question": "When configuring AWS WAF on a CloudFront distribution, where is the Web ACL applied and the traffic inspected?",
+    "options": [
+      "In the AWS Region where the CloudFront distribution is configured.",
+      "At the AWS Edge Locations.",
+      "In the AWS Region where the origin server is located.",
+      "In a centralized WAF processing facility in us-east-1."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 44,
+    "question": "A company needs to monitor the number of objects in a specific S3 bucket. How can they achieve this using CloudWatch?",
+    "options": [
+      "This is not possible; CloudWatch cannot monitor S3 bucket metrics.",
+      "Enable S3 Storage Class Analysis, which sends data to CloudWatch.",
+      "Enable S3 Storage Lens, which provides metrics that can be viewed in CloudWatch.",
+      "Enable S3 bucket metrics in the bucket's properties, which will then publish metrics to CloudWatch."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 45,
+    "question": "What is the difference between a CloudTrail trail and the CloudTrail Event History?",
+    "options": [
+      "Event History is a paid feature, while a trail is free.",
+      "Event History shows the last 90 days of activity, while a trail is a configurable, long-term record delivered to S3.",
+      "A trail only records Management Events, while Event History records both Management and Data Events.",
+      "Event History provides log file integrity validation, while a trail does not."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 46,
+    "question": "Which component of AWS WAF would you use to define a reusable set of rules that you can add to multiple Web ACLs?",
+    "options": [
+      "An IP set",
+      "A rule group",
+      "A regular expression pattern set",
+      "A Web ACL template"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 47,
+    "question": "AWS Shield Advanced provides near real-time visibility into DDoS events. How can you access these details and diagnostics?",
+    "options": [
+      "Through the AWS CloudTrail console.",
+      "Through the AWS Shield Advanced console and its associated CloudWatch metrics.",
+      "By contacting the AWS DDoS Response Team, who will email you a report.",
+      "Through VPC Flow Logs."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 48,
+    "question": "You are analyzing CloudTrail logs and see an event with `\"readOnly\": true`. What does this indicate?",
+    "options": [
+      "The log file is encrypted and cannot be modified.",
+      "The API call did not change the state of any resources (e.g., a `DescribeInstances` call).",
+      "The user who made the call has read-only permissions.",
+      "The event is a Data Event, not a Management Event."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 49,
+    "question": "What is the maximum retention period you can configure for a log group in Amazon CloudWatch Logs?",
+    "options": [
+      "30 days",
+      "90 days",
+      "1 year",
+      "Never expires (indefinite)"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 50,
+    "question": "A web application allows users to upload files. A security review has determined that the application is vulnerable to attacks where an attacker uploads a file larger than the application can handle, causing a denial of service. Which AWS WAF rule can help mitigate this?",
+    "options": [
+      "Rate-based rule",
+      "XSS match rule",
+      "Size constraint rule",
+      "IP match rule"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 51,
+    "question": "A company has a critical application running on an EC2 instance. They need to create a high-resolution CloudWatch alarm that checks the instance's status every 10 seconds. What must be true for this to work?",
+    "options": [
+      "The instance must have detailed monitoring enabled.",
+      "The alarm must use an SNS topic in the same region.",
+      "The instance must be an HVM type.",
+      "The instance must be part of an Auto Scaling group."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 52,
+    "question": "Which service helps you detect and respond to security threats by centrally managing and automating security checks for your AWS account and resources? It can ingest findings from services like GuardDuty, Inspector, and Macie.",
+    "options": [
+      "AWS Security Hub",
+      "AWS Control Tower",
+      "AWS Organizations",
+      "AWS CloudTrail"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 53,
+    "question": "A rule in a Web ACL can have which of the following actions? (Choose TWO)",
+    "options": [
+      "COUNT",
+      "REJECT",
+      "ALLOW",
+      "IGNORE",
+      "DELAY"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 54,
+    "question": "Which statement accurately describes a key function of AWS CloudTrail?",
+    "options": [
+      "It provides real-time monitoring of application performance.",
+      "It acts as a web application firewall to block malicious traffic.",
+      "It serves as an audit log for all actions and API calls made within an AWS account.",
+      "It automatically remediates security misconfigurations."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 55,
+    "question": "A team wants to stream log data from CloudWatch Logs to their external analytics platform for near real-time processing. Which CloudWatch Logs feature should they use?",
+    "options": [
+      "Metric Filter",
+      "Export to S3",
+      "Subscription Filter",
+      "Log Group Insights"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 56,
+    "question": "When you create a trail in CloudTrail, what is the default setting for logging management events?",
+    "options": [
+      "It logs all management events (read and write).",
+      "It only logs write management events.",
+      "It only logs read management events.",
+      "It is disabled by default."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 57,
+    "question": "Which of the following would you use to protect a web application from a known bad bot that uses a specific `User-Agent` string in its HTTP headers?",
+    "options": [
+      "A Security Group rule",
+      "A Network ACL rule",
+      "An AWS WAF rule that inspects the `User-Agent` header",
+      "AWS Shield Standard"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 58,
+    "question": "The default monitoring for an EC2 instance sends metric data to CloudWatch at what frequency?",
+    "options": [
+      "Every 1 minute",
+      "Every 5 minutes",
+      "Every 10 minutes",
+      "Every 15 minutes"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 59,
+    "question": "A trail is created with the \"Apply trail to all regions\" option set to \"Yes\". What does this mean?",
+    "options": [
+      "The trail will log events from all AWS regions and deliver all log files to a single S3 bucket.",
+      "A new trail and a new S3 bucket will be created in each AWS region.",
+      "The trail will only log events related to global services like IAM and CloudFront.",
+      "The trail configuration will be replicated to all regions, but you must select a destination S3 bucket in each region."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 60,
+    "question": "An alarm is configured to monitor the `CPUUtilization` metric. The alarm threshold is 70%, the period is 5 minutes, and the evaluation periods is 2. When will the alarm transition to the ALARM state?",
+    "options": [
+      "When the CPU utilization is above 70% for at least one data point in a 5-minute period.",
+      "When the CPU utilization is above 70% for 2 consecutive 5-minute periods (10 minutes total).",
+      "When the CPU utilization is above 70% for 5 consecutive 2-minute periods.",
+      "When the average CPU utilization over a 10-minute period is greater than 70%."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 61,
+    "question": "Which service provides a foundational layer of DDoS protection that is always-on and automatically applied to your AWS resources?",
+    "options": [
+      "AWS WAF",
+      "AWS Shield Standard",
+      "AWS Firewall Manager",
+      "Amazon GuardDuty"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 62,
+    "question": "A company wants to centrally manage and deploy AWS WAF rules across multiple accounts in their AWS Organization. Which service is designed for this purpose?",
+    "options": [
+      "AWS Control Tower",
+      "AWS Service Catalog",
+      "AWS Firewall Manager",
+      "AWS Systems Manager"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 63,
+    "question": "How can you ensure that a CloudTrail trail created in one account can write log files to an S3 bucket in a different account?",
+    "options": [
+      "By attaching an IAM role to the trail with permissions to the bucket.",
+      "By configuring a bucket policy on the destination S3 bucket that grants `s3:PutObject` permission to the CloudTrail service principal for the logging account.",
+      "By enabling S3 cross-origin resource sharing (CORS) on the destination bucket.",
+      "This is not a supported configuration."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 64,
+    "question": "You need to create a visualization of the `NetworkIn` metric for a fleet of EC2 instances, showing the average, maximum, and minimum values over the past week. Which service would you use to build this graph?",
+    "options": [
+      "AWS CloudTrail",
+      "Amazon QuickSight",
+      "Amazon CloudWatch",
+      "AWS Cost Explorer"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 65,
+    "question": "In an AWS WAF Web ACL, rules are evaluated in what order?",
+    "options": [
+      "In a random order for performance.",
+      "In the order that they are listed, from top to bottom.",
+      "In alphabetical order by rule name.",
+      "Based on the rule's complexity, with simpler rules evaluated first."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 66,
+    "question": "What is the primary purpose of CloudWatch Events (now part of Amazon EventBridge)?",
+    "options": [
+      "To store and analyze application log files.",
+      "To deliver a stream of system events describing changes in AWS resources to target services like Lambda or SNS.",
+      "To provide long-term storage for AWS metrics.",
+      "To audit all API calls made within an AWS account."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 67,
+    "question": "You are reviewing CloudTrail logs for a security incident. What information is contained in a CloudTrail event record? (Choose TWO)",
+    "options": [
+      "The IAM user or role that made the request.",
+      "The source IP address of the request.",
+      "The full data payload of the API request.",
+      "The CPU utilization of the resource at the time of the request.",
+      "The result of the API call (success or failure)."
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "multiple": true
+  },
+  {
+    "id": 68,
+    "question": "What is a CloudWatch Log Group?",
+    "options": [
+      "A collection of dashboards for a specific application.",
+      "A group of alarms that are related to each other.",
+      "A container for log streams that share the same retention, monitoring, and access control settings.",
+      "A set of metrics that belong to the same AWS service."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 69,
+    "question": "A company is being targeted by an HTTP flood attack originating from thousands of different IP addresses, making IP-based blocking ineffective. The attack requests are all for the same URL path, `/search.php`. What is the most effective way to mitigate this with AWS WAF?",
+    "options": [
+      "Block the IP addresses of the attackers.",
+      "Create a rate-based rule on the `/search.php` URL to limit requests.",
+      "Block the country where the attack is originating.",
+      "Increase the size of the web servers."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 70,
+    "question": "Which of the following is a key benefit of using AWS CloudTrail?",
+    "options": [
+      "It improves application performance by caching frequently accessed data.",
+      "It provides visibility into user and resource activity, simplifying operational analysis and security auditing.",
+      "It protects web applications from common exploits like SQL injection.",
+      "It automatically scales EC2 instances based on demand."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 71,
+    "question": "Can a single AWS WAF Web ACL be associated with multiple resources?",
+    "options": [
+      "No, a Web ACL can only be associated with a single resource.",
+      "Yes, but only if the resources are in the same Availability Zone.",
+      "Yes, it can be associated with multiple resources like several CloudFront distributions or ALBs.",
+      "Yes, but only if you use AWS Firewall Manager."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 72,
+    "question": "A CloudWatch alarm is based on a metric that has not reported any data for the past hour. The alarm configuration for \"treat missing data as\" is set to \"breaching\". What state will the alarm be in?",
+    "options": [
+      "OK",
+      "ALARM",
+      "INSUFFICIENT_DATA",
+      "It depends on the previous state."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 73,
+    "question": "To track object-level operations on all S3 buckets in an account, a solutions architect should configure Data Events in CloudTrail. What is a key consideration when enabling this?",
+    "options": [
+      "It is included in the free tier of CloudTrail.",
+      "It can generate a very high volume of events and may result in significant costs.",
+      "It can only be enabled for up to 5 buckets per account.",
+      "It only logs `PutObject` events and ignores `GetObject` events."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 74,
+    "question": "What is the default namespace for metrics related to Amazon EC2 instances?",
+    "options": [
+      "`AWS/EC2`",
+      "`EC2/AWS`",
+      "`Amazon/EC2`",
+      "`EC2/Instances`"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 75,
+    "question": "A company wants to block any requests to their web application where the request body is larger than 8 KB (8,192 bytes). Which AWS WAF rule should be used?",
+    "options": [
+      "An IP set match rule",
+      "A geo match rule",
+      "A size constraint rule",
+      "A rate-based rule"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 76,
+    "question": "A new regulation requires that all access to a specific Lambda function must be logged for auditing. How can a solutions architect achieve this?",
+    "options": [
+      "Enable logging within the Lambda function's code to write to CloudWatch.",
+      "Configure a CloudTrail trail and enable Data Events for AWS Lambda, specifying the function.",
+      "This is not possible as Lambda invocations are not logged.",
+      "Enable VPC Flow Logs for the VPC where the Lambda function resides."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 77,
+    "question": "What feature of CloudWatch allows you to correlate, search, and visualize log data from multiple sources in a single query interface?",
+    "options": [
+      "CloudWatch Alarms",
+      "CloudWatch Logs Insights",
+      "CloudWatch ServiceLens",
+      "CloudWatch Synthetics"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 78,
+    "question": "AWS Shield Advanced is integrated with which other AWS service to provide visibility and mitigation against application layer DDoS attacks?",
+    "options": [
+      "Amazon Inspector",
+      "AWS WAF",
+      "Amazon Macie",
+      "AWS Config"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 79,
+    "question": "What is the purpose of the `aws-waf-token` in AWS WAF?",
+    "options": [
+      "It is used to authenticate API calls to the WAF service.",
+      "It is a label that WAF adds to requests that have been inspected.",
+      "It is part of the CAPTCHA and challenge features to distinguish human users from bots.",
+      "It is used to encrypt WAF logs."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 80,
+    "question": "An operations team member wants to create a single graph that shows the CPU Utilization of all EC2 instances that have a specific tag (e.g., `Project:Blue`). How can this be done in CloudWatch?",
+    "options": [
+      "Create a custom metric that aggregates the data.",
+      "This is not possible; you must graph each instance individually.",
+      "In the CloudWatch console, use the \"Search\" feature in the metrics section and filter by the tag.",
+      "Use CloudTrail to find the instances and then add them to the graph one by one."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 81,
+    "question": "A company has a requirement that all CloudTrail logs must be immutable. What is the best way to achieve this?",
+    "options": [
+      "Enable Log File Integrity Validation on the trail and use an S3 bucket with Object Lock in compliance mode.",
+      "Store the logs in an encrypted EBS volume.",
+      "Stream the logs to a Kinesis Data Firehose with encryption enabled.",
+      "Grant only read-only permissions to the S3 bucket where logs are stored."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 82,
+    "question": "A rule group in AWS WAF has its own capacity units. When you add a rule group to a Web ACL, how does it affect the Web ACL's capacity?",
+    "options": [
+      "It has no effect on the Web ACL's capacity.",
+      "The capacity of the rule group is added to the Web ACL's total capacity usage.",
+      "It reduces the Web ACL's capacity by a fixed amount, regardless of the rule group's size.",
+      "It doubles the Web ACL's capacity."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 83,
+    "question": "Which of the following is NOT a valid target for a CloudWatch Events rule (EventBridge)?",
+    "options": [
+      "AWS Lambda function",
+      "Amazon SQS queue",
+      "Amazon S3 bucket",
+      "SNS topic"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 84,
+    "question": "A security audit requires a report of every IAM user who has logged into the AWS console in the last 30 days. Which service provides this information?",
+    "options": [
+      "AWS Config",
+      "Amazon CloudWatch",
+      "AWS CloudTrail",
+      "IAM Credential Report"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 85,
+    "question": "Which service provides automated, managed protection for your AWS resources against Distributed Denial of Service (DDoS) attacks?",
+    "options": [
+      "AWS WAF",
+      "Amazon Inspector",
+      "AWS Shield",
+      "Network ACLs"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 86,
+    "question": "You have set up a CloudWatch alarm that sends a notification to an SNS topic. The SNS topic has an email subscriber. The subscriber has received the confirmation email but has not yet confirmed the subscription. What will happen when the alarm is triggered?",
+    "options": [
+      "The email will be sent to the subscriber.",
+      "The alarm will fail to trigger the SNS action.",
+      "The email will not be sent to that specific subscriber, but other confirmed subscribers will receive it.",
+      "The SNS topic will be automatically deleted."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 87,
+    "question": "What is the primary goal of enabling log file integrity validation for AWS CloudTrail?",
+    "options": [
+      "To encrypt the log files.",
+      "To determine if a log file was modified, deleted, or unchanged after CloudTrail delivered it.",
+      "To compress the log files to save space.",
+      "To validate the format of the log files."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 88,
+    "question": "A company wants to block requests that appear to be a command injection attack (e.g., contains `/bin/bash`). Which AWS service should be used?",
+    "options": [
+      "AWS Shield",
+      "A Security Group",
+      "An AWS WAF Managed Rule Group for Linux attacks",
+      "A Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 89,
+    "question": "What is a CloudWatch Log Stream?",
+    "options": [
+      "A sequence of log events that share the same source.",
+      "A real-time feed of metrics from an AWS service.",
+      "A query used in CloudWatch Logs Insights.",
+      "A filter that extracts metric data from logs."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 90,
+    "question": "Can CloudTrail log API calls made from the AWS CLI and AWS SDKs?",
+    "options": [
+      "No, it only logs calls made from the AWS Management Console.",
+      "Yes, it logs API calls from any source, including the console, CLI, and SDKs.",
+      "It only logs calls made from the CLI, not the SDKs.",
+      "It only logs calls that result in a change to a resource."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 91,
+    "question": "What happens if a web request matches a rule with a \"BLOCK\" action in a Web ACL?",
+    "options": [
+      "The request is allowed, but an alert is logged in CloudWatch.",
+      "AWS WAF responds with a 403 (Forbidden) HTTP status code and does not forward the request to the resource.",
+      "The request is forwarded to the resource, but with a special header indicating it should be blocked.",
+      "The source IP address of the request is permanently added to a denylist."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 92,
+    "question": "You are troubleshooting an issue and want to view the last few minutes of log data from a Lambda function. Where would you look?",
+    "options": [
+      "In the AWS CloudTrail Event History.",
+      "In the Amazon CloudWatch Logs console, within the log group for that function.",
+      "In the VPC Flow Logs for the VPC where the function is running.",
+      "On the Lambda function's \"Monitoring\" tab, which shows CloudTrail events."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 93,
+    "question": "Which of the following is an example of a CloudTrail management event?",
+    "options": [
+      "An S3 `GetObject` request.",
+      "A Lambda function invocation.",
+      "An EC2 `RunInstances` API call.",
+      "A DynamoDB `GetItem` request."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 94,
+    "question": "If you associate a Web ACL with an ALB, what happens to the logs for requests that are blocked by AWS WAF?",
+    "options": [
+      "They are not logged anywhere.",
+      "They appear in the ALB access logs with a `WAF-Blocked` status.",
+      "They are sent to AWS CloudTrail automatically.",
+      "They can be configured to be sent to CloudWatch Logs, S3, or Kinesis Data Firehose."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 95,
+    "question": "A composite alarm in Amazon CloudWatch is an alarm that...",
+    "options": [
+      "monitors multiple metrics at the same time.",
+      "can take multiple actions when it is triggered.",
+      "combines the states of several other alarms into an overall state.",
+      "is created using a combination of AWS services."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 96,
+    "question": "AWS WAF is considered a regional service, with one exception. When used with which service does AWS WAF become a global service?",
+    "options": [
+      "Amazon API Gateway",
+      "Application Load Balancer",
+      "Amazon CloudFront",
+      "AWS AppSync"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 97,
+    "question": "You need to ensure that CloudTrail is enabled in all existing and future AWS accounts within your AWS Organization. What is the most efficient way to manage this?",
+    "options": [
+      "Manually create a trail in each member account.",
+      "Use AWS CloudFormation StackSets to deploy a trail to all accounts.",
+      "Create an AWS Organization trail from the management account.",
+      "Write a script that uses the AWS CLI to create trails in each account."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 98,
+    "question": "Which service can be used to create a dashboard that displays graphs of metrics, text, and the current state of alarms?",
+    "options": [
+      "AWS CloudTrail",
+      "Amazon CloudWatch",
+      "AWS Personal Health Dashboard",
+      "AWS Cost Explorer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 99,
+    "question": "A security team wants to prevent developers from accidentally making an S3 bucket public. They can use AWS Config to detect this, but what service can be used to log the `PutBucketAcl` API call that made the bucket public?",
+    "options": [
+      "VPC Flow Logs",
+      "AWS Shield",
+      "S3 Server Access Logs",
+      "AWS CloudTrail"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 100,
+    "question": "An application is experiencing an attack where requests are malformed and contain attempts to exploit a known vulnerability in a popular content management system. What is the BEST way to block this specific exploit without impacting legitimate traffic?",
+    "options": [
+      "Block the IP addresses of the attackers.",
+      "Use a Security Group to restrict access to the application.",
+      "Use a specific rule from an AWS Managed Rule Group in WAF that targets that CMS's vulnerabilities.",
+      "Use AWS Shield Standard to mitigate the attack."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  }
+]

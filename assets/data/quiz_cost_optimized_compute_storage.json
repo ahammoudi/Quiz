@@ -1,0 +1,1406 @@
+[
+  {
+    "id": 1,
+    "question": "A company runs a critical database on an EC2 instance 24/7. The workload is very stable and predictable. To achieve the highest possible discount on compute costs for this instance, which EC2 purchasing option should be used?",
+    "options": [
+      "Spot Instances",
+      "On-Demand Instances",
+      "Standard Reserved Instances (3-year term, all upfront payment)",
+      "Dedicated Hosts"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 2,
+    "question": "An application writes log files to an Amazon S3 bucket. The logs are actively analyzed for the first 30 days, then accessed infrequently for another 60 days for troubleshooting. After 90 days, they must be archived for 7 years for compliance. What is the most cost-effective S3 lifecycle policy configuration?",
+    "options": [
+      "Transition to S3 Standard-IA after 30 days, then to S3 Glacier Deep Archive after 90 days.",
+      "Transition to S3 Intelligent-Tiering after 30 days, then expire after 90 days.",
+      "Transition to S3 One Zone-IA after 30 days, then to S3 Glacier Flexible Retrieval after 365 days.",
+      "Keep in S3 Standard for 90 days, then transition to S3 Glacier Deep Archive."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 3,
+    "question": "A company runs large-scale data processing jobs that can be interrupted and resumed at any time. The primary goal is to minimize the cost of the EC2 instances used for this workload. Which purchasing option offers the largest discounts but comes with the risk of termination?",
+    "options": [
+      "On-Demand Instances",
+      "Savings Plans",
+      "Reserved Instances",
+      "Spot Instances"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 4,
+    "question": "A company has a large amount of data in Amazon S3 that is accessed unpredictably. Some data is accessed frequently for a few months, then not at all. They want to automate cost savings without needing to analyze access patterns manually. Which S3 storage class is designed for this use case?",
+    "options": [
+      "S3 Standard",
+      "S3 Standard-Infrequent Access (IA)",
+      "S3 Intelligent-Tiering",
+      "S3 Glacier Flexible Retrieval"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 5,
+    "question": "A company has committed to a consistent amount of compute usage (e.g., $10/hour) across a variety of instance families and regions. They want a flexible pricing model that offers a discount in exchange for this commitment, without being locked into a specific instance type. Which purchasing option is the best fit?",
+    "options": [
+      "Standard Reserved Instances",
+      "Convertible Reserved Instances",
+      "Compute Savings Plans",
+      "Spot Instances"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 6,
+    "question": "A company needs to store data that is critical and frequently accessed, but only exists in a single Availability Zone. To save costs, they are willing to accept the risk that the data would be lost if that AZ fails. Which S3 storage class is designed for this scenario?",
+    "options": [
+      "S3 Standard",
+      "S3 Standard-Infrequent Access (IA)",
+      "S3 One Zone-Infrequent Access (IA)",
+      "S3 Glacier Instant Retrieval"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 7,
+    "question": "A company has purchased a 1-year, All Upfront, Standard Reserved Instance for an m5.large instance. After 6 months, they realize they no longer need the instance. What can they do to recoup some of the cost of the unused reservation?",
+    "options": [
+      "Cancel the Reserved Instance and receive a pro-rated refund from AWS.",
+      "Sell the Reserved Instance on the AWS Reserved Instance Marketplace.",
+      "Exchange the m5.large reservation for a t3.micro reservation.",
+      "Nothing, the cost is sunk and cannot be recovered."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 8,
+    "question": "An S3 lifecycle policy is configured to transition objects to S3 Glacier Flexible Retrieval after 60 days. An object is 1 byte in size. What is a potential issue with this configuration?",
+    "options": [
+      "S3 Glacier has a minimum storage duration charge (e.g., 90 days).",
+      "There may be an overhead charge for metadata and indexing for small objects in S3 Glacier.",
+      "S3 Glacier cannot store objects smaller than 128 KB.",
+      "Both A and B are potential issues."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 9,
+    "question": "What is a key difference between a Standard Reserved Instance and a Convertible Reserved Instance?",
+    "options": [
+      "Convertible RIs offer a larger discount than Standard RIs.",
+      "Standard RIs can be sold on the marketplace, while Convertible RIs cannot.",
+      "Convertible RIs can be exchanged for another RI with different attributes (like instance family or OS) of equal or greater value.",
+      "Standard RIs are paid for monthly, while Convertible RIs must be paid for all upfront."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 10,
+    "question": "An application archives data to S3 Glacier Deep Archive for long-term retention. A compliance audit requires that a specific 100 GB file be retrieved within 8 hours. What is the most cost-effective retrieval option?",
+    "options": [
+      "Expedited Retrieval",
+      "Standard Retrieval",
+      "Bulk Retrieval",
+      "This is not possible; Deep Archive retrieval takes at least 12 hours."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 11,
+    "question": "A company uses a large number of EC2 instances for a stateless web application. The instances can be terminated and replaced without affecting the application's availability. The workload runs 24/7 but can tolerate interruptions. To optimize costs, the company uses a fleet of Spot Instances. How can they reduce the impact of Spot Instance terminations?",
+    "options": [
+      "Use a Spot Fleet configured to request instances across multiple instance types and Availability Zones.",
+      "Request a very high Spot price.",
+      "Use Reserved Instances as a backup.",
+      "Only run the workload during off-peak hours."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 12,
+    "question": "An S3 lifecycle policy is configured with the following rule: Transition objects to S3 Standard-IA after 30 days. An object is uploaded and then deleted 15 days later. How will the S3 charges be affected?",
+    "options": [
+      "There will be no extra charge.",
+      "The object will still be billed for the full 30 days of S3 Standard-IA storage due to the minimum storage duration.",
+      "A pro-rated early delete fee for S3 Standard-IA will be charged.",
+      "The lifecycle policy will fail to run."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 13,
+    "question": "Which purchasing option provides a discount on EC2 usage in exchange for a 1- or 3-year commitment to a consistent amount of usage, measured in $/hour?",
+    "options": [
+      "Spot Instances",
+      "On-Demand Instances",
+      "Savings Plans",
+      "Pay-as-you-go"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 14,
+    "question": "A company needs to store medical images that are accessed infrequently but must be available for retrieval in milliseconds when requested by a doctor. Which S3 storage class is the most cost-effective for this use case?",
+    "options": [
+      "S3 Standard",
+      "S3 Standard-Infrequent Access (IA)",
+      "S3 Glacier Flexible Retrieval",
+      "S3 Glacier Instant Retrieval"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 15,
+    "question": "An EC2 instance is launched using the On-Demand purchasing option. How is the instance billed?",
+    "options": [
+      "By the month, with a fixed fee.",
+      "By the hour or by the second (depending on the instance type and OS), with no long-term commitment.",
+      "A one-time upfront payment for a 1-year term.",
+      "Based on the current Spot market price."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 16,
+    "question": "What is the primary purpose of an S3 lifecycle policy?",
+    "options": [
+      "To automatically version objects in a bucket.",
+      "To automate the process of moving objects between S3 storage classes or expiring them to save costs.",
+      "To replicate objects to another AWS Region for disaster recovery.",
+      "To encrypt all new objects added to a bucket."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 17,
+    "question": "A company has a workload that must run on a specific physical server for its entire 3-year lifespan due to licensing constraints. Which EC2 purchasing option allows them to reserve a physical server for their exclusive use?",
+    "options": [
+      "Standard Reserved Instances",
+      "Dedicated Hosts",
+      "Spot Blocks",
+      "Capacity Reservations"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 18,
+    "question": "An object is stored in S3 Intelligent-Tiering. It is accessed every day for two months, and then it is not accessed again for three months. How will S3 Intelligent-Tiering handle this object?",
+    "options": [
+      "It will remain in the Frequent Access tier for the entire five months.",
+      "It will start in the Frequent Access tier, and after 30 consecutive days of no access, it will be automatically moved to the Infrequent Access tier.",
+      "It will start in the Frequent Access tier and be moved to S3 Glacier Deep Archive after 90 days.",
+      "The user must manually transition the object between tiers."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 19,
+    "question": "Which of the following is a benefit of a Compute Savings Plan over a Standard Reserved Instance?",
+    "options": [
+      "It provides a higher discount.",
+      "It is more flexible; the discount applies automatically to any EC2 instance usage up to the commitment, regardless of instance family, size, OS, or region.",
+      "It can be sold on a marketplace.",
+      "It has a shorter commitment term (6 months)."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 20,
+    "question": "A large dataset is stored in S3 Glacier Flexible Retrieval. A user initiates a \"Standard\" retrieval request. What is the typical timeframe for the data to become accessible?",
+    "options": [
+      "Milliseconds",
+      "1-5 minutes",
+      "3-5 hours",
+      "12-24 hours"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 21,
+    "question": "For which workload is a Spot Instance completely unsuitable?",
+    "options": [
+      "A fault-tolerant data analysis job.",
+      "A continuous integration/continuous delivery (CI/CD) build server.",
+      "A critical, stateful database that cannot tolerate any downtime.",
+      "A stateless web application front-end."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 22,
+    "question": "An S3 lifecycle rule is created to delete objects that are older than 365 days. What does \"older than 365 days\" refer to?",
+    "options": [
+      "The time since the object was last accessed.",
+      "The time since the object was created.",
+      "The time since the lifecycle rule was created.",
+      "The time since the object was last modified."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 23,
+    "question": "A company has a steady-state workload running on a fleet of c5.large instances. They want to get a discount but also want the ability to change to c5.xlarge or c6g.large instances in the future. Which purchasing option provides this flexibility?",
+    "options": [
+      "Standard Reserved Instances",
+      "Convertible Reserved Instances",
+      "Spot Instances",
+      "On-Demand Capacity Reservations"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 24,
+    "question": "What is the key difference between S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive?",
+    "options": [
+      "Deep Archive has a lower storage cost but longer retrieval times and higher retrieval costs.",
+      "Deep Archive is designed for data that needs to be retrieved in milliseconds.",
+      "Deep Archive does not support lifecycle policies.",
+      "Deep Archive has lower durability than Flexible Retrieval."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 25,
+    "question": "How does an EC2 Instance Savings Plan work?",
+    "options": [
+      "It provides a discount on any EC2 instance usage globally.",
+      "It provides the highest discount in exchange for a commitment to a specific instance family in a specific region (e.g., m5 in us-east-1).",
+      "It allows you to bid on spare EC2 capacity.",
+      "It is a physical server dedicated to your use."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 26,
+    "question": "A lifecycle policy is configured to transition objects from S3 Standard to S3 Standard-IA. What is the minimum object size for this transition to be cost-effective and supported?",
+    "options": [
+      "There is no minimum size.",
+      "1 KB",
+      "128 KB",
+      "1 MB"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 27,
+    "question": "A company wants to ensure that it always has capacity for five m5.large instances for a critical application launch in a specific Availability Zone. They are willing to pay for the capacity whether they run instances or not. Which option should they use?",
+    "options": [
+      "Spot Fleet",
+      "On-Demand Capacity Reservation",
+      "A Savings Plan",
+      "A Scheduled Reserved Instance"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 28,
+    "question": "An object is stored in the S3 Glacier Instant Retrieval storage class. What is the expected access time for this object?",
+    "options": [
+      "Milliseconds",
+      "Minutes to hours",
+      "At least 12 hours",
+      "3-5 hours"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 29,
+    "question": "A company is running a predictable, long-term workload. They are trying to decide between a Savings Plan and a Reserved Instance. What is a key advantage of the Savings Plan?",
+    "options": [
+      "It can be sold on the marketplace.",
+      "It is easier to manage, as the discount is applied automatically to usage up to the committed amount.",
+      "It can be applied to RDS instances.",
+      "It provides a larger discount than a comparable RI."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 30,
+    "question": "An S3 lifecycle policy can be based on which of the following criteria? (Choose TWO)",
+    "options": [
+      "The age of the object (time since creation).",
+      "The number of times an object has been accessed.",
+      "The number of previous versions of an object (if versioning is enabled).",
+      "The size of the object.",
+      "The object's MIME type."
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 31,
+    "question": "What is a Spot Block?",
+    "options": [
+      "A physical block of servers in an AWS data center.",
+      "A way to reserve a block of Spot Instances to run for a specified duration (1 to 6 hours) without being interrupted.",
+      "A Spot Instance that has been terminated.",
+      "A feature of S3 Glacier."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 32,
+    "question": "A company stores user-uploaded videos in an S3 bucket. They want to create a lifecycle policy that moves videos to a cheaper storage class after 90 days, but only if the video is larger than 512 KB. How can this be achieved?",
+    "options": [
+      "Create a single lifecycle rule with a filter based on object size.",
+      "Create two lifecycle rules, one for the transition and one for the size filter.",
+      "This is not possible; lifecycle rules cannot filter by object size.",
+      "Use a Lambda function to check the object size and perform the transition."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 33,
+    "question": "A company has a 3-year Convertible Reserved Instance. What can they do with this reservation?",
+    "options": [
+      "Sell it on the marketplace.",
+      "Cancel it at any time for a full refund.",
+      "Exchange it for another Convertible RI of equal or greater value.",
+      "Apply its discount to RDS instances."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 34,
+    "question": "For long-term, low-cost archival of data that is rarely, if ever, expected to be accessed, which is the most cost-effective S3 storage class?",
+    "options": [
+      "S3 Standard-IA",
+      "S3 Glacier Flexible Retrieval",
+      "S3 Glacier Deep Archive",
+      "S3 One Zone-IA"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 35,
+    "question": "What is the primary trade-off when using Spot Instances?",
+    "options": [
+      "You get lower performance in exchange for a lower price.",
+      "You get significant cost savings in exchange for the possibility that the instance could be terminated with a two-minute warning.",
+      "You pay a higher price for a guarantee of capacity.",
+      "You are locked into a specific instance type for a long term."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 36,
+    "question": "An S3 bucket has versioning enabled. A lifecycle policy is configured to \"expire current object versions\" after 365 days. What happens to an object when it reaches this age?",
+    "options": [
+      "The object and all its previous versions are permanently deleted.",
+      "The current version of the object is permanently deleted.",
+      "The current version receives a delete marker, becoming a previous version, and is not yet permanently deleted.",
+      "The lifecycle policy fails because versioning is enabled."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 37,
+    "question": "Which AWS service provides recommendations to help you optimize costs, such as identifying idle EC2 instances or recommending Reserved Instances?",
+    "options": [
+      "AWS Budgets",
+      "AWS Cost Explorer",
+      "AWS Trusted Advisor",
+      "AWS Pricing Calculator"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 38,
+    "question": "A company wants to store non-critical, reproducible data (e.g., thumbnails generated from original images) at the lowest possible cost. The data is not accessed frequently. High availability is not a major concern. Which storage class is the best fit?",
+    "options": [
+      "S3 Standard",
+      "S3 Standard-IA",
+      "S3 One Zone-IA",
+      "S3 Glacier Instant Retrieval"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 39,
+    "question": "How can a company ensure that when they terminate a Spot Instance, a cleanup script is run to save application state?",
+    "options": [
+      "This is not possible; Spot terminations are immediate.",
+      "By handling the Spot Instance interruption notice that is sent to the instance's metadata two minutes before termination.",
+      "By using a lifecycle hook on the Spot Fleet.",
+      "By configuring a shutdown script in the instance's launch template."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 40,
+    "question": "A lifecycle rule is configured to transition non-current (previous) versions of objects to S3 Glacier Flexible Retrieval after 30 days. Why would a company configure this?",
+    "options": [
+      "To save costs on storing older, less frequently accessed versions of objects.",
+      "To speed up access to previous versions.",
+      "To improve the durability of previous versions.",
+      "To comply with a regulation that requires all versions to be stored for at least 30 days."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 41,
+    "question": "A company has a workload that runs on 10 EC2 instances from 9 AM to 5 PM every weekday. Which purchasing option is specifically designed for these types of recurring, scheduled workloads?",
+    "options": [
+      "Spot Blocks",
+      "On-Demand Capacity Reservations",
+      "Scheduled Reserved Instances",
+      "A Compute Savings Plan"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 42,
+    "question": "When an object is transitioned to S3 Glacier or S3 Glacier Deep Archive via a lifecycle policy, how is it accessed?",
+    "options": [
+      "It can be accessed directly via the standard S3 GET API call.",
+      "You must first initiate a restore request, which makes a temporary copy of the object available in a more accessible S3 tier.",
+      "It can only be accessed via the AWS Glacier console.",
+      "The object is no longer accessible."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 43,
+    "question": "What is the primary benefit of an EC2 Savings Plan over On-Demand pricing?",
+    "options": [
+      "It provides access to more powerful instance types.",
+      "It offers a significant discount (up to 72%) in exchange for a commitment to a certain amount of usage.",
+      "It allows instances to be interrupted.",
+      "It guarantees capacity in a specific Availability Zone."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 44,
+    "question": "A company uploads 10,000 small (1 KB) objects to S3 Standard-IA. What cost component might be unexpectedly high?",
+    "options": [
+      "The storage cost.",
+      "The data transfer cost.",
+      "The request costs (e.g., PUT requests are charged per request).",
+      "The retrieval cost."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 45,
+    "question": "What happens if you request a Spot Instance at a maximum price that is below the current Spot price?",
+    "options": [
+      "Your request will be fulfilled, but you will be charged the current Spot price.",
+      "Your request will not be fulfilled until the Spot price drops to or below your maximum price.",
+      "You will receive an error message.",
+      "The instance will be launched and then immediately terminated."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 46,
+    "question": "A lifecycle policy has two conflicting rules: one that transitions objects to S3-IA after 30 days and another that transitions them to S3 Glacier after 60 days. An object is 70 days old. Where will it be stored?",
+    "options": [
+      "S3 Standard",
+      "S3-IA",
+      "S3 Glacier",
+      "The outcome is unpredictable."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 47,
+    "question": "Which of the following is true about On-Demand Capacity Reservations?",
+    "options": [
+      "They provide a discount on EC2 instance costs.",
+      "They reserve capacity in a specific AZ, ensuring you can launch instances when you need them, and are billed for the capacity whether you use it or not.",
+      "They can be applied to any instance family in any region.",
+      "They are the same as Reserved Instances."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 48,
+    "question": "For a new S3 bucket, what is the default storage class for objects that are uploaded without a specified class?",
+    "options": [
+      "S3 Standard",
+      "S3 Intelligent-Tiering",
+      "S3 Standard-IA",
+      "S3 One Zone-IA"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 49,
+    "question": "A company wants to terminate all incomplete multipart uploads that are more than 7 days old to save on storage costs. How can this be automated?",
+    "options": [
+      "By writing a Lambda function to scan for and abort old uploads.",
+      "By creating an S3 lifecycle rule to clean up incomplete multipart uploads.",
+      "This happens automatically by default.",
+      "By opening a support ticket with AWS."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 50,
+    "question": "Which of the following offers the MOST significant discount on EC2 pricing?",
+    "options": [
+      "On-Demand",
+      "1-year Standard RI, No Upfront",
+      "3-year Standard RI, All Upfront",
+      "3-year Compute Savings Plan, All Upfront"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 51,
+    "question": "Which S3 storage class is designed for data that is accessed less than once a month but requires rapid access when needed?",
+    "options": [
+      "S3 Glacier Deep Archive",
+      "S3 Standard",
+      "S3 Standard-Infrequent Access",
+      "S3 One Zone-Infrequent Access"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 52,
+    "question": "What is a key difference between an EC2 Instance Savings Plan and a Compute Savings Plan?",
+    "options": [
+      "Compute Savings Plans apply only to EC2, while EC2 Instance Savings Plans apply to EC2 and Fargate.",
+      "EC2 Instance Savings Plans offer a higher discount but are less flexible, as they commit you to a specific instance family in a specific region.",
+      "Compute Savings Plans can be sold on a marketplace.",
+      "EC2 Instance Savings Plans have a shorter commitment term."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 53,
+    "question": "A lifecycle policy is configured to transition objects to S3 Glacier Deep Archive. What is the minimum number of days an object must be stored in S3 Standard before it can be transitioned to Deep Archive?",
+    "options": [
+      "0 days",
+      "30 days",
+      "90 days",
+      "180 days"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 54,
+    "question": "A company is using Spot Instances for a batch processing job. They want to ensure that if their instances are terminated, they are not immediately re-launched and that the job can be resumed later. What Spot request type should they use?",
+    "options": [
+      "One-time request",
+      "Persistent request",
+      "Spot Block",
+      "A request with a \"terminate\" interruption behavior."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 55,
+    "question": "A company is storing 1 PB of data in S3. The data is a backup of their on-premises systems and will likely never be accessed again, but must be retained for 10 years. What is the most cost-effective storage solution?",
+    "options": [
+      "Store the data on EBS `sc1` volumes.",
+      "Store the data in S3 Standard.",
+      "Store the data in S3 Glacier Deep Archive.",
+      "Store the data using AWS Backup."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 56,
+    "question": "A company has a 1-year Standard Reserved Instance. Which attributes of the instance can be modified without contacting AWS support?",
+    "options": [
+      "The instance family (e.g., from m5 to c5).",
+      "The AWS Region.",
+      "The instance size within the same family (e.g., from m5.large to m5.xlarge), as long as it's within the same Availability Zone.",
+      "The operating system."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 57,
+    "question": "When you expire an object in a versioning-enabled S3 bucket using a lifecycle policy, what does S3 do?",
+    "options": [
+      "It permanently deletes the object and all its versions.",
+      "It adds a delete marker to the object, making it the new current version.",
+      "It moves the object to the S3 Glacier storage class.",
+      "It prevents any further versions of the object from being created."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 58,
+    "question": "Which AWS tool allows you to view and analyze your costs and usage, and can be used to filter costs by tags, service, or region?",
+    "options": [
+      "AWS Budgets",
+      "AWS Trusted Advisor",
+      "AWS Pricing Calculator",
+      "AWS Cost Explorer"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 59,
+    "question": "A company is running a stateful workload on a Spot Instance. They receive an interruption notice. What is the best course of action to avoid data loss?",
+    "options": [
+      "Immediately stop the instance.",
+      "Checkpoint the application's state to a persistent storage service like an EBS volume or S3.",
+      "Increase the maximum Spot price.",
+      "Do nothing; the instance will automatically be migrated."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 60,
+    "question": "An S3 object has been in the S3 Intelligent-Tiering class for a year without being accessed. Which of the optional archive tiers might it have been moved to automatically? (Choose TWO)",
+    "options": [
+      "S3 Glacier Instant Retrieval",
+      "S3 Glacier Flexible Retrieval",
+      "S3 Glacier Deep Archive",
+      "S3 Standard-IA",
+      "S3 One Zone-IA"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true
+  },
+  {
+    "id": 61,
+    "question": "Which of the following EC2 purchasing options is best for ensuring a baseline capacity for a critical application while also handling unexpected traffic spikes in the most cost-effective way?",
+    "options": [
+      "Using only On-Demand instances.",
+      "Using a combination of Reserved Instances or Savings Plans for the baseline, and On-Demand or Spot Instances for the spikes.",
+      "Using only Spot Instances.",
+      "Using only Reserved Instances for the maximum expected capacity."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 62,
+    "question": "A company needs to store data that is replicated across at least three Availability Zones and is accessed about once every two months. Retrieval time is not critical. What is the most cost-effective S3 storage class?",
+    "options": [
+      "S3 Standard",
+      "S3 Standard-Infrequent Access (IA)",
+      "S3 One Zone-Infrequent Access (IA)",
+      "S3 Glacier Flexible Retrieval"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 63,
+    "question": "A company has purchased an EC2 Instance Savings Plan for the `m5` instance family in `us-east-1`. Which of the following usage will be covered by this plan?",
+    "options": [
+      "An `m5.large` instance running Windows in `us-east-1`.",
+      "A `c5.large` instance running Linux in `us-east-1`.",
+      "An `m5.large` instance running Linux in `us-west-2`.",
+      "A `t3.micro` instance running Linux in `us-east-1`."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 64,
+    "question": "When retrieving data from S3 Glacier Flexible Retrieval, which retrieval option is free of charge?",
+    "options": [
+      "Expedited",
+      "Standard",
+      "Bulk",
+      "All retrievals incur a cost."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 65,
+    "question": "What happens to a Spot Instance when the Spot price exceeds your maximum price or AWS needs the capacity back?",
+    "options": [
+      "The instance is stopped and can be restarted later.",
+      "The instance is paused, and its memory state is saved.",
+      "The instance is terminated or stopped, based on the interruption behavior you configured.",
+      "The instance's CPU is throttled."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 66,
+    "question": "A lifecycle policy is set to permanently delete previous versions of objects after 7 days. An object is updated 10 times in a single day. What will happen after 7 days?",
+    "options": [
+      "All 10 previous versions will be permanently deleted.",
+      "Only the oldest version will be deleted.",
+      "Nothing, the policy only applies to the current version.",
+      "The current version will be deleted."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 67,
+    "question": "Which AWS service allows you to set custom cost and usage budgets and receive alerts when you exceed your thresholds?",
+    "options": [
+      "AWS Cost Explorer",
+      "AWS Budgets",
+      "AWS Trusted Advisor",
+      "Amazon CloudWatch"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 68,
+    "question": "A company wants to store data that is not easily reproducible and is accessed infrequently. They need the high durability of being stored in multiple Availability Zones. Which is the MOST cost-effective choice?",
+    "options": [
+      "S3 One Zone-IA",
+      "S3 Standard-IA",
+      "S3 Glacier Flexible Retrieval",
+      "S3 Standard"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 69,
+    "question": "Which of the following provides a capacity reservation but does NOT provide a billing discount?",
+    "options": [
+      "Standard Reserved Instance",
+      "Convertible Reserved Instance",
+      "On-Demand Capacity Reservation",
+      "Savings Plan"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 70,
+    "question": "An object is uploaded to S3 on January 1st. A lifecycle rule is set to transition objects to S3-IA after 30 days. On January 15th, the object is overwritten with a new version. When will the original (now non-current) version be eligible for transition?",
+    "options": [
+      "On January 31st (30 days after original creation).",
+      "On February 14th (30 days after it became a non-current version).",
+      "It is not eligible for transition.",
+      "Immediately."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 71,
+    "question": "For a workload with a completely unknown and unpredictable usage pattern, which EC2 purchasing model is the most straightforward to start with?",
+    "options": [
+      "Spot Instances",
+      "Reserved Instances",
+      "On-Demand Instances",
+      "Savings Plans"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 72,
+    "question": "What is the primary factor that makes S3 One Zone-IA cheaper than S3 Standard-IA?",
+    "options": [
+      "It has lower durability.",
+      "It stores data in only one Availability Zone instead of multiple.",
+      "It has a longer retrieval time.",
+      "It charges a higher per-request fee."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 73,
+    "question": "A company has a fleet of EC2 instances. They want to receive a discount, but the instance types and even the AWS services (e.g., EC2, Fargate, Lambda) they use might change over time. Which purchasing plan offers the greatest flexibility to handle these changes?",
+    "options": [
+      "Standard Reserved Instances",
+      "Convertible Reserved Instances",
+      "EC2 Instance Savings Plans",
+      "Compute Savings Plans"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 74,
+    "question": "A company needs to retrieve a 1 GB file from S3 Glacier Flexible Retrieval as quickly as possible, ideally in 1-5 minutes. Which retrieval option should be used?",
+    "options": [
+      "Expedited Retrieval",
+      "Standard Retrieval",
+      "Bulk Retrieval",
+      "This is not possible; retrieval takes hours."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 75,
+    "question": "A Spot Fleet is configured with a \"diversified\" allocation strategy. What does this mean?",
+    "options": [
+      "The fleet will launch all instances in a single Spot pool that has the lowest price.",
+      "The fleet will distribute the instances across multiple Spot pools to minimize the impact if one pool is interrupted.",
+      "The fleet will launch a mix of On-Demand and Spot instances.",
+      "The fleet will only launch instances that are physically diversified across different server racks."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 76,
+    "question": "A company stores data in S3 Intelligent-Tiering. If they enable the deep archive access tier, what is the minimum duration an object must be in the archive access tier before it can be moved to the deep archive access tier?",
+    "options": [
+      "30 days",
+      "60 days",
+      "90 days",
+      "180 days"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 77,
+    "question": "A company has a predictable workload and purchases a 3-year, All Upfront Reserved Instance. This provides a significant discount. What is the main drawback of this choice?",
+    "options": [
+      "It offers less flexibility compared to On-Demand instances or Savings Plans if the workload requirements change.",
+      "The performance of the instance is lower than an On-Demand instance.",
+      "It cannot be used in an Auto Scaling group.",
+      "The instance can be terminated by AWS at any time."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 78,
+    "question": "An S3 lifecycle policy can be configured to take action based on:",
+    "options": [
+      "The tags assigned to an object.",
+      "The size of an object.",
+      "The prefix (folder) of an object.",
+      "All of the above."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false
+  },
+  {
+    "id": 79,
+    "question": "Which AWS service is best suited for estimating the cost of a new architecture you plan to deploy on AWS?",
+    "options": [
+      "AWS Cost Explorer",
+      "AWS Budgets",
+      "AWS Pricing Calculator",
+      "AWS Trusted Advisor"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 80,
+    "question": "A company wants to run a one-time, 4-hour batch processing job. The job can be interrupted. They want a guarantee that the instances will run for the full 4 hours without interruption. Which purchasing option should they use?",
+    "options": [
+      "Spot Instances with a persistent request.",
+      "Spot Blocks.",
+      "On-Demand Instances.",
+      "Scheduled Reserved Instances."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 81,
+    "question": "Which S3 storage class does NOT charge a data retrieval fee?",
+    "options": [
+      "S3 Standard",
+      "S3 Standard-Infrequent Access (IA)",
+      "S3 Glacier Instant Retrieval",
+      "S3 One Zone-Infrequent Access (IA)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 82,
+    "question": "A company has a large collection of photos stored in S3. They want to automatically move any photo that hasn't been viewed in 6 months to a cheaper storage class. Which AWS service combination is needed to achieve this?",
+    "options": [
+      "This is not possible, as S3 doesn't track last-accessed time for lifecycle policies.",
+      "An S3 lifecycle policy based on the creation date.",
+      "S3 Storage Lens to identify cold data.",
+      "S3 Intelligent-Tiering, which handles this automatically."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 83,
+    "question": "What is the primary benefit of paying for a Reserved Instance \"All Upfront\"?",
+    "options": [
+      "It provides the highest possible discount for that reservation term.",
+      "It allows you to sell the reservation on the marketplace.",
+      "It gives you the flexibility to change the instance family.",
+      "It guarantees capacity in an Availability Zone."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 84,
+    "question": "A company needs to archive 500 TB of data for 10 years. The data will almost certainly never be accessed, but it must be retained for legal reasons. To achieve the absolute lowest storage cost, which service should be used?",
+    "options": [
+      "S3 Standard-IA",
+      "S3 Glacier Flexible Retrieval",
+      "S3 Glacier Deep Archive",
+      "EBS Cold HDD (sc1) volumes"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 85,
+    "question": "A developer is launching an EC2 instance for a short-term development task that will last a few hours. No long-term commitment is needed. Which is the default and most appropriate purchasing option?",
+    "options": [
+      "Spot Instance",
+      "Reserved Instance",
+      "On-Demand Instance",
+      "Dedicated Host"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 86,
+    "question": "An S3 bucket has versioning enabled. A lifecycle policy is configured to \"permanently delete non-current versions\" after 90 days. What is the purpose of this rule?",
+    "options": [
+      "To save storage costs by deleting old versions of files that are no longer needed.",
+      "To expire the current version of the object.",
+      "To prevent objects from being deleted.",
+      "To transition old versions to a cheaper storage class."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 87,
+    "question": "A company has a mix of EC2 and Fargate usage. They want a flexible plan that gives them a discount on both. Which plan should they choose?",
+    "options": [
+      "EC2 Instance Savings Plan",
+      "Standard Reserved Instance",
+      "Compute Savings Plan",
+      "Fargate Savings Plan"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 88,
+    "question": "What is a potential financial risk of using S3 Standard-IA for data that is frequently accessed?",
+    "options": [
+      "The storage costs will be very high.",
+      "The data retrieval fees could make it more expensive than S3 Standard.",
+      "The request fees will be prohibitively expensive.",
+      "There is no financial risk; it will always be cheaper than S3 Standard."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 89,
+    "question": "A Spot Fleet is configured with a target capacity of 10 instances and a \"lowestPrice\" allocation strategy. There are two Spot pools with sufficient capacity: `m5.large` at $0.05/hr and `c5.large` at $0.04/hr. How will the fleet launch the instances?",
+    "options": [
+      "It will launch 5 instances from each pool.",
+      "It will launch all 10 instances from the `c5.large` pool because it has the lowest price.",
+      "It will launch all 10 instances from the `m5.large` pool.",
+      "It will not launch any instances until the prices are equal."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 90,
+    "question": "A company wants to store data that is non-critical and can be regenerated if lost. They need infrequent access but want to minimize storage costs as much as possible. Which S3 storage class offers the lowest price point?",
+    "options": [
+      "S3 Standard-IA",
+      "S3 Glacier Instant Retrieval",
+      "S3 One Zone-IA",
+      "S3 Glacier Deep Archive"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 91,
+    "question": "What is a key benefit of using AWS Budgets?",
+    "options": [
+      "It automatically optimizes your AWS spending.",
+      "It allows you to set custom thresholds for cost and usage and sends alerts when they are breached.",
+      "It provides a detailed breakdown of your past invoices.",
+      "It predicts your future costs based on historical usage."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 92,
+    "question": "A company buys a 1-year Reserved Instance. After 11 months, they renew it for another 3 years. The new 3-year term will start:",
+    "options": [
+      "Immediately.",
+      "After the original 1-year term expires.",
+      "At the beginning of the next calendar month.",
+      "On a date they can specify in the future."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 93,
+    "question": "A lifecycle policy on a versioned bucket is configured to transition current versions to S3-IA after 30 days and expire non-current versions after 60 days. An object is created on day 1. On day 40, it is deleted. What happens?",
+    "options": [
+      "On day 31, the original object is transitioned to S3-IA. On day 40, a delete marker is added. On day 100, the original version (now non-current) is expired.",
+      "The object is deleted permanently on day 40.",
+      "The object is transitioned to S3-IA on day 31 and remains there indefinitely.",
+      "The lifecycle policy fails."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false
+  },
+  {
+    "id": 94,
+    "question": "Which EC2 pricing model is ideal for a steady-state application with predictable usage over a 3-year period?",
+    "options": [
+      "On-Demand",
+      "Spot",
+      "Reserved Instances or Savings Plans",
+      "Pay-as-you-go"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 95,
+    "question": "A company is using S3 Intelligent-Tiering. When is an object moved from the Infrequent Access tier back to the Frequent Access tier?",
+    "options": [
+      "After 30 days of inactivity.",
+      "Never, it can only move from frequent to infrequent.",
+      "As soon as it is accessed again.",
+      "This must be done manually."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 96,
+    "question": "To receive the largest possible discount on a Standard Reserved Instance, which payment option should be chosen?",
+    "options": [
+      "No Upfront",
+      "Partial Upfront",
+      "All Upfront",
+      "Monthly"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 97,
+    "question": "A company wants to archive old server logs. The logs must be retained for 5 years but are almost never accessed. If access is needed, a 24-hour retrieval time is acceptable. What is the most cost-effective storage class?",
+    "options": [
+      "S3 Standard-IA",
+      "S3 Glacier Flexible Retrieval",
+      "S3 Glacier Deep Archive",
+      "EBS Cold HDD (sc1)"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 98,
+    "question": "What is the primary purpose of AWS Cost Explorer?",
+    "options": [
+      "To set spending limits and receive alerts.",
+      "To provide a visual interface for exploring and analyzing your AWS costs and usage over time.",
+      "To get recommendations for cost savings.",
+      "To calculate the estimated cost of a new workload."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  },
+  {
+    "id": 99,
+    "question": "A lifecycle policy is set to expire objects 1 day after creation. An object is uploaded at 10:00 AM on Monday. When will the object be deleted?",
+    "options": [
+      "At 10:01 AM on Monday.",
+      "At 10:01 AM on Tuesday.",
+      "At midnight on Tuesday (transitioning from Tuesday to Wednesday).",
+      "The exact time is not guaranteed but will be after 24 hours have passed."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false
+  },
+  {
+    "id": 100,
+    "question": "A company has a large fleet of diverse EC2 instances across multiple regions. The usage is consistent but the specific instance types change frequently due to application updates. Which purchasing option provides the most flexible cost savings?",
+    "options": [
+      "Standard Reserved Instances for each instance type.",
+      "A Compute Savings Plan.",
+      "Spot Instances for the entire fleet.",
+      "On-Demand Capacity Reservations."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false
+  }
+]
