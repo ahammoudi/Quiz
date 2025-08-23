@@ -4,6 +4,12 @@ A fully automated, web-based quiz platform with dynamic scoring and automated qu
 
 This tool was created to address a need for a better way to identify knowledge gaps in specific training material. After finding existing solutions to be either overpriced or unsuitable, I developed this tool and am now making it publicly available.
 
+## 🌐 Live Demo
+
+**Try it now**: [https://quiz-dyc.pages.dev](https://quiz-dyc.pages.dev)
+
+> **Note**: The live demo on Cloudflare Pages runs in **read-only mode**. The quiz management features (creating/deleting quizzes) require Python server functionality and are only available when running locally. The demo includes pre-loaded sample quizzes for testing.
+
 ## 🚀 Features
 
 - **Cross-Platform**: Native startup scripts for Windows, macOS, and Linux
@@ -43,7 +49,15 @@ Quiz/
 
 ## 🚀 Quick Start
 
-### Windows Users
+### 🌐 Try Online (No Installation)
+**Live Demo**: [https://quiz-dyc.pages.dev](https://quiz-dyc.pages.dev)
+- Instant access with pre-loaded sample quizzes
+- No setup required - works in any browser
+- **Limitation**: Quiz management features not available (read-only)
+
+### 💻 Local Installation (Full Features)
+
+#### Windows Users
 
 #### Option 1: One-Click Startup (Recommended)
 **Double-click** `start_quiz.bat` or `quick_start.bat`
@@ -120,9 +134,11 @@ chmod +x start_quiz.sh quick_start.sh
 
 ## 🤖 Creating & Managing Quizzes
 
-**Create new quizzes instantly through the web interface:**
+> **💡 Deployment Note**: Quiz creation and management features require Python server functionality and are **only available when running locally**. The [live demo](https://quiz-dyc.pages.dev) runs on Cloudflare Pages (serverless) and operates in read-only mode with pre-loaded quizzes.
 
-### Web-Based Quiz Creation (Recommended)
+**Create new quizzes instantly through the web interface (local installation only):**
+
+### Web-Based Quiz Creation (Local Installation)
 1. **Start the platform**: Use startup scripts or navigate to `http://localhost:8080`
 2. **Open management**: Go to `http://localhost:8080/config.html`
 3. **Upload text file**: Click "Choose File" and select your quiz questions
@@ -233,11 +249,25 @@ Please provide [NUMBER] questions in this format, and output as text/markdown th
 
 Your quiz platform is complete with:
 - ✅ **Cross-platform startup scripts** for Windows, macOS, and Linux
-- ✅ **Automated quiz creation** from text files
-- ✅ **Web-based management** interface
+- ✅ **Automated quiz creation** from text files (local installation)
+- ✅ **Web-based management** interface (local installation)
 - ✅ **Modern responsive design** with progress tracking
 - ✅ **Dynamic scoring system** with configurable thresholds
 - ✅ **Generic platform** that works with any subject matter
+- ✅ **Live demo deployment** on Cloudflare Pages: [quiz-dyc.pages.dev](https://quiz-dyc.pages.dev)
+
+### 🚀 Deployment Options
+
+**🌐 Live Demo (Cloudflare Pages)**
+- **URL**: [https://quiz-dyc.pages.dev](https://quiz-dyc.pages.dev)
+- **Features**: Quiz taking with pre-loaded sample questions
+- **Limitations**: Read-only mode - no quiz creation/management (serverless environment)
+- **Best for**: Trying the platform, sharing with others, demonstration purposes
+
+**💻 Local Installation**
+- **Features**: Full functionality including quiz creation and management
+- **Requirements**: Python 3.6+ and local server
+- **Best for**: Personal use, custom quiz creation, full feature access
 
 ## 📚 Documentation
 
