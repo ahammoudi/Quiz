@@ -111,10 +111,19 @@
       "auto_generated": true,
       "created_date": "2025-08-23",
       "source": "automated_conversion"
+    },
+    "quiz_all_saac03_questions.json": {
+      "name": "AWS Certified Solutions Architect Associate SAA-C03 (1200 questions)",
+      "description": "AWS Certified Solutions Architect Associate SAA-C03 Complete Practice Question Collection",
+      "difficulty": "Mixed",
+      "question_count": 1200,
+      "auto_generated": true,
+      "created_date": "2025-08-23",
+      "source": "automated_conversion"
     }
   },
   "metadata": {
-    "total_quiz_sets": 12,
+    "total_quiz_sets": 13,
     "last_updated": "2025-08-23",
     "version": "1.0.0",
     "quality_assured": true,
