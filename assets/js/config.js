@@ -346,6 +346,8 @@ async function confirmDeleteQuiz() {
     
     // Hide the modal first
     const modal = bootstrap.Modal.getInstance(document.getElementById('deleteConfirmModal'));
+    // Clear focus to prevent accessibility warning
+    document.getElementById('confirmDeleteBtn').blur();
     modal.hide();
     
     // Show processing message
