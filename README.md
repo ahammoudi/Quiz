@@ -12,7 +12,7 @@ This tool was created to address a need for a better way to identify knowledge g
 
 **Try it now**: <a href="https://ahammoudi.github.io/Quiz" target="_blank" rel="noopener noreferrer">https://ahammoudi.github.io/Quiz</a>
 
-> **Note**: The live demo on GitHub Pages runs in **read-only mode**. The quiz management features (creating/deleting quizzes) require Python server functionality and are only available when running locally. The demo includes pre-loaded sample quizzes for testing.
+> **Note**: The live demo on GitHub Pages runs in **read-only mode**. The quiz management features (creating/deleting quizzes) require Python server functionality and are only available when running locally. The demo includes a complete collection of AI-generated quiz questions covering AWS Certified Solutions Architect – Associate (SAA-C03) exam topics.
 
 ## 🚀 Features
 
