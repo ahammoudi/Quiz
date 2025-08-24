@@ -341,7 +341,7 @@ function showQuestion() {
   
   // Only set up the pauseResumeContainer once, or if it's empty
   if (!pauseResumeDiv.innerHTML || !pauseResumeDiv.querySelector('#timer')) {
-    let progress = ((current) / selectedQuestions.length) * 100;
+    let progress = ((current + 1) / selectedQuestions.length) * 100;
     let timerDisplay = timeLimit > 0 ? 'Time left: --:--' : 'Unlimited Time';
     let pauseButtonHtml = timeLimit > 0 ? `
       <button class="btn btn-warning btn-pause" id="pauseResumeBtn" onclick="togglePauseResume()">
@@ -364,7 +364,7 @@ function showQuestion() {
     pauseResumeDiv.innerHTML = progressHtml;
   } else {
     // Just update the progress bar and question counter
-    let progress = ((current) / selectedQuestions.length) * 100;
+    let progress = ((current + 1) / selectedQuestions.length) * 100;
     const progressBar = pauseResumeDiv.querySelector('.progress-bar-custom');
     const questionCounter = pauseResumeDiv.querySelector('.text-muted');
     if (progressBar) progressBar.style.width = `${progress}%`;
