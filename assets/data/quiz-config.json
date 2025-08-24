@@ -111,10 +111,19 @@
       "auto_generated": true,
       "created_date": "2025-08-24",
       "source": "automated_conversion"
+    },
+    "quiz_all_questions.json": {
+      "name": "AWS Certified Solutions Architect Associate SAA-C03 (1198 questions)",
+      "description": "AWS Solutions Architect Associate - Comprehensive Question Bank",
+      "difficulty": "Mixed",
+      "question_count": 1198,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
     }
   },
   "metadata": {
-    "total_quiz_sets": 12,
+    "total_quiz_sets": 13,
     "last_updated": "2025-08-24",
     "version": "1.0.0",
     "quality_assured": true,
