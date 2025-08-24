@@ -161,14 +161,21 @@ D. Option four
 
 Answer: B
 
+Explanation: [Detailed explanation of why the answer is correct and the other options are incorrect.]
+
 Question #: 2
 Multiple choice question (Choose two.)
 
 A. First option
 B. Second option
 C. Third option
+D. Fourth option
+E. Fifth option
 
 Answer: A, C
+
+Explanation: [Detailed explanation of why the answer is correct and the other options are incorrect.]
+
 ```
 
 **Supported answer formats:**
