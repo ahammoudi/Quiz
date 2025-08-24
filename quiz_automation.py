@@ -114,28 +114,40 @@ class QuizAutomation:
         return questions
     
     def _parse_single_question(self, block, question_id):
-        """Parse a single question block"""
+        """Parse a single question block including explanation"""
         lines = [line.strip() for line in block.split('\n') if line.strip()]
         
         if len(lines) < 3:  # Minimum: question + 2 options
             return None
         
-        # Find question text and options
+        # Find question text, options, and explanation
         question_text = ""
         options = []
         correct_answers = []
+        explanation = ""
         
         option_pattern = re.compile(r'^([A-Z])[\.\)]\s*(.+)$')
         answer_pattern = re.compile(r'^(?:Answer|Correct(?:\s+Answer)?s?|Hint\s+Answer):\s*([A-Z,\s]+)', re.IGNORECASE)
+        explanation_pattern = re.compile(r'^Explanation:\s*(.*)', re.IGNORECASE)
         
         current_section = "question"
         
         for line in lines:
+            # Check if this is an explanation line
+            explanation_match = explanation_pattern.match(line)
+            if explanation_match:
+                current_section = "explanation"
+                explanation_text = explanation_match.group(1)
+                if explanation_text:
+                    explanation = explanation_text
+                continue
+            
             # Check if this is an answer line
             answer_match = answer_pattern.match(line)
             if answer_match:
                 answer_letters = re.findall(r'[A-Z]', answer_match.group(1))
                 correct_answers = [ord(letter) - ord('A') for letter in answer_letters]
+                current_section = "answer"
                 continue
             
             # Check if this is an option
@@ -145,12 +157,17 @@ class QuizAutomation:
                 options.append(option_match.group(2))
                 continue
             
-            # If we're in question section, add to question text
+            # Handle continuation based on current section
             if current_section == "question":
                 if question_text:
                     question_text += " " + line
                 else:
                     question_text = line
+            elif current_section == "explanation":
+                if explanation:
+                    explanation += " " + line
+                else:
+                    explanation = line
         
         # If no explicit correct answers found, assume first option (for safety)
         if not correct_answers:
@@ -162,13 +179,23 @@ class QuizAutomation:
             print(f"⚠️  Skipping incomplete question {question_id}: question='{question_text}', options={len(options)}")
             return None
         
-        return {
+        # Build question object
+        question_obj = {
             "id": question_id,
             "question": question_text,
             "options": options,
             "correctAnswers": correct_answers,
             "multiple": len(correct_answers) > 1
         }
+        
+        # Add explanation if available (clean up separators)
+        if explanation:
+            # Remove common separators and trim whitespace
+            explanation = explanation.replace("---", "").strip()
+            if explanation:
+                question_obj["explanation"] = explanation
+        
+        return question_obj
     
     def validate_json(self, questions_data):
         """Validate the JSON structure"""
@@ -181,6 +208,7 @@ class QuizAutomation:
             raise ValueError("❌ No questions found in data")
         
         required_fields = ['id', 'question', 'options', 'correctAnswers', 'multiple']
+        optional_fields = ['explanation']
         
         for i, question in enumerate(questions_data):
             # Check required fields
@@ -210,8 +238,15 @@ class QuizAutomation:
             # Validate multiple flag
             if not isinstance(question['multiple'], bool):
                 raise ValueError(f"❌ Question {i+1}: 'multiple' must be boolean")
+            
+            # Validate optional explanation field
+            if 'explanation' in question and not isinstance(question['explanation'], str):
+                raise ValueError(f"❌ Question {i+1}: 'explanation' must be string")
         
+        # Count questions with explanations
+        with_explanations = sum(1 for q in questions_data if 'explanation' in q and q['explanation'])
         print(f"✅ JSON validation passed - {len(questions_data)} questions are valid")
+        print(f"📝 Questions with explanations: {with_explanations}/{len(questions_data)}")
         return True
     
     def save_quiz_json(self, questions_data, output_name):

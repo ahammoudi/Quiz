@@ -608,6 +608,14 @@ function showReview() {
           '<span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i>Incorrect</span>'
         }
       </div>
+      ${q.explanation ? 
+        `<div class="explanation-box mt-3">
+          <div class="explanation-header">
+            <i class="bi bi-lightbulb me-2"></i><strong>Explanation:</strong>
+          </div>
+          <div class="explanation-text">${q.explanation}</div>
+        </div>` : ''
+      }
     </div>`;
     
     html += '</div></div>';
