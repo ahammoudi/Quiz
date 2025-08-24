@@ -1,0 +1,1516 @@
+[
+  {
+    "id": 1,
+    "question": "A company has a security requirement that all data stored in Amazon S3 must be encrypted at rest. They want to use server-side encryption but want to manage their own encryption keys. However, they do not want to manage the encryption key infrastructure. Which S3 encryption option should they use?",
+    "options": [
+      "Server-Side Encryption with S3-Managed Keys (SSE-S3)",
+      "Server-Side Encryption with AWS KMS-Managed Keys (SSE-KMS)",
+      "Server-Side Encryption with Customer-Provided Keys (SSE-C)",
+      "Client-Side Encryption with a client-side master key."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "SSE-KMS is the correct choice because it allows the customer to manage their keys (e.g., control rotation, set access policies) through the AWS Key Management Service (KMS), while AWS manages the underlying hardware and software for the key management infrastructure. SSE-S3 (A) has AWS manage the keys entirely. SSE-C (C) requires the customer to provide the key with every request. Client-side encryption (D) requires the customer to manage the entire encryption process and infrastructure."
+  },
+  {
+    "id": 2,
+    "question": "What is the primary function of the AWS Key Management Service (KMS)?",
+    "options": [
+      "To create and manage SSL/TLS certificates for websites.",
+      "To create and control the encryption keys used to encrypt your data.",
+      "To securely store secrets and application configuration data.",
+      "To encrypt network traffic between AWS services."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "AWS KMS is a managed service that makes it easy for you to create and control the cryptographic keys used to protect your data. It is integrated with many other AWS services to simplify the encryption of data at rest. AWS Certificate Manager (A) handles SSL/TLS certificates. AWS Secrets Manager (C) stores secrets. SSL/TLS (D) encrypts data in transit."
+  },
+  {
+    "id": 3,
+    "question": "An application writes data to an S3 bucket that has default encryption enabled using SSE-KMS. What happens when an object is uploaded to this bucket without any encryption headers in the request?",
+    "options": [
+      "The upload is rejected because encryption headers are missing.",
+      "The object is stored unencrypted.",
+      "Amazon S3 automatically encrypts the object using the default KMS key specified for the bucket.",
+      "The object is encrypted using SSE-S3 instead of SSE-KMS."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "S3 default encryption is designed to enforce an encryption policy. If default encryption is enabled on a bucket, any new object uploaded without encryption information in the request will be automatically encrypted using the specified default method (in this case, SSE-KMS with the bucket's default KMS key)."
+  },
+  {
+    "id": 4,
+    "question": "What is the difference between the master key (CMK/KMS key) and the data key in the KMS envelope encryption process?",
+    "options": [
+      "The master key is used to encrypt data directly, while the data key is used to encrypt the master key.",
+      "The master key is used to generate and encrypt data keys, and the data keys are then used to encrypt the actual data.",
+      "Both keys are used together in an XOR operation to encrypt the data.",
+      "The master key is stored in AWS, while the data key must be stored on-premises."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Envelope encryption is a core concept in KMS. You use a KMS key (master key) to generate a unique data key. You then use this data key to encrypt your data locally. The plaintext data key is then discarded, and the encrypted version of the data key is stored alongside your encrypted data. This is efficient and secure because the highly protected master key never leaves KMS and is only used to encrypt/decrypt small data keys."
+  },
+  {
+    "id": 5,
+    "question": "A company needs to encrypt an Amazon EBS volume attached to an EC2 instance. They want to use an encryption key that they create and control in AWS. Which service should they use?",
+    "options": [
+      "AWS Secrets Manager",
+      "AWS Certificate Manager",
+      "AWS CloudHSM",
+      "AWS Key Management Service (KMS)"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "Amazon EBS is natively integrated with AWS KMS. When you create an encrypted EBS volume, you can specify a KMS key. EBS then uses this key in an envelope encryption process to protect the volume's data. CloudHSM (C) is also an option for key storage, but KMS is the more common and integrated service for this use case."
+  },
+  {
+    "id": 6,
+    "question": "How is data in transit to and from Amazon S3 typically secured?",
+    "options": [
+      "By using AWS PrivateLink.",
+      "By using IPsec VPN tunnels.",
+      "By using Secure Sockets Layer/Transport Layer Security (SSL/TLS).",
+      "By encrypting the data with a KMS key before sending it."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Communication with Amazon S3 endpoints occurs over HTTPS, which uses SSL/TLS to encrypt the data in transit between your client and the S3 service. This is the standard mechanism for protecting data on the wire. While you can pre-encrypt data (D), SSL/TLS is the default in-transit protection provided by the service itself."
+  },
+  {
+    "id": 7,
+    "question": "A security policy requires that the encryption keys used for an Amazon RDS database are stored in a dedicated, single-tenant hardware security module (HSM) under the company's exclusive control. Which KMS key store option meets this requirement?",
+    "options": [
+      "A standard KMS key store.",
+      "An AWS CloudHSM key store.",
+      "A KMS key with imported key material.",
+      "An external key store (XKS)."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "For customers who require keys to be stored in a single-tenant HSM, KMS provides the option to create a custom key store backed by an AWS CloudHSM cluster. This combines the integration and ease of use of KMS with the dedicated, customer-controlled HSM environment of CloudHSM."
+  },
+  {
+    "id": 8,
+    "question": "When you use SSE-C (Server-Side Encryption with Customer-Provided Keys) for an S3 object, what is AWS responsible for?",
+    "options": [
+      "Managing the encryption key and the encryption process.",
+      "Managing the encryption key, but the customer manages the encryption process.",
+      "Managing the encryption and decryption process, but not the key itself.",
+      "Neither the key nor the encryption process."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "With SSE-C, you provide the encryption key along with your PUT request. S3 uses that key to encrypt the object using AES-256 and then discards the key. When you want to retrieve the object, you must provide the exact same key in your GET request. AWS handles the encryption/decryption compute but does not store or manage your key."
+  },
+  {
+    "id": 9,
+    "question": "Which of the following statements about encrypting an Amazon RDS database instance is TRUE?",
+    "options": [
+      "You can only enable encryption when you first create the RDS instance.",
+      "Encryption can be enabled or disabled at any time on a running RDS instance.",
+      "To encrypt an existing unencrypted RDS instance, you must create a snapshot, copy the snapshot while enabling encryption, and then restore a new instance from the encrypted snapshot.",
+      "RDS encryption only encrypts the data at rest, not the automated backups."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "You cannot directly enable encryption on an existing, unencrypted RDS instance. The standard procedure is to take a snapshot of the unencrypted instance, create an encrypted copy of that snapshot, and then restore a new, encrypted RDS instance from the encrypted snapshot. This process also encrypts all future automated backups and read replicas."
+  },
+  {
+    "id": 10,
+    "question": "What is the purpose of a Key Policy in AWS KMS?",
+    "options": [
+      "To define the cryptographic algorithm used by the KMS key.",
+      "To control access to the KMS key, defining who can use it and for what actions.",
+      "To set an automatic rotation schedule for the key material.",
+      "To specify which AWS regions the key can be replicated to."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The key policy is the primary access control mechanism for a KMS key. It is a resource-based policy that you attach to the key itself. It defines which IAM users and roles (principals) are allowed to perform which KMS actions (e.g., `kms:Encrypt`, `kms:Decrypt`, `kms:GenerateDataKey`) on that specific key."
+  },
+  {
+    "id": 11,
+    "question": "An organization wants to ensure that all new EBS volumes created in their account are encrypted by default. What should they do?",
+    "options": [
+      "Create an IAM policy that denies the `ec2:CreateVolume` action if encryption is not specified.",
+      "Manually encrypt each volume after it is created.",
+      "Enable the \"EBS encryption by default\" setting for the AWS region.",
+      "This is not possible; encryption must be specified for each volume individually."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "AWS provides an account-level setting on a per-region basis called \"EBS encryption by default\". When this feature is enabled, any new EBS volume created in that region will be automatically encrypted using the default KMS key for EBS, even if encryption is not specified in the creation request."
+  },
+  {
+    "id": 12,
+    "question": "How does S3 Bucket Key feature improve the performance and cost of using SSE-KMS?",
+    "options": [
+      "It encrypts the entire bucket with a single data key.",
+      "It uses a more efficient encryption algorithm than AES-256.",
+      "It reduces the number of requests made to KMS by generating a short-lived bucket-level key that is used to create data keys for individual objects.",
+      "It caches KMS keys within the S3 service to reduce latency."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "With standard SSE-KMS, S3 must make a request to KMS for every single object to get a unique data key. The S3 Bucket Key feature reduces this traffic. S3 requests a temporary bucket-level key from KMS, and then uses that key within S3 to create the unique data keys for new objects. This significantly reduces the request load on KMS, lowering costs and improving performance."
+  },
+  {
+    "id": 13,
+    "question": "Which of the following are encrypted when you enable encryption for an Amazon RDS database? (Choose TWO)",
+    "options": [
+      "The data at rest on the underlying storage volume.",
+      "Data in transit between the application and the database.",
+      "Automated backups of the database.",
+      "SQL queries sent to the database.",
+      "The database instance's metadata."
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true,
+    "explanation": "RDS encryption protects data at rest. This includes the underlying EBS volume where the data is stored (A), as well as all automated backups, read replicas, and snapshots (C). Encryption for data in transit (B, D) is handled separately by configuring SSL/TLS for the database connection."
+  },
+  {
+    "id": 14,
+    "question": "A developer needs to encrypt a small amount of configuration data (less than 4KB) directly using AWS KMS without performing client-side encryption. Which KMS API call should be used?",
+    "options": [
+      "`GenerateDataKey`",
+      "`Encrypt`",
+      "`Decrypt`",
+      "`CreateKey`"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The `Encrypt` API call is designed for directly encrypting small amounts of data (up to 4 KB) using a KMS key. For larger amounts of data, the best practice is to use envelope encryption with the `GenerateDataKey` API call. `CreateKey` (D) is for creating a new KMS key."
+  },
+  {
+    "id": 15,
+    "question": "A company is using client-side encryption to protect data before uploading it to S3. They are using the AWS Encryption SDK. Where is the data encrypted?",
+    "options": [
+      "On the Amazon S3 service, just before being written to disk.",
+      "Within the AWS KMS service.",
+      "On the client application (e.g., an EC2 instance or an on-premises server) before the data is sent to S3.",
+      "By a Lambda function that triggers on every S3 upload."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The term \"client-side encryption\" means the encryption process happens on the client's end. The application uses a library like the AWS Encryption SDK to encrypt the data locally. The encrypted data (ciphertext) is then uploaded to S3. S3 stores the data as-is, unaware that it is encrypted."
+  },
+  {
+    "id": 16,
+    "question": "What is the primary benefit of enabling automatic key rotation in AWS KMS?",
+    "options": [
+      "It increases the cryptographic strength of the key.",
+      "It reduces the risk associated with a compromised key by limiting the amount of data encrypted under any single version of the key.",
+      "It allows the key to be used in multiple AWS regions.",
+      "It changes the key's ARN and alias."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The primary security benefit of key rotation is to limit the \"blast radius\" if a key were ever compromised. By automatically creating a new version of the key material each year, you limit the amount of data protected by any single version. This is a cryptographic best practice that reduces risk. It does not change the key's metadata like its ARN or alias (D), which allows for transparent use in applications."
+  },
+  {
+    "id": 17,
+    "question": "To enforce the use of SSL/TLS for connections to an Amazon RDS for MySQL database, what should you do?",
+    "options": [
+      "Enable RDS encryption at rest.",
+      "Configure the database instance's security group to only allow traffic on port 3306.",
+      "Require the `ssl` option in the database connection parameters for all users.",
+      "Install a certificate from AWS Certificate Manager on the RDS instance."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "RDS encryption at rest (A) is separate from encryption in transit. To enforce encrypted connections, you must configure the database itself. For MySQL, this typically involves setting the `require_secure_transport` parameter on the DB parameter group and ensuring users are created with the `REQUIRE SSL` option, which forces clients to connect using TLS/SSL."
+  },
+  {
+    "id": 18,
+    "question": "You are using SSE-KMS to encrypt an S3 bucket. A user with `s3:GetObject` permission for the bucket is unable to download an encrypted object. What is the most likely missing permission?",
+    "options": [
+      "`s3:Decrypt`",
+      "`kms:GenerateDataKey`",
+      "`kms:Decrypt`",
+      "`iam:PassRole`"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "To download an object encrypted with SSE-KMS, a user needs two permissions: `s3:GetObject` for the object itself, and `kms:Decrypt` for the specific KMS key that was used to encrypt the object's data key. Without the `kms:Decrypt` permission, the user can fetch the encrypted object from S3 but cannot ask KMS to decrypt its data key, making the object's content inaccessible."
+  },
+  {
+    "id": 19,
+    "question": "Which AWS service is used to create and manage public and private SSL/TLS certificates for use with AWS services like Elastic Load Balancer and CloudFront?",
+    "options": [
+      "AWS Key Management Service (KMS)",
+      "AWS Secrets Manager",
+      "AWS Certificate Manager (ACM)",
+      "AWS CloudHSM"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "AWS Certificate Manager (ACM) is the service specifically designed for provisioning, managing, and deploying public and private SSL/TLS certificates. It integrates seamlessly with services like ELB and CloudFront to simplify the process of enabling HTTPS for your applications."
+  },
+  {
+    "id": 20,
+    "question": "What is a key difference between a symmetric and an asymmetric KMS key?",
+    "options": [
+      "Symmetric keys can be used for both encryption and decryption, while asymmetric keys have separate public and private keys for these operations.",
+      "Symmetric keys are managed by AWS, while asymmetric keys must be managed by the customer.",
+      "Symmetric keys support automatic rotation, while asymmetric keys do not.",
+      "Symmetric keys can only be used in a single region."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "This is the fundamental difference. A symmetric key uses the same key for both encrypting and decrypting data. An asymmetric key pair consists of a public key (which you can share and is used for encryption) and a private key (which is kept secret in KMS and is used for decryption). KMS supports both types."
+  },
+  {
+    "id": 21,
+    "question": "A company wants to store their encryption keys in a system where they can directly verify the FIPS 140-2 Level 3 compliance of the hardware. Which AWS service provides this?",
+    "options": [
+      "AWS Key Management Service (KMS)",
+      "AWS Secrets Manager",
+      "AWS Shield",
+      "AWS CloudHSM"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "AWS CloudHSM provides hardware security modules (HSMs) in the AWS Cloud. The HSMs are FIPS 140-2 Level 3 validated. This service allows you to have a dedicated, single-tenant HSM environment where you have much more direct control over the hardware and key management compared to the multi-tenant KMS service."
+  },
+  {
+    "id": 22,
+    "question": "When you enable encryption on a new EBS volume, what is the performance impact?",
+    "options": [
+      "A significant increase in I/O latency.",
+      "A significant decrease in volume throughput.",
+      "A minimal impact on I/O latency and throughput.",
+      "It varies depending on the EC2 instance type."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Amazon EBS encryption is implemented using the hardware acceleration capabilities of modern EC2 instances (AES-NI). As a result, there is a minimal effect on the I/O latency and throughput of the volume. For most workloads, the performance impact is negligible."
+  },
+  {
+    "id": 23,
+    "question": "To protect data in transit for a web application running on EC2 instances behind an Application Load Balancer (ALB), where should the SSL/TLS certificate be installed?",
+    "options": [
+      "On each of the individual EC2 instances.",
+      "On the Application Load Balancer.",
+      "Within the AWS KMS service.",
+      "In the Route 53 hosted zone for the domain."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The standard and recommended architecture is to perform SSL/TLS termination at the load balancer. You install the SSL certificate on the ALB. The ALB then handles the decryption of incoming HTTPS traffic from clients and can forward the traffic to the backend EC2 instances over HTTP within your secure VPC."
+  },
+  {
+    "id": 24,
+    "question": "What is the purpose of an \"Alias\" in AWS KMS?",
+    "options": [
+      "It is the unique Amazon Resource Name (ARN) for the key.",
+      "It is a friendly name or display name that can be used to refer to a KMS key.",
+      "It is the policy document that controls access to the key.",
+      "It is a tag used for cost allocation."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "An alias is a user-friendly name that you can associate with a KMS key. Instead of referring to a key by its long, complex key ID or ARN, you can use the alias (e.g., `alias/my-app-key`) in your application code and IAM policies. This also makes key rotation easier, as you can just update the alias to point to a new key without changing your code."
+  },
+  {
+    "id": 25,
+    "question": "You are using client-side encryption with a KMS-managed master key. Your application is running on an EC2 instance. What is the correct sequence of API calls?",
+    "options": [
+      "Call `kms:Encrypt` with the data, then upload to S3.",
+      "Call `kms:GenerateDataKey`, use the plaintext key to encrypt data locally, upload the encrypted data and the encrypted data key to S3.",
+      "Upload plaintext data to S3, then call `kms:Encrypt` on the S3 object.",
+      "Call `kms:Decrypt` to get a data key, encrypt the data, then upload to S3."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "This sequence describes the envelope encryption process. The application first calls `kms:GenerateDataKey` which returns both a plaintext and an encrypted version of a new data key. The application uses the plaintext key to encrypt the large data object. It then uploads the resulting ciphertext and the *encrypted* data key to S3 for storage. The plaintext key is discarded."
+  },
+  {
+    "id": 26,
+    "question": "You need to provide an auditor with evidence that your KMS keys are being used as expected and only by authorized principals. Which AWS service would you use to get this information?",
+    "options": [
+      "AWS Trusted Advisor",
+      "AWS Config",
+      "AWS CloudTrail",
+      "Amazon Inspector"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "All calls made to the AWS KMS API are recorded as events in AWS CloudTrail. By analyzing your CloudTrail logs, you can see who used which key, from what IP address, on which resource, and at what time. This provides a detailed audit trail of all key usage."
+  },
+  {
+    "id": 27,
+    "question": "What is the default encryption method for a new Amazon S3 bucket?",
+    "options": [
+      "No encryption is enabled by default.",
+      "SSE-S3 is enabled by default.",
+      "SSE-KMS is enabled by default.",
+      "Client-side encryption is enabled by default."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "As of January 2023, Amazon S3 now automatically enables Server-Side Encryption with S3-Managed Keys (SSE-S3) as the base level of encryption for all new objects added to any bucket. This is the new default setting for all new buckets."
+  },
+  {
+    "id": 28,
+    "question": "Which of the following encryption keys can you, as a customer, directly access the key material for?",
+    "options": [
+      "An AWS managed KMS key (e.g., `aws/s3`).",
+      "A customer managed KMS key.",
+      "Key material imported into a KMS key.",
+      "The private key of an asymmetric key pair in KMS."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "In general, you can never export or view the plaintext key material of a KMS key. The exception is when you use the \"imported key material\" feature. In this case, you generate the key material yourself outside of AWS and then securely import it into a KMS key. You possess the original key material, but once imported, it cannot be exported from KMS."
+  },
+  {
+    "id": 29,
+    "question": "A company wants to encrypt objects in S3 but needs to use a different encryption key for each object. Which encryption method is most suitable for this?",
+    "options": [
+      "SSE-S3",
+      "SSE-KMS",
+      "SSE-C",
+      "S3 default bucket encryption."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Both SSE-KMS and client-side encryption use envelope encryption, which means every object gets its own unique data key. This data key is then encrypted by a master key. This provides object-level key separation. SSE-S3 also uses a similar mechanism, but with SSE-KMS (B), you have more control and visibility over the master keys used in this process."
+  },
+  {
+    "id": 30,
+    "question": "How can you enforce that all objects uploaded to an S3 bucket are encrypted using SSE-KMS?",
+    "options": [
+      "By using an S3 Access Point policy.",
+      "By using a bucket policy that denies `s3:PutObject` requests if the `x-amz-server-side-encryption` header is not set to `aws:kms`.",
+      "By enabling S3 default encryption on the bucket.",
+      "Both B and C are valid methods."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "You can enforce this in two primary ways. You can set the default encryption on the bucket to SSE-KMS (C), which automatically encrypts all new objects. For a more explicit, preventative control, you can also add a bucket policy (B) that explicitly denies any upload request that does not include the correct encryption header. Using both provides defense in depth."
+  },
+  {
+    "id": 31,
+    "question": "What does \"encryption at rest\" refer to?",
+    "options": [
+      "Encrypting data as it travels over a network.",
+      "Encrypting data that is stored on a physical medium like a disk or SSD.",
+      "Encrypting data that is currently being processed in an EC2 instance's memory.",
+      "Encrypting the AWS Management Console password."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "\"Encryption at rest\" is a security term for the protection of data when it is not in transit and is stored on a persistent storage device. This includes data on EBS volumes, in S3 buckets, in RDS databases, etc."
+  },
+  {
+    "id": 32,
+    "question": "You are using an Application Load Balancer with an HTTPS listener. You want to encrypt the traffic between the load balancer and the backend EC2 instances. What is this practice called?",
+    "options": [
+      "SSL Termination",
+      "End-to-end Encryption",
+      "SSL Offloading",
+      "In-transit Encryption"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "This configuration is known as end-to-end encryption. The first leg of encryption is from the client to the load balancer (SSL termination). The second leg of encryption is from the load balancer to the backend instances. When both legs are encrypted, it provides end-to-end protection for the data."
+  },
+  {
+    "id": 33,
+    "question": "A KMS key policy contains the following statement. What is its effect? `{ \"Sid\": \"Allow use of the key\", \"Effect\": \"Allow\", \"Principal\": {\"AWS\": \"arn:aws:iam::111122223333:root\"}, \"Action\": \"kms:*\", \"Resource\": \"*\" }`",
+    "options": [
+      "It allows any IAM user in account 111122223333 to perform any action on the key.",
+      "It gives full control over the key to the root user of account 111122223333, and allows the account to delegate permissions to its IAM users and roles.",
+      "It only allows the root user to use the key and no other IAM users.",
+      "It allows any AWS account to use the key."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Granting permissions to the account root principal (`\"arn:aws:iam::ACCOUNT_ID:root\"`) in a key policy is the standard way to enable centralized control. It makes the account's root user the key administrator and, importantly, allows IAM policies within that account to be used to grant permissions for the key. Without this, only the key policy could be used to grant permissions."
+  },
+  {
+    "id": 34,
+    "question": "Which type of KMS key is managed and used exclusively by an AWS service on your behalf?",
+    "options": [
+      "Customer Managed Key",
+      "AWS Managed Key",
+      "AWS Owned Key",
+      "Imported Key"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "AWS Managed Keys are KMS keys in your account that are created, managed, and used on your behalf by an integrated AWS service (e.g., `aws/rds`, `aws/s3`). You can view their policies and audit their use in CloudTrail, but you cannot delete them or change their key policies. AWS Owned Keys (C) are a separate category managed entirely by AWS and not visible in your account."
+  },
+  {
+    "id": 35,
+    "question": "An EBS snapshot is taken from an unencrypted EBS volume. By default, is the snapshot encrypted?",
+    "options": [
+      "Yes, all snapshots are encrypted by default.",
+      "No, a snapshot of an unencrypted volume is unencrypted by default.",
+      "It depends on the account's \"EBS encryption by default\" setting.",
+      "Yes, it is encrypted using a default AWS managed key."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The encryption state of an EBS snapshot is determined by the encryption state of the volume it was created from. A snapshot of an unencrypted volume will be unencrypted. A snapshot of an encrypted volume will be encrypted with the same key. You can, however, create an encrypted copy of an unencrypted snapshot."
+  },
+  {
+    "id": 36,
+    "question": "What is the primary benefit of using a VPC Endpoint for an AWS service like KMS?",
+    "options": [
+      "It reduces the cost of making KMS API calls.",
+      "It allows you to use KMS from an on-premises data center.",
+      "It keeps all traffic between your VPC and the KMS service on the private AWS network, enhancing security.",
+      "It enables automatic rotation of KMS keys."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A VPC Endpoint (specifically, an Interface Endpoint for KMS) provides a private and secure connection to the KMS API. It creates a network interface with a private IP in your VPC, and all API calls are routed through it, avoiding the public internet. This improves security and can provide more reliable network performance."
+  },
+  {
+    "id": 37,
+    "question": "You need to share an encrypted EBS snapshot with another AWS account. The snapshot was encrypted with a customer-managed KMS key. What must you do to allow the other account to use the snapshot?",
+    "options": [
+      "Simply share the snapshot; the permissions are inherited.",
+      "Create an IAM role in your account that the other account can assume.",
+      "Modify the KMS key's policy to allow the other account's root principal to use the key.",
+      "You cannot share EBS snapshots that are encrypted with a customer-managed key."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "To share an encrypted resource, you must share two things: the resource itself (the snapshot) and the key that encrypted it. You modify the KMS key policy to add a statement that allows the target AWS account to perform necessary actions (like `kms:DescribeKey`, `kms:ReEncrypt*`). After sharing both the snapshot and the key, the target account can copy the snapshot, re-encrypting it with their own key in the process."
+  },
+  {
+    "id": 38,
+    "question": "What is the purpose of an IAM \"condition key\" like `kms:EncryptionContext` in a policy?",
+    "options": [
+      "To check if the data being encrypted is larger than 4KB.",
+      "To enforce that a specific key-value pair is included in the encryption context of a KMS API call.",
+      "To specify the region where the encryption must take place.",
+      "To require that the user is authenticated with MFA."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Encryption context is an optional set of key-value pairs that you can pass with a KMS request. It provides additional authenticated data (AAD). You can use IAM policy conditions to check for the presence or value of these pairs. This is a powerful security control to ensure that a key is only used in the specific context you intend (e.g., for a specific application or resource)."
+  },
+  {
+    "id": 39,
+    "question": "To meet compliance requirements, a company must be able to delete the encryption key material for a specific set of data on demand. Which is the best option in KMS?",
+    "options": [
+      "Use an AWS Managed Key, as AWS will delete it upon request.",
+      "Use a Customer Managed Key with imported key material, then delete the key material.",
+      "Use a Customer Managed Key and delete the key.",
+      "Use SSE-S3 encryption."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "When you use a KMS key with imported key material, you have the option to manually delete the imported key material from the key at any time. This renders any data encrypted under that key permanently unrecoverable. This is a more direct and immediate action than scheduling a key for deletion (which has a waiting period) and meets the requirement to delete only the key material."
+  },
+  {
+    "id": 40,
+    "question": "Which of the following services are integrated with AWS Certificate Manager (ACM) for deploying SSL/TLS certificates? (Choose TWO)",
+    "options": [
+      "Amazon EC2 Instances",
+      "Amazon CloudFront",
+      "Amazon Elastic Load Balancing (ELB)",
+      "Amazon RDS",
+      "AWS Lambda"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true,
+    "explanation": "AWS Certificate Manager is designed for easy integration with AWS services that terminate SSL/TLS connections at the edge of the network. The primary integrations are with Amazon CloudFront distributions and Elastic Load Balancers (Application, Network, and Classic). You cannot deploy an ACM certificate directly onto an EC2 instance or an RDS database."
+  },
+  {
+    "id": 41,
+    "question": "A key policy grants permissions to a user. The user's IAM policy explicitly denies the same KMS permissions. What is the result when the user tries to use the key?",
+    "options": [
+      "The user can use the key because the key policy allows it.",
+      "The user cannot use the key because an explicit deny in any policy takes precedence.",
+      "The user can use the key, but only if they assume a role first.",
+      "The result depends on which policy was last updated."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The IAM evaluation logic is consistent across services. If an explicit `Deny` exists in any applicable policy (identity-based, resource-based like a key policy, etc.), it will always override any `Allow` statements. Therefore, the deny in the IAM policy will prevent the user from accessing the key."
+  },
+  {
+    "id": 42,
+    "question": "What is the waiting period when you schedule a customer-managed KMS key for deletion, and can it be changed?",
+    "options": [
+      "24 hours, and it cannot be changed.",
+      "30 days, and it can be reduced to a minimum of 7 days.",
+      "7 to 30 days, configurable by the user.",
+      "There is no waiting period; deletion is immediate."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "To prevent accidental or malicious deletion of critical keys, KMS enforces a mandatory waiting period when you schedule a key for deletion. You can configure this period to be anywhere from a minimum of 7 days to a maximum of 30 days. The default is 30 days. During this period, you can cancel the deletion."
+  },
+  {
+    "id": 43,
+    "question": "You are encrypting data using the AWS Encryption SDK and envelope encryption. What is stored alongside the encrypted data (the ciphertext)?",
+    "options": [
+      "The plaintext data key.",
+      "The KMS master key's ARN.",
+      "The encrypted data key and other metadata.",
+      "A copy of the KMS master key material."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The output of the encryption process (the \"ciphertext message\") produced by the SDK includes the encrypted data itself, a copy of the encrypted data key(s), the algorithm identifier, and the encryption context. This allows the SDK's decrypt function to have all the information it needs to request the decryption of the data key from KMS."
+  },
+  {
+    "id": 44,
+    "question": "You need to encrypt the connection between your application and an RDS for PostgreSQL database. What should you do?",
+    "options": [
+      "Download the AWS root CA certificate and reference it in your application's connection string.",
+      "Enable KMS encryption on the RDS instance.",
+      "Configure the database security group to allow only encrypted traffic.",
+      "Nothing, all RDS connections are encrypted by default."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "To establish a secure, encrypted connection to an RDS instance using SSL/TLS, the client application needs to trust the certificate authority that issued the server's certificate. AWS provides a root CA certificate that you can download. Your application's database driver should be configured to use this certificate to validate the server's identity and establish an encrypted channel."
+  },
+  {
+    "id": 45,
+    "question": "What happens when a KMS key that was used to encrypt data is disabled?",
+    "options": [
+      "The key and all data encrypted with it are immediately deleted.",
+      "You can no longer use the key for new encryption operations, but you can still decrypt existing data.",
+      "You can no longer use the key for either encryption or decryption until it is re-enabled.",
+      "The key is automatically scheduled for deletion."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Disabling a KMS key has an immediate effect. It prevents the key from being used in any cryptographic operation. Any attempt to encrypt new data or decrypt existing data protected by that key will fail until the key is re-enabled. This is a useful temporary control to deny access to data."
+  },
+  {
+    "id": 46,
+    "question": "Which S3 server-side encryption method gives you the most direct control over key rotation policies and provides a detailed audit trail of key usage in CloudTrail?",
+    "options": [
+      "Server-Side Encryption with S3-Managed Keys (SSE-S3)",
+      "Server-Side Encryption with AWS KMS-Managed Keys (SSE-KMS)",
+      "Server-Side Encryption with Customer-Provided Keys (SSE-C)",
+      "All of the above provide the same level of control."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "When you use SSE-KMS, the encryption operations involve a customer-managed or AWS-managed key in your KMS account. This means you can control the key's policies, enable automatic rotation, and, critically, all API calls to KMS (like `Decrypt` when an object is downloaded) are logged in CloudTrail, giving you a complete audit trail. SSE-S3 and SSE-C operations are not logged in the same way in CloudTrail."
+  },
+  {
+    "id": 47,
+    "question": "A snapshot of an encrypted EBS volume is created. The original volume was encrypted with KMS key \"Key-A\". The snapshot is then copied to another region. What must you specify during the copy operation?",
+    "options": [
+      "Nothing, the snapshot is copied and remains encrypted with Key-A.",
+      "A KMS key in the destination region to be used to re-encrypt the snapshot copy.",
+      "An IAM role that has permission to access Key-A.",
+      "The password for Key-A."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "KMS keys are regional resources. You cannot use a key from one region to encrypt a resource in another. When you copy an encrypted snapshot to a different region, you must specify a KMS key that exists in that destination region. The copy process involves decrypting the data using the source key and immediately re-encrypting it with the destination key."
+  },
+  {
+    "id": 48,
+    "question": "What is \"in-transit encryption\"?",
+    "options": [
+      "The encryption of data on removable media like USB drives.",
+      "The encryption of data as it is being processed by a CPU.",
+      "The encryption of data as it travels across a network.",
+      "The encryption of data stored in a database."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "In-transit encryption, also known as data in motion, refers to the protection of data as it is being transmitted between two systems, such as between a user's browser and a web server, or between an application server and a database. This is typically accomplished using protocols like TLS/SSL or IPsec."
+  },
+  {
+    "id": 49,
+    "question": "An application running on-premises needs to use AWS KMS to generate data keys for client-side encryption. The on-premises network is connected to a VPC via AWS Direct Connect. How can the application securely call the KMS API?",
+    "options": [
+      "By routing the traffic over the public internet to the regional KMS endpoint.",
+      "By creating an Interface VPC Endpoint for KMS and accessing it over the Direct Connect connection.",
+      "By installing a CloudHSM appliance on-premises.",
+      "This is not possible; KMS can only be called from within AWS."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "By creating an Interface VPC Endpoint for KMS, you expose the KMS service as a private endpoint within your VPC. Because your on-premises network is connected to the VPC via Direct Connect, your on-premises application can now resolve the KMS endpoint's private DNS name and send API calls securely over the private Direct Connect link."
+  },
+  {
+    "id": 50,
+    "question": "Which of the following is a characteristic of an AWS Managed KMS Key (e.g., `aws/ebs`)?",
+    "options": [
+      "You can edit its key policy.",
+      "You can enable or disable its automatic rotation schedule.",
+      "You can view its key policy but cannot edit it.",
+      "You can import your own key material into it."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "AWS Managed Keys are created and managed by AWS services for use in your account. You have limited control over them. You can view their key policy (which is managed by the service) and track their usage in CloudTrail, but you cannot edit the policy, change the rotation schedule, or delete the key."
+  },
+  {
+    "id": 51,
+    "question": "You are using SSE-C to upload an object to S3. What happens if you lose the encryption key you provided?",
+    "options": [
+      "You can ask AWS support to recover the key for you.",
+      "You can retrieve the key from AWS KMS.",
+      "The object is permanently and irretrievably lost.",
+      "S3 automatically converts the encryption to SSE-S3."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "With SSE-C, AWS never stores your key. It uses it for the encryption operation and then immediately discards it. The responsibility for managing and protecting the key is entirely yours. If you lose the key, there is no mechanism to decrypt the object, and the data is lost forever."
+  },
+  {
+    "id": 52,
+    "question": "You want to view all the customer-managed KMS keys in your account and see who last used them. What is the most efficient way to do this?",
+    "options": [
+      "Analyze AWS CloudTrail logs for the past 90 days.",
+      "Use the AWS IAM Access Advisor.",
+      "Look at the \"Last accessed\" information in the AWS KMS console.",
+      "Use the AWS Config dashboard."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "While the KMS console might show some usage information, the definitive and detailed record of all API activity is AWS CloudTrail. You would need to filter your CloudTrail logs for KMS API calls (like `Encrypt`, `Decrypt`, `GenerateDataKey`) to build a complete picture of key usage. Tools like Amazon Athena can be used to query these logs efficiently."
+  },
+  {
+    "id": 53,
+    "question": "Which of the following is a valid use case for an asymmetric KMS key pair?",
+    "options": [
+      "Encrypting an EBS volume.",
+      "Encrypting an S3 bucket using default encryption.",
+      "A digital signing application where you sign data with the private key and others verify with the public key.",
+      "Encrypting an RDS database."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Asymmetric key pairs are designed for use cases like digital signing or public key encryption. In a signing scenario, your application would call the KMS `Sign` API, and KMS would use the private key (which never leaves KMS) to create a signature. You can then distribute the public key to anyone who needs to verify the signature. Integrated services like EBS, S3, and RDS use symmetric KMS keys for encryption."
+  },
+  {
+    "id": 54,
+    "question": "You have an S3 bucket that must store objects that are encrypted with different KMS keys depending on the sensitivity of the data. How can you achieve this?",
+    "options": [
+      "This is not possible; a bucket can only have one KMS key.",
+      "Create different prefixes (folders) in the bucket and apply different bucket policies to each.",
+      "In the `s3:PutObject` API call for each object, specify the desired KMS key ARN in the `x-amz-server-side-encryption-aws-kms-key-id` header.",
+      "Use S3 Batch Operations to re-encrypt the objects after they are uploaded."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "SSE-KMS is applied at the object level. Even if a bucket has a default KMS key, you can override it for any specific upload. By including the `x-amz-server-side-encryption-aws-kms-key-id` header in your PUT request, you can specify exactly which KMS key should be used to encrypt that particular object."
+  },
+  {
+    "id": 55,
+    "question": "What is the purpose of using encryption context in an `Encrypt` call to KMS?",
+    "options": [
+      "It encrypts the context along with the data.",
+      "It provides additional authenticated data (AAD) that adds a layer of integrity checking.",
+      "It tells KMS which IAM user is making the call.",
+      "It specifies the encryption algorithm to be used."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Encryption context is not encrypted, but it is cryptographically bound to the ciphertext. When you decrypt, you must pass the exact same encryption context. If the context provided during decryption does not match the one used during encryption, the decryption will fail. This acts as an integrity check and ensures the key is only used in the intended context."
+  },
+  {
+    "id": 56,
+    "question": "A web application uses an Application Load Balancer. To secure the connection from clients to the ALB, you have provisioned a certificate using AWS Certificate Manager (ACM). What is a major benefit of using an ACM certificate?",
+    "options": [
+      "ACM certificates provide a higher level of encryption than other certificates.",
+      "ACM can automatically renew the certificate before it expires.",
+      "ACM certificates can be exported and used on any web server.",
+      "ACM certificates do not require a domain name."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A key feature and benefit of using public certificates from ACM is managed renewal. As long as the certificate is in use with an integrated service (like an ELB or CloudFront) and your domain validation is still in place, ACM will automatically renew the certificate before it expires, without any manual intervention required."
+  },
+  {
+    "id": 57,
+    "question": "When you create a customer-managed KMS key, what is the default state of automatic key rotation?",
+    "options": [
+      "It is enabled and set to rotate every 90 days.",
+      "It is enabled and set to rotate every 365 days.",
+      "It is disabled by default.",
+      "It must be configured during key creation and cannot be changed."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "For customer-managed keys (CMKs), automatic key rotation is disabled by default. You must explicitly opt-in to enable it. Once enabled, KMS will rotate the key material once every 365 days."
+  },
+  {
+    "id": 58,
+    "question": "You need to encrypt a 10 GB file before uploading it to S3. Which KMS operation is the most appropriate for your client-side encryption logic?",
+    "options": [
+      "`kms:Encrypt`",
+      "`kms:ReEncrypt`",
+      "`kms:GenerateDataKey`",
+      "`kms:CreateGrant`"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The `kms:Encrypt` API can only handle up to 4 KB of data. For large objects, you must use envelope encryption. The correct operation is `kms:GenerateDataKey`, which provides a unique data key to encrypt the 10 GB file locally on your client. The encrypted data key is then stored with the encrypted file."
+  },
+  {
+    "id": 59,
+    "question": "An S3 bucket policy contains a condition that checks for `s3:x-amz-server-side-encryption`. What is the purpose of this condition?",
+    "options": [
+      "To enforce that all objects are stored in a specific storage class.",
+      "To enforce that all objects are encrypted at rest using a specific server-side encryption method.",
+      "To check if the user is accessing the bucket from a specific IP address.",
+      "To require an MFA token for all uploads."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "This S3-specific condition key allows you to check the value of the server-side encryption header in a request. You can use it in a bucket policy to deny uploads that do not have the header set to a specific value, such as `AES256` (for SSE-S3) or `aws:kms` (for SSE-KMS), thereby enforcing encryption."
+  },
+  {
+    "id": 60,
+    "question": "Which of the following are valid ways to secure data in transit when connecting to an EC2 instance? (Choose TWO)",
+    "options": [
+      "Using the Secure Shell (SSH) protocol.",
+      "Encrypting the EBS volume attached to the instance.",
+      "Using the Remote Desktop Protocol (RDP) with network-level authentication.",
+      "Attaching a security group that allows all traffic.",
+      "Enabling detailed monitoring for the instance."
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true,
+    "explanation": "SSH (for Linux) and RDP (for Windows) are protocols used to remotely manage instances. Both protocols establish an encrypted tunnel between the client and the server, protecting the data in transit. EBS encryption (B) protects data at rest. A permissive security group (D) reduces security. Monitoring (E) is for performance, not encryption."
+  },
+  {
+    "id": 61,
+    "question": "You've been given an encrypted S3 object and an encrypted data key. You also have IAM permissions to use a specific KMS key. Which KMS API call do you need to make to begin the decryption process?",
+    "options": [
+      "`Encrypt`",
+      "`Decrypt`",
+      "`GenerateDataKey`",
+      "`ReEncrypt`"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The first step in decrypting data that was encrypted using envelope encryption is to decrypt the data key. You would make a `Decrypt` API call to KMS, providing the encrypted data key. If you have the correct permissions, KMS will use the master key to decrypt the data key and return the plaintext version to you. You then use this plaintext key to decrypt the main object."
+  },
+  {
+    "id": 62,
+    "question": "A company's security policy states that developers should not have access to production encryption keys. However, developers need to use these keys to encrypt data for the production environment. How can this be achieved using KMS?",
+    "options": [
+      "Give developers `kms:Encrypt` permission but deny `kms:Decrypt` permission on the production key.",
+      "Share the production key's material with the developers.",
+      "This is not possible; users who can encrypt can always decrypt.",
+      "Create an IAM role for the production application and have developers assume the role."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "KMS permissions are granular. You can create an IAM policy that allows a user or role to perform only the `kms:Encrypt`, `kms:ReEncrypt*`, and `kms:GenerateDataKey*` actions. By explicitly denying the `kms:Decrypt` action, you allow developers to encrypt data with the key without giving them the ability to decrypt any data protected by that same key."
+  },
+  {
+    "id": 63,
+    "question": "Which of the following are characteristics of Server-Side Encryption with S3-Managed Keys (SSE-S3)? (Choose TWO)",
+    "options": [
+      "It uses the AES-256 encryption standard.",
+      "You must create and manage the master keys in AWS KMS.",
+      "There is an additional charge for each encryption request.",
+      "It provides a baseline level of encryption with minimal configuration.",
+      "You must provide the encryption key with each request."
+    ],
+    "correctAnswers": [
+      0,
+      3
+    ],
+    "multiple": true,
+    "explanation": "SSE-S3 is designed to be a simple, no-cost way to encrypt data. It uses the strong AES-256 algorithm (A) and is applied as the default for all new S3 objects, requiring no configuration (D). You do not manage the keys (B), there is no extra charge (C), and you do not provide the key (E)."
+  },
+  {
+    "id": 64,
+    "question": "When using an Application Load Balancer, what is a \"Security Policy\" in the context of an HTTPS listener?",
+    "options": [
+      "An IAM policy that defines who can modify the listener.",
+      "A collection of SSL/TLS ciphers and protocols that the load balancer uses to negotiate secure connections with clients.",
+      "A security group attached to the load balancer.",
+      "A policy that requires all backend targets to use encryption."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The security policy for an ELB listener determines which SSL/TLS protocols (e.g., TLS 1.2, TLS 1.3) and ciphers (e.g., AES256-GCM-SHA384) are supported for the client-facing connection. AWS provides predefined security policies with varying levels of security and compatibility."
+  },
+  {
+    "id": 65,
+    "question": "If you enable encryption on an Amazon EFS (Elastic File System) file system, how is the data encrypted?",
+    "options": [
+      "Using an SSL/TLS certificate.",
+      "Using an AWS KMS key.",
+      "Using a key provided by the customer with each file write.",
+      "EFS does not support encryption at rest."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Amazon EFS integrates with AWS KMS to provide encryption at rest. When you create a new file system, you can enable encryption. EFS then uses an AWS KMS key (either `aws/elasticfilesystem` or a customer-managed key) to encrypt all data and metadata written to the file system."
+  },
+  {
+    "id": 66,
+    "question": "What is the primary purpose of a KMS grant?",
+    "options": [
+      "To create a new KMS key.",
+      "To allow long-term, cross-account access to a key.",
+      "To delegate temporary, specific permissions for a KMS key to an AWS principal, often used by services on your behalf.",
+      "To pay for KMS usage."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A grant is a policy instrument that gives an AWS principal temporary permission to use a KMS key. They are often used by AWS services (like S3 or EBS) to get the permissions they need to use a key on your behalf for a specific task (e.g., encrypting an object). Grants are an alternative to key policies and are ideal for programmatic, temporary delegation."
+  },
+  {
+    "id": 67,
+    "question": "You are creating a new RDS database from an encrypted snapshot. Can the new database be unencrypted?",
+    "options": [
+      "Yes, you can choose to disable encryption during the restore process.",
+      "No, a database restored from an encrypted snapshot must also be encrypted.",
+      "Yes, but only if you have the `rds:RemoveEncryption` IAM permission.",
+      "No, unless you first export the data to S3 and re-import it."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "AWS enforces that the security posture cannot be weakened during a restore operation. If a snapshot is encrypted, any database instance created from it must also be encrypted. You can choose to encrypt it with a different key, but you cannot remove encryption."
+  },
+  {
+    "id": 68,
+    "question": "You are using a symmetric customer-managed KMS key. Who is responsible for the key material?",
+    "options": [
+      "Only you, the customer, are responsible.",
+      "Only AWS is responsible.",
+      "AWS is responsible for generating and managing the key material within the HSM.",
+      "It is a shared responsibility; you must back up the key material."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "For a standard customer-managed key, AWS is responsible for the entire lifecycle of the key material. It is generated securely inside the KMS Hardware Security Modules (HSMs), used within the HSMs, and is never exposed in plaintext outside of them. You control access to the key via policies, but AWS manages the underlying material."
+  },
+  {
+    "id": 69,
+    "question": "An EC2 instance needs to retrieve a secret (like a database password) to connect to an RDS database. What is the most secure way to provide this secret to the instance, ensuring it is encrypted at rest and in transit?",
+    "options": [
+      "Store the secret in a text file on an encrypted EBS volume.",
+      "Hardcode the secret in the application's source code.",
+      "Store the secret in AWS Secrets Manager and grant the instance's IAM role permission to retrieve it.",
+      "Pass the secret to the instance via EC2 User Data."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "AWS Secrets Manager is the purpose-built service for this scenario. It stores secrets encrypted at rest using AWS KMS. An application running on EC2 can be given an IAM role that grants it permission to call the Secrets Manager API. The retrieval of the secret over the API is encrypted in transit using TLS. This avoids hardcoding secrets and provides a manageable, auditable solution."
+  },
+  {
+    "id": 70,
+    "question": "You have a CloudFront distribution serving content from an S3 bucket. You want to ensure that the connection between clients and CloudFront is encrypted. What should you configure?",
+    "options": [
+      "Enable default encryption on the S3 bucket.",
+      "Configure the CloudFront distribution with an SSL/TLS certificate from ACM.",
+      "Use a signed URL to access the content.",
+      "Configure the CloudFront distribution to use an OAI (Origin Access Identity)."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "To enable HTTPS for your custom domain in CloudFront, you must attach an SSL/TLS certificate. The easiest way to do this is by requesting a public certificate from AWS Certificate Manager (ACM) and associating it with your CloudFront distribution in the viewer certificate settings."
+  },
+  {
+    "id": 71,
+    "question": "What is a multi-region KMS key?",
+    "options": [
+      "A key that can be used to encrypt resources in any AWS region.",
+      "A set of interoperable KMS keys with the same key ID and key material that are replicated to different AWS regions.",
+      "A key that is stored in a central region and accessed globally.",
+      "A key that is automatically backed up to multiple regions."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Multi-region keys are a KMS feature designed for client-side encryption scenarios where you need to encrypt data in one region and decrypt it in another. You create a primary multi-region key and then replicate it to other regions. The resulting keys share the same key ID and material, allowing ciphertext from one region to be decrypted in another without making cross-region API calls."
+  },
+  {
+    "id": 72,
+    "question": "You have enabled encryption for an SQS queue using an AWS-managed KMS key (`alias/aws/sqs`). Who needs permission to use this key for messages to be sent and received?",
+    "options": [
+      "Only the message producers need `kms:GenerateDataKey` permission.",
+      "Both the message producers (`kms:GenerateDataKey`) and consumers (`kms:Decrypt`) need permissions.",
+      "Only the SQS service itself needs permission.",
+      "No one needs KMS permissions, as it's an AWS-managed key."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Even when using an AWS-managed key, the principals (users or roles) that are sending and receiving messages must have the appropriate KMS permissions. A principal sending a message needs `kms:GenerateDataKey` and `kms:Encrypt` permissions to encrypt the message. A principal receiving a message needs `kms:Decrypt` permission to read its contents."
+  },
+  {
+    "id": 73,
+    "question": "Which of the following is NOT a benefit of using envelope encryption?",
+    "options": [
+      "It reduces the need to protect the master key, as it is only used once.",
+      "It combines the performance benefits of symmetric encryption with the strong access controls of a managed master key.",
+      "It allows you to encrypt data larger than the 4 KB limit of the direct KMS `Encrypt` API.",
+      "It provides a unique encryption key for every piece of data, limiting the impact of a compromised data key."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "Envelope encryption absolutely does not reduce the need to protect the master key. The security of the entire system relies on the master key in KMS being secure and well-protected. The other statements are all key benefits of the envelope encryption pattern."
+  },
+  {
+    "id": 74,
+    "question": "A company wants to encrypt an RDS for SQL Server database and needs to support Transparent Data Encryption (TDE). How can this be integrated with AWS services?",
+    "options": [
+      "RDS for SQL Server does not support TDE in AWS.",
+      "By using AWS KMS to manage the keys that SQL Server uses for TDE.",
+      "By using AWS Certificate Manager to issue a certificate for TDE.",
+      "By storing the TDE keys in AWS Secrets Manager."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Amazon RDS for SQL Server supports Transparent Data Encryption (TDE) and is integrated with AWS KMS. You can select a KMS key, and RDS will use it to protect the Database Encryption Key (DEK) that SQL Server uses to perform the TDE. This provides a managed and auditable solution for TDE key protection."
+  },
+  {
+    "id": 75,
+    "question": "What is the best way to secure data in transit between a CloudFront distribution and a custom origin server (e.g., an EC2 instance)?",
+    "options": [
+      "By configuring the origin to require HTTPS connections from CloudFront.",
+      "By using an Origin Access Identity (OAI).",
+      "By using a Lambda@Edge function to encrypt the data.",
+      "By using AWS Shield Advanced."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "To protect the connection between CloudFront and your origin (the \"backend\" connection), you should install an SSL/TLS certificate on your origin server and configure your CloudFront distribution's origin settings to use \"HTTPS Only\" for the origin protocol policy. This ensures the data is encrypted on both halves of its journey."
+  },
+  {
+    "id": 76,
+    "question": "You have an unencrypted S3 bucket with millions of existing objects. You have just enabled default encryption using SSE-KMS. What is the encryption status of the existing objects?",
+    "options": [
+      "They are all automatically encrypted with the new default key.",
+      "They remain unencrypted.",
+      "They are scheduled for encryption, which will happen in the background over several hours.",
+      "They are encrypted using SSE-S3 instead."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Enabling default encryption on a bucket only affects new objects that are uploaded after the setting is applied. It does not retroactively change the encryption status of any objects that already exist in the bucket. To encrypt existing objects, you would need to run a copy job (e.g., using S3 Batch Operations) to copy them in place."
+  },
+  {
+    "id": 77,
+    "question": "What is the purpose of the `kms:ReEncrypt` permission?",
+    "options": [
+      "To allow a user to rotate a KMS key.",
+      "To allow a user to decrypt data with one key and immediately re-encrypt it with another key, without exposing the plaintext data.",
+      "To allow a user to re-encrypt an object that was already encrypted.",
+      "To allow a user to change the encryption context of an encrypted object."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The `ReEncrypt` operation is an efficient server-side operation that decrypts ciphertext and then re-encrypts it under a new key. The key benefit is that the plaintext data is never returned to the calling client. This is useful for tasks like changing the key an object is encrypted with, such as when copying an encrypted EBS snapshot to another region."
+  },
+  {
+    "id": 78,
+    "question": "An EC2 instance needs to connect to an RDS database using SSL/TLS. The security group for the RDS instance allows traffic on port 3306 from the EC2 instance's security group. The connection still fails. What is a likely network-level issue?",
+    "options": [
+      "The EC2 instance does not have the AWS root CA certificate.",
+      "The RDS database does not have encryption at rest enabled.",
+      "The Network ACL on either the EC2 or RDS subnet is blocking the traffic.",
+      "The IAM role on the EC2 instance is missing the `rds-connect` permission."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "While application-level configuration (A) is necessary, a common reason for any failed connection is a network block. If the security groups are correctly configured, the next place to check is the stateless Network ACLs. The NACL for the EC2 subnet (outbound) or the RDS subnet (inbound) could be blocking the traffic on port 3306."
+  },
+  {
+    "id": 79,
+    "question": "Which of these is a good use case for AWS Secrets Manager over storing a secret as a parameter in AWS Systems Manager Parameter Store?",
+    "options": [
+      "Storing a plain text configuration string.",
+      "Storing a small binary file.",
+      "Storing database credentials that need to be automatically rotated on a schedule.",
+      "Storing a value that is updated multiple times per second."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "While both services can securely store secrets, a key feature of AWS Secrets Manager is its ability to integrate with services like RDS to automatically rotate credentials. It can change the database user's password on a schedule and update the stored secret accordingly, without manual intervention."
+  },
+  {
+    "id": 80,
+    "question": "When you use AWS KMS, which part of the encrypted data is logged in CloudTrail?",
+    "options": [
+      "The full plaintext of the data.",
+      "The full ciphertext of the data.",
+      "Only the encryption context and information about the API call.",
+      "The first 1KB of the plaintext data for auditing."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "For security reasons, CloudTrail never logs the sensitive data (plaintext or ciphertext) that is part of a KMS API call. It logs the metadata about the request, such as the caller's identity, the key ARN, the source IP, and, importantly, the encryption context, which is very useful for auditing."
+  },
+  {
+    "id": 81,
+    "question": "A company uses a third-party SaaS application that needs to write encrypted data into their S3 bucket. The company wants the SaaS provider to handle the encryption but does not want to share any of its own encryption keys with the provider. Which method should be used?",
+    "options": [
+      "The company creates an IAM user for the SaaS provider with `s3:PutObject` and `kms:Encrypt` permissions.",
+      "The SaaS provider encrypts the data client-side using its own master key.",
+      "The company requires the SaaS provider to use Server-Side Encryption with Customer-Provided Keys (SSE-C).",
+      "The company enables default SSE-S3 encryption on the bucket."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "If the company does not want to share any keys or grant any KMS permissions, the only option is for the SaaS provider to perform client-side encryption. The provider would use their own key management system to encrypt the data before uploading the ciphertext to the company's S3 bucket."
+  },
+  {
+    "id": 82,
+    "question": "Which statement accurately describes the relationship between AWS KMS and AWS CloudHSM?",
+    "options": [
+      "They are two names for the same service.",
+      "KMS is a multi-tenant service, while CloudHSM provides single-tenant, dedicated HSMs.",
+      "KMS is used for encrypting data in transit, while CloudHSM is for data at rest.",
+      "You must use CloudHSM in order to use KMS."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "This is the core difference. KMS is a highly available, multi-tenant service where your keys are protected by HSMs shared across many customers (though logically isolated). CloudHSM gives you your own dedicated HSM cluster, providing a higher level of isolation and control that some compliance standards require. You can also configure KMS to use your CloudHSM cluster as a custom key store."
+  },
+  {
+    "id": 83,
+    "question": "You are encrypting an S3 object using SSE-KMS with a customer-managed key. Which of the following does S3 store with the object?",
+    "options": [
+      "The plaintext data key used to encrypt the object.",
+      "A copy of the customer-managed KMS key.",
+      "The encrypted data key.",
+      "The key policy of the KMS key."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Following the envelope encryption model, S3 calls KMS to get a unique data key. It uses the plaintext data key to encrypt the object, then discards it. It stores the *encrypted* version of the data key as metadata alongside the encrypted object."
+  },
+  {
+    "id": 84,
+    "question": "To ensure the authenticity and integrity of a message, you want to create a digital signature for it. Which type of KMS key would you use for this operation?",
+    "options": [
+      "A symmetric key.",
+      "An asymmetric RSA or ECC key pair.",
+      "An AWS managed key.",
+      "A key with imported material."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Digital signatures are a function of asymmetric cryptography. You use a private key to create the signature and the corresponding public key to verify it. Therefore, you would need to create an asymmetric key pair in KMS with the `SIGN_VERIFY` key usage."
+  },
+  {
+    "id": 85,
+    "question": "You have an unencrypted RDS database. You create a new read replica from this database. Can you encrypt the read replica?",
+    "options": [
+      "Yes, you can choose to encrypt the read replica during its creation.",
+      "No, a read replica must have the same encryption state as its source instance.",
+      "Yes, but you must first encrypt the source instance.",
+      "No, read replicas cannot be encrypted."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A read replica inherits the encryption state of its source database instance. You cannot create an encrypted read replica from an unencrypted source, nor can you create an unencrypted replica from an encrypted source. To have an encrypted replica, you must first encrypt the source instance (by using the snapshot copy-and-restore method)."
+  },
+  {
+    "id": 86,
+    "question": "A security group is a firewall for an EC2 instance. What is the equivalent \"firewall\" for a KMS key?",
+    "options": [
+      "An IAM Policy",
+      "A Security Group",
+      "A Network ACL",
+      "A Key Policy"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "A Key Policy is a resource-based policy attached directly to a KMS key. It is the primary and mandatory mechanism for controlling who can access and use that specific key. It functions as the main firewall for the key."
+  },
+  {
+    "id": 87,
+    "question": "Which of the following services can have its data encrypted at rest using AWS KMS?",
+    "options": [
+      "Amazon S3",
+      "Amazon EBS",
+      "Amazon RDS",
+      "All of the above."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "AWS KMS is deeply integrated with a wide range of AWS services to provide encryption at rest. This includes storage services like S3 and EBS, database services like RDS and DynamoDB, and many others."
+  },
+  {
+    "id": 88,
+    "question": "What is a potential risk of using Server-Side Encryption with Customer-Provided Keys (SSE-C)?",
+    "options": [
+      "The encryption algorithm used (AES-256) is weaker than that used by KMS.",
+      "If you lose the encryption key, you lose access to your data permanently.",
+      "It results in higher costs due to API calls to KMS.",
+      "The performance is significantly lower than other encryption methods."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "With SSE-C, the entire responsibility for key management, durability, and availability rests with you, the customer. AWS does not store the key. If you misplace or lose the key for an object, there is absolutely no way to recover it, and the object's data is lost forever."
+  },
+  {
+    "id": 89,
+    "question": "You are setting up an HTTPS listener on an Application Load Balancer. Where can you source the required SSL/TLS certificate from? (Choose TWO)",
+    "options": [
+      "AWS Key Management Service (KMS)",
+      "AWS Certificate Manager (ACM)",
+      "AWS Secrets Manager",
+      "A third-party Certificate Authority, which you then import into ACM.",
+      "AWS CloudHSM"
+    ],
+    "correctAnswers": [
+      1,
+      3
+    ],
+    "multiple": true,
+    "explanation": "When configuring an ELB listener, you can either choose a certificate that you have provisioned directly within AWS Certificate Manager (B), or you can obtain a certificate from a third-party CA and then import it into ACM for use with the ELB (D)."
+  },
+  {
+    "id": 90,
+    "question": "What happens if you try to use a KMS key from the `us-east-1` region to encrypt an EBS volume in the `us-west-2` region?",
+    "options": [
+      "The operation succeeds, but with higher latency.",
+      "The operation fails because KMS keys are regional resources.",
+      "The operation succeeds if you have cross-region replication enabled on the key.",
+      "The operation succeeds, but you will incur data transfer charges."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "AWS KMS keys are strictly regional. A key created in one region can only be used to encrypt resources within that same region. To encrypt a resource in `us-west-2`, you must use a key that exists in `us-west-2`."
+  },
+  {
+    "id": 91,
+    "question": "You want to give an IAM user permission to enable and disable a specific KMS key, but nothing else. Which two IAM permissions should you grant? (Choose TWO)",
+    "options": [
+      "`kms:EnableKey`",
+      "`kms:RotateKey`",
+      "`kms:DisableKey`",
+      "`kms:ScheduleKeyDeletion`",
+      "`kms:CreateKey`"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true,
+    "explanation": "The permissions for enabling and disabling keys map directly to the API calls: `kms:EnableKey` and `kms:DisableKey`. You would create a policy granting these two actions and specify the ARN of the specific key in the `Resource` element."
+  },
+  {
+    "id": 92,
+    "question": "The AWS \"Shared Responsibility Model\" defines security responsibilities. In the context of using SSE-KMS, what is AWS responsible for?",
+    "options": [
+      "Managing the IAM policies for users who access the key.",
+      "Securing the underlying hardware and software of the KMS service.",
+      "Deciding who should have access to the key.",
+      "Rotating the key material on a schedule you define."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Under the Shared Responsibility Model, AWS is responsible for the security *of* the cloud. This includes the physical security of the data centers and the security of the underlying infrastructure that runs the KMS service, including the HSMs. You, the customer, are responsible for security *in* the cloud, which includes configuring key policies and IAM policies (A, C) and configuring rotation (D)."
+  },
+  {
+    "id": 93,
+    "question": "Which of the following is a feature of AWS Secrets Manager but NOT AWS Systems Manager Parameter Store (Standard tier)?",
+    "options": [
+      "Storing secrets encrypted with a KMS key.",
+      "Automatic rotation of secrets.",
+      "Versioning of secrets.",
+      "Storing secrets as key-value pairs."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The flagship feature of AWS Secrets Manager is its native capability to automatically rotate secrets, such as database credentials or API keys, by integrating with services like RDS and Lambda. While Parameter Store can also store encrypted secrets, it does not have this built-in automatic rotation functionality."
+  },
+  {
+    "id": 94,
+    "question": "If you want to encrypt the root EBS volume of an EC2 instance, when must you specify the encryption setting?",
+    "options": [
+      "You can encrypt it at any time after the instance is running.",
+      "Only when the instance is in the \"stopped\" state.",
+      "You must specify that the root volume should be encrypted at the time you launch the instance.",
+      "You must launch from an AMI that has an encrypted root volume snapshot."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "You cannot encrypt the root volume of an instance after it has been launched. The decision to encrypt the root volume must be made during the launch process, typically by selecting an AMI that has an encrypted snapshot or by specifying encryption settings in the storage configuration of the launch wizard."
+  },
+  {
+    "id": 95,
+    "question": "A company is migrating an application to AWS. The application uses a PKCS#11 compatible on-premises HSM. They want to maintain this compatibility in the cloud. Which AWS service should they use for their encryption keys?",
+    "options": [
+      "AWS KMS",
+      "AWS Secrets Manager",
+      "AWS Certificate Manager",
+      "AWS CloudHSM"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "AWS CloudHSM provides industry-standard HSMs that support common APIs, including PKCS#11, Java Cryptography Extensions (JCE), and Microsoft CryptoNG (CNG). This allows companies to migrate applications that use these standard interfaces with minimal changes to their code."
+  },
+  {
+    "id": 96,
+    "question": "You are using an Application Load Balancer with an HTTPS listener. For compliance reasons, you must not use TLS protocol version 1.0 or 1.1. How do you enforce this?",
+    "options": [
+      "By configuring a WAF rule to block older TLS versions.",
+      "By selecting a Security Policy for the listener that only includes TLS 1.2 and higher.",
+      "By configuring the security group of the load balancer.",
+      "By modifying the configuration of the backend EC2 instances."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The supported TLS protocols and ciphers for an ALB listener are controlled by its Security Policy. AWS provides several predefined policies. You would choose a modern policy, such as `ELBSecurityPolicy-TLS-1-2-2017-01` or a newer one, which explicitly disables the older, less secure TLS versions."
+  },
+  {
+    "id": 97,
+    "question": "What is the primary purpose of using an S3 Bucket Key for SSE-KMS?",
+    "options": [
+      "To increase the security of the encryption.",
+      "To reduce the cost and latency of KMS requests.",
+      "To allow cross-region replication of encrypted objects.",
+      "To enable client-side encryption."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Standard SSE-KMS requires one API call to KMS for every object read or written. For high-volume workloads, this can lead to significant KMS API costs and potential throttling. The S3 Bucket Key feature drastically reduces this by creating a temporary bucket-level key, which reduces the need to call KMS for every single object, thus lowering both cost and latency."
+  },
+  {
+    "id": 98,
+    "question": "When you import your own key material into a KMS key, what are you responsible for? (Choose TWO)",
+    "options": [
+      "Ensuring the key material is generated from a secure random source.",
+      "Creating a secure backup of the key material outside of AWS.",
+      "Ensuring the key material is in the correct format (256-bit symmetric key).",
+      "AWS is responsible for all aspects of imported key material.",
+      "Scheduling the rotation of the key material within KMS."
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "multiple": true,
+    "explanation": "When you use the BYOK (Bring Your Own Key) feature, the responsibility for the key material's lifecycle outside of AWS is yours. This includes generating it securely (A) and maintaining a secure backup (B), because AWS cannot recover it for you if you delete it from the KMS key. Once imported, you are also responsible for manual rotation by importing new key material."
+  },
+  {
+    "id": 99,
+    "question": "You want to ensure that traffic between your CloudFront distribution and your S3 origin is NOT sent over the public internet. What feature allows this?",
+    "options": [
+      "Using a custom domain name for your CloudFront distribution.",
+      "Using an Origin Access Identity (OAI) or Origin Access Control (OAC).",
+      "Enabling default encryption on the S3 bucket.",
+      "This is not possible; CloudFront always accesses S3 over the internet."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "While the connection is always encrypted with TLS, an Origin Access Identity (OAI) or the newer Origin Access Control (OAC) provides a more significant security benefit. It allows you to create a special CloudFront identity and then lock down your S3 bucket policy so that it ONLY accepts connections from that CloudFront identity. This prevents anyone from bypassing CloudFront and accessing your S3 objects directly using the S3 URL. This communication path is over the private AWS backbone."
+  },
+  {
+    "id": 100,
+    "question": "An application is encrypting data with a KMS key. Suddenly, all encryption requests start failing with a throttling error. What is the most likely cause?",
+    "options": [
+      "The KMS key has been disabled or deleted.",
+      "The application's IAM role has lost its permissions to the key.",
+      "The application is exceeding the KMS request rate limit for the account and region.",
+      "The KMS service is down in that region."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "KMS enforces request quotas (requests per second) to ensure the performance and availability of the service for all customers. If an application suddenly makes a very high volume of API calls (e.g., `Encrypt`, `Decrypt`, `GenerateDataKey`), it can exceed these limits, and KMS will start throttling the requests, returning a `ThrottlingException` error."
+  }
+]

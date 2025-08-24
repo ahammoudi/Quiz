@@ -1,0 +1,1510 @@
+[
+  {
+    "id": 1,
+    "question": "A web application is deployed across multiple EC2 instances in a private subnet. These instances need to download software updates from the internet. What is the most cost-effective and scalable way to enable this outbound internet access without exposing the instances to inbound traffic?",
+    "options": [
+      "Attach an Elastic IP address to each EC2 instance.",
+      "Place the instances in a public subnet.",
+      "Configure a NAT Gateway in a public subnet and route the private subnet's outbound traffic through it.",
+      "Configure a NAT instance in a public subnet, but do not disable the Source/Destination check."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A NAT Gateway is a managed AWS service that provides highly available and scalable outbound internet access for instances in private subnets. It is the recommended approach over a self-managed NAT instance. Attaching an Elastic IP (A) or placing instances in a public subnet (B) would expose them to inbound internet traffic, which is insecure. A NAT instance requires the Source/Destination check to be disabled to function correctly (D)."
+  },
+  {
+    "id": 2,
+    "question": "What is the key difference between a Security Group and a Network ACL (NACL)?",
+    "options": [
+      "Security Groups are stateless, while NACLs are stateful.",
+      "Security Groups operate at the instance level, while NACLs operate at the subnet level.",
+      "Security Groups can have both allow and deny rules, while NACLs can only have allow rules.",
+      "Security Groups process rules in numerical order, while NACLs process all rules before making a decision."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The fundamental difference is their scope. A Security Group acts as a virtual firewall for an EC2 instance, controlling inbound and outbound traffic at the instance level. A Network ACL acts as a firewall for a subnet, controlling traffic in and out of one or more subnets. Security Groups are stateful (A), NACLs are stateless. NACLs have both allow and deny rules, while Security Groups only have allow rules (C). NACLs process rules in order (D), not all at once."
+  },
+  {
+    "id": 3,
+    "question": "A Network ACL for a subnet has the following custom rules, in this order: 100: ALLOW TCP port 22 from 0.0.0.0/0 200: DENY TCP port 22 from 10.0.1.5/32 What is the effect of these rules on an SSH connection attempt from the IP address 10.0.1.5?",
+    "options": [
+      "The connection will be allowed.",
+      "The connection will be denied.",
+      "The connection will be intermittently allowed and denied.",
+      "Both rules will be ignored, and the default rule will apply."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "Network ACLs evaluate rules in ascending order of their rule number. The first rule that matches the traffic is applied, and evaluation stops. In this case, the traffic (TCP port 22 from 10.0.1.5) matches rule 100 first, which is an ALLOW rule. Therefore, the connection is allowed, and rule 200 is never evaluated for this traffic."
+  },
+  {
+    "id": 4,
+    "question": "An EC2 instance in a public subnet can be reached from the internet, but it cannot reach the internet itself for software updates. The instance has a public IP address. What is the most likely cause of this issue?",
+    "options": [
+      "The associated Security Group does not have an outbound rule allowing traffic to the internet.",
+      "The subnet's route table does not have a route to the internet via an Internet Gateway.",
+      "The Network ACL is blocking outbound traffic.",
+      "The instance was not launched with an IAM role."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "For an instance in a public subnet to have internet access, its subnet's route table must contain a route (typically 0.0.0.0/0) that points to an Internet Gateway (IGW). While Security Groups (A) and NACLs (C) could also be the cause, the route table is the primary component for directing traffic out of the VPC to the internet. An IAM role (D) is for permissions, not network connectivity."
+  },
+  {
+    "id": 5,
+    "question": "Which of the following statements about Security Groups are true? (Choose TWO)",
+    "options": [
+      "They are stateful.",
+      "They operate at the subnet level.",
+      "They support both allow and deny rules.",
+      "All outbound traffic is allowed by default.",
+      "Rules are evaluated in numerical order."
+    ],
+    "correctAnswers": [
+      0,
+      3
+    ],
+    "multiple": true,
+    "explanation": "Security Groups are stateful (A), meaning if you allow an inbound request, the corresponding outbound response is automatically allowed, regardless of outbound rules. By default, a new Security Group allows all outbound traffic (D). They operate at the instance level (B), only support allow rules (C), and evaluate all rules at once, not in a specific order (E)."
+  },
+  {
+    "id": 6,
+    "question": "A company wants to establish a direct, private connection between their on-premises data center and their AWS VPC that bypasses the public internet. Which AWS service should they use?",
+    "options": [
+      "VPC Peering",
+      "AWS Direct Connect",
+      "Internet Gateway",
+      "NAT Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "AWS Direct Connect is a service that provides a dedicated, private network connection from your on-premises data center to AWS. This offers more consistent network performance and is more secure than an internet-based VPN connection. VPC Peering (A) connects two VPCs. Internet Gateway (C) and NAT Gateway (D) are for providing internet access."
+  },
+  {
+    "id": 7,
+    "question": "What is the primary purpose of a Bastion Host (or Jump Box)?",
+    "options": [
+      "To provide high-availability internet access to a private subnet.",
+      "To serve web traffic directly to the internet.",
+      "To provide a secure, publicly accessible server that you can connect to, which then acts as a proxy to access instances in a private subnet.",
+      "To store and manage SSH keys for all instances in a VPC."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A Bastion Host is a security-hardened server placed in a public subnet. Administrators connect to the Bastion Host (e.g., via SSH or RDP), and from there, they can connect to the instances in the private subnets. This avoids exposing the private instances directly to the internet, significantly improving the security posture."
+  },
+  {
+    "id": 8,
+    "question": "A VPC has been created with a CIDR block of 10.0.0.0/16. You need to create a subnet that can host up to 250 instances. What is the smallest subnet CIDR block you can use?",
+    "options": [
+      "10.0.1.0/25",
+      "10.0.1.0/24",
+      "10.0.1.0/23",
+      "10.0.1.0/22"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A /24 CIDR block provides 256 total IP addresses (2^8). AWS reserves 5 of these addresses in each subnet (network address, VPC router, DNS, future use, and broadcast address), leaving 251 usable IP addresses. This is the smallest block that can accommodate 250 instances. A /25 block only provides 123 usable IPs, while /23 and /22 provide more than necessary."
+  },
+  {
+    "id": 9,
+    "question": "Which feature allows you to privately access AWS services like S3 and DynamoDB from within your VPC without the traffic having to traverse the public internet?",
+    "options": [
+      "NAT Gateway",
+      "Internet Gateway",
+      "VPC Peering",
+      "VPC Endpoint"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "A VPC Endpoint enables private connections between your VPC and supported AWS services. There are two types: Gateway Endpoints (for S3 and DynamoDB) and Interface Endpoints (for most other services). They ensure that traffic to these services stays within the AWS network, which is more secure and can be faster."
+  },
+  {
+    "id": 10,
+    "question": "By default, what is the state of a custom Network ACL when it is first created?",
+    "options": [
+      "It allows all inbound and outbound traffic.",
+      "It denies all inbound and outbound traffic.",
+      "It allows all outbound traffic but denies all inbound traffic.",
+      "It is identical to the default Network ACL for the VPC."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "When you create a new, custom Network ACL, it starts with no rules. This means all inbound and outbound traffic is denied until you add explicit ALLOW rules. This is different from the VPC's default NACL, which starts by allowing all traffic."
+  },
+  {
+    "id": 11,
+    "question": "An EC2 instance in a private subnet needs to make an API call to the Amazon SQS service. What is the most secure and efficient way to enable this connectivity?",
+    "options": [
+      "Route the traffic through a NAT Gateway to the public SQS endpoint.",
+      "Create an Interface VPC Endpoint for SQS in the VPC.",
+      "Move the EC2 instance to a public subnet.",
+      "Use AWS Direct Connect to route the traffic to SQS."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "An Interface VPC Endpoint (powered by AWS PrivateLink) creates an elastic network interface (ENI) in your subnet with a private IP address. This ENI acts as the entry point for traffic destined for the service (in this case, SQS). This keeps all traffic within the AWS network, which is more secure and efficient than routing through a NAT Gateway (A)."
+  },
+  {
+    "id": 12,
+    "question": "A solutions architect has two VPCs, VPC-A and VPC-B, in the same AWS region. They need to enable instances in both VPCs to communicate with each other using private IP addresses as if they were on the same network. The VPCs have non-overlapping CIDR blocks. What should be configured?",
+    "options": [
+      "A NAT Gateway",
+      "A VPC Peering connection",
+      "An Internet Gateway",
+      "AWS Direct Connect"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A VPC Peering connection is a networking connection between two VPCs that enables you to route traffic between them using private IPv4 or IPv6 addresses. It works between VPCs in the same account or different accounts, and in the same region or across regions. It's the standard solution for this use case."
+  },
+  {
+    "id": 13,
+    "question": "Which of the following statements about NAT Gateways is FALSE?",
+    "options": [
+      "A NAT Gateway must be placed in a public subnet.",
+      "A NAT Gateway must be associated with an Elastic IP address.",
+      "A NAT Gateway can be associated with a Security Group.",
+      "A NAT Gateway is a managed service with built-in redundancy within a single Availability Zone."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Unlike a NAT Instance (which is just an EC2 instance), a NAT Gateway is a managed service that you cannot directly associate a Security Group with. Security for a NAT Gateway is controlled by the Network ACLs of the public subnet it resides in and the Security Groups of the instances in the private subnets that use it. All other statements are true."
+  },
+  {
+    "id": 14,
+    "question": "You are designing a VPC and need to create a \"public\" subnet. What is the defining characteristic of a public subnet?",
+    "options": [
+      "Its CIDR block is from the public IP address range.",
+      "Its associated route table has a route to an Internet Gateway.",
+      "It has a Network ACL that allows all traffic.",
+      "All instances within it have Elastic IP addresses."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The term \"public subnet\" in AWS simply means that the subnet's route table has an entry that directs internet-bound traffic (0.0.0.0/0) to an Internet Gateway (IGW). This is what allows resources within it to be directly reachable from the internet (if they have a public IP)."
+  },
+  {
+    "id": 15,
+    "question": "What is the purpose of an Egress-Only Internet Gateway?",
+    "options": [
+      "To allow outbound internet access for IPv4 traffic from a private subnet while denying inbound traffic.",
+      "To allow outbound internet access for IPv6 traffic from a private subnet while preventing the internet from initiating connections to the instances.",
+      "To filter outbound traffic based on a list of approved domain names.",
+      "To provide a private, dedicated connection to the internet."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "An Egress-Only Internet Gateway is specifically for IPv6. It is a stateful gateway that allows outbound-only communication over IPv6 from instances in your VPC to the internet, and prevents the internet from initiating an IPv6 connection with your instances. It serves a similar purpose for IPv6 as a NAT Gateway does for IPv4."
+  },
+  {
+    "id": 16,
+    "question": "A Security Group has an inbound rule allowing TCP port 3389 (RDP) from the source IP 54.20.10.5/32. The Network ACL on the instance's subnet has an outbound rule denying traffic to port 3389. What is the result when the user at 54.20.10.5 tries to connect?",
+    "options": [
+      "The connection is established successfully.",
+      "The initial connection request is allowed, but the response from the instance is blocked by the NACL.",
+      "The connection is blocked by the Security Group.",
+      "The connection is blocked by the Network ACL on ingress."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Security Groups are stateful, and NACLs are stateless. The inbound RDP request is allowed by both the NACL (by default) and the Security Group. The EC2 instance sends a response. Because NACLs are stateless, the outbound response traffic must be evaluated by the outbound NACL rules. The NACL has a rule denying outbound port 3389, so the response packet is dropped, and the connection fails to establish."
+  },
+  {
+    "id": 17,
+    "question": "You are troubleshooting a connectivity issue where an EC2 instance cannot be reached from your corporate office. You have verified that the Security Group allows traffic from your office's IP address. What should you check next?",
+    "options": [
+      "The IAM role attached to the instance.",
+      "The Network ACL associated with the instance's subnet.",
+      "The instance's metadata service.",
+      "The VPC's default DHCP options set."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "When troubleshooting network connectivity, you must check all firewalls in the path. If the instance-level firewall (Security Group) is correctly configured, the next logical step is to check the subnet-level firewall (Network ACL) to ensure it is not blocking the inbound traffic."
+  },
+  {
+    "id": 18,
+    "question": "Which component is responsible for directing network traffic between subnets within a VPC and to destinations outside the VPC (like the internet or a VPN)?",
+    "options": [
+      "Security Group",
+      "Internet Gateway",
+      "Route Table",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A Route Table contains a set of rules, called routes, that are used to determine where network traffic from your subnet or gateway is directed. Every subnet in a VPC must be associated with a route table. This table is what controls the flow of traffic both within the VPC and to external destinations."
+  },
+  {
+    "id": 19,
+    "question": "Which of the following is a key characteristic of a VPC Peering connection?",
+    "options": [
+      "It is a transitive relationship; if VPC-A is peered with VPC-B, and VPC-B is peered with VPC-C, then VPC-A can communicate with VPC-C.",
+      "It uses a gateway device that can become a single point of failure.",
+      "It does not rely on the public internet; traffic uses the AWS private backbone network.",
+      "It encrypts all traffic by default using AWS KMS."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Traffic over a VPC Peering connection always stays on the global AWS backbone and never traverses the public internet. This makes it secure and reliable. Peering is not transitive (A); you would need a separate peering connection between A and C. It does not use a gateway device in the traditional sense (B) and is not a single point of failure. Encryption in transit within a region is handled by the physical layer, but application-level encryption is a separate consideration (D)."
+  },
+  {
+    "id": 20,
+    "question": "You want to capture and log information about the IP traffic going to and from network interfaces in your VPC. Which service should you use?",
+    "options": [
+      "AWS CloudTrail",
+      "Amazon CloudWatch Logs",
+      "VPC Flow Logs",
+      "AWS Trusted Advisor"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "VPC Flow Logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. This flow log data can be published to Amazon CloudWatch Logs or Amazon S3, and it is invaluable for troubleshooting network issues and for security analysis."
+  },
+  {
+    "id": 21,
+    "question": "To make a Bastion Host secure, what is a recommended best practice for its Security Group configuration?",
+    "options": [
+      "Allow SSH (port 22) access from any IP address (0.0.0.0/0).",
+      "Allow SSH (port 22) access only from a limited, specific set of IP addresses, such as your company's corporate network.",
+      "Attach the same Security Group to the Bastion Host and the private instances it manages.",
+      "Do not attach any Security Group to the Bastion Host."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A key security principle for a Bastion Host is to tightly restrict access to it. The Security Group should be configured to allow inbound SSH/RDP traffic only from the trusted IP addresses of your administrators. Allowing access from 0.0.0.0/0 (A) would expose it to attacks from the entire internet. Using the same security group (C) for the bastion and private instances would violate the principle of least privilege."
+  },
+  {
+    "id": 22,
+    "question": "You have a fleet of EC2 instances in a private subnet that process sensitive data. They do not need internet access, but they need to access a specific S3 bucket to retrieve data. How can you provide this access without allowing any other internet connectivity?",
+    "options": [
+      "Create a NAT Gateway and use a Network ACL to deny all traffic except to S3.",
+      "Create a Gateway VPC Endpoint for S3 and add a route for it in the subnet's route table.",
+      "Configure an IAM role with S3 permissions and an Internet Gateway.",
+      "Use a Bastion Host to proxy the S3 traffic."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A Gateway VPC Endpoint for S3 is the perfect solution. It creates a private connection to the S3 service. You add a prefix list for S3 to your route table, which directs S3-bound traffic to the endpoint instead of a NAT or Internet Gateway. This provides the required access without any traffic leaving the AWS network."
+  },
+  {
+    "id": 23,
+    "question": "What is the maximum number of VPCs you can create per region in an AWS account by default?",
+    "options": [
+      "1",
+      "5",
+      "20",
+      "100"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "By default, AWS allows you to create up to 5 VPCs per region in your account. However, this is a soft limit, and you can request an increase by contacting AWS support."
+  },
+  {
+    "id": 24,
+    "question": "In a default VPC, what networking components are created automatically? (Choose TWO)",
+    "options": [
+      "A NAT Gateway",
+      "An Internet Gateway",
+      "A private subnet in each Availability Zone",
+      "A public subnet in each Availability Zone",
+      "A VPC Peering connection"
+    ],
+    "correctAnswers": [
+      1,
+      3
+    ],
+    "multiple": true,
+    "explanation": "A default VPC is designed to be user-friendly and ready for use. It automatically includes an Internet Gateway (B) to provide internet access and a public subnet (D) in each Availability Zone in the region. It does not include a NAT Gateway (A), private subnets (C), or peering connections (E) by default."
+  },
+  {
+    "id": 25,
+    "question": "When comparing a NAT Gateway and a NAT Instance, which of the following is an advantage of using a NAT Gateway?",
+    "options": [
+      "It can be used as a Bastion Host.",
+      "It provides finer-grained control through Security Groups.",
+      "It is managed by AWS and offers higher availability and bandwidth.",
+      "It is cheaper for very low levels of traffic."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The primary advantages of a NAT Gateway are that it is a fully managed service. AWS handles the administration, high availability (it's redundant within an AZ), and scaling of bandwidth (up to 45 Gbps). A NAT Instance (D) can be cheaper for very light workloads but requires you to manage patching, availability, and scaling. You cannot attach a security group to a NAT Gateway (B) or use it as a bastion host (A)."
+  },
+  {
+    "id": 26,
+    "question": "A Network ACL rule has the number *. What does this signify?",
+    "options": [
+      "It is the first rule to be evaluated.",
+      "It is a custom rule created by a user.",
+      "It is the final, default rule that denies any traffic not explicitly allowed by a preceding rule.",
+      "It is a rule that applies to all protocols."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The asterisk (*) represents the default rule at the end of every Network ACL's rule set. This rule cannot be modified or deleted. Its purpose is to ensure that any traffic that does not match one of the numbered (custom) rules is explicitly denied."
+  },
+  {
+    "id": 27,
+    "question": "An instance in a private subnet needs to resolve a public DNS hostname (e.g., amazon.com). The VPC is configured with the default DNS resolver (`.2` address). The instance has no outbound internet path. Will the DNS resolution succeed?",
+    "options": [
+      "Yes, the Amazon DNS resolver can be reached without internet access.",
+      "No, DNS resolution requires outbound internet access via a NAT Gateway.",
+      "No, DNS resolution can only be done from a public subnet.",
+      "Yes, but only if you configure a custom DNS server."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "The Amazon Route 53 Resolver (located at the reserved .2 address of your VPC CIDR) is reachable from within your VPC without requiring an Internet Gateway or NAT Gateway. An instance in a private subnet can successfully resolve public DNS hostnames. However, it will not be able to connect to the resolved public IP address without an outbound path like a NAT Gateway."
+  },
+  {
+    "id": 28,
+    "question": "Which of the following is true about Security Group rules?",
+    "options": [
+      "You can specify a source or destination by using another Security Group ID.",
+      "You must specify a CIDR block for all rules.",
+      "All rules must be explicitly numbered for evaluation order.",
+      "You can create rules that deny specific IP addresses."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "A powerful feature of Security Groups is the ability to reference another Security Group ID in a rule's source (for inbound) or destination (for outbound). This allows instances in one group to communicate with instances in another group without needing to know their specific IP addresses, which can change. Security groups only have allow rules (D)."
+  },
+  {
+    "id": 29,
+    "question": "You have a three-tier web application. The web servers are in a public subnet, and the application and database servers are in a private subnet. How should you configure Security Groups to allow the web servers to communicate with the application servers on port 8080?",
+    "options": [
+      "Configure the application servers' Security Group to allow inbound traffic on port 8080 from the CIDR block of the public subnet.",
+      "Configure the application servers' Security Group to allow inbound traffic on port 8080 from the Security Group ID of the web servers.",
+      "Configure the application servers' Security Group to allow inbound traffic on port 8080 from 0.0.0.0/0.",
+      "Configure the web servers' Security Group to allow outbound traffic on port 8080 to the CIDR block of the private subnet."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The best practice is to use Security Group references. By setting the source of the inbound rule on the application servers' Security Group to be the Security Group ID of the web servers, you create a dynamic and secure rule. This ensures that only instances in the web server group can communicate with the application servers on that port, regardless of their private IP addresses."
+  },
+  {
+    "id": 30,
+    "question": "What happens if you associate a new route table with a subnet?",
+    "options": [
+      "The subnet's existing route table is deleted.",
+      "The new route table's rules are merged with the existing route table's rules.",
+      "The subnet's previous route table is replaced with the new one.",
+      "This action is not possible; a subnet can only have one route table for its lifetime."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A subnet can only be associated with one route table at a time. When you associate a different route table with a subnet, the previous association is removed, and the new route table immediately takes effect for all traffic routing from that subnet. The original route table is not deleted and may still be associated with other subnets."
+  },
+  {
+    "id": 31,
+    "question": "What is the primary function of an Internet Gateway (IGW)?",
+    "options": [
+      "To provide a target in your VPC route tables for internet-routable traffic.",
+      "To perform network address translation for instances in private subnets.",
+      "To filter traffic between subnets within a VPC.",
+      "To establish a private connection to another VPC."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "An Internet Gateway is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. Its main function is to serve as the target for the `0.0.0.0/0` route in the route tables of your public subnets."
+  },
+  {
+    "id": 32,
+    "question": "A security audit requires that all traffic between your on-premises network and your VPC be encrypted. You are using an AWS Site-to-Site VPN connection. Is the traffic encrypted by default?",
+    "options": [
+      "No, you must configure encryption separately using SSL/TLS.",
+      "Yes, all traffic over an AWS Site-to-Site VPN is encrypted using the IPsec protocol.",
+      "No, only the authentication headers are encrypted, not the data payload.",
+      "Yes, but only if you use an AWS Direct Connect connection in conjunction with the VPN."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "An AWS Site-to-Site VPN connection uses the Internet Protocol Security (IPsec) suite to secure the traffic. It establishes encrypted tunnels between your on-premises customer gateway and the AWS virtual private gateway, ensuring both authentication and encryption for all data in transit."
+  },
+  {
+    "id": 33,
+    "question": "You are designing a VPC with subnets in two different Availability Zones for high availability. What is a key consideration for subnet CIDR blocks?",
+    "options": [
+      "All subnets in a VPC must have the same CIDR block size.",
+      "Subnets in different AZs must have overlapping CIDR blocks.",
+      "Each subnet must have a CIDR block that is a subset of the VPC's CIDR block and does not overlap with other subnets.",
+      "You must use public IP address ranges for the subnet CIDR blocks."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "This is a fundamental rule of VPC subnetting. The CIDR block for every subnet you create must come from the overall CIDR block of the VPC. Furthermore, the CIDR blocks of any two subnets within the same VPC cannot overlap, as this would make routing ambiguous."
+  },
+  {
+    "id": 34,
+    "question": "What does it mean when a Security Group is described as \"stateful\"?",
+    "options": [
+      "It remembers the state of the EC2 instance (running, stopped).",
+      "It tracks the state of network connections. If an inbound request is allowed, the outbound response is automatically allowed.",
+      "It keeps a state table of all denied packets for auditing purposes.",
+      "Its rules can be changed dynamically without interrupting traffic."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Stateful inspection means the firewall (in this case, the Security Group) maintains a record of active connections. When a packet is sent from an instance (outbound), the Security Group remembers this connection. When the reply comes back (inbound), it recognizes it as part of an existing, approved connection and allows it, regardless of the inbound rules. The reverse is also true for inbound-initiated connections."
+  },
+  {
+    "id": 35,
+    "question": "An EC2 instance is hosting a database. The database should only accept connections from a specific set of application servers located in the same VPC. Which of the following is the MOST secure and flexible way to configure this?",
+    "options": [
+      "In the database instance's Security Group, create an inbound rule allowing the database port from the CIDR range of the application server's subnet.",
+      "In the database instance's Security Group, create an inbound rule allowing the database port from the private IP addresses of each application server.",
+      "In the database instance's Security Group, create an inbound rule allowing the database port from the Security Group ID assigned to the application servers.",
+      "In the subnet's Network ACL, create an inbound rule allowing the database port from the Security Group ID of the application servers."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Using Security Group IDs as a source is the most secure and flexible method. It ensures that only instances that are members of the specified application Security Group can connect, even if their IP addresses change or if you add or remove instances. Using CIDR ranges (A) is less specific, and using individual IPs (B) is difficult to manage. NACLs (D) cannot reference Security Group IDs."
+  },
+  {
+    "id": 36,
+    "question": "You have an application running on EC2 instances behind an Application Load Balancer. You want to ensure that the EC2 instances only accept traffic from the load balancer. What should you do?",
+    "options": [
+      "Configure the instances' Security Group to allow traffic on the application port from the Security Group of the Application Load Balancer.",
+      "Configure the instances' Security Group to allow traffic on the application port from the public IP address of the Application Load Balancer.",
+      "Configure the Network ACL of the instances' subnet to only allow traffic from the Application Load Balancer's Security Group.",
+      "Configure the Application Load Balancer to use a specific Elastic IP address and allow that in the instances' Security Group."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "This is the standard and best practice. You can configure the security group for your backend instances to allow traffic only from the security group attached to your Application Load Balancer. This creates a secure communication path and prevents users from bypassing the load balancer and accessing your instances directly."
+  },
+  {
+    "id": 37,
+    "question": "Which of the following services can be used to privately connect your VPC to another VPC? (Choose TWO)",
+    "options": [
+      "VPC Endpoint",
+      "VPC Peering",
+      "AWS Transit Gateway",
+      "NAT Gateway",
+      "Internet Gateway"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true,
+    "explanation": "VPC Peering (B) is used to connect two VPCs directly. AWS Transit Gateway (C) acts as a central hub to connect multiple VPCs and on-premises networks together, simplifying network management at scale. A VPC Endpoint (A) connects a VPC to an AWS service. NAT (D) and Internet (E) gateways are for internet access."
+  },
+  {
+    "id": 38,
+    "question": "What is the purpose of VPC Flow Logs?",
+    "options": [
+      "To provide a real-time stream of all packets entering and leaving a VPC.",
+      "To capture metadata about the IP traffic for a network interface, subnet, or VPC.",
+      "To automatically block malicious IP addresses identified in the traffic.",
+      "To route traffic between different subnets."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "VPC Flow Logs capture metadata about the IP traffic, not the full packet content. This metadata includes information like the source and destination IP addresses, ports, protocol, packet counts, and whether the traffic was accepted or rejected by Security Groups and Network ACLs."
+  },
+  {
+    "id": 39,
+    "question": "A web server in a public subnet needs to connect to a database server in a private subnet. The default Network ACL is being used for both subnets. What rules need to be configured in the Security Groups?",
+    "options": [
+      "The web server's SG needs an outbound rule to the database. The database's SG needs an inbound rule from the web server.",
+      "Only the database server's SG needs an inbound rule from the web server.",
+      "Only the web server's SG needs an outbound rule to the database.",
+      "No rules are needed because the default Security Group allows all traffic."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "For communication to happen, the traffic must be explicitly allowed at both ends by the Security Groups. The originating group (web server SG) needs an outbound rule allowing traffic to the destination port and IP/SG. The destination group (database SG) needs an inbound rule allowing traffic from the source IP/SG on the destination port. The default SG does not allow any inbound traffic from other SGs."
+  },
+  {
+    "id": 40,
+    "question": "Which of the following is an example of a valid CIDR block for a new VPC?",
+    "options": [
+      "10.0.0.0/8",
+      "192.168.0.0/16",
+      "172.16.0.0/12",
+      "All of the above."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "The allowed block sizes for a VPC range from /16 to /28. The IP ranges for private networks are defined in RFC 1918 as 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16. You can create a VPC with a CIDR block that is a subset of these ranges, such as 10.0.0.0/16 or 192.168.0.0/24. All the options provided are valid ranges from which a VPC CIDR could be derived."
+  },
+  {
+    "id": 41,
+    "question": "You are configuring a Network ACL to allow web traffic to your servers. You have created an inbound rule to ALLOW TCP port 80. What else must you do to ensure web traffic works correctly?",
+    "options": [
+      "Nothing, NACLs are stateful.",
+      "Add an inbound rule to ALLOW TCP port 443.",
+      "Add an outbound rule to ALLOW TCP ephemeral ports (1024-65535).",
+      "Add an outbound rule to ALLOW TCP port 80."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Network ACLs are stateless. This means you must explicitly allow both the request and the response traffic. An inbound web request comes in on port 80. The server's response goes out on an ephemeral port (in the range 1024-65535). Therefore, you need an outbound rule to allow traffic on these ephemeral ports for the response to be sent back to the client."
+  },
+  {
+    "id": 42,
+    "question": "An organization needs to connect 15 VPCs in a hub-and-spoke model. Using VPC peering for this would be complex to manage. What AWS service simplifies this architecture?",
+    "options": [
+      "AWS Direct Connect",
+      "VPC Endpoints",
+      "AWS Transit Gateway",
+      "AWS Global Accelerator"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "AWS Transit Gateway is designed to solve this exact problem. It acts as a cloud router and a central hub. Each VPC connects to the Transit Gateway, and the Transit Gateway handles the routing between them. This avoids the complex \"full mesh\" of peering connections that would otherwise be required."
+  },
+  {
+    "id": 43,
+    "question": "A solutions architect wants to use an AWS service to provide a single point of access control and DNS resolution for services hosted across multiple VPCs. The service should be accessible from an on-premises network. Which service fits this description?",
+    "options": [
+      "Amazon Route 53",
+      "AWS PrivateLink",
+      "A NAT Gateway",
+      "An Interface VPC Endpoint"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "AWS PrivateLink is the underlying technology for Interface VPC Endpoints. It allows you to expose a service in one VPC to other VPCs and on-premises networks securely and privately. The service is accessed through an ENI with a private IP in the consumer's VPC, and traffic never leaves the Amazon network."
+  },
+  {
+    "id": 44,
+    "question": "When is it appropriate to use a NAT Instance instead of a NAT Gateway?",
+    "options": [
+      "When you need the highest possible availability for outbound traffic.",
+      "When you need to support traffic volumes greater than 45 Gbps.",
+      "When you need to perform actions like port forwarding or intrusion prevention, which require a custom server configuration.",
+      "When you want to minimize administrative overhead."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "While a NAT Gateway is preferred in most cases, a NAT Instance (being a regular EC2 instance) provides more flexibility. If you have specific requirements like custom traffic filtering, logging, port forwarding, or running an IDS/IPS, a NAT Instance allows you to install and configure the necessary software."
+  },
+  {
+    "id": 45,
+    "question": "What is the scope of a route table in an AWS VPC?",
+    "options": [
+      "A route table is global for the entire VPC.",
+      "A route table is associated with a subnet.",
+      "A route table is associated with an EC2 instance.",
+      "A route table is associated with an Internet Gateway."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Route tables control routing for subnets. Each subnet in your VPC must be associated with a route table. A route table can be associated with multiple subnets, but a subnet can only be associated with one route table at a time."
+  },
+  {
+    "id": 46,
+    "question": "You have a set of EC2 instances in a private subnet that must be accessible for patching from a central management server located in another VPC. What is the most secure way to allow this access?",
+    "options": [
+      "Create a VPC Peering connection and configure Security Groups to allow SSH from the management server's IP.",
+      "Assign an Elastic IP to each instance and allow SSH from the management server's Security Group.",
+      "Use an Internet Gateway and configure Network ACLs to allow SSH from the management server.",
+      "Create a public subnet and move the instances there."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "VPC Peering allows for private communication between the two VPCs. By combining this with a specific Security Group rule that allows SSH traffic only from the private IP address (or Security Group) of the management server, you establish a secure and private path for patching without any exposure to the public internet."
+  },
+  {
+    "id": 47,
+    "question": "When a VPC is created, it automatically gets a main route table. What is the initial state of this main route table?",
+    "options": [
+      "It contains a route to an Internet Gateway.",
+      "It contains a route to a NAT Gateway.",
+      "It contains only a local route, allowing communication within the VPC.",
+      "It is empty and must be configured manually."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The main route table created with a VPC contains only one rule by default: the \"local\" route. This route allows all resources within the VPC to communicate with each other over their private IP addresses. It does not contain routes to any gateways initially."
+  },
+  {
+    "id": 48,
+    "question": "How does a Gateway VPC Endpoint for S3 appear in your VPC?",
+    "options": [
+      "As an Elastic Network Interface (ENI) in one of your subnets.",
+      "As a new target type in your route tables.",
+      "As a virtual gateway device attached to your VPC.",
+      "As a new DNS hostname that resolves to a private IP."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A Gateway Endpoint does not use an ENI. Instead, you create the endpoint and then modify your route table(s). You add a route where the destination is a prefix list for the S3 service, and the target is the VPC endpoint's ID (e.g., vpce-xxxxxxxx)."
+  },
+  {
+    "id": 49,
+    "question": "Which of the following would prevent you from deleting a VPC?",
+    "options": [
+      "The VPC still contains a default Security Group.",
+      "The VPC still contains running EC2 instances or other dependent resources.",
+      "The VPC is peered with another VPC.",
+      "The VPC has a custom Network ACL."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Before you can delete a VPC, you must terminate or delete all the resources within it. This includes EC2 instances, NAT gateways, VPC endpoints, load balancers, and network interfaces. You cannot delete a VPC that still has active resources inside it."
+  },
+  {
+    "id": 50,
+    "question": "Which of the following statements about Network ACLs is TRUE?",
+    "options": [
+      "They are stateful, so return traffic is automatically allowed.",
+      "They can filter traffic based on EC2 instance tags.",
+      "They evaluate rules based on their rule number, from lowest to highest.",
+      "They can be associated directly with an EC2 instance."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "NACLs are stateless firewalls that process rules in order. When a packet arrives at the subnet boundary, the NACL checks its rules in ascending numerical order (e.g., 100, then 200, then 300). The first rule that matches the packet's protocol, port, and source/destination IP is applied, and the evaluation stops."
+  },
+  {
+    "id": 51,
+    "question": "You have an EC2 instance in a private subnet that hosts a backend service. This service needs to connect to the internet to call a third-party API. The VPC has a NAT Gateway. What needs to be configured in the private subnet's route table?",
+    "options": [
+      "A route with destination 0.0.0.0/0 pointing to the Internet Gateway.",
+      "A route with destination 0.0.0.0/0 pointing to the NAT Gateway.",
+      "A route with the third-party API's IP address pointing to the NAT Gateway.",
+      "A route with destination 0.0.0.0/0 pointing to the instance's Elastic Network Interface."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "To provide outbound internet access for a private subnet, its route table must have a default route (destination 0.0.0.0/0) that directs all internet-bound traffic to the NAT Gateway. The NAT Gateway, residing in a public subnet, then forwards the traffic to the Internet Gateway."
+  },
+  {
+    "id": 52,
+    "question": "What is the primary benefit of using multiple Availability Zones for your subnets?",
+    "options": [
+      "It reduces network latency between instances.",
+      "It increases the number of IP addresses available in the VPC.",
+      "It allows you to create a high-availability architecture that can withstand an AZ failure.",
+      "It simplifies the routing configuration within the VPC."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Deploying your application across subnets in multiple Availability Zones is a fundamental AWS best practice for building resilient and highly available systems. If one AZ experiences an outage, your application resources in the other AZs can continue to operate."
+  },
+  {
+    "id": 53,
+    "question": "When configuring a security group rule, which of the following can be used as a source or destination? (Choose TWO)",
+    "options": [
+      "A MAC address",
+      "A CIDR block",
+      "Another Security Group ID",
+      "A Subnet ID",
+      "A VPC ID"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true,
+    "explanation": "Security group rules control traffic based on IP protocols and ports. The source (for inbound rules) or destination (for outbound rules) can be specified as either a CIDR block (e.g., 10.0.0.0/24 or 54.1.2.3/32) or the ID of another security group."
+  },
+  {
+    "id": 54,
+    "question": "What is the difference between an Internet Gateway and a NAT Gateway?",
+    "options": [
+      "An Internet Gateway allows inbound and outbound traffic, while a NAT Gateway allows only outbound traffic.",
+      "An Internet Gateway is for IPv4, and a NAT Gateway is for IPv6.",
+      "An Internet Gateway performs Network Address Translation, while a NAT Gateway does not.",
+      "An Internet Gateway must be placed in a private subnet."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "The core difference is the direction of traffic initiation. An Internet Gateway (IGW) enables two-way communication, allowing resources with public IPs to be reached from the internet (inbound) and to reach the internet (outbound). A NAT Gateway enables one-way communication, allowing resources in a private subnet to initiate connections to the internet (outbound), but preventing the internet from initiating connections to them."
+  },
+  {
+    "id": 55,
+    "question": "You are setting up a Bastion Host. Its Security Group allows inbound SSH from your office IP. The private instances it needs to manage have a Security Group that allows inbound SSH from the Bastion Host's Security Group. The private instances still cannot be reached from the Bastion. What is a possible reason?",
+    "options": [
+      "The Bastion Host does not have an outbound rule in its Security Group allowing SSH traffic to the private instances.",
+      "The Bastion Host is in a different Availability Zone than the private instances.",
+      "The VPC route table does not have a \"local\" route.",
+      "The Network ACL is blocking the traffic."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "Since Security Groups are stateful, the default outbound allow-all rule would normally handle the connection from the Bastion. If that is in place, the next firewall to check is the Network ACL. The NACL for either the public subnet (outbound) or the private subnet (inbound) could be blocking the SSH traffic. While (A) is possible if the default outbound rule was changed, the NACL is a very common point of failure in this scenario."
+  },
+  {
+    "id": 56,
+    "question": "Which AWS networking construct provides a way to logically isolate a section of the AWS Cloud?",
+    "options": [
+      "Subnet",
+      "Availability Zone",
+      "Amazon Virtual Private Cloud (VPC)",
+      "Security Group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "An Amazon VPC is a virtual network dedicated to your AWS account. It is logically isolated from other virtual networks in the AWS Cloud. This allows you to launch AWS resources into a network environment that you control, including IP address range selection, subnet creation, and configuration of route tables and network gateways."
+  },
+  {
+    "id": 57,
+    "question": "A VPC has two subnets. Subnet A has a route to an Internet Gateway. Subnet B has a route to a NAT Gateway. Which subnet is considered \"public\"?",
+    "options": [
+      "Subnet A",
+      "Subnet B",
+      "Both are public",
+      "Neither are public"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "A subnet is defined as \"public\" if its traffic is routed directly to an Internet Gateway. This allows resources within it (with public IPs) to be directly addressable from the internet. A subnet that routes its outbound traffic through a NAT Gateway is, by definition, a \"private\" subnet."
+  },
+  {
+    "id": 58,
+    "question": "You have created a custom VPC and launched an EC2 instance into a public subnet. You have assigned a public IP address to the instance, but you cannot connect to it from the internet. You have verified the route table has a route to the IGW. What is the most likely reason?",
+    "options": [
+      "The associated Network ACL is blocking inbound traffic.",
+      "The associated Security Group does not have an inbound rule allowing your traffic.",
+      "The instance does not have an IAM role.",
+      "VPC Flow Logs are disabled."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A very common reason for connectivity failure is the Security Group configuration. By default, Security Groups do not allow any inbound traffic. You must explicitly add an inbound rule that allows traffic (e.g., SSH on port 22 or HTTP on port 80) from your source IP address or 0.0.0.0/0."
+  },
+  {
+    "id": 59,
+    "question": "What is the purpose of AWS PrivateLink?",
+    "options": [
+      "To create a secure, encrypted tunnel between your on-premises data center and AWS.",
+      "To provide secure and private connectivity between VPCs, AWS services, and on-premises applications.",
+      "To accelerate the delivery of content over the public internet.",
+      "To automatically assign private IP addresses to EC2 instances."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "AWS PrivateLink is the technology that powers Interface VPC Endpoints and Endpoint Services. It provides a way to access services privately from your VPC without using public IPs, NAT gateways, or internet gateways. This keeps all traffic on the Amazon network, enhancing security and simplifying network architecture."
+  },
+  {
+    "id": 60,
+    "question": "You have set up VPC peering between VPC-A and VPC-B. An instance in VPC-A needs to communicate with an instance in VPC-B. What must be updated to enable this communication?",
+    "options": [
+      "Only the Security Groups in both VPCs.",
+      "The route tables in both VPCs.",
+      "The Network ACLs in both VPCs.",
+      "Both the route tables and the Security Groups in both VPCs."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "Establishing a VPC peering connection is a two-step process after the connection is created and accepted. First, you must update the route tables in each VPC to direct traffic destined for the other VPC's CIDR block to the peering connection. Second, you must ensure that the Security Groups (and potentially Network ACLs) in each VPC allow the traffic to flow from the peered VPC's CIDR block or security groups."
+  },
+  {
+    "id": 61,
+    "question": "Which CIDR block is reserved by AWS within a subnet?",
+    "options": [
+      "The first IP address (e.g., 10.0.1.0)",
+      "The last IP address (e.g., 10.0.1.255)",
+      "The second IP address (e.g., 10.0.1.1)",
+      "All of the above are part of the 5 reserved addresses."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "In every subnet, AWS reserves the first four IP addresses and the last IP address. For a `10.0.1.0/24` subnet, these are: `10.0.1.0` (Network address), `10.0.1.1` (VPC router), `10.0.1.2` (DNS resolver), `10.0.1.3` (Reserved for future use), and `10.0.1.255` (Network broadcast address)."
+  },
+  {
+    "id": 62,
+    "question": "You need to provide internet access to a fleet of EC2 instances for patching, but these instances should not have public IP addresses. This solution needs to be highly available and scale automatically. What should you use?",
+    "options": [
+      "A single, large NAT instance.",
+      "Multiple NAT instances behind an Auto Scaling Group and a Network Load Balancer.",
+      "A NAT Gateway.",
+      "An Egress-Only Internet Gateway."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A NAT Gateway is the ideal solution for this requirement. It is an AWS-managed service that is inherently highly available within its deployed Availability Zone and automatically scales to meet bandwidth needs. It provides the required outbound-only internet access without requiring you to manage the underlying infrastructure."
+  },
+  {
+    "id": 63,
+    "question": "A company has a VPC connected to their on-premises network via an AWS Direct Connect. They now want to access an S3 bucket from their on-premises servers over this private connection. What do they need to configure?",
+    "options": [
+      "A public virtual interface (VIF) on their Direct Connect connection.",
+      "A NAT Gateway in the VPC.",
+      "A Gateway VPC Endpoint for S3 in the VPC.",
+      "A transit virtual interface (VIF) and a Transit Gateway."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "To access public AWS services like S3 over a Direct Connect connection, you need to configure a public virtual interface (VIF). This allows your on-premises network to access the public IP endpoints of AWS services, with the traffic routing over your private Direct Connect link instead of the public internet."
+  },
+  {
+    "id": 64,
+    "question": "What is the effective permission if a Security Group allows a connection, but a Network ACL denies it?",
+    "options": [
+      "The connection is allowed.",
+      "The connection is denied.",
+      "The connection is throttled.",
+      "An alert is sent to the account administrator."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "For traffic to reach an instance, it must be allowed by both the Network ACL (at the subnet level) and the Security Group (at the instance level). If either one denies the traffic, the connection will fail. The NACL is checked first for inbound traffic, so it would be denied at the subnet boundary."
+  },
+  {
+    "id": 65,
+    "question": "Your application in a private subnet needs to send logs to Amazon CloudWatch Logs. The VPC has no NAT Gateway or Internet Gateway. How can you enable this?",
+    "options": [
+      "This is not possible without a NAT Gateway.",
+      "Create an Interface VPC Endpoint for CloudWatch Logs.",
+      "Install the CloudWatch agent using an S3 bucket and a Gateway Endpoint.",
+      "Create a public subnet and move the application."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "You can use an Interface VPC Endpoint for CloudWatch Logs. This creates an ENI with a private IP in your subnet, allowing your application to send logs to the CloudWatch Logs service endpoint without the traffic ever leaving the AWS network. This is the most secure and recommended method."
+  },
+  {
+    "id": 66,
+    "question": "What happens if a subnet is not explicitly associated with a route table?",
+    "options": [
+      "Instances in that subnet cannot route traffic.",
+      "It is automatically associated with the VPC's main route table.",
+      "The subnet cannot be used to launch resources.",
+      "It is automatically associated with a new, empty route table."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "If you do not explicitly associate a subnet with a specific route table, AWS automatically associates it with the main route table of the VPC. This makes the main route table the default for any new subnets."
+  },
+  {
+    "id": 67,
+    "question": "You are creating a VPC to host a publicly accessible website. What is the minimum number of subnets you should create to ensure high availability?",
+    "options": [
+      "One public subnet.",
+      "One public subnet and one private subnet.",
+      "Two public subnets in the same Availability Zone.",
+      "Two public subnets in different Availability Zones."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "For high availability, you should always design your architecture to be resilient to the failure of a single Availability Zone. Therefore, the minimum recommended setup is to have at least two subnets, each located in a different AZ. For a public website, these would be public subnets."
+  },
+  {
+    "id": 68,
+    "question": "Which component is stateful and evaluates all rules before making a decision on a packet?",
+    "options": [
+      "Network ACL",
+      "Route Table",
+      "Security Group",
+      "Internet Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A Security Group is stateful. It evaluates all the rules in its list simultaneously to decide whether to allow a packet. This is different from a Network ACL, which evaluates rules in a specific numerical order."
+  },
+  {
+    "id": 69,
+    "question": "A VPC Peering connection has been established between VPC-A and VPC-B. Both are in the same account and region. What does this connection status of \"active\" signify?",
+    "options": [
+      "Instances can now communicate between the VPCs.",
+      "The connection is ready, but route tables must be updated to enable traffic flow.",
+      "The connection is pending acceptance from the owner of VPC-B.",
+      "DNS resolution between the VPCs is now enabled."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "An \"active\" status on a VPC peering connection means that the logical link has been established. However, no traffic will flow until you update the route tables in each VPC to tell them where to send traffic destined for the other VPC's CIDR block."
+  },
+  {
+    "id": 70,
+    "question": "You have configured VPC Flow Logs to publish to CloudWatch Logs. What information is NOT included in a flow log record?",
+    "options": [
+      "The source and destination IP addresses.",
+      "The protocol and port numbers.",
+      "The packet's data payload or content.",
+      "The action (ACCEPT or REJECT)."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "VPC Flow Logs are designed to capture metadata about traffic, not the actual content of the traffic itself. This is for security and performance reasons. It provides information about the traffic flow but does not perform deep packet inspection."
+  },
+  {
+    "id": 71,
+    "question": "What is the purpose of disabling the \"Source/Destination Check\" attribute on an EC2 instance?",
+    "options": [
+      "To allow the instance to function as a Bastion Host.",
+      "To allow the instance to forward traffic that is not addressed to its own IP address, such as when acting as a NAT instance.",
+      "To improve the network performance of the instance.",
+      "To assign multiple private IP addresses to the instance."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "By default, an EC2 instance checks whether it is the source or destination of any traffic it sends or receives. For an instance to function as a network appliance like a NAT instance, a router, or a firewall, it needs to be able to handle traffic on behalf of other instances. Disabling the source/destination check allows it to do this."
+  },
+  {
+    "id": 72,
+    "question": "An organization has a requirement that all EC2 instances must be launched into a private subnet and are not allowed to have public IP addresses. How can this be enforced?",
+    "options": [
+      "By using an IAM policy to deny the `ec2:AssociateAddress` action.",
+      "By creating only private subnets and disabling the \"auto-assign public IP\" setting on them.",
+      "By using a Service Control Policy (SCP) to deny the `ec2:RunInstances` action if a public IP is requested.",
+      "All of the above are valid methods."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "You can use multiple layers of controls to enforce this policy. You can configure your subnets to not auto-assign public IPs (B), which is a good first step. You can also use IAM policies (A) or SCPs (C) to create a preventative guardrail that explicitly denies the actions that would associate a public IP, providing a more robust enforcement mechanism."
+  },
+  {
+    "id": 73,
+    "question": "What is a primary use case for AWS Transit Gateway?",
+    "options": [
+      "To connect a single VPC to the internet.",
+      "To connect thousands of VPCs and on-premises networks within a simplified hub-and-spoke architecture.",
+      "To provide low-latency access to AWS services like S3.",
+      "To create a peer-to-peer connection between two VPCs."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Transit Gateway is designed to simplify networking at scale. Instead of creating a complex mesh of VPC peering connections, each network (VPC or on-premises via VPN/Direct Connect) connects to the central Transit Gateway, which handles all the routing."
+  },
+  {
+    "id": 74,
+    "question": "A security group inbound rule allows traffic from `sg-12345abc`. What does this mean?",
+    "options": [
+      "It allows traffic from any instance that has the tag `Name=sg-12345abc`.",
+      "It allows traffic from the subnet where the security group `sg-12345abc` is located.",
+      "It allows traffic from any network interface that is associated with the security group `sg-12345abc`.",
+      "It allows traffic from the public IP address `123.45.abc`."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "When you reference a security group ID as the source in a rule, you are allowing traffic from all the elastic network interfaces (and therefore, all the instances) that are associated with that source security group."
+  },
+  {
+    "id": 75,
+    "question": "Which component is stateless and evaluates rules in numerical order?",
+    "options": [
+      "Security Group",
+      "NAT Gateway",
+      "Network ACL",
+      "Route 53 Resolver"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A Network ACL is a stateless firewall. It processes its inbound and outbound rules separately, in ascending order of the rule number. The first rule that matches the traffic is immediately applied."
+  },
+  {
+    "id": 76,
+    "question": "You have a fleet of instances in a private subnet. How can you ensure they all use the same public IP address for outbound internet communication?",
+    "options": [
+      "This is not possible; each instance will get a random IP from a pool.",
+      "Configure a NAT Gateway with an Elastic IP address and route the subnet's traffic through it.",
+      "Configure an Internet Gateway with a specific Elastic IP address.",
+      "Assign the same Elastic IP address to all the instances."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A NAT Gateway is associated with a single, static Elastic IP address. When instances in a private subnet send traffic through the NAT Gateway, all the traffic will appear to originate from that single Elastic IP. This is useful when you need to whitelist your application's IP address with a third party."
+  },
+  {
+    "id": 77,
+    "question": "You need to create a subnet that can contain exactly 60 usable IP addresses for EC2 instances. Which CIDR block should you use?",
+    "options": [
+      "/27 (32 IPs, 27 usable)",
+      "/26 (64 IPs, 59 usable)",
+      "/25 (128 IPs, 123 usable)",
+      "/26 (64 IPs, 62 usable)"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A /26 CIDR block provides 64 IP addresses, but after AWS reserves 5, only 59 are usable, which is not enough. A /25 CIDR block provides 128 IP addresses, and after reserving 5, 123 are usable. This is the smallest standard CIDR block that can accommodate at least 60 instances."
+  },
+  {
+    "id": 78,
+    "question": "An EC2 instance needs to be accessible via SSH. Which of the following configurations is required?",
+    "options": [
+      "An inbound Security Group rule allowing TCP port 22 and an outbound NACL rule allowing the ephemeral port range.",
+      "An inbound Security Group rule allowing UDP port 22.",
+      "An inbound Network ACL rule allowing TCP port 22 and an outbound Security Group rule allowing all traffic.",
+      "An inbound Security Group rule allowing TCP port 22 and a route table entry to an Internet Gateway."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "For an instance to be accessible from the internet, a few things are needed. It needs a public IP, the subnet's route table must point to an Internet Gateway (D), and its Security Group must allow the inbound traffic (e.g., TCP port 22 for SSH). Option A is also partially correct as the NACL needs to allow traffic, but the route table is a more fundamental requirement for internet reachability."
+  },
+  {
+    "id": 79,
+    "question": "Which of the following is true regarding the default security group for a VPC?",
+    "options": [
+      "It denies all inbound traffic and allows all outbound traffic by default.",
+      "It allows all inbound traffic from instances within the same security group and allows all outbound traffic.",
+      "It denies all inbound and all outbound traffic by default.",
+      "It allows all inbound and all outbound traffic by default."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The default security group is configured to be more permissive for internal communication. Its initial state includes a rule that allows all inbound traffic from other network interfaces assigned to the same security group. It also includes the standard rule allowing all outbound traffic. It does NOT allow any other inbound traffic by default."
+  },
+  {
+    "id": 80,
+    "question": "You want to enable DNS resolution for your VPC peering connection so you can resolve public DNS hostnames to private IP addresses across VPCs. What must you do?",
+    "options": [
+      "Enable the \"DNS resolution\" option on the VPC settings.",
+      "Enable the \"DNS hostnames\" option on the VPC settings.",
+      "Enable the VPC peering connection setting for \"DNS resolution\".",
+      "Manually configure a Route 53 private hosted zone."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Even if DNS resolution is enabled for the VPCs themselves, you must explicitly enable it for the peering connection. There is a specific option in the VPC peering connection settings for both the requester and the accepter VPC that must be enabled to allow this cross-VPC DNS resolution."
+  },
+  {
+    "id": 81,
+    "question": "A company has a Direct Connect connection to their VPC. They want to create a backup connection that will be used only if the Direct Connect fails. What is the standard AWS solution for this?",
+    "options": [
+      "A second Direct Connect connection.",
+      "A VPC Peering connection.",
+      "An AWS Site-to-Site VPN connection configured as a backup.",
+      "A NAT Gateway."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A common high-availability pattern is to use a primary AWS Direct Connect connection and configure a lower-cost AWS Site-to-Site VPN connection as a failover backup. You can configure routing (e.g., using BGP) to prefer the Direct Connect link and automatically fail over to the VPN if the primary link goes down."
+  },
+  {
+    "id": 82,
+    "question": "Can a security group be associated with multiple EC2 instances?",
+    "options": [
+      "Yes, a security group can be associated with any number of instances.",
+      "No, a security group has a one-to-one relationship with an instance.",
+      "Yes, but only if the instances are in the same subnet.",
+      "Yes, but only if the instances are in the same Availability Zone."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "Security groups are designed to be reusable. A single security group can be applied to many EC2 instances, allowing you to apply a consistent set of firewall rules to a group of instances that have the same function (e.g., all your web servers)."
+  },
+  {
+    "id": 83,
+    "question": "What is the largest CIDR block size that can be assigned to a VPC?",
+    "options": [
+      "/8",
+      "/12",
+      "/16",
+      "/24"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "When you create a VPC, you must specify a CIDR block for the VPC. The allowed block size is between /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses)."
+  },
+  {
+    "id": 84,
+    "question": "A company has deployed an application in a VPC. They need to inspect all traffic going to and from the internet for malicious activity. What solution would allow for this?",
+    "options": [
+      "Configure VPC Flow Logs to send data to an IDS/IPS system.",
+      "Deploy a fleet of EC2 instances with IDS/IPS software and route all traffic through them using a Gateway Load Balancer.",
+      "Use Network ACLs to block known malicious IP ranges.",
+      "Use AWS Shield Advanced."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "To perform deep packet inspection for intrusion detection/prevention (IDS/IPS), you need to route traffic through a network appliance. The modern AWS architecture for this uses a Gateway Load Balancer, which acts as a transparent bump-in-the-wire to send traffic to a fleet of security appliances (running on EC2) for inspection before forwarding it to its destination."
+  },
+  {
+    "id": 85,
+    "question": "Which of these is NOT a component of an AWS Site-to-Site VPN connection?",
+    "options": [
+      "Virtual Private Gateway",
+      "Customer Gateway",
+      "NAT Gateway",
+      "IPsec Tunnel"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "An AWS Site-to-Site VPN connects your on-premises network to your VPC. It consists of a Virtual Private Gateway on the AWS side, a Customer Gateway device or software on your side, and two encrypted IPsec Tunnels that connect them. A NAT Gateway is used for providing outbound internet access from a VPC, not for a VPN connection."
+  },
+  {
+    "id": 86,
+    "question": "You have a public subnet and a private subnet. You want to move an EC2 instance from the public subnet to the private subnet. What is the easiest way to do this?",
+    "options": [
+      "Create an AMI of the instance and launch a new instance from the AMI into the private subnet.",
+      "Change the subnet association of the running instance in the EC2 console.",
+      "Stop the instance, detach its network interface, and re-attach it to the private subnet.",
+      "This is not possible; you must terminate the instance and launch a new one."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "You cannot directly move a running EC2 instance from one subnet to another. The standard and easiest procedure is to create an Amazon Machine Image (AMI) from the original instance. Then, you launch a new instance from that AMI, making sure to select the desired private subnet during the launch process."
+  },
+  {
+    "id": 87,
+    "question": "What is the main purpose of the `local` route that exists in every route table?",
+    "options": [
+      "To route traffic to the local machine's loopback address.",
+      "To enable communication between all instances within the VPC.",
+      "To allow instances to communicate with the EC2 metadata service.",
+      "To direct traffic destined for the public internet."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The `local` route is automatically added to all route tables in a VPC. Its destination is the VPC's CIDR block, and its target is `local`. This rule allows all resources within the VPC to freely communicate with each other using their private IP addresses. It cannot be modified or deleted."
+  },
+  {
+    "id": 88,
+    "question": "What is a key security benefit of using a VPC?",
+    "options": [
+      "All traffic within a VPC is automatically encrypted.",
+      "It provides logical isolation for your AWS resources from other customers.",
+      "It automatically applies patches to all EC2 instances.",
+      "It prevents any resource from accessing the internet by default."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A VPC provides a logically isolated portion of the AWS Cloud where you can launch resources in a virtual network that you define. This isolation is a fundamental security benefit, as your resources are not accessible by other AWS customers unless you explicitly allow it."
+  },
+  {
+    "id": 89,
+    "question": "You need to add a secondary CIDR block to your existing VPC. What is a key restriction for this secondary CIDR block?",
+    "options": [
+      "It must be larger than the primary CIDR block.",
+      "It must not overlap with the primary CIDR block or any other existing secondary CIDR blocks.",
+      "It must be from the same RFC 1918 private address range as the primary block.",
+      "It can only be added if the VPC is empty."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "When you add a secondary CIDR block to a VPC, it must not overlap with any of the existing CIDR blocks (primary or secondary) associated with that VPC. It also cannot overlap with the CIDR block of any peered VPC or any network connected via VPN or Direct Connect."
+  },
+  {
+    "id": 90,
+    "question": "If you want to use your own corporate DNS servers for instances within your VPC, what should you configure?",
+    "options": [
+      "The VPC's main route table.",
+      "A custom DHCP options set.",
+      "The security group for each instance.",
+      "A VPC Endpoint for Route 53."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A DHCP options set is a group of network configurations that you can associate with your VPC. You can create a custom set to specify your own domain name servers, domain name, NTP servers, and NetBIOS node type. This custom set can then be associated with the VPC to override the defaults."
+  },
+  {
+    "id": 91,
+    "question": "An instance in a public subnet has a security group that allows inbound HTTP traffic from 0.0.0.0/0. The subnet's NACL has an inbound rule denying all traffic from 0.0.0.0/0. What is the result?",
+    "options": [
+      "HTTP traffic is allowed.",
+      "HTTP traffic is denied.",
+      "Only HTTPS traffic is allowed.",
+      "Traffic is allowed, but responses are blocked."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The Network ACL is evaluated before the Security Group for inbound traffic. Since the NACL has a rule that explicitly denies all traffic, the HTTP request will be blocked at the subnet boundary and will never reach the instance or its security group."
+  },
+  {
+    "id": 92,
+    "question": "You have a fleet of EC2 instances for batch processing in a private subnet. They need to pull jobs from an SQS queue. The data is not sensitive, and performance is the top priority. What is the most cost-effective way to provide this connectivity?",
+    "options": [
+      "Deploy a NAT Gateway.",
+      "Deploy an Interface VPC Endpoint for SQS.",
+      "Deploy a NAT Instance.",
+      "Assign public IPs and use an Internet Gateway."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "An Interface VPC Endpoint for SQS is the most performant and secure solution. It provides a private IP address within your VPC for the SQS service, keeping all traffic on the highly optimized AWS network and avoiding the need for a NAT device or public internet traversal. While a NAT Gateway works, the endpoint is a more direct and often faster path for this specific use case."
+  },
+  {
+    "id": 93,
+    "question": "What is the purpose of AWS Shield Standard?",
+    "options": [
+      "It is a managed Web Application Firewall (WAF).",
+      "It provides protection against common, most frequently occurring network and transport layer DDoS attacks for all AWS customers automatically and at no additional charge.",
+      "It provides advanced, 24/7 managed protection against large and sophisticated DDoS attacks.",
+      "It is a tool for scanning your VPC for security vulnerabilities."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "AWS Shield Standard is automatically enabled for all AWS customers. It provides always-on detection and automatic inline mitigations against the most common network and transport layer DDoS attacks that target your AWS resources. AWS Shield Advanced (C) is a paid service with more comprehensive protections."
+  },
+  {
+    "id": 94,
+    "question": "An EC2 instance has two network interfaces (ENIs), and each ENI is associated with a different security group. How are the security group rules applied?",
+    "options": [
+      "The rules from both security groups are merged, and the most permissive rule is applied.",
+      "The rules from both security groups are evaluated, and only rules present in both are applied.",
+      "The rules of each security group are applied only to the traffic passing through its associated ENI.",
+      "Only the rules of the security group attached to the primary network interface (eth0) are applied."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Security groups are applied at the network interface level. Each ENI can have its own set of security groups. The rules of a given security group are enforced only for the traffic that flows through the specific ENI it is associated with."
+  },
+  {
+    "id": 95,
+    "question": "You need to connect 50 retail stores to your VPC. Each store has a low-bandwidth, intermittent connection requirement. What is the most cost-effective and scalable AWS solution?",
+    "options": [
+      "An AWS Direct Connect for each store.",
+      "A VPC Peering connection for each store.",
+      "An AWS Site-to-Site VPN connection for each store.",
+      "An AWS Transit Gateway with a single VPN connection from each store."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "While you could set up 50 individual Site-to-Site VPNs (C), this becomes complex to manage. A more scalable solution is to use AWS Transit Gateway. Each store establishes a VPN connection to the Transit Gateway, which then acts as a central point for routing traffic into the VPC. This simplifies the architecture and management significantly."
+  },
+  {
+    "id": 96,
+    "question": "Can you associate a security group with an EC2 instance in a different VPC?",
+    "options": [
+      "Yes, if the VPCs are peered.",
+      "Yes, if the VPCs are in the same region.",
+      "No, a security group is specific to a VPC and can only be associated with resources in that same VPC.",
+      "Yes, by referencing the security group's ARN."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Security groups are a VPC-specific resource. A security group created in VPC-A cannot be directly attached to an instance in VPC-B. While you can reference a security group from a peered VPC in a rule, you cannot associate it directly with a resource in another VPC."
+  },
+  {
+    "id": 97,
+    "question": "What is the \"Five-Tuple\" that VPC Flow Logs capture?",
+    "options": [
+      "Source IP, Destination IP, Protocol, Packet Size, and Action (Accept/Reject).",
+      "Source IP, Destination IP, Source Port, Destination Port, and Protocol.",
+      "VPC ID, Subnet ID, Instance ID, Protocol, and Action (Accept/Reject).",
+      "Source MAC, Destination MAC, Source IP, Destination IP, and Protocol."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A five-tuple is a standard networking term used to uniquely identify a connection. It consists of the Source IP address, Source Port, Destination IP address, Destination Port, and the Protocol (e.g., TCP, UDP, ICMP). VPC Flow Logs capture this information for each flow."
+  },
+  {
+    "id": 98,
+    "question": "What is the default limit for the number of security groups you can associate with a single EC2 instance?",
+    "options": [
+      "1",
+      "5",
+      "10",
+      "50"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "By default, you can associate up to 5 security groups with a single network interface, and therefore with a single EC2 instance (that has one ENI). This limit can be increased by request."
+  },
+  {
+    "id": 99,
+    "question": "A VPC spans multiple Availability Zones. Can a single subnet also span multiple Availability Zones?",
+    "options": [
+      "Yes, to provide high availability for the resources within it.",
+      "No, a subnet must reside entirely within a single Availability Zone.",
+      "Yes, but only for the default VPC.",
+      "No, unless you use a special \"stretched subnet\" feature."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "This is a fundamental concept of VPC architecture. A subnet is a regional resource, but it is tied to a single, specific Availability Zone. You cannot have a subnet that spans multiple AZs. To build a multi-AZ architecture, you create separate subnets in each desired AZ."
+  },
+  {
+    "id": 100,
+    "question": "You have a fleet of web servers that need to serve traffic from the internet. They are behind an Elastic Load Balancer. What is the best practice for the web server subnet?",
+    "options": [
+      "Place the web servers in a public subnet to allow the ELB to route traffic to them.",
+      "Place the web servers in a private subnet and configure the ELB's security group to allow traffic to the web servers' security group.",
+      "Place the web servers in a private subnet and use a NAT Gateway to route traffic from the ELB.",
+      "Place the web servers in a public subnet and assign each an Elastic IP address."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The best practice for a multi-tier architecture is to place your application and web servers in a private subnet, even if they serve public traffic. The public-facing Elastic Load Balancer resides in public subnets and acts as the entry point. You then configure security groups to allow traffic ONLY from the ELB to the web servers. This protects them from direct exposure to the internet."
+  }
+]

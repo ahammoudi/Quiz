@@ -1369,7 +1369,8 @@ Explanation: The default result of an IAM policy evaluation is a deny. If, after
 
 ---
 
-Question A company wants to provide its data scientists with access to a specific S3 bucket, but only when they are connected to the corporate VPN. The VPN has a static IP address range. How can this be enforced in the S3 bucket policy?
+Question #: 97
+A company wants to provide its data scientists with access to a specific S3 bucket, but only when they are connected to the corporate VPN. The VPN has a static IP address range. How can this be enforced in the S3 bucket policy?
 
 A. Use a statement with `"Effect": "Allow"` and a `Condition` checking the `aws:SourceIp` against the VPN's IP range.
 B. Use a statement with `"Effect": "Deny"` and a `Condition` checking the `s3:LocationConstraint` against the VPN's IP range.

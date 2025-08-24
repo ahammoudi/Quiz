@@ -1,1410 +1,1510 @@
 [
   {
     "id": 1,
-    "question": "A company has a global user base for its web application hosted in a single AWS Region. Users in Asia and Europe are experiencing high latency. The application serves a mix of dynamic and static content. Which service should be used to improve performance for all users by routing them through the AWS global network and caching static content at the edge?",
+    "question": "A company is launching a new web application with a global user base. They want to provide the lowest possible latency for serving static content like images, videos, and CSS files. Which AWS service is BEST suited for this requirement?",
     "options": [
-      "S3 Transfer Acceleration",
       "AWS Global Accelerator",
       "Amazon CloudFront",
-      "Elastic Load Balancer"
+      "An Application Load Balancer with Cross-Zone Load Balancing",
+      "S3 Transfer Acceleration"
     ],
     "correctAnswers": [
-      2
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Amazon CloudFront is a Content Delivery Network (CDN) specifically designed to cache static and dynamic content at edge locations around the world, closer to end-users. This significantly reduces latency for content delivery. Global Accelerator (A) is for improving the performance of the transport path for applications, not for caching. S3 Transfer Acceleration (D) is for speeding up uploads to S3, not for delivering content from it."
   },
   {
     "id": 2,
-    "question": "An organization has three separate VPCs (VPC-A, VPC-B, VPC-C) in the same region. They need to enable full mesh connectivity, allowing resources in each VPC to communicate with resources in the other two. What is the most scalable and manageable solution to achieve this?",
+    "question": "An application running on EC2 instances behind a Network Load Balancer (NLB) needs to be accessible to a global user base with minimal latency and jitter for TCP traffic. The application also requires a static IP address to be whitelisted by clients. Which service should be used?",
     "options": [
-      "Create a VPC peering connection between A and B, B and C, and A and C.",
-      "Create a NAT Gateway in each VPC.",
-      "Create a Transit Gateway and attach all three VPCs to it.",
-      "Create a VPC endpoint in each VPC."
+      "Amazon CloudFront",
+      "AWS Global Accelerator",
+      "A VPC Peering connection to each client's VPC.",
+      "An Elastic IP address on the NLB."
     ],
     "correctAnswers": [
-      2
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "AWS Global Accelerator is the ideal service for this use case. It provides two static Anycast IP addresses and routes traffic over the highly reliable and performant AWS global network, which reduces latency and jitter for TCP/UDP traffic. It can use an NLB as an endpoint. CloudFront (A) is primarily for caching HTTP/S content."
   },
   {
     "id": 3,
-    "question": "An application requires a static, anycast IP address that can intelligently route traffic to the nearest healthy application endpoint (e.g., an ALB or EC2 instance) across multiple AWS Regions. The application is sensitive to network jitter and latency. Which service is designed for this use case?",
+    "question": "A company has two VPCs, VPC-A and VPC-B, in the same region. They need to enable communication between instances in these VPCs using private IP addresses. They have set up a VPC Peering connection, and the status is \"active\". However, the instances still cannot communicate. What is the most likely missing step?",
     "options": [
-      "Amazon CloudFront",
-      "AWS Global Accelerator",
-      "Elastic IP Address with Route 53",
-      "Amazon S3 Transfer Acceleration"
+      "Enabling DNS resolution on the peering connection.",
+      "Updating the route tables in each VPC to direct traffic destined for the other VPC to the peering connection.",
+      "Attaching an Internet Gateway to each VPC.",
+      "Creating a NAT Gateway in each VPC."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Creating and accepting a VPC Peering connection is only the first step. For traffic to flow, you must explicitly update the route table in each VPC. VPC-A's route table needs a route with VPC-B's CIDR block as the destination and the peering connection ID as the target, and vice-versa for VPC-B's route table."
   },
   {
     "id": 4,
-    "question": "You have successfully established a VPC peering connection between VPC-A and VPC-B. An EC2 instance in VPC-A is trying to communicate with an EC2 instance in VPC-B, but the connection is failing. Both instances have security groups that allow the traffic. What is the most likely missing configuration step?",
+    "question": "An organization has over 50 VPCs in a single region. They need to establish full interconnectivity between all of them. What is the most scalable and manageable solution to achieve this?",
     "options": [
-      "Enabling DNS resolution for the peering connection.",
-      "Updating the route tables in both VPCs to direct traffic for the peered VPC's CIDR block to the peering connection.",
-      "Creating a NAT Gateway in both VPCs.",
-      "Attaching an Internet Gateway to the peering connection."
+      "Create a full mesh of VPC Peering connections between all 50 VPCs.",
+      "Use AWS Direct Connect to link all the VPCs.",
+      "Deploy an AWS Transit Gateway and connect all VPCs to it.",
+      "Create a single, large \"shared services\" VPC and peer it with all other VPCs."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A full mesh of VPC Peering connections becomes extremely complex and difficult to manage at scale (requiring nearly 1225 peering connections for 50 VPCs). AWS Transit Gateway is designed to solve this problem by acting as a central \"hub\" or cloud router. Each VPC connects to the Transit Gateway, which simplifies the network architecture into a manageable hub-and-spoke model."
   },
   {
     "id": 5,
-    "question": "What is the primary function of a CloudFront distribution?",
+    "question": "A CloudFront distribution is configured to serve content from an S3 bucket. You want to prevent users from accessing the content directly via the S3 URL, forcing them to use the CloudFront URL instead. What should you configure?",
     "options": [
-      "To provide a dedicated, private network connection from an on-premises data center to AWS.",
-      "To distribute traffic across multiple EC2 instances within a single region.",
-      "To cache content at edge locations around the world, reducing latency for end-users.",
-      "To provide static IP addresses for application endpoints."
+      "A CloudFront security policy.",
+      "An S3 bucket policy that denies access unless the request comes from a specific IP range.",
+      "A CloudFront Origin Access Identity (OAI) or Origin Access Control (OAC) and an S3 bucket policy that only allows access to that identity.",
+      "S3 Cross-Origin Resource Sharing (CORS)."
     ],
     "correctAnswers": [
       2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "The standard and secure method to achieve this is by using OAI (legacy) or the newer OAC. This creates a special CloudFront identity that you can reference in your S3 bucket policy. The policy is configured to only allow `s3:GetObject` requests from this specific CloudFront identity, effectively blocking all direct access to the S3 bucket."
   },
   {
     "id": 6,
-    "question": "A company has a central \"shared services\" VPC and multiple \"application\" VPCs. They want the application VPCs to access services in the shared services VPC, but they do not want the application VPCs to be able to route traffic to each other. How can this be configured using a Transit Gateway?",
+    "question": "What is a key difference between AWS Global Accelerator and Amazon CloudFront?",
     "options": [
-      "Attach all VPCs to the Transit Gateway and use the default route table.",
-      "Create a separate Transit Gateway route table for the shared services VPC and associate the application VPCs with it.",
-      "Create a separate Transit Gateway route table for each application VPC that only has a route to the shared services VPC, and disable route propagation.",
-      "Use VPC peering instead of a Transit Gateway."
+      "CloudFront uses static IP addresses, while Global Accelerator uses a unique DNS name.",
+      "CloudFront is for caching content at the edge, while Global Accelerator optimizes the network path from the user to the application endpoint.",
+      "CloudFront can only have S3 buckets as an origin, while Global Accelerator can have EC2 instances.",
+      "Global Accelerator is a regional service, while CloudFront is global."
     ],
     "correctAnswers": [
-      2
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "This is the fundamental distinction. CloudFront is a CDN that caches content close to users to reduce latency. Global Accelerator does not cache content; instead, it uses the AWS global network and Anycast IPs to find the optimal path for user traffic back to your application, improving performance for stateful, non-cacheable workloads."
   },
   {
     "id": 7,
-    "question": "A key benefit of AWS Global Accelerator is that it provides two static IP addresses that serve as a fixed entry point to your application. What is the advantage of this?",
+    "question": "You have three VPCs: VPC-A is peered with VPC-B, and VPC-B is peered with VPC-C. Can an instance in VPC-A communicate directly with an instance in VPC-C through this configuration?",
     "options": [
-      "It simplifies firewall rules and allows you to whitelist a small, consistent set of IP addresses.",
-      "It improves SEO for web applications.",
-      "It allows you to use your own IP address range (BYOIP).",
-      "It is required for SSL/TLS termination."
+      "Yes, because the peering connections form a chain.",
+      "No, because VPC Peering is not transitive.",
+      "Yes, but only if DNS resolution is enabled on both peering connections.",
+      "No, because the CIDR blocks will overlap."
     ],
     "correctAnswers": [
-      0
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A core limitation of VPC Peering is that it does not support transitive routing. This means that if A is peered with B, and B is peered with C, there is no automatic path between A and C. To enable that communication, you would need to create a separate, direct peering connection between VPC-A and VPC-C."
   },
   {
     "id": 8,
-    "question": "A VPC peering connection is being set up between two VPCs with overlapping CIDR blocks. What will happen when you try to create the connection?",
+    "question": "A company connects its on-premises data center to a Transit Gateway via a Direct Connect connection. It also connects 10 VPCs to the same Transit Gateway. What does this configuration enable?",
     "options": [
-      "The connection will be created, but traffic will be routed unpredictably.",
-      "The creation of the VPC peering connection will fail.",
-      "AWS will automatically assign a new, non-overlapping CIDR block to one of the VPCs.",
-      "The connection will be created in a \"pending\" state until the overlap is resolved."
+      "It allows the on-premises network to communicate with all 10 VPCs through a single connection.",
+      "It allows the 10 VPCs to communicate with each other, but not with the on-premises network.",
+      "It encrypts all traffic between the VPCs by default.",
+      "It allows the on-premises network to access the public internet through the VPCs."
     ],
     "correctAnswers": [
-      1
+      0
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "An AWS Transit Gateway acts as a central router. By attaching both the Direct Connect gateway (for the on-premises connection) and the 10 VPCs to the Transit Gateway, and configuring the route tables appropriately, you create a hub-and-spoke network. This allows any attachment to communicate with any other attachment, meaning the on-premises network can reach all 10 VPCs through that single hub."
   },
   {
     "id": 9,
-    "question": "A CloudFront distribution is configured with an S3 bucket as its origin. A user requests an image that is not currently in the CloudFront cache. What is the sequence of events?",
+    "question": "A CloudFront distribution is configured with a default TTL of 24 hours. A new version of an image file is uploaded to the S3 origin, replacing the old one. However, users are still seeing the old image. What is the fastest way to force CloudFront to serve the new image to all users?",
     "options": [
-      "CloudFront returns a 404 Not Found error to the user.",
-      "CloudFront forwards the request to the S3 origin, retrieves the image, caches it, and then serves it to the user.",
-      "The user's browser is redirected to the S3 bucket to download the image directly.",
-      "CloudFront waits for the next cache refresh cycle to retrieve the object."
+      "Wait for the 24-hour TTL to expire.",
+      "Create a new CloudFront distribution.",
+      "Create a CloudFront invalidation for the image file's path (e.g., `/images/logo.png`).",
+      "Update the bucket policy on the S3 origin."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A CloudFront invalidation is a request you can make to force CloudFront to evict an object from its edge caches before the TTL expires. When you invalidate an object's path, the next time a user requests that object, CloudFront will miss the cache and go back to the origin to fetch the new version."
   },
   {
     "id": 10,
-    "question": "Which of the following statements about AWS Transit Gateway is true?",
+    "question": "Which of the following is a good use case for AWS Global Accelerator?",
     "options": [
-      "It operates on a hub-and-spoke model, acting as a regional virtual router.",
-      "It is a global service that can connect VPCs across any AWS Region.",
-      "A Transit Gateway can only connect VPCs within the same AWS account.",
-      "It has a transitive relationship with VPC peering."
+      "Serving a static website with low latency to a global audience.",
+      "A real-time multiplayer gaming application that requires low latency and jitter for UDP traffic.",
+      "Storing and serving large video files.",
+      "A batch processing job that runs nightly in a single region."
     ],
     "correctAnswers": [
-      0
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Global Accelerator is ideal for latency-sensitive, non-HTTP, or stateful applications like gaming, VoIP, and IoT. It optimizes the network path over the AWS backbone for TCP and UDP traffic, which is critical for real-time applications where caching (like in CloudFront) is not possible."
   },
   {
     "id": 11,
-    "question": "AWS Global Accelerator uses the AWS global network to improve performance for TCP and UDP traffic. How does it differ from Amazon CloudFront?",
+    "question": "You have a VPC peering connection between VPC-A in your AWS account and VPC-B in another AWS account. You want to allow an EC2 instance in VPC-A to access a database in VPC-B. What is a best practice for configuring the database's security group?",
     "options": [
-      "Global Accelerator is designed for static content, while CloudFront is for dynamic content.",
-      "Global Accelerator operates at the application layer (Layer 7), while CloudFront operates at the network layer (Layer 4).",
-      "Global Accelerator is primarily for non-HTTP/HTTPS protocols and dynamic content, while CloudFront is primarily for caching HTTP/HTTPS content.",
-      "Global Accelerator provides a DNS name, while CloudFront provides static IP addresses."
+      "Allow traffic on the database port from the public IP address of the EC2 instance in VPC-A.",
+      "Allow traffic on the database port from the entire CIDR block of VPC-A.",
+      "Allow traffic on the database port by referencing the Security Group ID of the EC2 instance in VPC-A.",
+      "Allow traffic on the database port from 0.0.0.0/0."
     ],
     "correctAnswers": [
       2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "For peered VPCs (even across accounts), you can reference a security group from the peer VPC in your security group rules. This is the most secure and flexible method because it ties the access rule to the specific instance(s) that have that security group, rather than their IP addresses (which can change) or the entire subnet's CIDR block (which might be too permissive)."
   },
   {
     "id": 12,
-    "question": "You have a VPC (VPC-A) peered with VPC-B, and VPC-B is peered with VPC-C. Can an instance in VPC-A communicate directly with an instance in VPC-C through this configuration?",
+    "question": "How does AWS Transit Gateway handle routing between its attachments?",
     "options": [
-      "Yes, because VPC peering is transitive.",
-      "No, because VPC peering is non-transitive. A direct peering connection between VPC-A and VPC-C is required.",
-      "Yes, but only if a Transit Gateway is also used.",
-      "Yes, but only if the route tables in all three VPCs are configured to allow it."
+      "All attachments can communicate with each other by default.",
+      "It uses a central route table that can be associated with attachments, and routes can be propagated from attachments to this table.",
+      "It relies on VPC Peering for all inter-VPC communication.",
+      "It uses Security Groups to control routing."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Routing within a Transit Gateway is controlled by Transit Gateway Route Tables. Each attachment is associated with one route table. This route table determines where traffic from that attachment can be routed. Routes can be added statically or dynamically propagated from the VPC and VPN attachments, giving you granular control over the network topology."
   },
   {
     "id": 13,
-    "question": "A company wants to serve its website content over HTTPS and use its own custom domain name (e.g., `https://www.example.com`). What must be configured on the CloudFront distribution? (Choose TWO)",
+    "question": "You want to serve private content from a CloudFront distribution to a specific set of paid users. What feature should you use to restrict access?",
     "options": [
-      "An alternate domain name (CNAME) for `www.example.com`.",
-      "An AWS WAF Web ACL.",
-      "An SSL/TLS certificate from AWS Certificate Manager (ACM) that covers the domain name.",
-      "A static IP address for the origin.",
-      "S3 Transfer Acceleration."
+      "An Origin Access Identity (OAI).",
+      "AWS WAF with a rate-based rule.",
+      "CloudFront Signed URLs or Signed Cookies.",
+      "A security policy with TLSv1.3."
     ],
     "correctAnswers": [
-      0,
       2
     ],
-    "multiple": true
+    "multiple": false,
+    "explanation": "Signed URLs and Signed Cookies are the features designed for this use case. Your application can generate a temporary, signed URL or cookie for an authenticated user. This signed token grants the user time-limited access to a specific piece of private content through CloudFront. OAI (A) is for restricting access to the origin, not controlling which end-users can access the content via CloudFront."
   },
   {
     "id": 14,
-    "question": "A company has 50 VPCs in a single region that need to be interconnected. Using a full-mesh VPC peering design would be complex to manage. How does AWS Transit Gateway simplify this?",
+    "question": "What is the primary benefit of using AWS Global Accelerator for an application that uses an Application Load Balancer as an endpoint?",
     "options": [
-      "By automatically creating and managing all the required VPC peering connections.",
-      "By reducing the number of connections needed; each VPC just connects to the central Transit Gateway.",
-      "By eliminating the need for route table updates.",
-      "By providing a single, global endpoint for all VPCs."
+      "It allows the ALB to cache static content.",
+      "It provides a pair of static Anycast IP addresses for the application and routes traffic over the optimized AWS global network.",
+      "It encrypts the traffic between the user and the ALB.",
+      "It allows the ALB to be deployed across multiple regions."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "While an ALB provides a regional DNS name, Global Accelerator provides stable, static IP addresses that act as a fixed entry point. It then ingresses user traffic at the nearest AWS edge location and carries it across the AWS private backbone to your ALB, avoiding the potential congestion and variability of the public internet."
   },
   {
     "id": 15,
-    "question": "Which of the following is a good use case for AWS Global Accelerator?",
+    "question": "Which of the following statements about VPC Peering is TRUE?",
     "options": [
-      "A gaming application that uses UDP and requires minimal latency for a global player base.",
-      "A corporate blog that serves mainly static text and images.",
-      "A file-sharing service where users upload large files to a central S3 bucket.",
-      "A database server that only accepts connections from within a VPC."
+      "VPC Peering supports transitive routing.",
+      "You can create a peering connection between VPCs with overlapping CIDR blocks.",
+      "You can reference a security group from a peered VPC in a security group rule.",
+      "VPC Peering traffic is routed over the public internet by default."
     ],
     "correctAnswers": [
-      0
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A key feature for building secure multi-VPC architectures is the ability to reference a security group from a peered VPC in a security group rule. This allows you to create specific firewall rules without relying on static CIDR blocks. VPC Peering is not transitive (A), does not support overlapping CIDRs (B), and traffic always stays on the private AWS backbone (D)."
   },
   {
     "id": 16,
-    "question": "When you create a CloudFront distribution, what is an \"origin\"?",
+    "question": "A company has a central \"shared services\" VPC and multiple \"application\" VPCs. They want all traffic from the application VPCs to the internet to be filtered through a central firewall appliance located in the shared services VPC. Which service enables this \"egress VPC\" pattern?",
     "options": [
-      "The geographic location of the end-user.",
-      "The AWS edge location that serves the content.",
-      "The source of the content, such as an S3 bucket or an Application Load Balancer.",
-      "The DNS record that points to the CloudFront distribution."
+      "VPC Peering",
+      "AWS Global Accelerator",
+      "AWS Transit Gateway",
+      "AWS Direct Connect"
     ],
     "correctAnswers": [
       2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "AWS Transit Gateway is the ideal service for creating centralized network architectures. You can configure the route tables in the application VPCs to send all default traffic (0.0.0.0/0) to the Transit Gateway. The Transit Gateway's route table can then direct this traffic to an attachment in the shared services VPC, where it can be inspected by a firewall before being sent out to the internet via a NAT Gateway."
   },
   {
     "id": 17,
-    "question": "A Transit Gateway can be used to connect which of the following? (Choose TWO)",
+    "question": "A user in Europe is accessing a website hosted in a single AWS region in North America. The website's dynamic content is loading slowly. How can CloudFront be used to improve the performance of this dynamic content?",
     "options": [
-      "Multiple VPCs in the same region.",
-      "An on-premises data center via a Direct Connect or VPN connection.",
-      "A single EC2 instance directly to the internet.",
-      "An S3 bucket.",
-      "An Amazon RDS database."
+      "CloudFront cannot improve the performance of dynamic content.",
+      "By caching the dynamic content at the edge for a very long TTL.",
+      "By terminating the user's TCP and TLS connection at a nearby edge location and then using an optimized, persistent connection back to the origin over the AWS network.",
+      "By using Lambda@Edge to generate the content at the edge."
     ],
     "correctAnswers": [
-      0,
-      1
+      2
     ],
-    "multiple": true
+    "multiple": false,
+    "explanation": "While CloudFront is known for caching, it also significantly improves the performance of dynamic content. It does this by establishing a TCP/TLS connection with the user from a nearby, low-latency edge location. It then forwards the request back to the origin over the highly optimized and persistent connections of the AWS global network. This avoids the multiple round trips over the public internet that would otherwise be required for the TCP handshake and TLS negotiation."
   },
   {
     "id": 18,
-    "question": "You want to invalidate a file that is cached in CloudFront before its TTL expires because you have uploaded a new version to the origin. What is the process for this?",
+    "question": "You are using AWS Global Accelerator and have configured two endpoint groups in two different AWS regions. You have configured health checks for the endpoints in both regions. The primary region fails its health check. What happens?",
     "options": [
-      "Delete the file from the origin S3 bucket.",
-      "Create a CloudFront invalidation request for the specific object path (e.g., `/images/logo.png`).",
-      "The cache will be updated automatically within a few seconds.",
-      "Reboot the CloudFront distribution."
+      "Global Accelerator stops responding to requests.",
+      "Global Accelerator returns a DNS failure.",
+      "Global Accelerator automatically redirects all traffic to the healthy endpoints in the second region.",
+      "You must manually update the Global Accelerator configuration to fail over."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "AWS Global Accelerator has built-in, automatic failover capabilities. It continuously monitors the health of its configured endpoints. If it detects that all endpoints in one region are unhealthy, it will instantly and automatically reroute all user traffic to the healthy endpoints in the next available region, with no DNS changes required."
   },
   {
     "id": 19,
-    "question": "Can a VPC peering connection be established between two VPCs in different AWS Regions?",
+    "question": "When can two VPCs NOT be peered?",
     "options": [
-      "No, VPC peering is limited to a single region.",
-      "Yes, this is called an inter-region VPC peering connection.",
-      "Yes, but only if a Transit Gateway is used to bridge the connection.",
-      "Yes, but only between specific, adjacent regions."
+      "If they are in different AWS accounts.",
+      "If they are in different AWS regions.",
+      "If they have overlapping or matching CIDR blocks.",
+      "If they do not have an Internet Gateway."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A fundamental requirement for VPC Peering is that the two VPCs must have distinct, non-overlapping IPv4 CIDR blocks. If the CIDR blocks overlap, the routing would be ambiguous, so AWS does not allow a peering connection to be established in this case."
   },
   {
     "id": 20,
-    "question": "How does AWS Global Accelerator improve application availability?",
+    "question": "What is a \"Transit Gateway attachment\"?",
     "options": [
-      "By caching static content at the edge.",
-      "By continuously monitoring the health of its endpoints and instantly routing traffic to the nearest healthy endpoint.",
-      "By encrypting all traffic by default.",
-      "By providing a web application firewall."
+      "An IAM role that allows access to the Transit Gateway.",
+      "The connection between the Transit Gateway and a network resource, such as a VPC, a VPN connection, or a Direct Connect gateway.",
+      "A security group for the Transit Gateway.",
+      "A DNS record for the Transit Gateway."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "An attachment is the object that represents the connection of a network to the Transit Gateway. You can create attachments for your VPCs, for your Site-to-Site VPN connections, and for your Direct Connect gateways. These attachments are what allow the resources to send and receive traffic through the Transit Gateway."
   },
   {
     "id": 21,
-    "question": "What is a CloudFront Origin Group?",
+    "question": "A CloudFront distribution is configured with multiple cache behaviors. There is a path-based rule for `/images/*` and a default behavior for `*`. A user requests `/images/cat.jpg`. Which cache behavior will be used?",
     "options": [
-      "A group of edge locations in the same geographic area.",
-      "A feature that allows you to configure a primary and a secondary origin for high availability, with automatic failover.",
-      "A collection of S3 buckets that can be used as a single origin.",
-      "The default cache behavior for a distribution."
+      "The default behavior (`*`).",
+      "The `/images/*` behavior.",
+      "Both behaviors will be merged.",
+      "The behavior with the lowest TTL."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "CloudFront evaluates cache behaviors in a specific order. It first checks for matches based on path patterns, from most specific to least specific. Since `/images/cat.jpg` is a more specific match for the `/images/*` pattern than for the default `*` pattern, the `/images/*` cache behavior will be used to handle the request."
   },
   {
     "id": 22,
-    "question": "A company has a Transit Gateway in `us-east-1` and another Transit Gateway in `eu-west-1`. How can they enable communication between VPCs attached to these two Transit Gateways?",
+    "question": "A gaming company has a session-based multiplayer game. They need to ensure that once a user connects to a game server in a specific region, all subsequent packets for that session are consistently routed to the same server. Which Global Accelerator feature helps with this?",
     "options": [
-      "By creating a VPC peering connection between the Transit Gateways.",
-      "By creating an inter-region Transit Gateway peering attachment.",
-      "By creating a Direct Connect link between the two regions.",
-      "This is not a supported configuration."
+      "Endpoint weights",
+      "Health checks",
+      "Client affinity (source IP)",
+      "Anycast IPs"
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Client affinity, also known as session stickiness, is a feature of Global Accelerator listeners. When you enable client affinity based on the source IP, Global Accelerator will consistently route all requests from a given client's IP address to the same endpoint for the duration of their session. This is critical for stateful applications like games."
   },
   {
     "id": 23,
-    "question": "A user in Japan requests a video file from a CloudFront distribution whose origin is an S3 bucket in Virginia, USA. If the file is already cached, from where will the user be served?",
+    "question": "You have set up a VPC Peering connection between VPC-A and VPC-B. You have updated the route tables. Now you need to configure the firewall rules. Which of the following is true?",
     "options": [
-      "Directly from the S3 bucket in Virginia.",
-      "From an AWS edge location in or near Japan.",
-      "From a Regional Edge Cache in Asia.",
-      "From the AWS Global Accelerator endpoint."
+      "Security Groups can be configured to allow traffic from the peered VPC's CIDR block.",
+      "Network ACLs can be configured to allow traffic from the peered VPC's Security Group ID.",
+      "All traffic between peered VPCs is allowed by default.",
+      "Security Groups in one VPC cannot be referenced by the other."
     ],
     "correctAnswers": [
-      1
+      0
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "To allow traffic to flow, you must update the firewall rules. For Security Groups, you can add a rule that allows traffic from the source CIDR block of the peered VPC. For Network ACLs, you would also add rules allowing traffic to and from the peered VPC's CIDR block. NACLs (B) cannot reference Security Group IDs."
   },
   {
     "id": 24,
-    "question": "What is the purpose of a route table in a VPC?",
+    "question": "In an AWS Transit Gateway, what is the function of \"route propagation\"?",
     "options": [
-      "To control inbound and outbound traffic at the subnet level (stateless).",
-      "To control inbound and outbound traffic at the instance level (stateful).",
-      "To determine where network traffic from your subnet or gateway is directed.",
-      "To provide DNS resolution for resources within the VPC."
+      "It allows the Transit Gateway to automatically learn the routes from the attached VPCs and VPNs and add them to its route table.",
+      "It advertises the Transit Gateway's routes to on-premises networks.",
+      "It allows you to manually create static routes in the Transit Gateway.",
+      "It propagates DNS entries between VPCs."
     ],
     "correctAnswers": [
-      2
+      0
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Route propagation simplifies route management. When you associate a VPC with a Transit Gateway route table and enable propagation, the Transit Gateway automatically learns the CIDR block of that VPC and adds a route for it to the route table. This means you don't have to manually create static routes for every VPC you attach."
   },
   {
     "id": 25,
-    "question": "When you create a new VPC, it comes with a default route table. What is the destination of the default local route in this table?",
+    "question": "You are serving a web application from an ALB origin via CloudFront. You want to forward a custom HTTP header named `X-User-ID` from the client to your origin server. What must you configure in CloudFront?",
     "options": [
-      "The Internet Gateway.",
-      "It has no default route.",
-      "`0.0.0.0/0`.",
-      "The VPC's CIDR block, with the target `local`."
+      "A CloudFront Function to add the header.",
+      "A custom security policy.",
+      "A cache policy (or legacy cache settings) that is configured to forward the `X-User-ID` header as part of the cache key.",
+      "An Origin Access Identity (OAI)."
     ],
     "correctAnswers": [
-      3
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "By default, CloudFront does not forward most HTTP headers to the origin to maximize cacheability. To pass a custom header through, you must explicitly configure your cache behavior to include it. You would modify the cache policy to add the `X-User-ID` header to the list of headers that are forwarded to the origin and included in the cache key."
   },
   {
     "id": 26,
-    "question": "A CloudFront distribution is configured to serve a web application hosted on an Application Load Balancer. You want to ensure that users cannot bypass CloudFront and access the ALB directly. What is the best way to achieve this?",
+    "question": "What is the primary benefit of using an Elastic Network Adapter (ENA) for enhanced networking on an EC2 instance?",
     "options": [
-      "Configure the ALB's security group to only allow inbound traffic from CloudFront's IP address ranges.",
-      "Use a custom header and configure the ALB to only accept requests that contain that header.",
-      "Delete the ALB's DNS name.",
-      "Use AWS WAF to block traffic that doesn't come from CloudFront."
+      "It provides a static private IP address.",
+      "It provides significantly higher packet-per-second (PPS) performance, lower latency, and lower jitter compared to older network interfaces.",
+      "It allows the instance to attach to multiple VPCs.",
+      "It encrypts all network traffic automatically."
     ],
     "correctAnswers": [
-      0
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "ENA is the underlying technology for enhanced networking on modern EC2 instances. It uses single root I/O virtualization (SR-IOV) to provide a high-performance network interface, which is critical for network-intensive applications that need to process a large number of packets or are sensitive to latency variations (jitter)."
   },
   {
     "id": 27,
-    "question": "An organization has a complex network of VPCs and on-premises connections. They are using AWS Transit Gateway. What is the function of the Transit Gateway route table?",
+    "question": "You need to establish a dedicated, private, high-bandwidth network connection from your on-premises data center to AWS. The connection must not traverse the public internet. Which service should you use?",
     "options": [
-      "It controls which attachments (VPCs, VPNs) can route traffic to other attachments.",
-      "It is the same as the subnet route table within a VPC.",
-      "It controls security and acts as a firewall.",
-      "It provides DNS resolution for the connected networks."
+      "AWS Site-to-Site VPN",
+      "AWS Global Accelerator",
+      "AWS Direct Connect",
+      "VPC Peering"
     ],
     "correctAnswers": [
-      0
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "AWS Direct Connect is the service that provides a dedicated, private physical connection between your on-premises network and an AWS Direct Connect location. This offers a more consistent, reliable, and often higher-bandwidth experience than an internet-based VPN connection (A)."
   },
   {
     "id": 28,
-    "question": "Which of the following is NOT a direct benefit of using AWS Global Accelerator?",
+    "question": "Which of the following is a limitation of AWS Transit Gateway?",
     "options": [
-      "Lower latency",
-      "Improved availability and fault tolerance",
-      "Caching of static content",
-      "Simplified management with static IP addresses"
+      "It cannot connect more than 5 VPCs.",
+      "It operates only within a single AWS Region.",
+      "It does not support connections from on-premises networks.",
+      "It does not support IPv6 traffic."
     ],
     "correctAnswers": [
-      2
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A Transit Gateway is a regional resource. It can be used to interconnect thousands of VPCs and on-premises connections within that single region. To connect resources across different regions, you can peer two Transit Gateways together using Transit Gateway Peering."
   },
   {
     "id": 29,
-    "question": "Can an EC2 instance in a peered VPC use the Internet Gateway of the other VPC?",
+    "question": "A CloudFront distribution is configured with a TTL of 0 for a specific path pattern. What is the effect of this?",
     "options": [
-      "Yes, this is known as edge-to-edge routing and is enabled by default.",
-      "No, this type of transitive routing is not supported. The instance must use its own VPC's Internet Gateway.",
-      "Yes, but only if you configure the route table in the instance's VPC to point to the other VPC's IGW.",
-      "Yes, but only if the peering connection is in the same AWS account."
+      "The content will be cached for the default TTL of 24 hours.",
+      "CloudFront will not cache the content for that path and will forward every request to the origin.",
+      "This is an invalid configuration and will result in an error.",
+      "The content will be cached for a very short time, such as 1 second."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Setting a Time-To-Live (TTL) of 0 is a way to tell CloudFront that you do not want it to cache the content for that specific cache behavior. This is often done for highly dynamic content or API requests where you need to ensure that every request is sent to the origin server to get the most up-to-date response."
   },
   {
     "id": 30,
-    "question": "How can you restrict access to content in a CloudFront distribution so that only certain users (e.g., paid subscribers) can view it?",
+    "question": "Which of the following scenarios is NOT a good fit for AWS Global Accelerator?",
     "options": [
-      "By using an S3 bucket policy.",
-      "By using security groups on the CloudFront distribution.",
-      "By using signed URLs or signed cookies.",
-      "By using AWS WAF to block unauthorized users."
+      "A global gaming application using UDP.",
+      "A global IoT application ingesting telemetry data over TCP.",
+      "A corporate static website with mostly public, cacheable content.",
+      "An application that needs to fail over between regions without changing IP addresses."
     ],
     "correctAnswers": [
       2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "For a static website with cacheable content, Amazon CloudFront is the better and more cost-effective choice. CloudFront is a CDN designed specifically for caching content at the edge. Global Accelerator is designed to improve the performance of the network path for dynamic, non-cacheable, or non-HTTP applications."
   },
   {
     "id": 31,
-    "question": "A VPC with CIDR `10.0.0.0/16` is peered with a VPC with CIDR `172.16.0.0/16`. What route must be added to the route table in the `10.0.0.0/16` VPC to allow traffic to the other VPC?",
+    "question": "You have established a VPC Peering connection. You have updated the route tables. Now you want to enable EC2 instances to resolve private DNS hostnames of instances in the peered VPC. What must be enabled?",
     "options": [
-      "Destination: `0.0.0.0/0`, Target: Peering Connection ID",
-      "Destination: `172.16.0.0/16`, Target: Peering Connection ID",
-      "Destination: `10.0.0.0/16`, Target: `local`",
-      "Destination: `172.16.0.0/16`, Target: Internet Gateway"
+      "DNSSEC on your Route 53 hosted zone.",
+      "Enhanced Networking on the EC2 instances.",
+      "The \"DNS resolution\" option in the VPC Peering connection settings for both the requester and accepter.",
+      "The `enableDnsHostnames` attribute in the VPC settings."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Private DNS resolution does not work over a peering connection by default. You must explicitly enable it. This requires modifying the peering connection options from both the requester and the accepter VPCs to allow DNS resolution of private IP addresses."
   },
   {
     "id": 32,
-    "question": "A company wants to use a single, unified endpoint for its global application, but wants to route users in Europe to an endpoint in the `eu-west-1` region and all other users to an endpoint in `us-east-1`. Which service is best suited for this?",
+    "question": "What is the \"hub-and-spoke\" model in the context of AWS networking?",
     "options": [
-      "Amazon CloudFront with geo-restriction.",
-      "AWS Global Accelerator with endpoint groups configured for each region.",
-      "Amazon Route 53 with a geolocation routing policy.",
-      "An Application Load Balancer with host-based routing."
+      "A model where every VPC is peered with every other VPC in a full mesh.",
+      "A model where a central VPC or Transit Gateway (the hub) is used to connect multiple other VPCs (the spokes).",
+      "A model for distributing traffic evenly across multiple Availability Zones.",
+      "A model for connecting an on-premises network to a single VPC."
     ],
     "correctAnswers": [
-      2
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "The hub-and-spoke model is a network topology designed to simplify connectivity. Instead of creating many point-to-point connections, all networks connect to a central hub. The hub then manages the routing between the spokes. AWS Transit Gateway is the primary service for implementing this model in the cloud."
   },
   {
     "id": 33,
-    "question": "What is the function of the \"Time to Live\" (TTL) setting in a CloudFront cache behavior?",
+    "question": "A CloudFront distribution is used to serve an application running on an ALB. You need to ensure that some user-specific, dynamic content is never cached by CloudFront. How can this be achieved?",
     "options": [
-      "It specifies how long an object stays in the CloudFront cache before CloudFront checks the origin for an updated version.",
-      "It defines how long a user's browser should cache the object.",
-      "It sets the timeout for the connection between CloudFront and the origin.",
-      "It specifies how long the signed URL is valid."
+      "By configuring the origin ALB to send a `Cache-Control: no-cache` header in the response for the dynamic content.",
+      "By creating a CloudFront invalidation for the dynamic content on every request.",
+      "By using a Signed URL for the dynamic content.",
+      "This is not possible; CloudFront caches all content."
     ],
     "correctAnswers": [
       0
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "CloudFront respects the caching headers sent by the origin server. To prevent caching, the origin application should include the `Cache-Control: no-cache`, `private`, or `max-age=0` header in its HTTP response. When CloudFront sees this header, it will not store the response in its cache."
   },
   {
     "id": 34,
-    "question": "What is a key difference between a NAT Gateway and an Internet Gateway?",
+    "question": "What is an \"endpoint group\" in AWS Global Accelerator?",
     "options": [
-      "A NAT Gateway allows outbound internet access for instances in a private subnet, while an Internet Gateway allows two-way internet access for instances in a public subnet.",
-      "An Internet Gateway is a managed service, while a NAT Gateway must be run on an EC2 instance.",
-      "A NAT Gateway provides a static IP address, while an Internet Gateway does not.",
-      "An Internet Gateway is a regional service, while a NAT Gateway is global."
+      "A collection of one or more endpoints (like ALBs or NLBs) in a specific AWS Region.",
+      "A security group for the Global Accelerator.",
+      "A set of static IP addresses.",
+      "A group of listeners for a specific protocol."
     ],
     "correctAnswers": [
       0
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "An endpoint group is a regional component of a Global Accelerator configuration. You create an endpoint group for each AWS region where you have application endpoints. You can then control the percentage of traffic that is directed to each region by adjusting the \"traffic dial\" on the endpoint group."
   },
   {
     "id": 35,
-    "question": "A company wants to accelerate a non-HTTP, real-time communication application built on a custom TCP protocol. Which service is the best fit?",
+    "question": "A company is using a Direct Connect connection to link their on-premises network to a VPC. They also want a cost-effective backup connection that will be used only if the Direct Connect fails. What is a common solution?",
     "options": [
-      "Amazon CloudFront",
-      "AWS Global Accelerator",
-      "S3 Transfer Acceleration",
-      "Elastic Load Balancer"
+      "A second, redundant Direct Connect connection.",
+      "A VPC Peering connection.",
+      "An AWS Site-to-Site VPN connection configured as a backup.",
+      "An AWS Global Accelerator."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A common high-availability pattern is to use the dedicated, high-bandwidth Direct Connect as the primary path and an internet-based Site-to-Site VPN as a lower-cost backup. You can configure routing (using BGP) to prefer the Direct Connect path and automatically fail over to the VPN if the primary link goes down."
   },
   {
     "id": 36,
-    "question": "In a Transit Gateway, what is the difference between associating a VPC attachment with a route table and propagating routes from it?",
+    "question": "A Transit Gateway has a default route table. All attached VPCs are associated with this default route table and have route propagation enabled. What is the resulting connectivity?",
     "options": [
-      "Association determines which route table the VPC uses, while propagation automatically adds the VPC's CIDR to that route table.",
-      "Association adds the VPC's CIDR to the route table, while propagation determines which table the VPC uses.",
-      "They are the same thing and are configured together.",
-      "Association is for VPCs, while propagation is for VPN connections."
+      "None of the VPCs can communicate with each other.",
+      "Each VPC can only communicate with the on-premises network.",
+      "All attached VPCs can communicate with each other by default.",
+      "Only VPCs in the same Availability Zone can communicate."
     ],
     "correctAnswers": [
-      0
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "In the default configuration, a Transit Gateway effectively acts like a router on a flat network. The default route table propagates routes from all associated attachments. This means every VPC learns a route to every other VPC, creating a full mesh of connectivity between them."
   },
   {
     "id": 37,
-    "question": "How can you serve private content from an S3 bucket through CloudFront, ensuring that users cannot access the S3 objects directly?",
+    "question": "Which CloudFront feature allows you to run custom JavaScript code at edge locations to modify requests and responses? (Choose TWO)",
     "options": [
-      "By using an Origin Access Identity (OAI) or Origin Access Control (OAC) and a bucket policy that only allows access from CloudFront.",
-      "By making the S3 bucket public and using signed URLs.",
-      "By configuring the CloudFront distribution's security group.",
-      "By enabling versioning on the S3 bucket."
+      "Origin Access Identity (OAI)",
+      "Lambda@Edge",
+      "Signed URLs",
+      "CloudFront Functions",
+      "Field-Level Encryption"
     ],
     "correctAnswers": [
-      0
+      1,
+      3
     ],
-    "multiple": false
+    "multiple": true,
+    "explanation": "Both Lambda@Edge (B) and CloudFront Functions (D) are features that allow you to execute code at the AWS edge. CloudFront Functions are lightweight, designed for high-volume, low-latency operations like simple header or URL manipulations. Lambda@Edge is more powerful, has longer execution times, and has network access, making it suitable for more complex tasks like advanced request routing or authentication."
   },
   {
     "id": 38,
-    "question": "What is a VPC Endpoint?",
+    "question": "For a tightly coupled High-Performance Computing (HPC) application, you need to launch a fleet of EC2 instances with the highest possible inter-node bandwidth and lowest latency. Which two features are critical for this?",
     "options": [
-      "A virtual router that connects multiple VPCs.",
-      "A way to privately connect your VPC to supported AWS services and VPC endpoint services without requiring an internet gateway, NAT device, VPN connection, or Direct Connect.",
-      "A static IP address for a resource inside a VPC.",
-      "The DNS hostname of a load balancer."
+      "An Application Load Balancer",
+      "A Cluster Placement Group",
+      "An Elastic Fabric Adapter (EFA)",
+      "A NAT Gateway",
+      "A VPC Endpoint"
     ],
     "correctAnswers": [
-      1
+      1,
+      2
     ],
-    "multiple": false
+    "multiple": true,
+    "explanation": "This combination provides the best performance for tightly coupled HPC workloads. The Cluster Placement Group (B) ensures the instances are physically close together on the same network rack. The Elastic Fabric Adapter (EFA) (C) provides a specialized network interface that bypasses the OS kernel, offering extremely low latency and high bandwidth, which is ideal for the MPI communication patterns used in these applications."
   },
   {
     "id": 39,
-    "question": "A company wants to improve the performance of its API, which is hosted on API Gateway. The API is accessed by users globally. Which service can be used in front of API Gateway to provide a cached, low-latency edge presence?",
+    "question": "You are creating a VPC Peering connection between two VPCs in different AWS regions. What is a key difference compared to peering within the same region?",
     "options": [
-      "AWS Global Accelerator",
-      "Network Load Balancer",
-      "Amazon CloudFront",
-      "AWS App Mesh"
+      "It is not possible to peer VPCs across regions.",
+      "The traffic between the regions is encrypted, and you may incur inter-region data transfer costs.",
+      "You cannot reference security groups across regions.",
+      "Both B and C are correct."
     ],
     "correctAnswers": [
-      2
+      3
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Inter-region VPC Peering has some key differences. All traffic that travels between regions over the peering connection is automatically encrypted by AWS (B). You also cannot reference a security group from the peered VPC in your security group rules; you must use CIDR blocks instead (C). And, as with any data transfer between regions, standard inter-region data transfer charges will apply."
   },
   {
     "id": 40,
-    "question": "A VPC peering connection is in the `pending-acceptance` state. What does this mean?",
+    "question": "What is the primary benefit of the AWS global network for services like Global Accelerator and Direct Connect?",
     "options": [
-      "The route tables have not been configured yet.",
-      "The security groups are blocking the connection.",
-      "The request has been initiated by one account, but the owner of the other VPC has not yet accepted the request.",
-      "The CIDR blocks of the two VPCs are overlapping."
+      "It is less expensive than the public internet.",
+      "It is a private, redundant, and highly available network backbone that provides more consistent performance than the public internet.",
+      "It is accessible from any country in the world.",
+      "It automatically encrypts all traffic for all services."
     ],
     "correctAnswers": [
-      2
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "The AWS global network is a massive, private fiber optic network that interconnects AWS data centers and points of presence. By using services that leverage this network, your traffic avoids the variable performance, congestion, and multiple hops of the public internet, resulting in lower latency, less jitter, and higher reliability."
   },
   {
     "id": 41,
-    "question": "Which AWS service acts as a \"front door\" for your applications, providing static IP addresses and routing traffic over the AWS backbone to the optimal endpoint based on health, geography, and weighting?",
+    "question": "A CloudFront distribution is configured with S3 as the origin. The S3 bucket is in the `us-east-1` region. A user in Australia requests an image for the first time. What is the request path?",
     "options": [
-      "Amazon CloudFront",
-      "Elastic Load Balancer",
-      "AWS Transit Gateway",
-      "AWS Global Accelerator"
+      "User -> S3 in `us-east-1`",
+      "User -> CloudFront Edge Location in Australia -> S3 in `us-east-1`",
+      "User -> CloudFront Edge Location in `us-east-1` -> S3 in `us-east-1`",
+      "User -> CloudFront Edge Location in Australia (cache hit)"
     ],
     "correctAnswers": [
-      3
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "On the first request for an object (a cache miss), the user's request is directed to the nearest CloudFront edge location (in Australia). Since the content is not in the cache, the edge location then forwards the request back to the origin S3 bucket (in `us-east-1`) to retrieve the object. It then serves the object to the user and caches it for subsequent requests."
   },
   {
     "id": 42,
-    "question": "You have configured a CloudFront distribution with a cache behavior that has a minimum TTL of 0, a maximum TTL of 3600, and a default TTL of 300. The origin server does NOT add any cache-control headers. How long will an object be cached by CloudFront?",
+    "question": "What is the main advantage of using a Transit Gateway over a complex mesh of VPC Peering connections?",
     "options": [
-      "0 seconds (it will not be cached)",
-      "300 seconds",
-      "3600 seconds",
-      "It depends on the object size."
+      "It provides lower latency for all connections.",
+      "It is less expensive for a small number of VPCs.",
+      "It simplifies network management and reduces operational overhead at scale.",
+      "It provides a higher bandwidth limit per connection."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "The primary driver for adopting Transit Gateway is simplified management. In a mesh network of 10 VPCs, each VPC needs 9 peering connections and route table entries. With a Transit Gateway, each VPC only needs one connection to the central hub. This dramatically simplifies routing, monitoring, and the process of adding or removing new VPCs."
   },
   {
     "id": 43,
-    "question": "Which of the following is a limitation of VPC peering?",
+    "question": "Which of the following services would benefit MOST from AWS Global Accelerator?",
     "options": [
-      "It cannot be used across different AWS Regions.",
-      "It does not support security group referencing across the peer connection.",
-      "It is non-transitive, meaning you cannot route through a central VPC to get to a third VPC.",
-      "It only supports TCP traffic."
+      "A static marketing website hosted on S3.",
+      "A real-time voice-over-IP (VoIP) application.",
+      "A nightly batch data processing job.",
+      "An internal code repository."
     ],
     "correctAnswers": [
-      2
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Global Accelerator is designed for applications that are sensitive to latency and jitter and cannot be cached. Real-time communication applications like VoIP and video conferencing are perfect use cases, as Global Accelerator will provide a more stable and performant network path for the TCP/UDP streams compared to the public internet."
   },
   {
     "id": 44,
-    "question": "A company wants to simplify its DNS management and routing for a global application. They need a service that can route traffic based on user location, latency, or a weighted round-robin. Which service should they use?",
+    "question": "You are designing a high-performance network for a machine learning training workload. The EC2 instances need to exchange large amounts of data with each other. Which network interface type should you specify on the instances?",
     "options": [
-      "AWS Transit Gateway",
-      "Amazon Route 53",
-      "AWS Global Accelerator",
-      "Elastic Load Balancer"
+      "Elastic Network Interface (ENI)",
+      "Elastic IP Address (EIP)",
+      "Elastic Fabric Adapter (EFA)",
+      "Internet Gateway (IGW)"
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "An Elastic Fabric Adapter (EFA) is a specialized network interface designed for tightly coupled HPC and machine learning workloads. It supports OS-bypass, allowing direct communication between the application and the network hardware, which drastically reduces latency and is essential for the performance of distributed ML training frameworks."
   },
   {
     "id": 45,
-    "question": "What is the purpose of a Security Group in a VPC?",
+    "question": "Can a Transit Gateway be shared with another AWS account?",
     "options": [
-      "It acts as a stateless firewall at the subnet level.",
-      "It acts as a stateful firewall at the instance (or ENI) level.",
-      "It determines routing paths for traffic leaving a subnet.",
-      "It provides a private connection to AWS services."
+      "No, a Transit Gateway can only be used by the account that created it.",
+      "Yes, by using VPC Peering.",
+      "Yes, by using AWS Resource Access Manager (RAM).",
+      "Yes, by creating an IAM role."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "AWS Resource Access Manager (RAM) is the service that allows you to share certain AWS resources with other AWS accounts or within your AWS Organization. Transit Gateway is a shareable resource. The owner account can create the Transit Gateway and then use RAM to share it with other member accounts, allowing them to attach their VPCs to the central gateway."
   },
   {
     "id": 46,
-    "question": "What is the purpose of a Network ACL (NACL) in a VPC?",
+    "question": "A CloudFront distribution has a cache behavior with a minimum TTL of 0, a maximum TTL of 3600, and a default TTL of 300. The origin server does not send any caching headers. For how long will CloudFront cache the objects for this behavior?",
     "options": [
-      "It acts as a stateful firewall at the instance level.",
-      "It acts as a stateless firewall at the subnet level.",
-      "It provides DNS resolution within the VPC.",
-      "It allows VPCs to communicate with each other."
+      "0 seconds (no caching)",
+      "300 seconds",
+      "3600 seconds",
+      "24 hours"
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "If the origin server (like S3 or an ALB) does not provide its own `Cache-Control` or `Expires` headers to specify a TTL, CloudFront will use the \"Default TTL\" value that you have configured in the cache behavior. In this case, it will cache the object for 300 seconds."
   },
   {
     "id": 47,
-    "question": "A CloudFront distribution is configured to forward all request headers to the origin. What is the impact of this on caching?",
+    "question": "What is the primary function of a VPC endpoint?",
     "options": [
-      "It improves the cache hit ratio because CloudFront has more information.",
-      "It effectively disables caching for most objects, as CloudFront will cache based on the values of all headers, which are often unique per request.",
-      "It has no impact on caching.",
-      "It enables CloudFront to cache dynamic content."
+      "To provide a public IP address for an instance in a private subnet.",
+      "To allow private connectivity from a VPC to supported AWS services and VPC endpoint services without requiring an internet gateway, NAT gateway, or VPN connection.",
+      "To connect two VPCs together.",
+      "To establish a dedicated connection from an on-premises data center."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "VPC endpoints are designed to keep traffic between your VPC and other AWS services on the private AWS network. This enhances security by avoiding the public internet and can improve network performance and reduce data transfer costs."
   },
   {
     "id": 48,
-    "question": "How does a Transit Gateway handle routing between a VPC and an on-premises network connected via Direct Connect?",
+    "question": "Which of the following is a key feature of AWS Global Accelerator that distinguishes it from a traditional DNS-based load balancer?",
     "options": [
-      "The Transit Gateway uses a Direct Connect Gateway attachment.",
-      "The Transit Gateway requires a VPC peering connection to the on-premises network.",
-      "The Transit Gateway uses a Virtual Private Gateway attachment.",
-      "It cannot connect to on-premises networks."
+      "It provides a static DNS name that never changes.",
+      "It provides static Anycast IP addresses that act as a fixed entry point and leverages the AWS global network for routing.",
+      "It can only be used with HTTP traffic.",
+      "It caches content at the edge."
     ],
     "correctAnswers": [
-      0
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Unlike a service like CloudFront or an ELB which gives you a DNS name, Global Accelerator provides a pair of static IP addresses. These IPs are announced from all AWS edge locations simultaneously using the Anycast protocol. This allows client traffic to enter the AWS network at the closest point and be routed optimally, providing faster and more reliable connections."
   },
   {
     "id": 49,
-    "question": "What is a key benefit of using AWS Global Accelerator over using a CloudFront distribution for a dynamic, non-HTTP application?",
+    "question": "You are troubleshooting a VPC Peering connection. An instance in VPC-A can ping an instance in VPC-B, but the application connection on port 8080 is failing. What is the most likely cause?",
     "options": [
-      "Global Accelerator can cache dynamic content.",
-      "Global Accelerator works at the network layer (TCP/UDP) and preserves the client's source IP address.",
-      "Global Accelerator is less expensive than CloudFront.",
-      "Global Accelerator provides built-in DDoS protection at the application layer."
+      "The route tables are misconfigured.",
+      "The VPC Peering connection is not \"active\".",
+      "The security group of the instance in VPC-B does not have an inbound rule allowing traffic on port 8080 from the instance in VPC-A.",
+      "The Network ACL is blocking all ICMP traffic."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "If a ping (which uses ICMP) is working, it means the underlying network path is correctly configured (peering is active, route tables are correct, and NACLs are allowing the traffic). The failure of a specific application port points to a Layer 4 firewall rule. The most likely cause is that the security group attached to the destination instance in VPC-B is missing a rule to allow inbound traffic on TCP port 8080."
   },
   {
     "id": 50,
-    "question": "Which of the following must be unique across all connected VPCs and on-premises networks when using VPC peering or Transit Gateway?",
+    "question": "In a Transit Gateway, what is the difference between a route table \"association\" and a \"propagation\"?",
     "options": [
-      "The instance IDs.",
-      "The security group names.",
-      "The IP CIDR blocks.",
-      "The subnet names."
+      "Association determines which route table an attachment uses, while propagation determines which routes are automatically added to that route table.",
+      "Association is for VPC attachments, while propagation is for VPN attachments.",
+      "Association creates a static route, while propagation creates a dynamic route.",
+      "They are two names for the same function."
     ],
     "correctAnswers": [
-      2
+      0
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "These are two distinct but related concepts. An \"association\" links an attachment (like a VPC) to a specific TGW route table. This dictates which route table the VPC will use to make its routing decisions. A \"propagation\" links an attachment to a TGW route table in a way that allows the TGW to automatically learn the routes *from* that attachment and install them into the route table."
   },
   {
     "id": 51,
-    "question": "A company wants to provide a private, dedicated connection between their on-premises data center and their AWS VPCs. The connection must offer consistent, low-latency performance. Which service should they use?",
+    "question": "You want to use CloudFront to serve content from a custom origin (your own EC2 web server). What is a critical security consideration for the EC2 instance's security group?",
     "options": [
-      "Site-to-Site VPN",
-      "AWS Direct Connect",
-      "VPC Peering",
-      "AWS Global Accelerator"
+      "It must allow inbound traffic on the HTTP/S port from all IP addresses (0.0.0.0/0).",
+      "It should be configured to only allow inbound traffic on the HTTP/S port from CloudFront's public IP address ranges.",
+      "It must be in the same security group as the CloudFront distribution.",
+      "It should only allow outbound traffic to the CloudFront distribution."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "To ensure that users cannot bypass CloudFront and access your origin server directly, you should lock down the origin's security group. AWS publishes a list of IP address ranges for its services, including CloudFront. You should create a security group rule that only allows inbound HTTP/S traffic from these specific CloudFront IP ranges, effectively blocking all other direct access."
   },
   {
     "id": 52,
-    "question": "What is the difference between a public subnet and a private subnet in a VPC?",
+    "question": "Which of the following services can act as an endpoint for AWS Global Accelerator? (Choose TWO)",
     "options": [
-      "A public subnet has a route to an Internet Gateway in its route table, while a private subnet does not.",
-      "Instances in a public subnet have public IP addresses, while instances in a private subnet do not.",
-      "A public subnet can communicate with the internet, while a private subnet is completely isolated.",
-      "Public subnets are for web servers, and private subnets are for databases."
+      "Amazon S3 Bucket",
+      "AWS Lambda Function",
+      "Application Load Balancer",
+      "Network Load Balancer",
+      "A CloudFront Distribution"
     ],
     "correctAnswers": [
-      0
+      2,
+      3
     ],
-    "multiple": false
+    "multiple": true,
+    "explanation": "AWS Global Accelerator is designed to front network endpoints. The primary endpoint types that you can register in an endpoint group are Application Load Balancers, Network Load Balancers, EC2 instances, and Elastic IP addresses. You cannot use S3, Lambda, or CloudFront as direct endpoints."
   },
   {
     "id": 53,
-    "question": "How can you use CloudFront to serve content from multiple origins (e.g., an S3 bucket for images and an ALB for the API) using a single domain name?",
+    "question": "When you create a VPC Peering connection, which of the following must be done by both VPC owners?",
     "options": [
-      "By creating multiple CloudFront distributions.",
-      "By configuring multiple cache behaviors that match different URL paths and forward requests to the appropriate origin.",
-      "By using an Origin Group.",
-      "This is not possible; a distribution can only have one origin."
+      "Both must create the peering connection.",
+      "Both must update their own route tables and security groups.",
+      "Both must tag the peering connection.",
+      "Both must use the same IAM role."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A peering connection is a partnership. After the requester creates the connection and the accepter accepts it, each VPC owner is responsible for configuring their own side of the connection. This includes updating their respective route tables to direct traffic to the peer, and updating their security groups and NACLs to allow that traffic to flow."
   },
   {
     "id": 54,
-    "question": "Which service acts as a regional network hub, allowing you to connect thousands of VPCs and on-premises networks together?",
+    "question": "Which of the following is a good use case for a Transit Gateway over VPC Peering?",
     "options": [
-      "Internet Gateway",
-      "Virtual Private Gateway",
-      "Transit Gateway",
-      "NAT Gateway"
+      "Connecting a development VPC to a testing VPC for a short-term project.",
+      "Creating a simple, low-cost connection between two VPCs in the same account.",
+      "Building a centralized network architecture for a large organization with dozens of VPCs and multiple on-premises connections.",
+      "Enabling private DNS resolution between two VPCs."
     ],
     "correctAnswers": [
       2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Transit Gateway shines at scale. While VPC Peering is great for simple one-to-one connections, a Transit Gateway is the superior choice for building a scalable and manageable network for a large number of VPCs and hybrid connections, as it avoids the complexity of a fully meshed peering topology."
   },
   {
     "id": 55,
-    "question": "An application running behind AWS Global Accelerator needs to identify the original client's IP address. Can this be achieved?",
+    "question": "You are using CloudFront to serve a website from an S3 origin. You want different caching rules for your images (`/images/*`) and your API responses (`/api/*`). How do you configure this?",
     "options": [
-      "No, Global Accelerator replaces the client's IP with its own.",
-      "Yes, by default, Global Accelerator preserves the client source IP address at the endpoint.",
-      "Yes, but only if the endpoint is an Application Load Balancer.",
-      "Yes, by inspecting the `X-Forwarded-For` header."
+      "By creating two separate CloudFront distributions.",
+      "By creating multiple S3 buckets.",
+      "By creating different \"Cache Behaviors\" in your CloudFront distribution, each with its own path pattern and caching settings.",
+      "By using Lambda@Edge to apply different caching headers."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A single CloudFront distribution can have multiple cache behaviors. You would have a default behavior and then create additional behaviors for specific path patterns. For example, you would create a cache behavior for the path pattern `/images/*` with a long TTL, and another for `/api/*` with a TTL of 0 to prevent caching."
   },
   {
     "id": 56,
-    "question": "A security group rule allows inbound traffic on port 80. The associated Network ACL for the subnet has a rule that denies inbound traffic on port 80. What is the result for an EC2 instance in that subnet?",
+    "question": "For a tightly-coupled HPC workload in a cluster placement group, which EC2 network feature provides OS-bypass for the lowest latency?",
     "options": [
-      "The traffic will be allowed because security groups are evaluated first.",
-      "The traffic will be denied because the Network ACL is evaluated first.",
-      "The traffic will be allowed because security group rules take precedence.",
-      "The result is unpredictable."
+      "ENA (Elastic Network Adapter)",
+      "EFA (Elastic Fabric Adapter)",
+      "EIP (Elastic IP Address)",
+      "ENI (Elastic Network Interface)"
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "The Elastic Fabric Adapter (EFA) is specifically designed for HPC and ML workloads. Its key feature is OS-bypass, which allows supported applications to communicate directly with the network hardware, significantly reducing latency and jitter for inter-node communication."
   },
   {
     "id": 57,
-    "question": "You have created a VPC with a CIDR of `10.0.0.0/16` and a public subnet with a CIDR of `10.0.1.0/24`. You launch an EC2 instance into the public subnet. Which of the following IP addresses is a valid private IP for the instance?",
+    "question": "A VPC in Account A needs to access a service in a VPC in Account B. The service is exposed via a Network Load Balancer. The architects want to establish this connection without using VPC Peering or a Transit Gateway. What service enables this private connectivity?",
     "options": [
-      "`10.1.0.5`",
-      "`10.0.1.256`",
-      "`10.0.1.50`",
-      "`192.168.1.5`"
+      "AWS Global Accelerator",
+      "AWS Direct Connect",
+      "AWS PrivateLink (via a VPC Endpoint Service)",
+      "AWS Site-to-Site VPN"
     ],
     "correctAnswers": [
       2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "AWS PrivateLink is the technology designed for this use case. The service provider (Account B) creates a VPC Endpoint Service and attaches their NLB to it. The consumer (Account A) then creates an Interface VPC Endpoint for that service in their own VPC. This creates a secure, private connection between the two VPCs that does not traverse the internet and does not require complex routing changes."
   },
   {
     "id": 58,
-    "question": "A CloudFront distribution is configured with a Lambda@Edge function that triggers on \"viewer request\" events. When does this function execute?",
+    "question": "What is the default routing behavior of a newly created Transit Gateway route table?",
     "options": [
-      "After the request has been served from the cache.",
-      "Before CloudFront checks the cache for the requested object, when a request is first received at an edge location.",
-      "When CloudFront forwards a request to the origin.",
-      "After CloudFront receives the response from the origin."
+      "It contains routes to all attached VPCs.",
+      "It is empty except for a blackhole route.",
+      "It contains a default route to the internet.",
+      "It has a single route for the local VPC."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Unlike a VPC route table which has a local route, a new Transit Gateway route table is effectively empty. No routing will occur until you either add static routes or enable route propagation from your attachments. The default is to have no paths, ensuring a secure-by-default posture."
   },
   {
     "id": 59,
-    "question": "A company has 10 VPCs that need to communicate with a central on-premises data center over a single VPN connection. What is the most efficient way to configure this?",
+    "question": "A CloudFront distribution has an origin that is slow to respond. To improve the user experience, you want to serve the last cached version of an object even if it has expired, while CloudFront fetches the new version in the background. What feature enables this?",
     "options": [
-      "Create 10 separate VPN connections, one for each VPC.",
-      "Create a Transit Gateway, attach all 10 VPCs, and create a single VPN attachment from the Transit Gateway to the data center.",
-      "Create a \"transit VPC\" and use VPC peering and software VPNs on an EC2 instance.",
-      "Use AWS Global Accelerator to route the traffic."
+      "A long TTL value.",
+      "The `stale-while-revalidate` and `stale-if-error` Cache-Control directives in the origin's response.",
+      "Origin Shield.",
+      "Field-Level Encryption."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "These `Cache-Control` headers provide more granular control over stale content. `stale-while-revalidate` tells CloudFront it can serve a stale version of the content to the user immediately, while it asynchronously revalidates the content with the origin. `stale-if-error` allows CloudFront to serve stale content if the origin is returning an error."
   },
   {
     "id": 60,
-    "question": "An EC2 instance in a private subnet needs to download a software patch from the internet. It does not need to accept any inbound connections from the internet. Which services are required? (Choose TWO)",
+    "question": "Which of the following is a primary benefit of AWS Global Accelerator?",
     "options": [
-      "Internet Gateway",
-      "NAT Gateway",
-      "A route in the private subnet's route table pointing `0.0.0.0/0` to the NAT Gateway.",
-      "A public IP address on the EC2 instance.",
-      "A security group rule allowing all outbound traffic."
+      "It provides a Web Application Firewall (WAF) to protect against exploits.",
+      "It improves application availability by using the AWS global network to route around public internet issues.",
+      "It caches dynamic content at the edge.",
+      "It reduces the cost of data transfer out of AWS."
     ],
     "correctAnswers": [
-      1,
-      2
+      1
     ],
-    "multiple": true
+    "multiple": false,
+    "explanation": "By ingressing traffic at the nearest edge location and carrying it over the AWS backbone, Global Accelerator can automatically route around unhealthy or congested paths on the public internet. Combined with its instant regional failover, this significantly improves the availability and resilience of your application."
   },
   {
     "id": 61,
-    "question": "Which statement best describes the pricing model for AWS Global Accelerator?",
+    "question": "You need to connect three VPCs (A, B, C) and a VPN connection. VPC-A should be able to talk to B, C, and the VPN. VPC-B and VPC-C should NOT be able to talk to each other. How can you achieve this with a Transit Gateway?",
     "options": [
-      "It is priced based on the amount of data transferred out to the internet.",
-      "It has a fixed hourly charge per accelerator and a data transfer premium.",
-      "It is priced per request.",
-      "It is free when used with EC2 instances."
+      "This is not possible; a Transit Gateway provides full mesh connectivity.",
+      "Use two separate Transit Gateways.",
+      "Use a single Transit Gateway with multiple custom route tables to create an isolated routing domain for B and C.",
+      "Use VPC Peering for A-B and A-C, and a Transit Gateway for the VPN."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "This is a key use case for custom TGW route tables. You can create a \"main\" route table that VPC-A and the VPN are associated with, and which has routes to all networks. Then you create a separate, more restrictive route table that VPC-B and VPC-C are associated with. This second table would have routes to VPC-A and the VPN, but not to each other, thus enforcing the required network segmentation."
   },
   {
     "id": 62,
-    "question": "You have a CloudFront distribution with a default TTL of 24 hours. You upload a new version of `style.css` to your S3 origin. Users are still seeing the old version of the file. What is the most likely reason?",
+    "question": "You want to use your own custom SSL/TLS certificate for a CloudFront distribution. What is a prerequisite?",
     "options": [
-      "The new file is corrupted.",
-      "The CloudFront distribution is disabled.",
-      "The old version of the file is still cached at the CloudFront edge locations and its TTL has not expired.",
-      "The S3 bucket policy is preventing CloudFront from accessing the new file."
+      "The certificate must be a wildcard certificate.",
+      "The certificate must be imported into or provisioned by AWS Certificate Manager (ACM) in the us-east-1 region.",
+      "The certificate's private key must be uploaded to the S3 origin bucket.",
+      "You must use a Dedicated IP for your CloudFront distribution."
     ],
     "correctAnswers": [
-      2
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "For a CloudFront distribution to use a custom SSL/TLS certificate, the certificate must be managed by AWS Certificate Manager (ACM). A critical requirement is that for CloudFront, the ACM certificate MUST be requested or imported in the `us-east-1` (N. Virginia) region, regardless of where your origin or users are located."
   },
   {
     "id": 63,
-    "question": "A company has two VPCs in the same region belonging to two different AWS accounts. Can they establish a VPC peering connection?",
+    "question": "Which of the following is true about traffic flowing over a VPC Peering connection?",
     "options": [
-      "No, peering is only possible within the same account.",
-      "Yes, you can create a peering request and the owner of the other account must accept it.",
-      "No, a Transit Gateway must be used for cross-account connectivity.",
-      "Yes, but only if both accounts are part of the same AWS Organization."
+      "It is encrypted by default when peering is within a region.",
+      "It is not encrypted when peering is within a region, but it is encrypted for inter-region peering.",
+      "All traffic is unencrypted by default.",
+      "All traffic is encrypted by default, regardless of region."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Traffic between instances in peered VPCs that are in the same AWS region is not encrypted by default; it stays within the private AWS network but is not encrypted at the peering layer. However, when you create an inter-region VPC Peering connection, all traffic that traverses between the regions is automatically encrypted by AWS."
   },
   {
     "id": 64,
-    "question": "What is the function of a Virtual Private Gateway (VGW)?",
+    "question": "An application is experiencing high TCP connection setup times for users who are far away from the application's single AWS region. How can AWS Global Accelerator help?",
     "options": [
-      "It allows instances in a private subnet to access the internet.",
-      "It acts as the anchor on the AWS side of a VPN connection or Direct Connect.",
-      "It caches content at the edge of the AWS network.",
-      "It connects multiple VPCs together in a hub-and-spoke model."
+      "By caching the application's content closer to the users.",
+      "By terminating the TCP connection at a nearby edge location, which is closer to the user, and then forwarding packets over the optimized AWS network.",
+      "By providing the user with a direct, private connection to the AWS region.",
+      "By using UDP instead of TCP."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "The initial TCP handshake (SYN, SYN-ACK, ACK) can have high latency over long distances. Global Accelerator improves this by having the user perform the handshake with a nearby AWS edge location. The packets are then forwarded from the edge to your application over the fast and stable AWS global network, reducing the overall connection setup time."
   },
   {
     "id": 65,
-    "question": "A company is using AWS Global Accelerator for their application. One of their regional endpoints becomes unhealthy. What does Global Accelerator do automatically?",
+    "question": "What is the function of the \"Origin Shield\" feature in CloudFront?",
     "options": [
-      "It stops the accelerator and sends an alert.",
-      "It removes the unhealthy endpoint from the DNS records.",
-      "It instantly stops routing traffic to the unhealthy endpoint and fails over to the next nearest healthy endpoint.",
-      "It waits for the endpoint to become healthy again before routing any more traffic."
+      "It is a Web Application Firewall for the origin.",
+      "It adds an extra layer of caching between the CloudFront edge locations and your origin server.",
+      "It restricts access to the origin using an Origin Access Identity.",
+      "It shields the origin from DDoS attacks."
     ],
     "correctAnswers": [
-      2
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Origin Shield is an additional caching layer within the CloudFront architecture. It sits in a regional edge cache (REC) in front of your origin. All requests from all the individual edge locations that miss their cache will be consolidated and sent to the Origin Shield. This significantly reduces the request load on your origin, improving its availability and reducing its operational costs."
   },
   {
     "id": 66,
-    "question": "Network ACLs are stateless. What does this mean in practice?",
+    "question": "You are designing a hybrid network. You have a 10 Gbps AWS Direct Connect connection. You need to connect 5 VPCs in the same region to your on-premises network over this connection. What is the most scalable way to do this?",
     "options": [
-      "You must create separate rules for inbound and outbound traffic; an allow rule for inbound traffic does not automatically create a corresponding allow rule for the return traffic.",
-      "They cannot be used to block traffic based on IP address.",
-      "They do not support logging.",
-      "They can only have \"allow\" rules, not \"deny\" rules."
+      "Create a dedicated Virtual Interface (VIF) for each VPC on the Direct Connect connection.",
+      "Create one Transit VIF on the Direct Connect connection, connect it to a Direct Connect Gateway, and then associate that with a Transit Gateway that is attached to the 5 VPCs.",
+      "Create a VPN over the Direct Connect connection for each VPC.",
+      "Peer all 5 VPCs together and connect one of them to the Direct Connect."
     ],
     "correctAnswers": [
-      0
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "The modern and scalable approach is to use a Transit VIF. A single Transit VIF can connect to a Direct Connect Gateway, which can then be associated with up to three Transit Gateways. The Transit Gateway then provides connectivity to all the attached VPCs. This avoids having to manage multiple VIFs and BGP sessions for each VPC."
   },
   {
     "id": 67,
-    "question": "What is a CloudFront Price Class?",
+    "question": "You have a CloudFront distribution for your website. You want to add a `Strict-Transport-Security` header to all responses to improve security. What is the most efficient way to do this?",
     "options": [
-      "The cost per GB of data transferred from an edge location.",
-      "A setting that determines which set of edge locations (e.g., only North America and Europe, or all locations) will be used for your distribution, affecting both performance and cost.",
-      "A discount plan for high-volume CloudFront users.",
-      "The type of origin you are using (S3, ALB, etc.)."
+      "Configure your origin server (e.g., S3 or ALB) to add the header.",
+      "Use a CloudFront Function to add the header to the viewer response.",
+      "Use a Lambda@Edge function on the origin response event.",
+      "Use AWS WAF to inject the header."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Adding or modifying HTTP headers is a perfect use case for CloudFront Functions. They are extremely lightweight, high-performance, and cost-effective. You would create a simple function that triggers on the \"viewer response\" event and adds the required HSTS header before the response is sent to the client."
   },
   {
     "id": 68,
-    "question": "What is the purpose of a VPC Flow Log?",
+    "question": "What is the primary architectural difference between a VPC Endpoint Gateway and a VPC Endpoint Interface?",
     "options": [
-      "To control traffic in and out of a subnet.",
-      "To capture information about the IP traffic going to and from network interfaces in your VPC.",
-      "To provide a high-performance network connection to AWS.",
-      "To log all API calls made within a VPC."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 69,
-    "question": "A company wants to serve video content that is protected by Digital Rights Management (DRM). How can CloudFront be used in this scenario?",
-    "options": [
-      "CloudFront cannot be used with DRM-protected content.",
-      "By using signed URLs or signed cookies to control access to the content segments.",
-      "By installing the DRM software on the CloudFront edge locations.",
-      "By using AWS WAF to inspect the video stream."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 70,
-    "question": "You have a Transit Gateway with three VPCs attached. By default, can an instance in VPC-A communicate with an instance in VPC-B?",
-    "options": [
-      "No, you must create static routes between them.",
-      "No, a VPC peering connection is also required.",
-      "Yes, the default route table allows full communication between all attached VPCs.",
-      "Yes, but only if they are in the same Availability Zone."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 71,
-    "question": "Which of the following would be a good reason to choose AWS Global Accelerator over a latency-based routing policy in Route 53?",
-    "options": [
-      "Global Accelerator can cache content at the edge.",
-      "Global Accelerator provides static IP addresses that do not change, unlike the IPs behind a Route 53 record.",
-      "Global Accelerator is significantly cheaper.",
-      "Global Accelerator supports DNSSEC."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 72,
-    "question": "A company wants to restrict access to its CloudFront distribution to users in a specific country. What is this feature called?",
-    "options": [
-      "Origin Access Identity (OAI)",
-      "Field-Level Encryption",
-      "Geo-restriction (Geoblocking)",
-      "AWS WAF IP Set"
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 73,
-    "question": "Security Groups are stateful. What does this mean in practice?",
-    "options": [
-      "You must create separate allow rules for inbound and outbound traffic.",
-      "If you allow inbound traffic on a port, the return outbound traffic is automatically allowed, regardless of outbound rules.",
-      "They cannot be changed after they are created.",
-      "They log all allowed and denied traffic by default."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 74,
-    "question": "A solutions architect needs to connect an on-premises data center to multiple VPCs in the same region, each with a different CIDR block. The connection needs to support a bandwidth of 10 Gbps. What is the most appropriate solution?",
-    "options": [
-      "A 10 Gbps AWS Direct Connect connection linked to a Transit Gateway via a Direct Connect Gateway.",
-      "A separate 1 Gbps Site-to-Site VPN for each VPC.",
-      "A 10 Gbps AWS Direct Connect connection linked to a Virtual Private Gateway on each VPC.",
-      "An inter-region VPC peering connection."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 75,
-    "question": "What is the function of a Regional Edge Cache in the CloudFront network?",
-    "options": [
-      "It is the final destination for content, where users retrieve it.",
-      "It is a cache layer between the edge locations and the origin, with a larger cache-width, to reduce the number of requests to the origin.",
-      "It is another name for the origin server.",
-      "It is a service that provides DDoS protection for the origin."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 76,
-    "question": "When using a Transit Gateway, how is routing between VPCs controlled?",
-    "options": [
-      "By using Security Groups attached to the Transit Gateway.",
-      "By using Network ACLs on the Transit Gateway attachment.",
-      "By using one or more Transit Gateway route tables.",
-      "By using VPC peering route tables."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 77,
-    "question": "What is a primary use case for a Gateway VPC Endpoint?",
-    "options": [
-      "To privately access Amazon S3 and DynamoDB from within a VPC without traversing the internet.",
-      "To connect your VPC to an on-premises network.",
-      "To provide outbound internet access for private subnets.",
-      "To connect two VPCs together."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 78,
-    "question": "How can AWS Global Accelerator improve the performance of an application that relies on TCP connections?",
-    "options": [
-      "By caching the TCP handshake at the edge.",
-      "By terminating the TCP connection at an edge location close to the user and then forwarding the request over the optimized AWS global network.",
-      "By using UDP instead of TCP.",
-      "By increasing the TCP window size."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 79,
-    "question": "A VPC has been created, and a new custom route table has been made. If a new subnet is created in this VPC and is not explicitly associated with any route table, what will happen?",
-    "options": [
-      "The subnet will not be able to route any traffic.",
-      "The subnet will be automatically associated with the VPC's main route table.",
-      "The subnet will automatically be associated with the custom route table.",
-      "An error will occur during subnet creation."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 80,
-    "question": "Which of the following is a characteristic of an AWS Site-to-Site VPN connection?",
-    "options": [
-      "It provides a dedicated, physical connection to AWS.",
-      "It travels over the public internet, but the traffic is encrypted.",
-      "It offers guaranteed bandwidth and low latency.",
-      "It does not require any hardware on the customer's side."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 81,
-    "question": "A company wants to use a single CloudFront distribution for its website. They want to serve `/api/*` requests from an ALB and all other requests from an S3 bucket. This requires configuring:",
-    "options": [
-      "An Origin Group",
-      "Two different CloudFront distributions",
-      "A default cache behavior for S3 and another cache behavior with a path pattern of `/api/*` for the ALB.",
-      "A Lambda@Edge function to route the traffic."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 82,
-    "question": "What is the purpose of an egress-only internet gateway?",
-    "options": [
-      "To allow inbound traffic from the internet to IPv6-enabled instances.",
-      "To allow outbound-only internet access over IPv6 for instances in a VPC.",
-      "To provide a private connection for IPv6 traffic.",
-      "To connect two VPCs that use IPv6."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 83,
-    "question": "AWS Global Accelerator can use which of the following as endpoints? (Choose TWO)",
-    "options": [
-      "Amazon S3 buckets",
-      "Application Load Balancers",
-      "EC2 Instances",
-      "CloudFront distributions",
-      "IAM users"
-    ],
-    "correctAnswers": [
-      1,
-      2
-    ],
-    "multiple": true
-  },
-  {
-    "id": 84,
-    "question": "You are designing a VPC with public and private subnets. Where should you place your relational database server for the best security?",
-    "options": [
-      "In the public subnet, with a security group that only allows access from the web servers.",
-      "In the private subnet, with a security group that only allows access from the web servers.",
-      "In the public subnet, with a strong password.",
-      "In a separate VPC connected via VPC peering."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 85,
-    "question": "Which service provides a logical, hub-and-spoke topology for connecting a large number of VPCs and on-premises networks?",
-    "options": [
-      "VPC Peering",
-      "AWS Direct Connect",
-      "AWS Transit Gateway",
-      "Internet Gateway"
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 86,
-    "question": "A CloudFront distribution is showing a high cache miss rate. What does this mean?",
-    "options": [
-      "The content is being served efficiently from the edge locations.",
-      "A large percentage of requests are being forwarded to the origin server instead of being served from the cache.",
-      "The origin server is unavailable.",
-      "The TTL for the cache is set too high."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 87,
-    "question": "What is an Interface VPC Endpoint (powered by AWS PrivateLink)?",
-    "options": [
-      "A route table entry that directs traffic to an AWS service.",
-      "An elastic network interface (ENI) with a private IP address that serves as an entry point for traffic destined to a supported AWS service.",
-      "A gateway that provides outbound internet access.",
-      "A physical device in your data center."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 88,
-    "question": "A company has two applications in different AWS Regions. They need a solution that provides instant failover between the regions. Which service is best for this?",
-    "options": [
-      "CloudFront with an Origin Group.",
-      "Route 53 with a failover routing policy.",
-      "AWS Global Accelerator.",
-      "An inter-region VPC peering connection."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 89,
-    "question": "A new rule is added to a Network ACL with a rule number of 150. There is an existing rule with a number of 100 and another with a number of 200. Where is the new rule evaluated in the sequence?",
-    "options": [
-      "First, because it's a new rule.",
-      "After the rule numbered 100 but before the rule numbered 200.",
-      "After both existing rules.",
-      "The order is not guaranteed."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 90,
-    "question": "What is a key security benefit of using a VPC?",
-    "options": [
-      "It automatically encrypts all data at rest.",
-      "It provides a logically isolated section of the AWS cloud where you can launch resources in a virtual network you define.",
-      "It protects web applications from SQL injection attacks.",
-      "It guarantees that your instances will never fail."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 91,
-    "question": "A company wants to compress certain file types automatically as they are served from CloudFront to reduce bandwidth costs. How can this be configured?",
-    "options": [
-      "This must be done at the origin server before the content is sent to CloudFront.",
-      "In the CloudFront cache behavior settings, enable the \"Compress Objects Automatically\" option.",
-      "By using a Lambda@Edge function to compress the files.",
-      "This feature is not available in CloudFront."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 92,
-    "question": "You have a Transit Gateway and want to inspect all traffic flowing between two VPCs using a firewall appliance located in a third \"inspection\" VPC. What is this networking pattern called?",
-    "options": [
-      "Hub and Spoke",
-      "Full Mesh",
-      "East-West traffic inspection",
-      "Edge-to-Edge routing"
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 93,
-    "question": "What is the primary difference between an Internet Gateway and a Virtual Private Gateway?",
-    "options": [
-      "An IGW connects a VPC to the public internet, while a VGW connects a VPC to an on-premises network (via VPN or Direct Connect).",
-      "An IGW is stateful, while a VGW is stateless.",
-      "An IGW can be attached to multiple VPCs, while a VGW can only be attached to one.",
-      "There is no difference; the terms are interchangeable."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 94,
-    "question": "A global application uses AWS Global Accelerator. The accelerator has endpoints in three regions. What happens if the application endpoint in one of the regions fails its health check?",
-    "options": [
-      "The entire accelerator stops routing traffic.",
-      "Global Accelerator stops sending traffic to the failed endpoint and re-routes users to the next best healthy endpoint without any DNS changes.",
-      "Users in the failed region will receive a 503 error.",
-      "You must manually update the endpoint group to remove the failed endpoint."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 95,
-    "question": "How can you ensure that all traffic between your CloudFront distribution and your custom origin (e.g., an ALB) is encrypted?",
-    "options": [
-      "By configuring the CloudFront origin settings to \"HTTPS Only\" for the origin protocol policy.",
-      "By using an Origin Access Identity (OAI).",
-      "This happens automatically and cannot be configured.",
-      "By installing the same SSL certificate on both CloudFront and the origin."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 96,
-    "question": "In a VPC, how many Elastic IP addresses can you associate with a single network interface (ENI) at one time?",
-    "options": [
-      "One",
-      "Two",
-      "Five",
-      "As many as you need."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 97,
-    "question": "What is a primary advantage of using AWS Transit Gateway over a complex mesh of VPC peering connections?",
-    "options": [
-      "Lower data transfer costs.",
-      "Simplified network management and reduced operational overhead.",
-      "Higher bandwidth between VPCs.",
-      "Lower latency between VPCs."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 98,
-    "question": "Which service can be used to create a \"viewer request\" Lambda@Edge function to rewrite URLs before they are checked in the CloudFront cache?",
-    "options": [
-      "AWS Global Accelerator",
-      "Amazon Route 53",
-      "Amazon CloudFront",
-      "AWS WAF"
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 99,
-    "question": "When using a Site-to-Site VPN, what is the component on the on-premises side of the connection called?",
-    "options": [
-      "Virtual Private Gateway",
-      "Transit Gateway",
-      "Customer Gateway",
-      "Internet Gateway"
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 100,
-    "question": "A company needs to create a logically isolated network in AWS to launch resources. This network should have full control over its IP address range, subnets, route tables, and network gateways. What AWS service should they use to create this?",
-    "options": [
-      "Amazon EC2",
-      "Amazon S3",
-      "AWS Direct Connect",
-      "Amazon VPC"
+      "Gateway endpoints are for S3 and DynamoDB, while Interface endpoints are for most other services.",
+      "Gateway endpoints use an ENI in your subnet, while Interface endpoints use a route table entry.",
+      "Gateway endpoints are more expensive than Interface endpoints.",
+      "A Gateway endpoint is a route table target in your VPC, while an Interface endpoint is an Elastic Network Interface (ENI) with a private IP in your subnet."
     ],
     "correctAnswers": [
       3
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "This is the key distinction. A Gateway Endpoint is a gateway that you specify as a target in a route table for traffic destined for S3 or DynamoDB. An Interface Endpoint (powered by PrivateLink) creates an actual network interface in your subnet with a private IP address, which you can then connect to as if the service were running inside your VPC."
+  },
+  {
+    "id": 69,
+    "question": "A company has a legacy application that relies on multicast for service discovery. They want to migrate this application to AWS. Which networking service can support multicast traffic between EC2 instances in a VPC?",
+    "options": [
+      "VPC Peering",
+      "AWS Transit Gateway",
+      "AWS Global Accelerator",
+      "AWS Direct Connect"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "AWS Transit Gateway has a feature that allows you to create a \"multicast domain\". This enables you to send multicast traffic between sources and receivers in different VPCs attached to the Transit Gateway, which is not supported by native VPC networking or peering."
+  },
+  {
+    "id": 70,
+    "question": "You are using a CloudFront distribution with an ALB as the origin. How does CloudFront handle health checks for the origin?",
+    "options": [
+      "CloudFront uses the same health checks that are configured on the ALB's target group.",
+      "CloudFront does not perform active health checks; it only fails over based on HTTP error codes.",
+      "CloudFront relies on Route 53 health checks to determine origin health.",
+      "You must configure a separate health check within the CloudFront distribution."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "By default, CloudFront does not perform its own active health checks on the origin. If CloudFront receives an error response (e.g., a 5xx error) from the origin, it will consider that request to have failed. For high availability, you should configure an origin group with a primary and secondary origin, and CloudFront will automatically fail over to the secondary if the primary returns specific error codes."
+  },
+  {
+    "id": 71,
+    "question": "Which service provides a pair of static Anycast IP addresses that act as a single, fixed entry point for your global application?",
+    "options": [
+      "Elastic Load Balancing",
+      "Amazon CloudFront",
+      "AWS Global Accelerator",
+      "Amazon Route 53"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A defining feature of AWS Global Accelerator is that it provides two static IP addresses that are announced from all AWS edge locations using the Anycast BGP protocol. This means users are automatically directed to the nearest edge location, and these IPs remain constant even if you change your backend regional endpoints."
+  },
+  {
+    "id": 72,
+    "question": "A company needs to peer two VPCs that have overlapping CIDR blocks. What is a possible solution?",
+    "options": [
+      "This is not possible; the CIDR blocks must be changed.",
+      "Use AWS PrivateLink to expose a service from one VPC to the other without routing between them.",
+      "Use a Transit Gateway, which can handle overlapping CIDRs.",
+      "Both B and C are potential solutions."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "Overlapping CIDRs are a common networking challenge. You cannot directly peer the VPCs. However, you can use other services as a workaround. AWS PrivateLink (B) allows you to expose a specific service via an endpoint, which doesn't require CIDR overlap. A Transit Gateway (C) can also be used, as it performs network address translation, allowing it to connect VPCs even if their IP ranges conflict. The best solution depends on the specific use case."
+  },
+  {
+    "id": 73,
+    "question": "What is the function of \"Field-Level Encryption\" in Amazon CloudFront?",
+    "options": [
+      "It encrypts the entire request body sent to the origin.",
+      "It allows you to selectively encrypt specific sensitive data in an incoming POST request (e.g., credit card numbers in a form) at the edge before it is forwarded to your origin.",
+      "It encrypts the headers of a request.",
+      "It encrypts the content in the CloudFront cache."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Field-Level Encryption is a security feature that enhances the protection of sensitive data. You can configure it to intercept a POST request at the edge, find specific fields in the request body, and encrypt their values using a public key. This ensures that the sensitive data is never visible in plaintext to any part of your backend infrastructure."
+  },
+  {
+    "id": 74,
+    "question": "You have a Transit Gateway with attachments to VPC-A, VPC-B, and a VPN. You want to allow VPC-A and VPC-B to communicate with the VPN, but not with each other. How do you configure the TGW route tables?",
+    "options": [
+      "Use a single route table and enable propagation from all attachments.",
+      "Create two separate route tables. Associate VPC-A with one and VPC-B with the other. In each route table, add a route to the VPN, but not to the other VPC.",
+      "This requires two different Transit Gateways.",
+      "Use Network ACLs on the Transit Gateway to block the inter-VPC traffic."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "This is a classic network segmentation use case for Transit Gateway. By creating separate route tables (routing domains), you can control connectivity. VPC-A's route table would have a route to the VPN but not VPC-B. VPC-B's route table would have a route to the VPN but not VPC-A. The VPN attachment would be associated with a route table that has routes to both VPCs."
+  },
+  {
+    "id": 75,
+    "question": "What is the main performance benefit of a Cluster Placement Group?",
+    "options": [
+      "High availability across multiple hardware racks.",
+      "Low network latency and high throughput between instances within the group.",
+      "Reduced cost for data transfer between instances.",
+      "Increased EBS I/O performance."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The sole purpose of a Cluster Placement Group is to co-locate instances on the same high-speed network rack within a single Availability Zone. This minimizes the physical distance between them, resulting in the lowest possible network latency and the highest possible packet-per-second performance, which is essential for tightly coupled applications."
+  },
+  {
+    "id": 76,
+    "question": "A company has a Direct Connect connection and a backup Site-to-Site VPN. Both are connected to a Transit Gateway. How can they ensure that traffic always prefers the Direct Connect link?",
+    "options": [
+      "This is the default behavior; Direct Connect is always preferred.",
+      "By using BGP and advertising a more specific route or a shorter AS_PATH from their on-premises network over the Direct Connect link.",
+      "By configuring the Transit Gateway route table with a static route for the Direct Connect.",
+      "By disabling the VPN connection and only enabling it during a failure."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "In a dynamic routing environment, you control path preference using BGP attributes. To make Direct Connect the primary path, you would advertise the same network prefixes over both connections, but you would make the path over Direct Connect more preferable. This can be done by advertising a more specific route or by using AS_PATH prepending on the VPN connection to make its path seem longer and less desirable to the router."
+  },
+  {
+    "id": 77,
+    "question": "Which CloudFront feature allows you to route different percentages of traffic to two different origins for A/B testing?",
+    "options": [
+      "Multiple cache behaviors",
+      "Origin groups",
+      "Continuous deployment with traffic shifting policies",
+      "Lambda@Edge"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "CloudFront's continuous deployment feature allows you to safely test changes. You can have a primary distribution and a staging distribution. You can then use traffic configuration policies (either header-based or weight-based) to direct a certain percentage of your viewer traffic to the staging distribution to test changes before promoting it to production."
+  },
+  {
+    "id": 78,
+    "question": "An application behind AWS Global Accelerator needs to identify the original client IP address for logging and analytics. How can the application get this information?",
+    "options": [
+      "The original client IP is preserved as the source IP of the packets arriving at the endpoint.",
+      "The original client IP is available in the `X-Forwarded-For` HTTP header.",
+      "This is not possible when using Global Accelerator.",
+      "The behavior depends on whether the endpoint is an ALB or an NLB."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "The behavior is different for different endpoint types. For Application Load Balancer endpoints, Global Accelerator preserves the client IP address and it appears as the source IP at the ALB. For Network Load Balancer and EC2 instance endpoints, Global Accelerator does *not* preserve the client IP; the source IP seen by the application will be a private IP of the Global Accelerator service. For these endpoints, you must enable Proxy Protocol v2 to get the client IP."
+  },
+  {
+    "id": 79,
+    "question": "Which of the following is a key characteristic of an AWS Direct Connect connection?",
+    "options": [
+      "It provides a quick and low-cost way to connect to AWS.",
+      "It provides a dedicated, private network connection with consistent performance.",
+      "It encrypts all traffic by default.",
+      "It can be set up and configured entirely through the AWS Management Console."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The primary benefits of Direct Connect are its private nature and performance consistency. It is a physical fiber-optic connection, not a connection over the public internet, which means it is not subject to the congestion and variability of the internet. This provides a much more stable and predictable network experience. It is not encrypted by default and requires coordination with a network provider to set up."
+  },
+  {
+    "id": 80,
+    "question": "You have a Transit Gateway in `us-east-1` and another in `eu-west-1`. You need to enable communication between VPCs attached to these two Transit Gateways. What should you configure?",
+    "options": [
+      "A VPC Peering connection between a VPC in each region.",
+      "An inter-region Transit Gateway Peering connection.",
+      "An AWS Global Accelerator between the two Transit Gateways.",
+      "A Site-to-Site VPN between the two Transit Gateways."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "To connect Transit Gateways in different regions, you use the Transit Gateway Peering feature. You create a peering attachment on each Transit Gateway and then create routes in your TGW route tables to direct traffic destined for the other region to the peering attachment."
+  },
+  {
+    "id": 81,
+    "question": "You want to use CloudFront to serve an API hosted on API Gateway. What is a key benefit of this architecture?",
+    "options": [
+      "CloudFront can cache API responses at the edge, reducing latency and the load on API Gateway.",
+      "CloudFront provides a static IP address for the API Gateway.",
+      "CloudFront can directly invoke the backend Lambda functions.",
+      "CloudFront adds an extra layer of encryption to the API requests."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "Placing CloudFront in front of API Gateway is a common pattern to improve performance and reduce costs. You can configure a cache behavior in CloudFront to cache the responses of your API's GET requests. Subsequent identical requests can then be served directly from the CloudFront edge cache, resulting in lower latency for users and fewer requests (and lower costs) being processed by API Gateway and your backend."
+  },
+  {
+    "id": 82,
+    "question": "A high-frequency trading application is running on EC2 instances. Which of the following is MOST critical for its performance?",
+    "options": [
+      "High storage throughput (MB/s)",
+      "High storage IOPS",
+      "Low network latency and jitter",
+      "A large amount of RAM"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "High-frequency trading applications are extremely sensitive to network performance. Low latency (the time it takes for a packet to travel) and low jitter (the variation in latency) are critical to ensure that trades can be executed as quickly and predictably as possible. Features like Cluster Placement Groups and Elastic Fabric Adapters are designed for this type of workload."
+  },
+  {
+    "id": 83,
+    "question": "You have a VPC Peering connection between VPC-A and VPC-B. An EC2 instance in VPC-A needs to communicate with the internet. It does not have a public IP. VPC-B has a NAT Gateway. Can the instance in VPC-A use the NAT Gateway in VPC-B?",
+    "options": [
+      "Yes, if the route tables are configured correctly.",
+      "No, this is an example of transitive routing, which is not supported by VPC Peering.",
+      "Yes, but only if the VPCs are in the same AWS account.",
+      "No, because the security groups will block the traffic."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "An instance in VPC-A cannot \"transit\" through VPC-B to reach a gateway (like a NAT Gateway or Internet Gateway) attached to VPC-B. The peering connection only allows communication between the private IPs within the two VPCs. This type of edge-to-edge routing is a form of transitive routing and is not supported."
+  },
+  {
+    "id": 84,
+    "question": "In a Transit Gateway, if a packet arrives and there is no matching route in the associated route table, what happens to the packet?",
+    "options": [
+      "It is forwarded to the default attachment.",
+      "It is sent to all attachments.",
+      "It is dropped (a blackhole route).",
+      "It is sent back to the source."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Like a traditional router, if a Transit Gateway does not have a specific route for a destination network, the packet is dropped. This is why it's critical to ensure your route tables are configured correctly with either static routes or dynamic propagations for all the destinations your attachments need to reach."
+  },
+  {
+    "id": 85,
+    "question": "Which of the following is an example of a \"cache key\" in CloudFront?",
+    "options": [
+      "The IAM key used to access the origin.",
+      "The combination of values (like the URL, headers, and cookies) that uniquely identifies an object in the cache.",
+      "The encryption key used for field-level encryption.",
+      "A tag on the CloudFront distribution."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The cache key is what CloudFront uses to look up an object in its cache. By default, this is just the request URL. However, you can configure the cache policy to include other components in the cache key, such as specific HTTP headers or cookies. If two requests have the exact same cache key, CloudFront considers them a request for the same object."
+  },
+  {
+    "id": 86,
+    "question": "You need to establish a 500 Mbps encrypted connection between your on-premises data center and a VPC. The connection needs to be set up quickly and cost-effectively. What is the best option?",
+    "options": [
+      "AWS Direct Connect",
+      "AWS Site-to-Site VPN",
+      "AWS Global Accelerator",
+      "VPC Peering"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "An AWS Site-to-Site VPN provides an encrypted (IPsec) tunnel over the public internet. It is relatively quick to set up and is a cost-effective solution for bandwidth requirements in this range. A Direct Connect (A) connection provides higher, more consistent performance but is more expensive and takes much longer to provision."
+  },
+  {
+    "id": 87,
+    "question": "When would you choose a Network Load Balancer over an Application Load Balancer?",
+    "options": [
+      "When you need to route traffic based on the URL path.",
+      "When you need to load balance non-HTTP traffic or require extreme performance with a static IP.",
+      "When you need to authenticate users with Amazon Cognito.",
+      "When you want to use AWS WAF for protection."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "You should choose an NLB when you need to handle TCP/UDP traffic at scale with ultra-low latency. It is also the only ELB type that can provide a static Elastic IP per AZ. ALBs are for HTTP/S traffic and provide more advanced, content-based routing features."
+  },
+  {
+    "id": 88,
+    "question": "A company has a multi-region application fronted by AWS Global Accelerator. All endpoints are healthy. How does Global Accelerator route traffic from a user?",
+    "options": [
+      "It routes the user to the region with the lowest cost.",
+      "It routes the user to the region with the most available capacity.",
+      "It routes the user's traffic to the AWS edge location closest to them, then over the AWS network to the best regional endpoint.",
+      "It routes the user to a random region."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Global Accelerator uses the Anycast protocol to ingest traffic at the edge location that is geographically and topologically closest to the end-user. It then intelligently routes that traffic over its congestion-free global network to the healthiest application endpoint, providing a significant performance boost."
+  },
+  {
+    "id": 89,
+    "question": "What is a key benefit of using a Transit Gateway for hybrid connectivity with multiple VPN connections?",
+    "options": [
+      "It increases the encryption strength of the VPNs.",
+      "It allows you to terminate multiple VPN connections on a single gateway, simplifying the on-premises router configuration.",
+      "It eliminates the need for a customer gateway device.",
+      "It provides a higher bandwidth limit than a standard VPN connection."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A Transit Gateway can be configured with an Equal-Cost Multi-Path (ECMP) routing strategy over multiple VPN tunnels. This not only provides higher aggregate bandwidth but also simplifies the configuration on both ends. You terminate all VPNs on the single TGW, which acts as the hub, rather than managing separate connections to each VPC."
+  },
+  {
+    "id": 90,
+    "question": "You want to serve different versions of your website to users based on the device they are using (e.g., mobile or desktop). How can you achieve this with CloudFront?",
+    "options": [
+      "By using different origins for mobile and desktop and using Lambda@Edge to inspect the `User-Agent` header and route the request to the correct origin.",
+      "By using two different CloudFront distributions.",
+      "By using Geolocation routing.",
+      "This is not possible with CloudFront."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "This is a classic use case for Lambda@Edge. You can create a function that triggers on the \"origin request\" event. This function's code can inspect the `User-Agent` header of the incoming request. Based on whether the user agent indicates a mobile or desktop device, the function can dynamically change the origin that CloudFront forwards the request to."
+  },
+  {
+    "id": 91,
+    "question": "What is a primary consideration when designing a high-performance networking architecture on AWS?",
+    "options": [
+      "Minimizing the number of IAM roles.",
+      "Choosing the right EC2 instance types with appropriate network performance and enabling enhanced networking.",
+      "Using only the default VPC.",
+      "Storing all data in a single Availability Zone."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The EC2 instance itself is often the source or destination of the network traffic. The instance's network performance, which is determined by its type and size and enabled by features like Enhanced Networking (ENA/EFA), is a critical factor in the overall performance of the application."
+  },
+  {
+    "id": 92,
+    "question": "You have a CloudFront distribution serving your website. You want to ensure all traffic between viewers and CloudFront, and also between CloudFront and your S3 origin, is encrypted. What do you need to configure?",
+    "options": [
+      "Set the Viewer Protocol Policy to \"Redirect HTTP to HTTPS\" and configure the Origin Protocol Policy to \"HTTPS Only\".",
+      "Set the Viewer Protocol Policy to \"HTTPS Only\" and enable S3 default encryption.",
+      "Enable AWS Shield Advanced.",
+      "Use a Signed URL for all content."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "This requires configuring both \"legs\" of the connection. Setting the Viewer Protocol Policy to redirect or require HTTPS ensures the user-to-CloudFront connection is encrypted. Setting the Origin Protocol Policy to \"HTTPS Only\" ensures that the connection from CloudFront back to your origin (S3 in this case) is also encrypted."
+  },
+  {
+    "id": 93,
+    "question": "Which service acts as a regional virtual router for traffic flowing between your VPCs, VPNs, and Direct Connect connections?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway",
+      "VPC Peering",
+      "AWS Transit Gateway"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "An AWS Transit Gateway is fundamentally a managed, regional cloud router. It is designed to be the central hub for all network traffic within a region, simplifying connectivity and routing logic between various network attachments."
+  },
+  {
+    "id": 94,
+    "question": "You are using Global Accelerator with an NLB endpoint. Your application needs the client's original IP address. How must you configure the NLB's target group?",
+    "options": [
+      "Enable sticky sessions.",
+      "Enable proxy protocol v2.",
+      "Enable cross-zone load balancing.",
+      "Enable health checks."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "When fronting an NLB or EC2 instance with Global Accelerator, the client IP is not preserved by default. To pass the client's IP address to your application, you must enable Proxy Protocol v2 on the NLB's target group. The NLB will then add a header to the TCP request containing the original source IP."
+  },
+  {
+    "id": 95,
+    "question": "A company wants to connect its on-premises data center to 30 VPCs, spread across three different AWS Regions. What is the most scalable and manageable solution?",
+    "options": [
+      "Create a Site-to-Site VPN to each of the 30 VPCs.",
+      "Create a Direct Connect connection to each of the 30 VPCs.",
+      "In each region, deploy a Transit Gateway connected to the local VPCs. Peer the three Transit Gateways together. Use a Direct Connect Gateway to connect the on-premises network to the Transit Gateways.",
+      "Peer all 30 VPCs together in a full mesh."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "This architecture provides a scalable and robust global network. The Transit Gateway in each region simplifies local connectivity. Inter-Region TGW Peering connects the regions. A Direct Connect Gateway acts as a global entry point, allowing you to use a single Direct Connect connection to reach resources across all three connected regions via their Transit Gateways."
+  },
+  {
+    "id": 96,
+    "question": "What is a CloudFront \"Origin Group\"?",
+    "options": [
+      "A group of users who are allowed to access a specific origin.",
+      "A feature that allows you to configure a primary and a secondary origin to enable high-availability and origin failover.",
+      "A group of edge locations that belong to a specific geographic region.",
+      "A security group for your origin server."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "An Origin Group is a CloudFront feature for high availability. You can group two origins (a primary and a secondary). You configure CloudFront to fail over to the secondary origin if the primary origin returns specific HTTP error status codes, providing resilience against origin failures."
+  },
+  {
+    "id": 97,
+    "question": "What is the primary function of an Elastic Fabric Adapter (EFA)?",
+    "options": [
+      "To provide a high-bandwidth connection to Amazon S3.",
+      "To provide a low-latency, OS-bypass network interface for high-performance computing (HPC) and machine learning workloads.",
+      "To allow a single EC2 instance to have multiple elastic IP addresses.",
+      "To connect an EC2 instance to an on-premises network."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "EFA is a specialized network interface designed to accelerate inter-node communication for tightly coupled applications. Its OS-bypass capability allows applications using libraries like MPI to communicate directly with the network hardware, which dramatically reduces latency and improves the performance of large, distributed computing jobs."
+  },
+  {
+    "id": 98,
+    "question": "You have a global application with endpoints in three regions fronted by AWS Global Accelerator. You want to temporarily take one region out of service for maintenance without affecting users. What is the most graceful way to do this?",
+    "options": [
+      "Stop the EC2 instances in that region's endpoint group.",
+      "Delete the endpoint group for that region.",
+      "Adjust the \"traffic dial\" for that region's endpoint group down to 0%.",
+      "Change the DNS records to point away from that region."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The traffic dial is a feature of Global Accelerator's endpoint groups that allows you to control the percentage of traffic that is directed to a specific region. To gracefully remove a region from service, you can simply adjust its traffic dial down to 0. Global Accelerator will stop sending any new traffic to that region and distribute it among the remaining healthy regions."
+  },
+  {
+    "id": 99,
+    "question": "Which of the following must be updated to allow traffic to flow between two peered VPCs? (Choose TWO)",
+    "options": [
+      "The VPC Peering connection's IAM role.",
+      "The Route Tables in each VPC.",
+      "The Security Groups of the communicating instances.",
+      "The NACLs of the communicating subnets (if they are not default).",
+      "The Internet Gateway for each VPC."
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "multiple": true,
+    "explanation": "After a peering connection is active, two things are required to enable traffic flow. First, the Route Tables (B) in each VPC must be updated with routes that point to the other VPC's CIDR block via the peering connection. Second, the Security Groups (C) attached to the instances must have rules that allow traffic from the source instance's IP, security group, or CIDR block on the required ports. NACLs (D) must also allow the traffic, but the default NACL allows everything, so it often doesn't need modification."
+  },
+  {
+    "id": 100,
+    "question": "A video streaming company is using CloudFront to deliver its content. They want to restrict access so that only authenticated users from their website can view the videos, and the video links should expire after 5 minutes. What CloudFront feature should they use?",
+    "options": [
+      "Origin Access Identity (OAI)",
+      "Field-Level Encryption",
+      "AWS WAF integration",
+      "CloudFront Signed URLs"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "This is the classic use case for Signed URLs. The company's web application, after authenticating a user, would generate a unique and temporary URL for the video file. This URL contains a policy (e.g., expiration time) and a cryptographic signature. Only users with this valid, unexpired, and correctly signed URL will be able to access the video content through CloudFront."
   }
 ]

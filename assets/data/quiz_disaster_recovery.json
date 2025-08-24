@@ -1,922 +1,307 @@
 [
   {
     "id": 1,
-    "question": "A company has defined a Recovery Time Objective (RTO) of 2 hours. What does this mean for their disaster recovery plan?",
+    "question": "A company has defined a Recovery Time Objective (RTO) of 15 minutes. What does this metric signify?",
     "options": [
-      "The company can tolerate losing up to 2 hours of data in a disaster.",
-      "The entire system must be fully operational within 2 hours of a disaster declaration.",
-      "Backups must be taken every 2 hours.",
-      "The disaster recovery site must be located in a region that is a 2-hour flight away."
+      "The maximum amount of data, measured in time, that can be lost after a recovery from a disaster.",
+      "The time it takes to create a full backup of the system.",
+      "The maximum acceptable amount of time that the application can be offline after a disaster occurs.",
+      "The minimum time required before a disaster is expected to happen again."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Recovery Time Objective (RTO) is a business metric that defines the target time within which a business process must be restored after a disaster or disruption to avoid unacceptable consequences associated with a break in business continuity. It is about how quickly you need to be back online."
   },
   {
     "id": 2,
-    "question": "A financial services firm has a Recovery Point Objective (RPO) of 15 minutes for its critical transaction database. What does this requirement imply?",
+    "question": "A financial services application has a Recovery Point Objective (RPO) of 1 second. Which disaster recovery strategy would be most appropriate to meet this requirement?",
     "options": [
-      "The system must be restored within 15 minutes of a failure.",
-      "The maximum acceptable amount of data loss is 15 minutes' worth of transactions.",
-      "The database failover process must complete in under 15 minutes.",
-      "Database snapshots must be retained for at least 15 minutes."
+      "Backup and Restore with daily backups.",
+      "Pilot Light with hourly data synchronization.",
+      "Warm Standby with data replication every 15 minutes.",
+      "Multi-Site Active/Active with synchronous data replication."
     ],
     "correctAnswers": [
-      1
+      3
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "An RPO of 1 second means that no more than 1 second of data can be lost. This requires continuous, synchronous, or near-synchronous data replication, which is a hallmark of a Multi-Site (or Multi-Region) Active/Active or Hot Standby strategy. The other options would result in much higher data loss (a higher RPO)."
   },
   {
     "id": 3,
-    "question": "A company is implementing a disaster recovery strategy with the lowest possible cost. They have an RTO of 24 hours and an RPO of 12 hours. Which DR strategy is the most appropriate and cost-effective?",
+    "question": "Which of the following describes the \"Backup and Restore\" disaster recovery strategy on AWS?",
     "options": [
-      "Warm Standby",
-      "Multi-site Active-Active",
-      "Pilot Light",
-      "Backup and Restore"
+      "A scaled-down version of the application is always running in the DR region.",
+      "Core services like the database are always running in the DR region.",
+      "Data is regularly backed up to a DR region (e.g., via S3 or RDS snapshots), and the full infrastructure is provisioned from scratch only during a disaster.",
+      "A full-scale, active version of the application is running in the DR region."
     ],
     "correctAnswers": [
-      3
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "The Backup and Restore strategy is the most cost-effective but has the highest RTO. It involves regularly backing up your data to the disaster recovery region. In the event of a disaster, you would use this data along with infrastructure-as-code tools like CloudFormation to build and launch a new production environment in the DR region."
   },
   {
     "id": 4,
-    "question": "In a Backup and Restore disaster recovery strategy for an application running on EC2 instances, what AWS services are typically used to store the backups? (Choose TWO)",
+    "question": "In a \"Pilot Light\" disaster recovery scenario, which components are typically kept running in the DR region?",
     "options": [
-      "Amazon S3",
-      "Amazon EBS Snapshots",
-      "Amazon EFS",
-      "AWS Storage Gateway",
-      "Amazon ElastiCache"
+      "The entire application stack at full production scale.",
+      "Only the application's infrastructure defined in a CloudFormation template.",
+      "A small, core part of the infrastructure, such as the database and perhaps a single application server.",
+      "Only the DNS records in Amazon Route 53."
     ],
     "correctAnswers": [
-      0,
-      1
+      2
     ],
-    "multiple": true
+    "multiple": false,
+    "explanation": "The \"Pilot Light\" analogy refers to the pilot light in a gas furnace: it's always on, but it's small and uses minimal resources. In this DR strategy, you replicate your data and keep the core services (often the database) running in the DR region. The main application servers are typically turned off and are only \"lit\" (launched and scaled up) when a disaster occurs."
   },
   {
     "id": 5,
-    "question": "A company is implementing a Pilot Light disaster recovery strategy. What are the key components that are typically kept running in the DR region?",
+    "question": "A company wants to improve its RTO from 12 hours (current Backup and Restore strategy) to under 1 hour. They can tolerate up to 5 minutes of data loss (RPO). Which DR strategy is the most cost-effective choice to meet these new requirements?",
     "options": [
-      "A fully scaled-out fleet of application servers and a primary database.",
-      "A small-capacity database instance (the \"pilot light\") and the application's infrastructure defined in CloudFormation, but with no running application servers.",
-      "Only the application's AMIs stored in the DR region.",
-      "A continuously synchronized, hot standby database and a fully scaled-out application fleet."
+      "Multi-Site Active/Active",
+      "Warm Standby",
+      "Backup and Restore with more frequent backups",
+      "A single-site deployment with Auto Scaling"
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A Warm Standby strategy fits these requirements well. By keeping a scaled-down but fully functional version of the application running in the DR region, the time to recover (RTO) is significantly reduced because you only need to scale up the running resources, not provision them from scratch. This can easily be achieved in under an hour. More frequent backups (C) would improve the RPO but not the RTO. Multi-Site (A) would be overkill and more expensive."
   },
   {
     "id": 6,
-    "question": "A company is using a Warm Standby disaster recovery strategy for its web application. What would you expect to find in the DR region?",
+    "question": "What is a primary benefit of using AWS CloudFormation for disaster recovery?",
     "options": [
-      "Only backups of the data and infrastructure templates.",
-      "A scaled-down but fully functional version of the application, running on a smaller fleet of EC2 instances and a smaller database instance.",
-      "A fully scaled production environment identical to the primary region.",
-      "A single EC2 instance with the application code ready to be deployed."
+      "It automatically backs up all your data.",
+      "It provides a way to define your infrastructure as code, allowing you to quickly and reliably provision a consistent environment in a DR region.",
+      "It encrypts all traffic between your primary and DR regions.",
+      "It provides a low-latency DNS failover service."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "CloudFormation is a key enabler of DR strategies like Backup & Restore and Pilot Light. By codifying your infrastructure (VPC, subnets, security groups, EC2 instances, load balancers), you can use the same template to create a consistent, tested environment in your DR region much faster and with fewer errors than manual provisioning."
   },
   {
     "id": 7,
-    "question": "Which disaster recovery strategy generally offers the lowest RTO and RPO?",
+    "question": "An application is deployed in a single region. To improve its disaster recovery posture, the company is using S3 Cross-Region Replication to copy objects from a bucket in the primary region to a bucket in the DR region. What does this achieve?",
     "options": [
-      "Backup and Restore",
-      "Pilot Light",
-      "Warm Standby",
-      "Multi-site Active-Active"
+      "It improves the Recovery Time Objective (RTO) for the S3 data.",
+      "It improves the Recovery Point Objective (RPO) for the S3 data.",
+      "It provides synchronous replication of the S3 data.",
+      "It creates a complete, bootable copy of the application in the DR region."
     ],
     "correctAnswers": [
-      3
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "S3 Cross-Region Replication is a data-level DR strategy. By automatically and asynchronously replicating new objects to a bucket in another region, you ensure that you have a recent copy of your data available. This directly improves your RPO, as the amount of potential data loss is limited to the replication lag (typically seconds or minutes). It does not, by itself, provision infrastructure, so it doesn't directly affect RTO."
   },
   {
     "id": 8,
-    "question": "A company uses Amazon RDS for its database. They take daily snapshots. In a disaster, they will restore the latest snapshot to a new instance. This process is part of which DR strategy and what does it primarily determine?",
+    "question": "Which Amazon Route 53 routing policy is specifically designed for an active-passive failover configuration?",
     "options": [
-      "Pilot Light; it determines the RTO.",
-      "Backup and Restore; it primarily determines the RTO.",
-      "Warm Standby; it determines the RPO.",
-      "Backup and Restore; it primarily determines the RPO."
+      "Simple Routing",
+      "Weighted Routing",
+      "Latency Routing",
+      "Failover Routing"
     ],
     "correctAnswers": [
-      1
+      3
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Failover routing is designed for disaster recovery. You configure a primary resource (e.g., the load balancer in your primary region) and a secondary resource (in your DR region). Route 53 monitors the health of the primary resource via health checks. If the primary becomes unhealthy, Route 53 automatically starts routing all traffic to the secondary resource."
   },
   {
     "id": 9,
-    "question": "To automate the deployment of infrastructure in a DR region during a failover event, which AWS service should be used to define the infrastructure as code?",
+    "question": "What does the term \"Recovery Point Objective\" (RPO) measure?",
     "options": [
-      "AWS Elastic Beanstalk",
-      "AWS CloudFormation",
-      "AWS CodeDeploy",
-      "Amazon EC2 Auto Scaling"
+      "The percentage of the application that must be recovered.",
+      "The target time to fully recover the application.",
+      "The maximum acceptable amount of data loss, measured in time (e.g., 1 hour of data).",
+      "The number of geographic points required for recovery."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "RPO is all about data loss. It is a business-defined metric that dictates the maximum age of the files or data that must be recovered from backup storage for normal operations to resume. An RPO of 1 hour means the business can tolerate losing up to 1 hour of data in a disaster."
   },
   {
     "id": 10,
-    "question": "What is the primary objective of a Recovery Point Objective (RPO)?",
+    "question": "Which of the following scenarios describes a \"Warm Standby\" DR strategy?",
     "options": [
-      "To define the maximum duration of a system outage.",
-      "To define the maximum amount of acceptable data loss.",
-      "To specify the time it takes to create a backup.",
-      "To measure the performance of the recovery process."
+      "Data is backed up nightly to S3 in another region.",
+      "An RDS database is replicated to the DR region, and a CloudFormation template is ready to launch the application stack.",
+      "A scaled-down but fully functional copy of the production environment, including EC2 instances and a load balancer, is running in the DR region.",
+      "Two full-scale production environments are running in different regions, both actively serving traffic."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A Warm Standby involves having a complete, but smaller, version of your production environment running in the DR region. This allows for a faster recovery than Pilot Light because the application servers are already on and just need to be scaled up. It's a trade-off, costing more than Pilot Light but providing a better RTO."
   },
   {
     "id": 11,
-    "question": "In a Pilot Light DR strategy, data is often replicated from the primary region to the DR region. For an RDS database, which feature is commonly used to achieve this continuous replication?",
+    "question": "You are using AWS Backup to create daily snapshots of your EBS volumes and RDS databases. The backups are being copied to a DR region. Which DR strategy does this practice primarily support?",
     "options": [
-      "Manual Snapshots",
-      "A cross-region Read Replica",
-      "Automated Backups",
-      "AWS Database Migration Service (DMS) with change data capture (CDC)"
+      "Pilot Light",
+      "Warm Standby",
+      "Multi-Site Active/Active",
+      "Backup and Restore"
     ],
     "correctAnswers": [
-      1
+      3
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "The act of creating backups and copying them to another region is the foundation of the Backup and Restore DR strategy. These backups (snapshots) would be the data source you would use to \"restore\" your application by launching new EBS volumes and RDS instances from them during a disaster recovery event."
   },
   {
     "id": 12,
-    "question": "Comparing Pilot Light and Warm Standby, what is the key difference?",
+    "question": "A company has a global application and wants to route users to the AWS region that provides the lowest network latency. What Route 53 routing policy should be used?",
     "options": [
-      "Pilot Light has a higher cost than Warm Standby.",
-      "Warm Standby has a running, scaled-down version of the application, while Pilot Light typically does not have running application servers.",
-      "Pilot Light offers a lower RTO than Warm Standby.",
-      "Warm Standby does not require data replication, while Pilot Light does."
+      "Failover Routing",
+      "Geolocation Routing",
+      "Latency Routing",
+      "Multivalue Answer Routing"
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Latency routing helps improve your application's performance for a global audience. Route 53 uses a network of measurement servers to determine which AWS region will provide the lowest latency for a given user, and then routes their DNS query to the resource in that region."
   },
   {
     "id": 13,
-    "question": "An application uses an S3 bucket to store critical user documents. To prepare for a regional disaster, what is the simplest way to back up this data to another region?",
+    "question": "What is a key difference between RPO and RTO?",
     "options": [
-      "Manually copy the objects every day.",
-      "Enable versioning on the bucket.",
-      "Configure S3 Cross-Region Replication (CRR) on the bucket.",
-      "Take EBS snapshots of the S3 bucket."
+      "RPO is about data loss, while RTO is about downtime.",
+      "RPO is measured in hours, while RTO is measured in minutes.",
+      "RPO is a technical metric, while RTO is a business metric.",
+      "RPO applies to databases, while RTO applies to EC2 instances."
     ],
     "correctAnswers": [
-      2
+      0
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "This is the most critical distinction. Recovery Point Objective (RPO) is focused on the past: how much data can we afford to lose? Recovery Time Objective (RTO) is focused on the future: how quickly do we need to be back in business?"
   },
   {
     "id": 14,
-    "question": "Which DNS routing policy in Amazon Route 53 is most commonly used to manually fail over traffic from a primary region to a DR region?",
+    "question": "To implement a Pilot Light strategy for an application that uses an RDS database, what is the most important component to have running continuously in the DR region?",
     "options": [
-      "Latency-based routing",
-      "Geolocation routing",
-      "Weighted routing (by changing the weights to 100 for DR and 0 for primary)",
-      "Simple routing"
+      "The application's web servers.",
+      "The Auto Scaling group configuration.",
+      "A continuously replicated copy of the RDS database (e.g., a cross-region read replica).",
+      "The Elastic Load Balancer."
     ],
     "correctAnswers": [
       2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "In a Pilot Light strategy, the data is the most critical and time-consuming component to restore. By having a continuously updated replica of your database (like a cross-region read replica for RDS) already running in the DR region, you ensure your RPO is low and significantly speed up your recovery time, as the data is already in place."
   },
   {
     "id": 15,
-    "question": "What is the primary objective of a Recovery Time Objective (RTO)?",
+    "question": "Which AWS service can you use to automate the failover of your DNS records in a disaster recovery scenario?",
     "options": [
-      "To define the frequency of backups.",
-      "To measure the amount of data lost.",
-      "To define the maximum acceptable downtime for a system after a disaster.",
-      "To specify the time it takes to restore a single file."
+      "AWS CloudFormation",
+      "Elastic Load Balancing with health checks.",
+      "Amazon Route 53 with health checks.",
+      "AWS Auto Scaling."
     ],
     "correctAnswers": [
       2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Amazon Route 53 health checks are the key to automated DNS failover. You can configure health checks to monitor your application's endpoints (e.g., the health check URL of a load balancer). If a health check fails, Route 53 can automatically update the DNS records (e.g., in a Failover routing policy) to redirect traffic away from the unhealthy endpoint."
   },
   {
     "id": 16,
-    "question": "A company has an RTO of 15 minutes. Which DR strategy is most likely UNABLE to meet this requirement?",
+    "question": "You are designing a disaster recovery plan for a stateless web application running on an Auto Scaling group of EC2 instances. Which of the following is the most important element to replicate to the DR region?",
     "options": [
-      "Warm Standby",
-      "Pilot Light",
-      "Multi-site Active-Active",
-      "Backup and Restore"
+      "The running EC2 instances themselves.",
+      "The launch template or launch configuration and the custom AMI used by the Auto Scaling group.",
+      "The Elastic Load Balancer's configuration.",
+      "The Security Group rules."
     ],
     "correctAnswers": [
-      3
+      1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Since the application is stateless, the running instances are disposable cattle, not pets. The most important thing is the ability to recreate them. By ensuring you have a copy of the AMI (which contains your application code) and the launch template (which defines how to launch the instances) in your DR region, you can quickly spin up a new, identical fleet of servers during a disaster."
   },
   {
     "id": 17,
-    "question": "In a Warm Standby DR setup, the application servers in the DR region are running but at a reduced capacity. During a failover, what is the first step that needs to be taken for the application tier?",
+    "question": "A company has chosen a Warm Standby DR strategy. In their primary region, they run 10 large EC2 instances. What would their DR region likely contain?",
     "options": [
-      "Deploy the application servers from AMIs.",
-      "Scale out the application servers to handle production load.",
-      "Restore the application code from S3.",
-      "Promote the DR database to be the new primary."
+      "An AMI and a CloudFormation template.",
+      "A continuously replicated database and 2 small EC2 instances running the application.",
+      "A continuously replicated database, but no EC2 instances.",
+      "10 large EC2 instances, identical to the primary region."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "Warm Standby implies a scaled-down but functional environment. This means having the data ready (replicated database) and a small fleet of application servers running and ready to be scaled up. Option (D) would be a Hot Standby/Multi-Site strategy. Option (C) is a Pilot Light. Option (A) is Backup and Restore."
   },
   {
     "id": 18,
-    "question": "A company uses AWS Backup to centralize its backup processes for EC2, EBS, and RDS. For disaster recovery, what key feature of AWS Backup should they use?",
+    "question": "Which of the following has the LOWEST Recovery Time Objective (RTO)?",
     "options": [
-      "On-demand backups",
-      "Scheduled backup plans",
-      "The ability to copy backups to a different AWS Region",
-      "Backup lifecycle policies"
+      "Backup and Restore",
+      "Pilot Light",
+      "Warm Standby",
+      "Multi-Site Active/Active"
     ],
     "correctAnswers": [
-      2
+      3
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A Multi-Site Active/Active architecture has the lowest RTO (and RPO), often measured in seconds or even zero. Because a full-scale, live production environment is already running in the DR region and actively serving traffic, failover can be nearly instantaneous, often handled automatically by a global load balancer or DNS routing."
   },
   {
     "id": 19,
-    "question": "Which of the following services is inherently fault-tolerant and multi-AZ by design, often simplifying DR planning for the data it holds? (Choose TWO)",
+    "question": "You are creating a disaster recovery plan for an RDS for PostgreSQL database. You need to be able to fail over to another region. What feature of RDS should you use?",
     "options": [
-      "Amazon EC2",
-      "Amazon DynamoDB",
-      "Amazon S3",
-      "Amazon RDS (in single-AZ mode)",
-      "Amazon ElastiCache for Memcached"
+      "Multi-AZ deployment",
+      "Automated Snapshots",
+      "Cross-Region Read Replicas",
+      "Enhanced Monitoring"
     ],
     "correctAnswers": [
-      1,
       2
     ],
-    "multiple": true
+    "multiple": false,
+    "explanation": "Multi-AZ (A) is for high availability within a single region (it protects against an AZ failure). For cross-region disaster recovery, you should create a Cross-Region Read Replica. In the event of a disaster, you can promote this read replica to become a standalone, master database in the DR region."
   },
   {
     "id": 20,
-    "question": "A company is using a Pilot Light strategy. They have an RDS Read Replica in the DR region. During a failover, what action must be performed on this read replica?",
+    "question": "To implement a Backup and Restore DR strategy, you are taking daily EBS snapshots. Where should these snapshots be stored to be effective for disaster recovery?",
     "options": [
-      "It must be deleted and restored from a snapshot.",
-      "It must be promoted to become a standalone, writable database instance.",
-      "It must be increased in size.",
-      "Nothing, the application can write to the read replica."
+      "In the same S3 bucket as the application code.",
+      "In the same Availability Zone as the original EBS volume.",
+      "They should be copied to the designated DR AWS Region.",
+      "In an AWS Snowball device."
     ],
     "correctAnswers": [
-      1
+      2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A disaster recovery plan must protect against the failure of an entire region. Therefore, backups and snapshots must be copied to your designated DR region. Storing them in the same AZ or even the same region as the source provides no protection if that entire region becomes unavailable."
   },
   {
     "id": 21,
-    "question": "Which of these DR strategies provides the highest level of availability but also incurs the highest cost?",
-    "options": [
-      "Backup and Restore",
-      "Pilot Light",
-      "Warm Standby",
-      "Multi-site Active-Active"
-    ],
-    "correctAnswers": [
-      3
-    ],
-    "multiple": false
-  },
-  {
-    "id": 22,
-    "question": "A company is storing application configuration as code in AWS CloudFormation templates. How does this practice aid in disaster recovery?",
-    "options": [
-      "It allows them to quickly and reliably provision the entire infrastructure stack in the DR region.",
-      "It automatically backs up the application data.",
-      "It reduces the RPO of the application.",
-      "It encrypts the application configuration."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 23,
-    "question": "A company is using EC2 instances with custom software installed. To be able to quickly launch these instances in a DR region, what should they do?",
-    "options": [
-      "Copy the EC2 instances to the DR region while they are running.",
-      "Create an Amazon Machine Image (AMI) from a configured instance and copy the AMI to the DR region.",
-      "Store the installation scripts in S3 and run them on new instances during a failover.",
-      "Rely on EBS snapshots alone."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 24,
-    "question": "What is a key consideration when choosing a DR region?",
-    "options": [
-      "It should be the region with the lowest cost for all services.",
-      "It should be geographically distant from the primary region to avoid being affected by the same regional disaster.",
-      "It must be in the same country as the primary region for data sovereignty.",
-      "It should be the newest AWS Region available."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 25,
-    "question": "A system has an RPO of zero and an RTO of seconds. Which DR strategy is required?",
-    "options": [
-      "Warm Standby",
-      "Pilot Light",
-      "Multi-site Active-Active with synchronous replication",
-      "Backup and Restore"
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 26,
-    "question": "In a Backup and Restore strategy, the RTO is heavily dependent on what factor?",
-    "options": [
-      "The amount of data loss.",
-      "The time it takes to provision the infrastructure and restore the data from backups.",
-      "The distance between the primary and DR regions.",
-      "The number of users accessing the application."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 27,
-    "question": "A company is using Amazon Route 53 health checks to monitor its primary application endpoint. If the health check fails, how can Route 53 be configured to automatically direct users to a static error page hosted in S3 in the DR region?",
-    "options": [
-      "By using a geolocation routing policy.",
-      "By configuring a failover routing policy.",
-      "By using a weighted routing policy.",
-      "By using a latency-based routing policy."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 28,
-    "question": "Which statement is true about the cost of a Pilot Light DR strategy compared to a Warm Standby strategy?",
-    "options": [
-      "Pilot Light is generally more expensive because it requires more automation.",
-      "Pilot Light is generally less expensive because the core application infrastructure is not running at all times.",
-      "The costs are identical.",
-      "Pilot Light has higher data transfer costs."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 29,
-    "question": "A company is using AWS Database Migration Service (DMS) to continuously replicate data from an on-premises Oracle database to an RDS for PostgreSQL instance in AWS. How can this setup be part of a DR plan?",
-    "options": [
-      "The RDS instance in AWS can serve as a hot standby for the on-premises database.",
-      "This setup is only for migration, not DR.",
-      "The DMS task can be reversed to restore data to the on-premises location.",
-      "The RDS instance can be used to generate backups for the on-premises database."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 30,
-    "question": "A company needs to achieve a very low RPO for its EC2 instance data. Which of the following provides the most frequent, near-real-time backup?",
-    "options": [
-      "Daily EBS snapshots.",
-      "Using a third-party tool that provides continuous data protection (CDP) by replicating block-level changes to another region.",
-      "Copying files to S3 every hour.",
-      "Creating AMIs every 12 hours."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 31,
-    "question": "What is the most significant factor that determines the RPO in a Backup and Restore strategy using nightly database snapshots?",
-    "options": [
-      "The time it takes to restore the snapshot.",
-      "The size of the database.",
-      "The frequency of the snapshots (i.e., up to 24 hours of data loss).",
-      "The network bandwidth to the DR region."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 32,
-    "question": "In which DR strategy is the application infrastructure fully deployed and running at all times in both the primary and DR regions, with traffic being actively served from both?",
-    "options": [
-      "Pilot Light",
-      "Warm Standby",
-      "Backup and Restore",
-      "Multi-site Active-Active"
-    ],
-    "correctAnswers": [
-      3
-    ],
-    "multiple": false
-  },
-  {
-    "id": 33,
-    "question": "A company is using Amazon EFS for shared file storage. What is the simplest way to create a backup of the EFS file system for disaster recovery?",
-    "options": [
-      "Mount the EFS file system on an EC2 instance and use a script to copy the data to S3.",
-      "Use AWS Backup to schedule regular backups of the EFS file system.",
-      "EFS is a regional service and cannot be backed up to another region.",
-      "Take an EBS snapshot of the EFS mount target."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 34,
-    "question": "During a DR test, a company fails over to its Warm Standby environment. The test is successful. What is a critical final step in the test plan?",
-    "options": [
-      "Deleting the primary environment to save costs.",
-      "Implementing a clear process to fail back to the primary region and resume normal operations.",
-      "Keeping the DR environment as the new primary indefinitely.",
-      "Ordering new hardware for the primary region."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 35,
-    "question": "An application uses DynamoDB. For a cross-region disaster recovery plan with a very low RPO and RTO, which DynamoDB feature should be used?",
-    "options": [
-      "DynamoDB Streams",
-      "Point-in-time recovery (PITR)",
-      "DynamoDB Global Tables",
-      "On-demand backups"
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 36,
-    "question": "A company's RTO is 4 hours and RPO is 1 hour. They are considering a Pilot Light strategy. What activities must be completed within the 4-hour RTO during a failover?",
-    "options": [
-      "Provisioning the application servers, scaling them to full capacity, and promoting the database.",
-      "Only restoring the database from a backup.",
-      "Only deploying the application servers.",
-      "Deciding whether to fail over."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 37,
-    "question": "Which of the following is a \"recovery strategy\" and not a \"preventative measure\"?",
-    "options": [
-      "Deploying an application across multiple Availability Zones.",
-      "Using an Elastic Load Balancer to distribute traffic.",
-      "Restoring an RDS database from a snapshot in a different region.",
-      "Using security groups to restrict access."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 38,
-    "question": "The use of AWS CloudFormation to define infrastructure is a key enabler for which disaster recovery strategies? (Choose TWO)",
-    "options": [
-      "Backup and Restore",
-      "Pilot Light",
-      "Multi-site Active-Active (where it's used for the initial build)",
-      "Warm Standby",
-      "All of the above are enhanced by using CloudFormation."
-    ],
-    "correctAnswers": [
-      4
-    ],
-    "multiple": false
-  },
-  {
-    "id": 39,
-    "question": "A company is using S3 Cross-Region Replication. By default, what is NOT replicated from the source bucket to the destination bucket?",
-    "options": [
-      "New objects created after replication is configured.",
-      "Objects that existed in the bucket before replication was configured.",
-      "Object metadata.",
-      "Object ACLs (Access Control Lists)."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 40,
-    "question": "A company has a business-critical application with an RTO of less than 10 minutes and an RPO of a few seconds. The DR plan involves a scaled-down version of the application running in another region. This describes which strategy?",
-    "options": [
-      "Backup and Restore",
-      "Pilot Light",
-      "Warm Standby",
-      "Cold Standby"
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 41,
-    "question": "A company is performing a disaster recovery drill. They need to test their ability to restore an EBS volume from a snapshot in their DR region. The snapshot was created in the primary region. What must be done first?",
-    "options": [
-      "The EBS snapshot must be copied from the primary region to the DR region.",
-      "The EC2 instance must be launched in the DR region.",
-      "The IAM permissions must be configured.",
-      "The snapshot must be encrypted."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 42,
-    "question": "An application's data is stored in a multi-AZ RDS instance. How does this configuration help with disaster recovery?",
-    "options": [
-      "It provides high availability by failing over to a standby in another AZ, which protects against an AZ failure, but it is not a cross-region DR strategy on its own.",
-      "It automatically replicates the data to another AWS Region.",
-      "It eliminates the need for database backups.",
-      "It protects against accidental data deletion by users."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 43,
-    "question": "Which DR strategy requires the most manual effort and results in the longest RTO?",
-    "options": [
-      "Multi-site Active-Active",
-      "Warm Standby",
-      "Pilot Light",
-      "Backup and Restore"
-    ],
-    "correctAnswers": [
-      3
-    ],
-    "multiple": false
-  },
-  {
-    "id": 44,
-    "question": "A company is running an application on a single EC2 instance. They use AWS Backup to create daily snapshots. The company's defined RPO is 24 hours. Does this backup plan meet the RPO?",
-    "options": [
-      "Yes, because backups are taken daily.",
-      "No, the RPO is the time to recover, not the data loss.",
-      "No, a 24-hour RPO means a maximum of 24 hours of data loss, so a daily backup is at the very edge and could exceed it if the disaster happens right before the next backup.",
-      "Yes, but only if the snapshots are copied to another region."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 45,
-    "question": "What is the main benefit of a Pilot Light DR strategy over Backup and Restore?",
-    "options": [
-      "It is significantly cheaper.",
-      "It has a lower RTO because the core infrastructure and data are already in place and just need to be scaled up.",
-      "It has a lower RPO.",
-      "It requires less automation."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 46,
-    "question": "To achieve a low RPO for a fleet of EC2 instances, which of the following is a better approach than taking daily EBS snapshots?",
-    "options": [
-      "Using AWS Backup with more frequent scheduled backups.",
-      "Using a third-party replication tool that continuously streams block-level changes to a DR site.",
-      "Taking manual snapshots every hour.",
-      "Storing application data on S3 instead of EBS."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 47,
-    "question": "A company is using DynamoDB Global Tables with regions in `us-east-1` and `eu-west-1`. If the `us-east-1` region fails, what happens to the application traffic?",
-    "options": [
-      "The application becomes read-only globally.",
-      "All traffic is automatically routed to the `eu-west-1` region, which can accept both reads and writes.",
-      "The table in `eu-west-1` must be manually promoted to become the primary.",
-      "The data in `eu-west-1` will be out of sync."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 48,
-    "question": "Which Route 53 feature is essential for automating the detection of an outage and redirecting traffic in a DR scenario?",
-    "options": [
-      "Alias Records",
-      "Health Checks",
-      "Private Hosted Zones",
-      "DNSSEC"
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 49,
-    "question": "A Warm Standby DR strategy has an RPO of 1 hour. What does this imply about the data replication?",
-    "options": [
-      "Data must be replicated from the primary to the DR site at least once per hour.",
-      "The entire system must be restored within one hour.",
-      "Backups are taken hourly.",
-      "The standby database must be a full-scale replica."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 50,
-    "question": "Which of the following is a valid step in a failover plan for a Pilot Light DR strategy?",
-    "options": [
-      "Restore application data from S3 backups.",
-      "Start and scale up the application EC2 instances from pre-configured AMIs.",
-      "Deploy the infrastructure using CloudFormation.",
-      "All of the above."
-    ],
-    "correctAnswers": [
-      3
-    ],
-    "multiple": false
-  },
-  {
-    "id": 51,
-    "question": "What is a \"hot site\" in traditional disaster recovery terminology, and which AWS strategy is most similar?",
-    "options": [
-      "A site with only power and networking; similar to Backup and Restore.",
-      "A site with a fully operational, duplicate environment; similar to Multi-site Active-Active.",
-      "A site with a skeleton infrastructure; similar to Pilot Light.",
-      "A site that is located in a warm climate."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 52,
-    "question": "A company is using AWS Backup to create snapshots of their EBS volumes and copy them to a DR region. In the event of a disaster, how is the data made available?",
-    "options": [
-      "The volumes are automatically restored in the DR region.",
-      "The snapshots must be manually used to create new EBS volumes in the DR region.",
-      "The snapshots can be attached directly to EC2 instances.",
-      "The data can only be restored to the original region."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 53,
-    "question": "A company has a critical application with a very low RTO (minutes) and RPO (seconds). The cost of downtime is extremely high. Which strategy is most justified?",
-    "options": [
-      "Backup and Restore",
-      "Pilot Light",
-      "Warm Standby or Multi-site Active-Active",
-      "A manual recovery plan."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 54,
-    "question": "An S3 bucket is configured with Cross-Region Replication from Virginia (`us-east-1`) to Ireland (`eu-west-1`). A user with appropriate permissions deletes an object in the Virginia bucket without specifying a version ID. What happens to the object in the Ireland bucket?",
-    "options": [
-      "Nothing, deletes are not replicated by default.",
-      "The object is also deleted in the Ireland bucket.",
-      "A delete marker is replicated to the Ireland bucket if versioning is enabled on both.",
-      "The replication process is suspended."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 55,
-    "question": "The process of switching from a DR site back to the primary production site after a disaster is known as:",
-    "options": [
-      "Failover",
-      "Failback",
-      "Restoration",
-      "Replication"
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 56,
-    "question": "A company wants to test its DR plan without affecting its production environment. They are using an RDS database. What is the LEAST disruptive way to test the database recovery process?",
-    "options": [
-      "Fail over the production database to the DR region.",
-      "Restore the latest database snapshot to a new, temporary instance in the DR region and run tests against it.",
-      "Take the production database offline to perform the test.",
-      "Promote the production Read Replica to a master."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 57,
-    "question": "Which of the following would INCREASE the RTO of a disaster recovery plan?",
-    "options": [
-      "Using CloudFormation to automate infrastructure deployment.",
-      "Relying on manual processes to provision servers and restore data.",
-      "Having a hot standby database in the DR region.",
-      "Using pre-configured AMIs."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 58,
-    "question": "A company's disaster recovery plan states that in the event of a disaster, a new environment will be provisioned from scratch and data will be restored from nightly S3 backups. This is a classic example of which DR strategy?",
-    "options": [
-      "Pilot Light",
-      "Warm Standby",
-      "Backup and Restore",
-      "Active-Active"
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 59,
-    "question": "For a Pilot Light DR strategy, what is the state of the application servers in the DR region before a failover?",
-    "options": [
-      "They are running in a scaled-down configuration.",
-      "They are running at full production scale.",
-      "They are not running; only the infrastructure templates (CloudFormation) and machine images (AMIs) exist.",
-      "They are in a \"stopped\" state."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 60,
-    "question": "How does an RDS Multi-AZ deployment contribute to meeting a low RTO?",
-    "options": [
-      "It provides a low-cost backup solution.",
-      "It enables automatic failover to a standby instance in another AZ, typically within 1-2 minutes.",
-      "It replicates data to another region.",
-      "It scales read traffic to improve performance."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 61,
-    "question": "Which of these strategies typically has the highest cost during normal operation (i.e., when no disaster has occurred)?",
-    "options": [
-      "Backup and Restore",
-      "Pilot Light",
-      "Warm Standby",
-      "All have the same cost."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 62,
-    "question": "A company uses a fleet of EC2 instances managed by an Auto Scaling group. For disaster recovery, they have copied the launch template and relevant AMIs to a DR region. What is the process to activate the application tier in the DR region?",
-    "options": [
-      "Manually launch EC2 instances from the AMI.",
-      "Create a new Auto Scaling group in the DR region using the copied launch template and set the desired capacity to the required number.",
-      "Copy the running instances from the primary region.",
-      "Restore the instances from an EBS snapshot."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 63,
-    "question": "A company has a requirement for zero data loss in the event of a disaster (RPO=0). What kind of data replication is required?",
-    "options": [
-      "Asynchronous replication",
-      "Synchronous replication",
-      "Hourly snapshots",
-      "Daily backups"
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 64,
-    "question": "Which Route 53 feature allows you to create a special record, like an A record, that points to an AWS resource like an ELB or CloudFront distribution and offers benefits like no-cost queries?",
-    "options": [
-      "A CNAME record",
-      "An Alias record",
-      "A PTR record",
-      "A TXT record"
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 65,
-    "question": "A company is using a Warm Standby strategy. The database in the DR region is a read replica of the primary. The application servers are running but at a minimum scale. Which of the following is a characteristic of this setup?",
-    "options": [
-      "The RTO will be long, likely several hours.",
-      "The RPO is dependent on the replication lag of the read replica.",
-      "This is the most expensive DR strategy.",
-      "Data is only restored after a disaster is declared."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 66,
-    "question": "What is the primary trade-off in choosing a disaster recovery strategy?",
+    "question": "What is a key trade-off when choosing a disaster recovery strategy?",
     "options": [
       "Performance vs. Security",
       "Cost vs. RTO/RPO",
@@ -926,484 +311,1196 @@
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "There is a direct relationship between the cost of a DR solution and the recovery objectives it can achieve. A Backup and Restore strategy is very cheap but has a high RTO and RPO. A Multi-Site Active/Active strategy has a near-zero RTO and RPO but is the most expensive to implement and maintain. The choice of strategy is a business decision based on how critical the application is."
   },
   {
-    "id": 67,
-    "question": "A company has deployed an application in `us-east-1`. They have a DR site in `us-west-2` using a Pilot Light strategy. Which of the following would be running in `us-west-2` during normal operations?",
+    "id": 22,
+    "question": "Which of the following is an example of a synchronous replication mechanism?",
     "options": [
-      "A fully scaled web tier.",
-      "A fully scaled database.",
-      "An RDS Read Replica of the primary database.",
-      "An exact copy of the production environment."
+      "S3 Cross-Region Replication",
+      "RDS Cross-Region Read Replicas",
+      "RDS Multi-AZ deployment",
+      "DynamoDB Global Tables"
     ],
     "correctAnswers": [
       2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "The replication between the primary and standby instances in an RDS Multi-AZ configuration is synchronous. This means a database write is not considered complete until it has been committed on both the primary and the standby. This ensures zero data loss (RPO=0) in the event of a failover, but it only works within a single region due to latency constraints."
+  },
+  {
+    "id": 23,
+    "question": "A company uses Amazon Aurora Global Database for its tier-1 application. What DR benefit does this provide?",
+    "options": [
+      "It allows for fast local reads with low latency in each region.",
+      "It provides a global, active-active database with an RPO of seconds and an RTO of less than a minute.",
+      "It automatically backs up the database to all AWS regions.",
+      "It encrypts all data in transit globally."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Aurora Global Database is a high-end DR solution. It consists of a primary cluster in one region and up to five secondary, read-only replica clusters in other regions. It uses dedicated infrastructure for replication with typical lag under one second (low RPO). In a disaster, you can promote one of the secondary clusters to be the new primary in under a minute (low RTO)."
+  },
+  {
+    "id": 24,
+    "question": "In a Pilot Light DR scenario, what is the process of \"lighting the pilot\"?",
+    "options": [
+      "Restoring the database from a snapshot.",
+      "Updating the DNS records to point to the DR region.",
+      "Provisioning the entire infrastructure from a CloudFormation template.",
+      "Starting and scaling out the application server fleet (e.g., the Auto Scaling group) in the DR region."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "In the \"pilot\" state, the core data services are running but the main application servers are either off or running at a very minimal scale. The act of \"lighting the pilot\" during a disaster involves starting these application servers, scaling them out to handle the production load, and then performing the final cutover."
+  },
+  {
+    "id": 25,
+    "question": "Your disaster recovery plan involves restoring an RDS database from a snapshot in a DR region. What is a critical prerequisite for this action?",
+    "options": [
+      "The RDS instance in the primary region must be stopped first.",
+      "The snapshot must have been copied to the DR region.",
+      "The DR region must have the same security group rules as the primary region.",
+      "You must have an RDS Read Replica in the DR region."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "RDS snapshots, like EBS snapshots, are regional resources. To be able to restore a database from a snapshot in your DR region, you must first have a copy of that snapshot in the DR region. This is a common step in a Backup and Restore DR plan, often automated with AWS Backup or custom scripts."
+  },
+  {
+    "id": 26,
+    "question": "Which AWS service is fundamental for achieving automated, infrastructure-level disaster recovery?",
+    "options": [
+      "Amazon S3",
+      "AWS Identity and Access Management (IAM)",
+      "AWS CloudFormation",
+      "Amazon EC2"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "While all these services are important, CloudFormation is the key to automating the \"recovery\" part of DR. By defining your infrastructure as code, you eliminate the need for manual, error-prone steps during a high-stress disaster event. You can reliably and quickly stand up an entire application stack from a template."
+  },
+  {
+    "id": 27,
+    "question": "A company has a business-critical application with a very low RTO and RPO. The application is served to a global audience. Which DR strategy would be most appropriate?",
+    "options": [
+      "A Multi-Region Active/Active deployment using Route 53 latency-based routing.",
+      "An Auto Scaling group deployed across multiple AZs in a single region.",
+      "A daily backup of the application to an S3 bucket.",
+      "A Warm Standby deployment in a nearby region."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "For a global, critical application with low RTO/RPO, a Multi-Region Active/Active strategy is the best fit. This provides the highest level of availability and resilience. Using Route 53 with latency-based routing ensures that users are directed to the nearest healthy region, providing both performance benefits and a seamless failover experience in the event of a regional outage."
+  },
+  {
+    "id": 28,
+    "question": "What is the primary difference between a \"Warm Standby\" and a \"Hot Standby\" (or Multi-Site Active/Active) DR strategy?",
+    "options": [
+      "A Warm Standby is in a different region, while a Hot Standby is in a different AZ.",
+      "A Warm Standby runs a scaled-down version of the infrastructure, while a Hot Standby runs a full-scale version.",
+      "A Warm Standby uses asynchronous replication, while a Hot Standby uses synchronous replication.",
+      "There is no difference; the terms are interchangeable."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The key difference is the scale of the resources running in the DR region. In a Warm Standby, the infrastructure is functional but running at a reduced capacity to save costs. It must be scaled up during a failover. In a Hot Standby / Active-Active setup, the DR region has a full-scale deployment that is already capable of handling the entire production load."
+  },
+  {
+    "id": 29,
+    "question": "You are using AWS Backup to manage your RDS snapshots. You have a backup plan that creates snapshots daily and copies them to a DR region. What does this simplify?",
+    "options": [
+      "The process of scaling the RDS database.",
+      "The automation and management of creating and copying backups for disaster recovery.",
+      "The process of failing over the database.",
+      "The encryption of the database."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "AWS Backup is a centralized service designed to simplify the management of backups across various AWS services. You can create a backup plan that defines the frequency, retention, and lifecycle of your backups, including a rule to automatically copy the backups to another region for DR purposes. This automates what would otherwise be a manual or custom-scripted process."
+  },
+  {
+    "id": 30,
+    "question": "Your disaster recovery plan requires you to be able to recreate your EC2 instances in another region. You have already copied your custom AMIs to the DR region. What other critical configuration item for your instances must also be recreated in the DR region?",
+    "options": [
+      "The instance's public IP address.",
+      "The Availability Zone name.",
+      "The Security Groups and their rules.",
+      "The instance's metadata."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Security Groups are VPC-specific and regional resources. To launch instances in your DR region and have them communicate correctly and securely, you must recreate the necessary Security Groups and their associated firewall rules in the DR region's VPC. This is often automated using CloudFormation."
+  },
+  {
+    "id": 31,
+    "question": "What is a \"Recovery Time Objective\" (RTO)?",
+    "options": [
+      "The point in time to which data must be recovered.",
+      "The objective time it takes to create a recovery plan.",
+      "The maximum tolerable duration of an outage.",
+      "The objective for recovering deleted files."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "RTO is a measure of time, specifically the maximum amount of time your business can tolerate an application being offline. An RTO of 2 hours means that from the moment a disaster strikes, you have 2 hours to get the application back up and running."
+  },
+  {
+    "id": 32,
+    "question": "Which disaster recovery strategy typically has the highest RTO and RPO?",
+    "options": [
+      "Warm Standby",
+      "Pilot Light",
+      "Backup and Restore",
+      "Multi-Site Active/Active"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Backup and Restore is the slowest and least current of the DR strategies. The RTO is high because you have to provision all infrastructure from scratch. The RPO is high because it's determined by your backup frequency (e.g., if you back up nightly, your RPO is 24 hours)."
+  },
+  {
+    "id": 33,
+    "question": "For a stateless web application, which two AWS features are most critical for building a highly available and fault-tolerant architecture WITHIN a single region? (Choose TWO)",
+    "options": [
+      "Elastic Load Balancer across multiple Availability Zones.",
+      "Auto Scaling group across multiple Availability Zones.",
+      "S3 Cross-Region Replication.",
+      "AWS Direct Connect.",
+      "Amazon Route 53 Failover Routing."
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "multiple": true,
+    "explanation": "For high availability *within* a region, the standard pattern is to use an Auto Scaling group to manage a fleet of instances distributed across multiple AZs (B). An Elastic Load Balancer is then used to distribute traffic to these instances and to automatically route traffic away from any that become unhealthy (A). The other options are primarily for disaster recovery (C, E) or hybrid connectivity (D)."
+  },
+  {
+    "id": 34,
+    "question": "You have an RDS for MySQL database with a Multi-AZ deployment. The primary AZ experiences a complete outage. What is the expected outcome?",
+    "options": [
+      "The database will become unavailable until the primary AZ is restored.",
+      "You must manually promote the standby replica to become the new primary.",
+      "Amazon RDS will automatically fail over to the standby replica, typically within 1-2 minutes, by updating the DNS record for the database endpoint.",
+      "The standby replica will start serving read-only traffic."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The key benefit of RDS Multi-AZ is automatic failover. When RDS detects a problem with the primary instance or its AZ, it automatically promotes the synchronous standby replica in the other AZ to be the new primary. It does this by changing the CNAME DNS record of your database endpoint to point to the IP of the standby. This process is fully managed and usually completes in a minute or two."
+  },
+  {
+    "id": 35,
+    "question": "Which of the following would improve your Recovery Point Objective (RPO)?",
+    "options": [
+      "Using CloudFormation to define your infrastructure.",
+      "Increasing the number of instances in your Auto Scaling group.",
+      "Switching from nightly backups to hourly backups.",
+      "Choosing a larger instance type for your application servers."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "RPO is about minimizing data loss. The most direct way to improve (lower) your RPO is to increase the frequency of your data replication or backups. Moving from nightly to hourly backups reduces your maximum potential data loss from 24 hours to 1 hour."
+  },
+  {
+    "id": 36,
+    "question": "A company is using the Pilot Light strategy. Their primary region fails. What is the first major step in their failover process after the initial decision to fail over is made?",
+    "options": [
+      "Restore the database from the most recent snapshot.",
+      "Update the Route 53 DNS records to point to the DR region.",
+      "Launch and scale out the application servers using their pre-configured AMIs and launch templates.",
+      "Create a new VPC and subnets in the DR region."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "In a pilot light scenario, the data (database) is already running and being replicated. The infrastructure (VPC, etc.) is likely pre-provisioned. Therefore, the first *active* step in the recovery is to \"turn on the lights\" by starting the application servers and scaling them to handle the production load. DNS failover (B) would happen after the application servers are ready to accept traffic."
+  },
+  {
+    "id": 37,
+    "question": "What is the primary purpose of a DNS failover mechanism in a disaster recovery plan?",
+    "options": [
+      "To back up the DNS records.",
+      "To automatically redirect users from an unhealthy primary site to a healthy disaster recovery site.",
+      "To scale the number of application servers.",
+      "To replicate data between regions."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "DNS failover, typically managed with a service like Amazon Route 53, is the mechanism that controls where your users' traffic is sent. In a DR scenario, its purpose is to detect that the primary site is down (via health checks) and then update the DNS records to point all incoming user traffic to the IP address of the load balancer or server in your DR site."
+  },
+  {
+    "id": 38,
+    "question": "Which of the following DR strategies provides the lowest cost but the highest RTO?",
+    "options": [
+      "Multi-Site Active/Active",
+      "Warm Standby",
+      "Pilot Light",
+      "Backup and Restore"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "Backup and Restore has the lowest cost because no compute or database resources are running in the DR region until a disaster occurs. You are only paying for the storage of the backups. This low cost comes at the price of the highest RTO, as you have to provision and configure the entire environment from scratch during the recovery process."
+  },
+  {
+    "id": 39,
+    "question": "You are creating a disaster recovery plan for a DynamoDB table. You need to have a continuously updated, readable copy of the table in another region. What feature should you use?",
+    "options": [
+      "DynamoDB On-Demand Backups",
+      "DynamoDB Point-in-Time Recovery (PITR)",
+      "DynamoDB Global Tables",
+      "DynamoDB Streams"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "DynamoDB Global Tables provide a fully managed, multi-region, active-active database. When you create a global table, you specify the regions where you want the table to be available. DynamoDB then automatically replicates any writes in one region to the other regions, typically within a second. Each region has a readable and writable copy of the table."
+  },
+  {
+    "id": 40,
+    "question": "A company has a requirement that its application must have an RTO of zero. What does this imply for their architecture?",
+    "options": [
+      "The application must use a Backup and Restore strategy.",
+      "The application must have an RPO of zero as well.",
+      "The application must be deployed in a fault-tolerant, active-active configuration where failover is instantaneous and automatic.",
+      "The application must be deployed on a single, extremely large EC2 instance."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "An RTO of zero means there can be no downtime. This is only achievable with a Hot Standby or Multi-Site Active/Active architecture. In such a setup, a fully capable, redundant system is already running and ready to handle traffic, so a failure of the primary system results in an immediate and often user-transparent failover."
+  },
+  {
+    "id": 41,
+    "question": "To improve the RTO of a Backup and Restore strategy, what is the most effective action?",
+    "options": [
+      "Take backups more frequently.",
+      "Use a smaller instance type in the DR region.",
+      "Heavily automate the restoration process using infrastructure as code (e.g., CloudFormation) and scripts.",
+      "Use S3 Standard storage instead of S3 Glacier for backups."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "RTO is about how fast you can recover. The biggest bottleneck in a Backup and Restore strategy is the time it takes to provision and configure the new environment. By using CloudFormation to define your infrastructure and scripting the data restoration and application deployment, you can significantly reduce the recovery time by automating these manual, time-consuming steps."
+  },
+  {
+    "id": 42,
+    "question": "Which of the following is NOT a characteristic of the Pilot Light DR strategy?",
+    "options": [
+      "Lower infrastructure cost compared to Warm Standby.",
+      "Faster recovery time (RTO) compared to Backup and Restore.",
+      "A full-scale version of the application is constantly running in the DR region.",
+      "Data is replicated to the DR region."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The defining characteristic of Pilot Light is that the main application infrastructure (like the web/app server fleet) is NOT running at full scale. It is either turned off or exists as a very small \"pilot\" instance. A full-scale running version would be a Warm or Hot Standby strategy. All the other statements are true of the Pilot Light approach."
+  },
+  {
+    "id": 43,
+    "question": "You are designing a DR strategy for a large data warehouse running on Amazon Redshift. The RPO is 8 hours, and the RTO is 12 hours. What is a suitable approach?",
+    "options": [
+      "Configure Redshift to be a Multi-AZ deployment.",
+      "Enable cross-region snapshots for the Redshift cluster, which are taken automatically and copied to the DR region.",
+      "Use DynamoDB Global Tables to replicate the data.",
+      "Deploy a second, active Redshift cluster in another region and keep it synchronized."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Amazon Redshift supports automated, cross-region snapshots. This fits well with the higher RTO/RPO requirements of a data warehouse. You can configure it to take snapshots periodically (e.g., every 8 hours) and automatically copy them to your DR region. In a disaster, you would restore the latest snapshot to a new Redshift cluster in the DR region."
+  },
+  {
+    "id": 44,
+    "question": "A company is using Amazon S3 for storing critical documents. They need to ensure they can recover from the accidental deletion of an object. Which S3 feature provides this protection?",
+    "options": [
+      "S3 Cross-Region Replication",
+      "S3 Versioning",
+      "S3 Storage Class Analysis",
+      "S3 Transfer Acceleration"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "S3 Versioning is a key data protection feature. When enabled, it keeps a copy of every version of an object. If a user deletes an object, S3 simply adds a \"delete marker\" as the latest version but retains all the previous versions. This allows you to easily \"undelete\" the object by removing the delete marker or restoring a previous version."
+  },
+  {
+    "id": 45,
+    "question": "What is the relationship between Availability Zones and a regional disaster?",
+    "options": [
+      "Deploying across multiple AZs protects an application from a regional disaster.",
+      "Availability Zones are isolated locations within an AWS Region. A regional disaster would likely affect all AZs in that region.",
+      "Availability Zones are located in different AWS regions.",
+      "A regional disaster will only affect one Availability Zone."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A multi-AZ architecture provides high availability and protects against failures of a single data center (an AZ). However, a large-scale disaster like an earthquake or flood could potentially impact all the AZs within a single geographic region. To protect against a regional disaster, you need a multi-region DR strategy."
+  },
+  {
+    "id": 46,
+    "question": "Your DR strategy is Pilot Light. You have a cross-region read replica for your RDS database in the DR region. What is the first step you must perform on the database during a failover?",
+    "options": [
+      "Create a new read replica from it.",
+      "Increase its instance size.",
+      "Promote the read replica to make it a standalone, writable master database.",
+      "Restore it from a snapshot."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A read replica, by definition, can only handle read traffic. In a failover, you need a writable primary database. The process for this is to \"promote\" the read replica. This action breaks the replication link and converts the read replica into a full, standalone database instance that can accept write traffic."
+  },
+  {
+    "id": 47,
+    "question": "Which of the following strategies has an RPO that can be measured in minutes, and an RTO that can also be measured in minutes?",
+    "options": [
+      "Backup and Restore",
+      "Warm Standby",
+      "Multi-Site Active/Active",
+      "Cold Standby"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A Warm Standby provides a good balance between cost and recovery time. Because a scaled-down but fully functional version of the environment is already running, the RTO is low (minutes) as it only requires scaling up. With continuous data replication (e.g., RDS read replicas or DynamoDB Global Tables), the RPO can also be very low (minutes or seconds)."
+  },
+  {
+    "id": 48,
+    "question": "You are using a Route 53 Failover routing policy. What is the role of the health check?",
+    "options": [
+      "To check the health of the Route 53 service itself.",
+      "To determine if the primary endpoint is healthy and whether to fail over to the secondary endpoint.",
+      "To verify that the DNS records are correct.",
+      "To check if the secondary endpoint is healthy before failing over."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The health check is the trigger for the automatic failover. Route 53 continuously monitors the resource specified in the health check (e.g., a load balancer in the primary region). If the health check fails for a configured number of consecutive checks, Route 53 considers the primary endpoint to be down and automatically switches the DNS records to point to the secondary endpoint."
+  },
+  {
+    "id": 49,
+    "question": "To implement a Backup and Restore strategy, you use AWS Backup. Which of the following resources can be backed up using this service? (Choose TWO)",
+    "options": [
+      "Amazon EC2 Instances (via EBS snapshots)",
+      "Security Groups",
+      "Amazon DynamoDB Tables",
+      "IAM Roles",
+      "VPC Route Tables"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "multiple": true,
+    "explanation": "AWS Backup is designed to centralize and automate data protection for stateful services. It supports a wide range of services, including EBS volumes (which are the core of an EC2 instance backup) (A), DynamoDB tables (C), RDS databases, EFS file systems, and more. It does not back up configuration resources like Security Groups or IAM roles; you would use a service like AWS Config or CloudFormation for that."
+  },
+  {
+    "id": 50,
+    "question": "A company's primary goal is to minimize costs for disaster recovery. They can tolerate up to 24 hours of downtime (RTO) and 24 hours of data loss (RPO). Which strategy is the most appropriate?",
+    "options": [
+      "Pilot Light",
+      "Warm Standby",
+      "Multi-Site Active/Active",
+      "Backup and Restore with daily backups"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "The high RTO (24 hours) and RPO (24 hours) requirements clearly indicate that the business impact of an outage is low and cost is the primary driver. The Backup and Restore strategy, combined with a daily backup schedule, perfectly aligns with these requirements and will be by far the least expensive option."
+  },
+  {
+    "id": 51,
+    "question": "When failing over a database using an RDS cross-region read replica, what happens to the original primary database in the failed region?",
+    "options": [
+      "It is automatically terminated.",
+      "It is automatically demoted to a read replica.",
+      "It remains independent. If it recovers, you could have a split-brain scenario if you don't manage it carefully.",
+      "It becomes read-only."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The promotion of a read replica is a one-way operation that creates a new, independent master database. It does not affect the original source database. If the original primary instance eventually recovers, it will be unaware of the failover. You must have a clear operational plan to handle this situation, which usually involves preventing any writes to the old primary and re-establishing it as a replica of the new primary."
+  },
+  {
+    "id": 52,
+    "question": "Which AWS service allows you to replicate your EC2 instance AMIs to another region for disaster recovery purposes?",
+    "options": [
+      "AWS Auto Scaling",
+      "Amazon S3",
+      "Amazon EC2",
+      "AWS Systems Manager"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The functionality to copy an Amazon Machine Image (AMI) is built into the Amazon EC2 service itself. From the EC2 console or using the API, you can select an AMI in one region and initiate a copy operation to a destination region. This is a crucial step for DR strategies that involve re-launching instances."
+  },
+  {
+    "id": 53,
+    "question": "In a Warm Standby DR setup, how is the application typically scaled up to full capacity during a failover?",
+    "options": [
+      "By manually launching new EC2 instances.",
+      "By changing the instance types to larger sizes (vertical scaling).",
+      "By updating the desired capacity of an Auto Scaling group that is managing the application servers.",
+      "By restoring a larger database from a snapshot."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A key part of the Warm Standby strategy is having the infrastructure ready to scale quickly. This is typically achieved by having an Auto Scaling group running with a minimum/desired capacity of a small number (e.g., 1 or 2). During failover, the main action is to simply update the desired capacity of this ASG to the full production number, and Auto Scaling will automatically launch the required instances."
+  },
+  {
+    "id": 54,
+    "question": "Which of the following is NOT a recognized disaster recovery strategy on AWS?",
+    "options": [
+      "Pilot Light",
+      "Warm Standby",
+      "Multi-Site Active/Active",
+      "Cold Fusion"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "The four recognized and commonly referenced disaster recovery strategies on AWS are Backup and Restore, Pilot Light, Warm Standby, and Multi-Site (which can be Active/Passive or Active/Active). \"Cold Fusion\" is not a term used to describe a DR strategy in this context."
+  },
+  {
+    "id": 55,
+    "question": "Your DR plan relies on Route 53 to fail over DNS. What is a critical consideration for the Time-to-Live (TTL) value of your DNS records?",
+    "options": [
+      "The TTL should be set to a very high value (e.g., 24 hours) to improve performance.",
+      "The TTL should be set to a low value (e.g., 60 seconds) to ensure that clients and resolvers see the updated record quickly after a failover.",
+      "The TTL value does not affect the failover speed.",
+      "The TTL should be equal to your RTO."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The TTL tells DNS resolvers around the world how long they should cache a DNS record. For a DR setup, you want a low TTL. If the TTL is 24 hours, even after you update the record in Route 53, some users might continue to be sent to the old, failed site for up to 24 hours. A low TTL ensures that when you fail over, the change propagates quickly across the internet."
+  },
+  {
+    "id": 56,
+    "question": "What is the most cost-effective way to implement a Pilot Light strategy for your EC2 web servers?",
+    "options": [
+      "Keep a full fleet of web servers running in the DR region but in a stopped state.",
+      "Keep a single, small EC2 instance running in the DR region to serve as a template, and use an Auto Scaling group with a desired capacity of 0 or 1.",
+      "Keep a full fleet of web servers running in the DR region.",
+      "Keep a copy of the web server's AMI in the DR region, but no running instances."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The \"pilot\" itself is the small, running instance. This instance can be used for testing and to ensure the environment is ready. The Auto Scaling group is configured and ready, but with a desired capacity set very low. This minimizes costs while ensuring the ability to rapidly scale out when needed. Keeping instances in a stopped state (A) still incurs some cost for the EBS volumes. Option D is a Backup and Restore strategy, not a Pilot Light."
+  },
+  {
+    "id": 57,
+    "question": "A company uses DynamoDB for its main application database. What is the easiest way to maintain a copy of the table in a DR region for failover?",
+    "options": [
+      "Take daily backups and copy them to the DR region.",
+      "Enable DynamoDB Streams and use a Lambda function to replicate writes to a table in the DR region.",
+      "Enable and configure DynamoDB Global Tables.",
+      "Manually export the table to S3 and import it in the DR region."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "DynamoDB Global Tables is the fully managed, built-in solution for multi-region, multi-master replication. When you enable it, DynamoDB handles the replication of data between your chosen regions automatically, providing a simple and effective solution for disaster recovery and global applications."
+  },
+  {
+    "id": 58,
+    "question": "Which disaster recovery strategy represents the middle ground in terms of cost and RTO/RPO between Pilot Light and Multi-Site Active/Active?",
+    "options": [
+      "Backup and Restore",
+      "Hot Swap",
+      "Warm Standby",
+      "Cold Backup"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The four DR strategies represent a spectrum of cost and recovery time. From highest RTO/cost to lowest, the order is: Backup and Restore -> Pilot Light -> Warm Standby -> Multi-Site Active/Active. Warm Standby sits in the second-best position, offering a faster recovery than Pilot Light but at a lower cost than a full Multi-Site deployment."
+  },
+  {
+    "id": 59,
+    "question": "You are using a Route 53 Failover routing policy. The primary endpoint fails its health check. What happens to the DNS queries?",
+    "options": [
+      "Route 53 returns a server failure error.",
+      "Route 53 stops responding to DNS queries for that record.",
+      "Route 53 returns the IP address of the secondary (failover) endpoint.",
+      "Route 53 returns the IP address of the unhealthy primary endpoint."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "This is the core function of the failover routing policy. When the health check associated with the primary record fails, Route 53 marks that record as unhealthy and immediately begins responding to all subsequent DNS queries with the value of the record designated as the secondary."
+  },
+  {
+    "id": 60,
+    "question": "An application is using an EFS file system. What is the AWS-native way to create a backup for disaster recovery in another region?",
+    "options": [
+      "Use S3 Cross-Region Replication on the EFS data.",
+      "Use AWS Backup to create scheduled backups of the EFS file system and copy them to the DR region.",
+      "Mount the EFS file system on an EC2 instance and use `rsync` to copy the data to another EFS file system.",
+      "EFS cannot be backed up across regions."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "AWS Backup provides a fully managed, centralized way to back up EFS file systems. You can create a backup plan that includes a rule to copy the recovery points to another region, providing a simple and integrated solution for DR."
+  },
+  {
+    "id": 61,
+    "question": "Which of these is a valid reason to declare a disaster and initiate a failover?",
+    "options": [
+      "A single EC2 instance in an Auto Scaling group has failed.",
+      "The application is experiencing slightly higher latency than normal.",
+      "An entire AWS Region has become unreachable or is experiencing a widespread service disruption.",
+      "A new version of the application code has a bug."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Disaster recovery plans are for large-scale failures. The failure of a single instance (A) should be handled automatically by an Auto Scaling group (high availability). A bug (D) should be handled by a rollback deployment. Declaring a disaster and failing over to another region is a major business decision reserved for catastrophic events like the failure of an entire region."
+  },
+  {
+    "id": 62,
+    "question": "In a Pilot Light strategy, the infrastructure in the DR region is often provisioned but not running. Which service is key to this approach?",
+    "options": [
+      "AWS Auto Scaling, with desired capacity set to 0.",
+      "Amazon S3 for storing backups.",
+      "Amazon Route 53 for DNS.",
+      "AWS CloudFormation for defining the infrastructure."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "While the other services are used, CloudFormation is what enables the \"infrastructure is provisioned\" part of the strategy. You can have a CloudFormation stack that defines all your EC2 instances, load balancers, and security groups, but the Auto Scaling group within that stack can have a desired count of 0. This means the configuration is ready, but you aren't paying for running instances."
+  },
+  {
+    "id": 63,
+    "question": "Which of the following would improve your Recovery Time Objective (RTO)?",
+    "options": [
+      "Taking more frequent snapshots of your database.",
+      "Automating your infrastructure deployment in the DR region with CloudFormation.",
+      "Storing your backups in S3 Glacier instead of S3 Standard.",
+      "Using larger EBS volumes."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "RTO is about the speed of recovery. The most significant factor in reducing recovery time is automation. By using infrastructure as code (IaC) with a tool like CloudFormation, you can stand up your entire application stack in the DR region in minutes, a process that could take many hours or days to do manually. More frequent snapshots (A) improve RPO. Storing backups in Glacier (C) would dramatically increase your RTO."
+  },
+  {
+    "id": 64,
+    "question": "An application has an RTO of 8 hours and an RPO of 1 hour. What does this mean for the DR plan?",
+    "options": [
+      "The application must be recovered within 1 hour, and no more than 8 hours of data can be lost.",
+      "The application must be recovered within 8 hours, and no more than 1 hour of data can be lost.",
+      "The application must have backups that are taken at least every 8 hours.",
+      "The application must be deployed in an active-active configuration."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "RTO (Recovery Time Objective) defines the maximum downtime, so the application must be recovered within 8 hours. RPO (Recovery Point Objective) defines the maximum data loss, so no more than 1 hour of data can be lost. This implies the need for a backup or replication strategy that runs at least once per hour."
+  },
+  {
+    "id": 65,
+    "question": "You are using a single EC2 instance to host a critical legacy application. You need a simple and effective disaster recovery strategy that provides a standby instance in another Availability Zone. What should you do?",
+    "options": [
+      "Create an Auto Scaling group with a minimum size of 2 across two AZs.",
+      "Create an AMI from the instance, and have a script ready to launch a new instance from the AMI in the second AZ.",
+      "Create a standby instance in another AZ. In case of failure, re-associate an Elastic IP address from the failed instance to the standby instance.",
+      "Take daily snapshots of the instance's EBS volume."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "For a single, stateful instance, using an Elastic IP is a common and effective DR pattern for AZ-level failures. You have a \"cold\" or \"warm\" standby instance in another AZ. When the primary fails, a script or manual process can quickly remap the EIP to the standby instance, redirecting traffic without needing a DNS change."
+  },
+  {
+    "id": 66,
+    "question": "Which data replication method is typically required to achieve a near-zero Recovery Point Objective (RPO)?",
+    "options": [
+      "Asynchronous replication",
+      "Snapshot-based replication",
+      "Synchronous replication",
+      "Manual replication"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Synchronous replication requires that a write operation is confirmed on both the primary and the replica site *before* the write is acknowledged as complete to the application. This ensures that the replica is always an exact copy of the primary, resulting in an RPO of zero (no data loss). This typically only works over short distances with low latency, such as within a single region's AZs."
+  },
+  {
+    "id": 67,
+    "question": "What is the role of an Amazon S3 bucket in a Backup and Restore DR strategy?",
+    "options": [
+      "To host the running application.",
+      "To act as a secure, durable, and cost-effective repository for storing backups like EBS snapshots, RDS snapshots, and application data.",
+      "To serve as the DNS endpoint for the application.",
+      "To provide a live replica of the primary database."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Amazon S3 is the ideal destination for storing backups. It is highly durable (99.999999999% durability), cost-effective, and integrates with many AWS services. In a Backup and Restore strategy, the S3 bucket in your DR region is the central location where you store the data you will use to rebuild your application."
   },
   {
     "id": 68,
-    "question": "An application's infrastructure is defined in a CloudFormation template. The template references an AMI ID that is specific to the `us-east-1` region. What must be done to use this template for DR in the `eu-west-1` region?",
+    "question": "Which disaster recovery strategy would be most difficult to test?",
     "options": [
-      "The template cannot be used in another region.",
-      "Use a CloudFormation Mapping to map the `us-east-1` AMI ID to the corresponding copied AMI ID in `eu-west-1`.",
-      "The template will automatically find the correct AMI in the new region.",
-      "Manually edit the AMI ID in the template after failing over."
+      "Backup and Restore",
+      "Pilot Light",
+      "Warm Standby",
+      "Multi-Site Active/Active"
     ],
     "correctAnswers": [
-      1
+      0
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "While all DR strategies require testing, Backup and Restore is often the most difficult because it involves the most steps from a \"zero\" state. You have to test the entire process of provisioning the infrastructure, restoring the data, configuring the application, and validating its functionality, which can be a complex and time-consuming procedure. The other strategies have infrastructure already running, simplifying the testing process."
   },
   {
     "id": 69,
-    "question": "Which of the following is a key activity in a Backup and Restore DR plan?",
+    "question": "A company has a global user base and wants to provide low-latency access to static content like images and videos. They also want the content to remain available to users even if their primary S3 origin region is down. What service should they use?",
     "options": [
-      "Keeping a hot standby database running at all times.",
-      "Regularly testing the process of restoring from backups to ensure they are valid and meet the RTO.",
-      "Actively serving traffic from the DR region.",
-      "Synchronously replicating data between regions."
+      "An Application Load Balancer with targets in multiple regions.",
+      "S3 Cross-Region Replication alone.",
+      "Amazon CloudFront with the S3 bucket as an origin.",
+      "A single EC2 instance with a large EBS volume."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Amazon CloudFront is a Content Delivery Network (CDN) that caches content at edge locations around the world, providing low-latency access to users. It also improves availability. If the S3 origin server is unavailable, CloudFront can continue to serve cached content from the edge locations for a period of time, shielding users from the origin outage."
+  },
+  {
+    "id": 70,
+    "question": "Your company's DR policy requires you to test your failover procedure every 6 months. Your strategy is a Pilot Light in a DR region. What does a successful test primarily involve?",
+    "options": [
+      "Verifying that your data backups are completing successfully.",
+      "Temporarily failing over DNS to the DR region and verifying the application becomes fully operational by scaling up the infrastructure.",
+      "Checking the CPU utilization of the database in the DR region.",
+      "Ensuring your CloudFormation template is free of syntax errors."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A DR test must validate the entire recovery process. For a Pilot Light, this means actually executing the failover: scaling up the application servers from the \"pilot\" state, performing any necessary data synchronization or script execution, and then switching traffic (e.g., via DNS) to the DR environment to confirm that it can handle the load and function correctly."
   },
   {
-    "id": 70,
-    "question": "Which DR strategy can be described as having the core infrastructure running, but the application servers are turned off until a disaster occurs?",
+    "id": 71,
+    "question": "When considering disaster recovery for a stateful application, what is the most critical component to replicate?",
     "options": [
+      "The application code",
+      "The server configuration",
+      "The data",
+      "The network ACLs"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "For a stateful application, the data is the most valuable and often the hardest part to recover. While the code and configuration are important, they are typically static and can be easily redeployed from version control or an AMI. The dynamic, constantly changing application data must be continuously replicated or backed up to meet the Recovery Point Objective (RPO)."
+  },
+  {
+    "id": 72,
+    "question": "Which of the following services has built-in, synchronous, cross-Availability Zone high availability that you can enable with a single click?",
+    "options": [
+      "Amazon EC2",
+      "Amazon S3",
+      "Amazon RDS",
+      "Amazon EFS"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "Amazon RDS provides a \"Multi-AZ\" deployment option. When you enable this checkbox, RDS automatically creates and manages a synchronous standby replica of your database in a different AZ within the same region. This provides a simple, managed solution for high availability and automatic failover."
+  },
+  {
+    "id": 73,
+    "question": "You have an RTO of 4 hours. Which of the following DR strategies is LEAST likely to meet this requirement?",
+    "options": [
+      "Pilot Light",
       "Warm Standby",
-      "Backup and Restore",
-      "Multi-site Active-Active",
+      "Multi-Site Active/Active",
+      "Backup and Restore"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "Backup and Restore involves provisioning an entire environment from scratch and then restoring data. This is a time-consuming process that often takes many hours, making it unsuitable for a low RTO of 4 hours. The other strategies all have resources pre-staged or running in the DR region, allowing for a much faster recovery."
+  },
+  {
+    "id": 74,
+    "question": "What is the role of an Amazon Machine Image (AMI) in a disaster recovery plan?",
+    "options": [
+      "It provides a way to back up dynamic application data.",
+      "It acts as a template containing the operating system, application code, and configurations, allowing you to launch new, identical EC2 instances quickly.",
+      "It is used to store DNS records.",
+      "It provides a static IP address for your application."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "An AMI is a fundamental building block for DR on EC2. By creating a \"golden AMI\" that contains your fully patched OS and configured application, you can ensure that when you launch new instances in your DR region, they are consistent and ready to go, significantly reducing your recovery time."
+  },
+  {
+    "id": 75,
+    "question": "What is a key consideration when choosing a disaster recovery region?",
+    "options": [
+      "It should be the region with the lowest cost for EC2 instances.",
+      "It should be geographically distant from your primary region to protect against regional disasters, but close enough to manage latency if needed.",
+      "It must be in the same country as the primary region.",
+      "It should be the newest AWS region available."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The choice of a DR region is a balance. It needs to be far enough away from your primary region that a single large-scale event (like a hurricane or earthquake) is unlikely to affect both. However, you also need to consider data residency laws and the potential impact of network latency on your data replication strategy."
+  },
+  {
+    "id": 76,
+    "question": "Which DR strategy would you choose for a non-critical development server where cost is the absolute primary concern and an RTO of 24 hours is acceptable?",
+    "options": [
+      "Pilot Light",
+      "Warm Standby",
+      "Multi-Site Active/Active",
+      "Backup and Restore"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "For non-critical systems with very high, flexible RTO/RPO values, the cheapest option is always the best. Backup and Restore incurs minimal costs, as you are only paying for the storage of backups and not for any running compute resources in the DR region."
+  },
+  {
+    "id": 77,
+    "question": "How does Amazon S3's intrinsic design contribute to disaster recovery?",
+    "options": [
+      "All S3 buckets are global and replicated to all regions automatically.",
+      "S3 Standard storage class automatically stores your data across a minimum of three Availability Zones within a region.",
+      "S3 automatically fails over your DNS to a backup bucket in another region.",
+      "S3 automatically creates snapshots of your objects."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Amazon S3 is designed for extremely high durability (99.999999999%). It achieves this by redundantly storing your objects on multiple devices across at least three Availability Zones within the selected region. This makes S3 resilient to the failure of an entire AZ, which is a form of high availability and protects against many types of disasters within a region."
+  },
+  {
+    "id": 78,
+    "question": "In a Multi-Site Active/Active DR strategy, how is traffic typically distributed between the two active regions?",
+    "options": [
+      "All traffic goes to the primary region, and the DR region is on standby.",
+      "Traffic is distributed based on factors like user latency or geographic location using a service like Route 53.",
+      "Traffic is split 50/50 between the two regions at all times.",
+      "The traffic distribution must be switched manually."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "In an active-active setup, you want to make intelligent use of both active sites. DNS services like Route 53 are used to route users to the best possible site for them. This is often done with latency-based routing (sends users to the fastest region) or geolocation routing (sends users to a specific region based on their country)."
+  },
+  {
+    "id": 79,
+    "question": "Your company is using an on-premises data center and wants to use AWS as a disaster recovery site. They need to continuously replicate their VMware virtual machines to AWS. Which AWS service is designed for this purpose?",
+    "options": [
+      "AWS Backup",
+      "AWS Migration Hub",
+      "AWS Elastic Disaster Recovery (DRS)",
+      "AWS Snowball"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "AWS Elastic Disaster Recovery (formerly CloudEndure Disaster Recovery) is the purpose-built service for replicating workloads into AWS for DR. It continuously replicates block-level data from your source servers (on-premises or in another cloud) to a staging area in your AWS account. This allows for very low RPOs and fast recovery times."
+  },
+  {
+    "id": 80,
+    "question": "Which Route 53 health check option is best for monitoring the health of a website served by a load balancer?",
+    "options": [
+      "Monitoring an endpoint (IP or domain name)",
+      "Monitoring a CloudWatch alarm",
+      "Monitoring the state of other health checks",
+      "Monitoring a TCP connection"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "To check the health of a web application, the most reliable method is to monitor an endpoint. You can configure the health check to make an HTTP/S request to a specific URL (like your load balancer's DNS name) and verify the response code and, optionally, look for a string in the response body. This confirms the entire application stack is working."
+  },
+  {
+    "id": 81,
+    "question": "A company uses a single EC2 instance for a critical application. To improve availability, they want to be able to quickly recover from an instance failure. What is a simple, effective strategy for high availability within a single region?",
+    "options": [
+      "Take daily EBS snapshots.",
+      "Place the EC2 instance in an Auto Scaling group with a minimum and desired capacity of 1.",
+      "Deploy the instance in a placement group.",
+      "Increase the instance size."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "An Auto Scaling group is a key tool for self-healing and high availability. By placing the instance in an ASG with a min/max/desired of 1, you are telling AWS to ensure that there is always one instance running. If the instance fails its EC2 health check, the Auto Scaling group will automatically terminate it and launch a new, identical one to replace it."
+  },
+  {
+    "id": 82,
+    "question": "Which disaster recovery strategy has the RTO and RPO characteristics that fall between Backup/Restore and Warm Standby?",
+    "options": [
+      "Hot Swap",
+      "Multi-Site Active/Passive",
+      "Cold Backup",
       "Pilot Light"
     ],
     "correctAnswers": [
       3
     ],
-    "multiple": false
-  },
-  {
-    "id": 71,
-    "question": "A company uses Amazon Aurora Global Database for its DR strategy. This provides:",
-    "options": [
-      "A lower RPO (typically under a second) and a lower RTO (typically under a minute) compared to traditional cross-region replication.",
-      "A way to back up the database to an on-premises location.",
-      "A cheaper alternative to standard Aurora.",
-      "A database that can only be used for read queries."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 72,
-    "question": "A company needs to fail over its web traffic from a primary region to a secondary region. They update the weights in their Route 53 weighted routing policy. Some users are still being sent to the primary region. What is a likely cause?",
-    "options": [
-      "The health checks on the primary region are still passing.",
-      "The DNS resolvers and user browsers have cached the old DNS record and are waiting for the TTL to expire.",
-      "The secondary region is not configured correctly.",
-      "Weighted routing cannot be used for failover."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 73,
-    "question": "Which of the following will help reduce the RPO of a database?",
-    "options": [
-      "Using a larger instance type for the database.",
-      "Increasing the frequency of log shipping or backups.",
-      "Automating the infrastructure deployment with CloudFormation.",
-      "Using a faster storage type like Provisioned IOPS."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 74,
-    "question": "A DR plan that involves a scaled-down, but always running, copy of the production environment in another region is known as:",
-    "options": [
-      "Pilot Light",
-      "Backup and Restore",
-      "Warm Standby",
-      "Cold Site"
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 75,
-    "question": "What is the role of an AMI in a disaster recovery plan?",
-    "options": [
-      "It stores the application data.",
-      "It acts as a template for launching pre-configured EC2 instances, which speeds up the recovery of the application tier.",
-      "It provides a DNS endpoint for the application.",
-      "It is a backup of an EBS volume."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 76,
-    "question": "If a company's goal is to survive a regional disaster with an RTO of about an hour and an RPO of about 15 minutes, which strategy would be the most appropriate balance of cost and performance?",
-    "options": [
-      "Backup and Restore with daily backups.",
-      "Pilot Light with an RDS Read Replica.",
-      "Warm Standby with a scaled-down application fleet and a database replica.",
-      "Multi-site Active-Active."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 77,
-    "question": "A company uses AWS Elastic Disaster Recovery (DRS). What is the primary function of this service?",
-    "options": [
-      "To back up data to S3 and Glacier.",
-      "To provide a managed service for orchestrating multi-site active-active deployments.",
-      "To continuously replicate source servers (on-premises or in another cloud/region) into a low-cost staging area in a target AWS account.",
-      "To provide DNS failover for web applications."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 78,
-    "question": "A company's DR plan relies on restoring an RDS snapshot. The database is 10 TB. What is a major factor that will affect the RTO?",
-    "options": [
-      "The size of the database, as restoring a large snapshot takes a significant amount of time.",
-      "The number of read replicas attached to the original database.",
-      "The storage type (gp2 vs io1) of the original database.",
-      "The number of tables in the database."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 79,
-    "question": "Which AWS service can be used to centrally manage and automate backups for various AWS services across different regions, simplifying DR planning?",
-    "options": [
-      "AWS CloudFormation",
-      "AWS Backup",
-      "Amazon S3",
-      "AWS Systems Manager"
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 80,
-    "question": "In a Multi-site Active-Active DR strategy, what is a key challenge that must be addressed?",
-    "options": [
-      "Keeping the infrastructure templates up to date.",
-      "Restoring data from backups in a timely manner.",
-      "Managing data consistency and replication between the active sites.",
-      "Scaling up the application servers during a failover."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 81,
-    "question": "A company has a very tight RPO but can tolerate a slightly longer RTO. Their DR strategy involves continuous data replication to a DR site, but the infrastructure in the DR site is not provisioned until a disaster occurs. This is a mix of which two strategies?",
-    "options": [
-      "Backup and Restore and Warm Standby",
-      "Pilot Light (for the infrastructure) and a low-RPO data replication strategy.",
-      "Warm Standby and Active-Active",
-      "This is not a valid strategy."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 82,
-    "question": "Which of the following would help reduce the RTO of a DR plan? (Choose TWO)",
-    "options": [
-      "Using manual recovery steps.",
-      "Taking backups less frequently.",
-      "Using automation like AWS CloudFormation to provision the DR environment.",
-      "Having pre-configured and copied AMIs ready in the DR region.",
-      "Using a larger backup file format."
-    ],
-    "correctAnswers": [
-      2,
-      3
-    ],
-    "multiple": true
+    "multiple": false,
+    "explanation": "On the spectrum of DR strategies, Pilot Light is the next step up from Backup and Restore. It offers a better RTO because the core data services are already running, but it is less expensive and has a higher RTO than a Warm Standby, where the application servers are also running (at a smaller scale)."
   },
   {
     "id": 83,
-    "question": "A company is using S3 Cross-Region Replication. What feature can be enabled to provide a predictable replication time backed by an SLA?",
+    "question": "To prepare for a disaster recovery test, you have copied your encrypted RDS snapshot to the DR region. The snapshot was encrypted with a customer-managed KMS key. What must you also do before you can restore the snapshot?",
     "options": [
-      "S3 Versioning",
-      "S3 Replication Time Control (RTC)",
-      "S3 Transfer Acceleration",
-      "S3 Batch Replication"
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 84,
-    "question": "A company declares a disaster and fails over to their Pilot Light environment. The failover involves promoting an RDS Read Replica. What is a critical step for the application configuration?",
-    "options": [
-      "The application must be updated to use the new database endpoint.",
-      "The security groups must be deleted and recreated.",
-      "A new VPC must be created.",
-      "The application code must be re-written."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 85,
-    "question": "Which DR strategy has the highest dependency on automation to meet its RTO?",
-    "options": [
-      "Warm Standby",
-      "Multi-site Active-Active",
-      "Pilot Light",
-      "Backup and Restore (if aiming for a low RTO)"
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 86,
-    "question": "A DR plan has an RPO of 1 hour. A disaster strikes 45 minutes after the last successful data replication. Has the RPO been met?",
-    "options": [
-      "Yes, because 45 minutes of data loss is less than the maximum acceptable 1 hour.",
-      "No, because some data was lost.",
-      "It depends on the RTO.",
-      "It depends on the type of data."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 87,
-    "question": "What is the function of a \"pilot light\" in the context of the Pilot Light DR strategy?",
-    "options": [
-      "It refers to the small, core pieces of the infrastructure (like the database) that are always running in the DR region.",
-      "It is the script that initiates the failover.",
-      "It is the AMI that contains the application code.",
-      "It is the DNS record that is changed during failover."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 88,
-    "question": "A company wants to perform a DR test. They need to create an isolated environment in their DR VPC to test the failover without affecting the data replication from the primary region. What AWS feature can help with this?",
-    "options": [
-      "Launching the test instances in a different, isolated subnet.",
-      "Taking a snapshot of the replicated DR database and restoring it to a new test instance.",
-      "Pausing the data replication during the test.",
-      "Using a different AWS account."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 89,
-    "question": "For a static website hosted on Amazon S3, what is a simple and effective disaster recovery strategy?",
-    "options": [
-      "Set up a scaled-down EC2 instance to serve the content if S3 fails.",
-      "Use S3 Cross-Region Replication to copy the website content to a bucket in another region and use Route 53 to fail over traffic.",
-      "Take daily snapshots of the S3 bucket.",
-      "Rely on S3's native multi-AZ durability."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 90,
-    "question": "The RTO and RPO for a company's application are both near-zero. What does this imply?",
-    "options": [
-      "The company can tolerate several hours of downtime and data loss.",
-      "The business requires extremely high availability, and any downtime or data loss is unacceptable.",
-      "The company should use a Backup and Restore strategy.",
-      "The application is not critical."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 91,
-    "question": "What is a key difference between AWS Elastic Disaster Recovery (DRS) and AWS Backup?",
-    "options": [
-      "DRS provides continuous, block-level replication for a low RPO, while AWS Backup is for periodic, point-in-time backups.",
-      "AWS Backup is more expensive than DRS.",
-      "DRS can only be used for on-premises servers.",
-      "AWS Backup provides a lower RTO than DRS."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 92,
-    "question": "A company is using a Warm Standby strategy. They have a primary RDS instance and a cross-region read replica. The read replica instance size is smaller than the primary. Why is this a common practice?",
-    "options": [
-      "To save costs during normal operations, with the understanding that the instance will need to be scaled up during a failover.",
-      "A smaller instance provides better replication performance.",
-      "Cross-region read replicas do not support the same instance sizes.",
-      "To test the application's performance on smaller hardware."
-    ],
-    "correctAnswers": [
-      0
-    ],
-    "multiple": false
-  },
-  {
-    "id": 93,
-    "question": "Which of the following would NOT be part of a disaster recovery plan?",
-    "options": [
-      "The RTO and RPO for each application.",
-      "A step-by-step procedure for failover and failback.",
-      "A plan for deploying a new feature to the application.",
-      "Contact information for key personnel involved in the recovery process."
-    ],
-    "correctAnswers": [
-      2
-    ],
-    "multiple": false
-  },
-  {
-    "id": 94,
-    "question": "An EC2 instance with an EBS volume is backed up using snapshots. This protects against which type of failure?",
-    "options": [
-      "An Availability Zone failure if the snapshot is copied to another AZ or region.",
-      "A regional outage if the snapshot is copied to another region.",
-      "Accidental deletion of a file on the volume.",
-      "All of the above."
+      "Ensure the KMS key from the primary region has been replicated to the DR region.",
+      "Share the snapshot with the IAM users in the DR region.",
+      "Nothing, the snapshot can be restored directly.",
+      "Re-encrypt the copied snapshot with a KMS key that is local to the DR region."
     ],
     "correctAnswers": [
       3
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "When you copy an encrypted RDS (or EBS) snapshot to another region, the copy process itself requires you to specify a KMS key in the destination region. The data is decrypted in the source region using the source key and then re-encrypted using the destination key as it's being copied. Therefore, the resulting snapshot in your DR region is already encrypted with a local key and ready to be restored."
   },
   {
-    "id": 95,
-    "question": "A company is designing a DR plan. They decide that in case of a disaster, they can tolerate 4 hours of data loss and the system must be back online within 12 hours. What are their RPO and RTO?",
+    "id": 84,
+    "question": "A company has a multi-tier application. The web tier is stateless, but the database tier is stateful. When designing a DR plan, which tier will primarily determine the Recovery Point Objective (RPO)?",
     "options": [
-      "RPO = 12 hours, RTO = 4 hours",
-      "RPO = 4 hours, RTO = 12 hours",
-      "RPO = 16 hours, RTO = 8 hours",
-      "RPO = 8 hours, RTO = 16 hours"
+      "The web tier",
+      "The database tier",
+      "The DNS configuration",
+      "The Elastic Load Balancer"
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "The RPO is all about data loss. In this architecture, the web servers are stateless and can be easily replaced. The database, however, contains all the critical, dynamic data. Therefore, the frequency and method of replicating the database's data to the DR site will be the deciding factor for the overall application's RPO."
   },
   {
-    "id": 96,
-    "question": "In a multi-site active-active configuration, how is user traffic typically directed?",
+    "id": 85,
+    "question": "Which of the following would NOT be part of a comprehensive disaster recovery plan?",
     "options": [
-      "All traffic is sent to a primary site, which then synchronizes data with the secondary site.",
-      "Traffic is directed to the site that is geographically closest to the user or is otherwise optimal (e.g., via latency-based or geolocation routing).",
-      "Traffic is manually failed over between sites.",
-      "Traffic is randomly distributed between the sites."
+      "A plan for failing over to the DR site.",
+      "A plan for testing the failover procedure regularly.",
+      "A plan for failing back to the primary site once it is restored.",
+      "A plan to prevent any single EC2 instance from ever failing."
     ],
     "correctAnswers": [
-      1
+      3
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "A core principle of cloud architecture is to assume that failures will happen (\"design for failure\"). A DR plan is about how you recover from failures, not how you prevent them entirely. It is impossible to guarantee that a single component like an EC2 instance will never fail. Instead, you build systems (like Auto Scaling groups) that can automatically recover from such failures."
   },
   {
-    "id": 97,
-    "question": "A company has a DR plan that has never been tested. What is a significant risk of this?",
+    "id": 86,
+    "question": "You are using a Backup and Restore strategy. What is the most significant factor that contributes to your Recovery Time Objective (RTO)?",
     "options": [
-      "The plan is likely to be more expensive than necessary.",
-      "The plan may not work as expected during a real disaster, failing to meet the RTO/RPO.",
-      "The plan is not compliant with AWS best practices.",
-      "The plan will become outdated."
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 98,
-    "question": "Which of the following is a managed AWS service that can be used to provide a low-RPO, cross-region disaster recovery capability for a DynamoDB table?",
-    "options": [
-      "AWS Backup",
-      "DynamoDB Global Tables",
-      "DynamoDB Point-in-time Recovery",
-      "AWS Database Migration Service"
-    ],
-    "correctAnswers": [
-      1
-    ],
-    "multiple": false
-  },
-  {
-    "id": 99,
-    "question": "A company is implementing a Backup and Restore DR strategy. Which of the following is a critical component for ensuring the strategy is effective?",
-    "options": [
-      "A fully scaled-out environment in the DR region.",
-      "A low-latency network connection between regions.",
-      "Regular, automated, and tested backups.",
-      "A hot standby database."
+      "The size of your data backups.",
+      "The frequency of your backups.",
+      "The time it takes to provision and configure your application infrastructure.",
+      "The number of users your application has."
     ],
     "correctAnswers": [
       2
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "While the time to restore data (A) is a factor, the largest part of the RTO for a Backup and Restore strategy is often the time it takes to build the environment itself: provisioning the VPC, subnets, security groups, load balancers, and EC2 instances before you can even begin restoring the data. This is why automating this process is so critical."
   },
   {
-    "id": 100,
-    "question": "A company's DR strategy involves restoring an application from AMIs and RDS snapshots. What is a key factor that will influence the RTO?",
+    "id": 87,
+    "question": "For a DR plan, you need to ensure that a copy of your application's custom AMI is always available in your DR region. How can this be automated?",
     "options": [
-      "The number of users of the application.",
-      "The level of automation used to orchestrate the provisioning and restoration process.",
-      "The cost of the EC2 instances.",
-      "The location of the end-users."
+      "Use an S3 lifecycle policy.",
+      "Use an AWS Lambda function that is triggered whenever a new AMI is created in the primary region, which then runs an API call to copy that AMI to the DR region.",
+      "Use Route 53 to copy the AMI.",
+      "Manually copy the AMI after every application update."
     ],
     "correctAnswers": [
       1
     ],
-    "multiple": false
+    "multiple": false,
+    "explanation": "This is a great use case for event-driven automation. You can create an EventBridge (CloudWatch Events) rule that triggers on the `CreateImage` API call. This rule can then invoke a Lambda function. The function's code would extract the AMI ID from the event and then initiate the `ec2:CopyImage` API call to replicate it to your specified DR region."
+  },
+  {
+    "id": 88,
+    "question": "What is a key benefit of using a managed service like Amazon RDS with Multi-AZ over managing a replicated database yourself on EC2?",
+    "options": [
+      "It is always less expensive.",
+      "It provides you with SSH access to the database server.",
+      "AWS manages the complex and error-prone tasks of replication, health monitoring, and automatic failover.",
+      "It allows you to use any database engine."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The primary value of managed services like RDS is the reduction in operational overhead. Setting up, maintaining, and testing a replicated database with automatic failover is a complex task. RDS handles all of this for you, providing a robust, highly available database with minimal administrative effort."
+  },
+  {
+    "id": 89,
+    "question": "A company is designing a DR solution for an application that writes files to an EBS volume. The RPO is 15 minutes. How can this RPO be met for the EBS data?",
+    "options": [
+      "Take daily EBS snapshots.",
+      "Use a tool or script that takes and copies EBS snapshots every 15 minutes.",
+      "Replicate the data at the application level to an instance in another region.",
+      "Use S3 Cross-Region Replication."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "To meet an RPO of 15 minutes for EBS, you need a data protection mechanism that runs at least that frequently. You can use AWS Backup, the EBS direct APIs, or other tools to create a scheduled job that takes an EBS snapshot and copies it to your DR region every 15 minutes. Daily snapshots (A) would result in a 24-hour RPO."
+  },
+  {
+    "id": 90,
+    "question": "Which DR strategy has the highest operational burden during a failover event?",
+    "options": [
+      "Multi-Site Active/Active",
+      "Warm Standby",
+      "Pilot Light",
+      "Backup and Restore"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "multiple": false,
+    "explanation": "Backup and Restore requires the most manual steps (or the most complex automation) during a recovery. You have to execute the entire process of building the infrastructure and restoring the data, which is operationally more complex than simply scaling up an existing environment (Warm Standby) or having an automatic DNS failover (Multi-Site)."
+  },
+  {
+    "id": 91,
+    "question": "You have an RTO of 1 hour. Your current DR plan is Backup and Restore, and your last test took 5 hours. What is the most critical area to focus on for improvement?",
+    "options": [
+      "The data replication strategy.",
+      "The infrastructure provisioning and application deployment automation.",
+      "The DNS TTL value.",
+      "The choice of EC2 instance types."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "The biggest gap is between the required RTO (1 hour) and the actual recovery time (5 hours). The longest pole in the tent for a Backup and Restore strategy is almost always the time it takes to build the new environment. Focusing on automating this process with tools like CloudFormation and deployment scripts will provide the most significant reduction in recovery time."
+  },
+  {
+    "id": 92,
+    "question": "What is the primary purpose of regularly testing your disaster recovery plan?",
+    "options": [
+      "To satisfy auditors.",
+      "To identify weaknesses, validate assumptions, and ensure that the plan works as expected.",
+      "To reduce the cost of the DR environment.",
+      "To practice shutting down the primary site."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "A DR plan that hasn't been tested is just a theory. Regular testing is critical to ensure that your automated processes work, your data can be restored successfully, your RTO and RPO targets can be met, and your staff is familiar with the procedures. It uncovers problems before a real disaster strikes."
+  },
+  {
+    "id": 93,
+    "question": "Which AWS service is NOT typically a core part of a multi-region disaster recovery failover strategy?",
+    "options": [
+      "Amazon Route 53",
+      "AWS CloudFormation",
+      "AWS IAM",
+      "AWS Auto Scaling"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "AWS IAM is a global service. Your users, groups, roles, and policies are not tied to a specific region. This means that you do not need to replicate or fail over your IAM resources during a regional disaster; they will be available globally. The other services are regional and are key components of a DR plan."
+  },
+  {
+    "id": 94,
+    "question": "A company is using S3 Cross-Region Replication. They have enabled versioning on both the source and destination buckets. If a delete marker is added to an object in the source bucket, what happens in the destination bucket?",
+    "options": [
+      "The delete marker is replicated, effectively \"deleting\" the object in the destination.",
+      "The object in the destination bucket is permanently deleted.",
+      "Nothing happens in the destination bucket.",
+      "The replication process fails."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "multiple": false,
+    "explanation": "By default, CRR does not replicate delete markers. However, you can enable a setting to replicate them. If this setting is enabled, when you delete an object in the source, the delete marker is replicated, which makes the object disappear from the destination bucket's \"latest\" view (though the previous version is still retained). This keeps the buckets in sync. Assuming a modern setup, this is the expected behavior."
+  },
+  {
+    "id": 95,
+    "question": "For a \"Warm Standby\" DR strategy, why is the environment in the DR region \"scaled-down\"?",
+    "options": [
+      "To improve performance.",
+      "To make it easier to test.",
+      "To save costs by running fewer or smaller instances than the full production load requires.",
+      "To comply with software licensing restrictions."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "The primary motivation for running a scaled-down version of the environment is cost optimization. A Warm Standby provides a much faster RTO than a Pilot Light, but running a full-scale replica can be expensive. By keeping a smaller but fully functional version running, you balance the need for a fast recovery with the desire to keep DR costs down."
+  },
+  {
+    "id": 96,
+    "question": "Your DR strategy uses a failover CNAME record in Route 53 that points to your load balancer. What is a prerequisite for this configuration?",
+    "options": [
+      "The load balancer must have a static IP address.",
+      "The CNAME record must have a very high TTL.",
+      "You cannot create a CNAME record for the zone apex (e.g., `example.com`).",
+      "The load balancer must be a Network Load Balancer."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "A CNAME (Canonical Name) record maps an alias name to a true or canonical domain name. A fundamental rule of DNS is that if you have a CNAME record for a hostname, you cannot have any other DNS records for that same hostname. Since the zone apex (the \"naked\" domain) must have certain records like SOA and NS records, you cannot create a CNAME for it. This is why you must use an \"A\" Alias record in Route 53 to point a zone apex to a load balancer."
+  },
+  {
+    "id": 97,
+    "question": "What does \"failback\" mean in the context of disaster recovery?",
+    "options": [
+      "The process of failing a second time after a recovery.",
+      "The process of restoring service to the original, primary region after it has been repaired.",
+      "The process of backing up the DR site.",
+      "The process of failing over to a third region."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "Failback is the process of returning production traffic to the original primary site after it has been declared healthy and ready to resume operations. This is often a planned and carefully managed process to ensure a smooth transition back from the DR site."
+  },
+  {
+    "id": 98,
+    "question": "Which of the following data stores is a multi-region, multi-master database by default, making it ideal for active-active DR?",
+    "options": [
+      "Amazon RDS for MySQL",
+      "Amazon Redshift",
+      "Amazon DynamoDB with Global Tables",
+      "Amazon ElastiCache for Redis"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "DynamoDB with Global Tables is designed from the ground up to be a multi-region, active-active database. You can write to any regional replica, and the changes are automatically propagated to the other regions. This makes it a perfect fit for global applications requiring extremely low RTO and RPO."
+  },
+  {
+    "id": 99,
+    "question": "A key principle of disaster recovery planning is to avoid having a single point of failure. Which AWS concept is a direct implementation of this principle for high availability?",
+    "options": [
+      "Using a single, large EC2 instance.",
+      "Storing all data on a single EBS volume.",
+      "Deploying resources across multiple Availability Zones.",
+      "Using a single IAM user with administrator access."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "multiple": false,
+    "explanation": "An Availability Zone is a distinct, physically isolated data center. By designing your application to run across multiple AZs, you ensure that the failure of any single data center will not take down your entire application. This is the most fundamental way to avoid a single point of failure for infrastructure within an AWS region."
+  },
+  {
+    "id": 100,
+    "question": "Your DR plan is based on Pilot Light. Data is replicated, and the CloudFormation template is ready. What is the single most important factor that will determine your Recovery Time Objective (RTO)?",
+    "options": [
+      "The RPO of your data replication.",
+      "The speed at which you can launch and bootstrap your application servers.",
+      "The TTL of your DNS records.",
+      "The number of users trying to access the application."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "multiple": false,
+    "explanation": "In a Pilot Light scenario, the data is already present. The failover process is dominated by the time it takes to execute the \"lighting the pilot\" phase: launching the EC2 instances from the template, waiting for them to boot, running any bootstrap scripts, and having them become healthy and ready to serve traffic. The speed and reliability of this process is the main component of your RTO."
   }
 ]
