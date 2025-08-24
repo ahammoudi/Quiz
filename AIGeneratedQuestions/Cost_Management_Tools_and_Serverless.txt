@@ -7,6 +7,7 @@ C. Amazon CloudWatch
 D. AWS Trusted Advisor
 
 Answer: B
+Explanation: AWS Budgets is specifically designed for setting up cost and usage alerts with customizable thresholds and notification mechanisms. You can create budgets based on forecasted or actual spending and configure email or SNS notifications when thresholds are breached. AWS Cost Explorer (A) provides cost analysis and visualization but doesn't offer alerting capabilities. CloudWatch (C) monitors AWS resources and applications but doesn't track billing information directly. Trusted Advisor (D) provides cost optimization recommendations but doesn't offer proactive cost alerting.
 
 ---
 Question #: 2
@@ -18,6 +19,7 @@ C. The cost may increase, decrease, or stay the same, depending on whether the r
 D. The cost is only based on the number of invocations, so the memory change has no effect.
 
 Answer: C
+Explanation: Lambda pricing is based on both memory allocation and execution duration (GB-seconds). While increasing memory from 128 MB to 256 MB doubles the per-millisecond rate, it also often significantly reduces execution time due to proportional CPU allocation increases. The total cost depends on whether the duration reduction compensates for the higher rate. If execution time decreases by more than 50%, the total cost will actually decrease. Lambda pricing includes request charges plus duration charges, so memory changes do affect cost (D is incorrect).
 
 ---
 Question #: 3
@@ -29,6 +31,7 @@ C. Enable Long Polling on the SQS queue or in the `ReceiveMessage` API call.
 D. Decrease the visibility timeout of the queue.
 
 Answer: C
+Explanation: Long Polling allows SQS receive requests to wait for up to 20 seconds for messages to arrive before returning empty responses, dramatically reducing the number of API calls and associated costs. Instead of continuously polling and receiving empty responses, long polling holds the connection open until messages arrive or the timeout expires. Using FIFO queues (A) doesn't reduce polling costs and adds expense. Increasing consumer instances (B) would increase costs. Decreasing visibility timeout (D) affects message processing time but doesn't reduce empty polling requests.
 
 ---
 Question #: 4
@@ -40,6 +43,7 @@ C. AWS Cost Explorer
 D. AWS Trusted Advisor
 
 Answer: C
+Explanation: AWS Cost Explorer provides comprehensive cost analysis and visualization capabilities with flexible filtering, grouping, and time period selection. You can view historical spending data, group costs by service, and filter by tags to analyze specific projects or workloads. AWS Budgets (A) is for setting spending limits and alerts, not detailed analysis. The Pricing Calculator (B) estimates costs for planned deployments, not actual spending analysis. Trusted Advisor (D) provides optimization recommendations but limited cost visualization and no tag-based filtering capabilities.
 
 ---
 Question #: 5

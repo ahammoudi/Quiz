@@ -1,373 +1,385 @@
 Question #: 1
-A company's web application, running behind an Application Load Balancer, has been targeted by a series of SQL injection attacks. Which AWS service is specifically designed to mitigate this type of threat?
+A web application running on an Application Load Balancer (ALB) is experiencing a high volume of malicious requests from a specific set of IP addresses, consistent with a Cross-Site Scripting (XSS) attack. What is the most effective way to block these requests?
 
-A. AWS Shield Advanced
-B. AWS WAF
-C. Network ACLs
-D. Security Groups
+A. Create a Network ACL rule to deny the malicious IP addresses.
+B. Configure the instances' Security Group to deny the malicious IP addresses.
+C. Create an AWS WAF WebACL, associate it with the ALB, and add an IP set match rule to block the addresses and a rule to block XSS attacks.
+D. Enable AWS Shield Advanced on the ALB.
 
-Answer: B
+Answer: C
+
+Explanation: AWS WAF (Web Application Firewall) is the purpose-built service for this scenario. It operates at the application layer (Layer 7) and can inspect web requests. You can create rules to block common attacks like XSS and SQL injection, and also create IP set match rules to block specific IP addresses. Security Groups (B) and Network ACLs (A) operate at lower network layers and cannot inspect the content of web requests for XSS patterns. AWS Shield (D) is for DDoS protection, not for inspecting and blocking specific attack patterns like XSS.
 
 ---
+
 Question #: 2
-An administrator needs to find out who terminated a specific EC2 instance last week. Which AWS service provides a log of all API calls made in the account, including the identity of the caller?
+An auditor needs to review a log of all API calls made in an AWS account over the last year, including who made the call, from what IP address, and when. Which service provides this information?
 
 A. Amazon CloudWatch Logs
 B. VPC Flow Logs
 C. AWS CloudTrail
-D. AWS Config
-
-Answer: C
-
----
-Question #: 3
-You want to receive an email notification whenever the CPU Utilization of a critical EC2 instance exceeds 80% for 5 consecutive minutes. Which combination of services should you use? (Choose TWO)
-
-A. AWS CloudTrail
-B. Amazon CloudWatch Metrics
-C. AWS Shield
-D. Amazon Simple Notification Service (SNS)
-E. AWS Lambda
-
-Answer: B, D
-
----
-Question #: 4
-A gaming company is preparing for a major online game launch and anticipates large-scale, sophisticated DDoS attacks. They require 24/7 access to the AWS DDoS Response Team (DRT) for assistance during an attack. Which service should they subscribe to?
-
-A. AWS Shield Standard
-B. AWS WAF with a rate-based rule
-C. AWS Shield Advanced
-D. Amazon GuardDuty
-
-Answer: C
-
----
-Question #: 5
-A solutions architect wants to block web traffic from a specific country known for malicious activity. How can this be configured using AWS WAF?
-
-A. By creating a custom rule with an IP set condition.
-B. By using a managed rule group for geographic blocking.
-C. By creating a geographic match rule.
-D. By configuring a rate-based rule.
-
-Answer: C
-
----
-Question #: 6
-Which of the following is a feature of AWS Shield Standard?
-
-A. Protection against application layer DDoS attacks (e.g., HTTP floods).
-B. Access to the AWS DDoS Response Team (DRT).
-C. DDoS cost protection for scaling charges.
-D. Automatic protection against common network and transport layer DDoS attacks.
-
-Answer: D
-
----
-Question #: 7
-A security team wants to ensure that all API activity within their AWS account is logged and the log files are encrypted and cannot be tampered with. Which feature of AWS CloudTrail should they enable?
-
-A. CloudTrail Insights
-B. Event History
-C. Log File Integrity Validation
-D. Management Events logging
-
-Answer: C
-
----
-Question #: 8
-An application running on EC2 instances generates custom log files. The operations team wants to centralize these logs for analysis and set up alarms based on specific error patterns (e.g., "ERROR_500"). What is the best approach?
-
-A. Store logs in S3 and use Amazon Athena for queries.
-B. Install the CloudWatch Logs agent on the EC2 instances to stream logs to CloudWatch Logs.
-C. Write a custom script to periodically push logs to an Amazon SQS queue.
-D. Enable VPC Flow Logs for the EC2 instances' ENIs.
-
-Answer: B
-
----
-Question #: 9
-What is the primary function of a Web ACL in AWS WAF?
-
-A. To define a set of AWS resources that you want to protect.
-B. To contain a collection of rules that are evaluated for web requests.
-C. To monitor, filter, and block DNS queries.
-D. To provide detailed logs of all allowed web traffic.
-
-Answer: B
-
----
-Question #: 10
-CloudTrail logs can be delivered to which of the following destinations? (Choose TWO)
-
-A. Amazon DynamoDB
-B. Amazon S3
-C. Amazon CloudWatch Logs
-D. Amazon Kinesis Data Streams
-E. Amazon EC2 Instance Store
-
-Answer: B, C
-
----
-Question #: 11
-A company is using an Application Load Balancer (ALB). They want to allow all traffic by default but explicitly block a list of malicious IP addresses. What is the correct configuration in their AWS WAF Web ACL?
-
-A. Set the default action to ALLOW and create a rule with an IP set match condition that has its action set to BLOCK.
-B. Set the default action to BLOCK and create a rule with an IP set match condition that has its action set to ALLOW.
-C. Create two rules: one to allow all traffic and another to block the specific IP addresses.
-D. Configure the ALB's security group to deny the malicious IP addresses.
-
-Answer: A
-
----
-Question #: 12
-A solutions architect has configured a CloudWatch alarm to trigger when a metric breaches a threshold. What is a possible action that this alarm can take?
-
-A. Create a new IAM user.
-B. Stop, terminate, or reboot an EC2 instance.
-C. Create a new S3 bucket.
-D. Attach a new security group to an EC2 instance.
-
-Answer: B
-
----
-Question #: 13
-AWS CloudTrail is enabled by default for all AWS accounts and records the last 90 days of management events. Where can you view this information?
-
-A. In the AWS Config timeline.
-B. In the CloudTrail Event History.
-C. In an S3 bucket named `cloudtrail-default-<account-id>`.
-D. In the Amazon CloudWatch Logs console.
-
-Answer: B
-
----
-Question #: 14
-Which service provides real-time metrics and near real-time visibility into the health and performance of your AWS resources, applications, and services?
-
-A. AWS CloudTrail
-B. AWS X-Ray
-C. Amazon CloudWatch
 D. AWS Trusted Advisor
 
 Answer: C
 
----
-Question #: 15
-A web application is experiencing a high volume of requests from a few specific IP addresses, potentially a web-scraping attack. Which AWS WAF rule type is best suited to automatically block IPs that exceed a certain number of requests in a 5-minute period?
+Explanation: AWS CloudTrail is the service that provides governance, compliance, and operational auditing for your AWS account. It records all API calls made in your account, whether from the console, CLI, or SDKs. These logs contain the details required by the auditor. CloudWatch Logs (A) is for application and system logs. VPC Flow Logs (B) capture network traffic metadata. Trusted Advisor (D) provides best practice recommendations.
 
-A. SQL injection match rule
-B. Geo match rule
-C. Rate-based rule
-D. Cross-site scripting match rule
+---
+
+Question #: 3
+What is the primary function of AWS Shield Standard?
+
+A. To protect against application layer attacks like SQL injection.
+B. To provide 24/7 access to the AWS DDoS Response Team (DRT).
+C. To provide automatic, no-cost protection against common network and transport layer DDoS attacks.
+D. To scan EC2 instances for vulnerabilities.
 
 Answer: C
 
----
-Question #: 16
-AWS Shield Advanced provides protection for which of the following resources? (Choose TWO)
-
-A. Amazon EC2 instances
-B. Amazon CloudFront distributions
-C. AWS Lambda functions
-D. Application Load Balancers
-E. Amazon S3 buckets
-
-Answer: B, D
+Explanation: AWS Shield Standard is automatically enabled for all AWS customers at no additional cost. It provides always-on protection from the most common, frequently occurring network (Layer 3) and transport (Layer 4) layer Distributed Denial of Service (DDoS) attacks. Shield Advanced is the paid tier that provides more comprehensive protection and access to the DRT (B). WAF protects against application layer attacks (A).
 
 ---
-Question #: 17
-What type of CloudTrail events should be enabled to record API activity related to creating, modifying, or deleting resources like S3 buckets or EC2 instances?
 
-A. Data Events
-B. Management Events
-C. Insights Events
-D. Read-only Events
+Question #: 4
+A developer wants to create an alarm that triggers if the average CPU utilization of an EC2 instance exceeds 80% for a continuous period of 10 minutes. Which service should be used to create this alarm?
+
+A. AWS CloudTrail
+B. Amazon CloudWatch
+C. AWS WAF
+D. AWS Shield
 
 Answer: B
 
----
-Question #: 18
-You are using CloudWatch Logs and want to search for a specific error code across multiple log groups simultaneously. What feature allows this?
-
-A. Metric Filters
-B. CloudWatch Logs Insights
-C. Subscription Filters
-D. Log Streams
-
-Answer: B
+Explanation: Amazon CloudWatch is the monitoring and observability service for AWS. It collects metrics from services like EC2 (e.g., CPUUtilization). You can create CloudWatch Alarms that watch a specific metric over a time period and perform actions (like sending an SNS notification) if the metric breaches a defined threshold.
 
 ---
-Question #: 19
-An organization wants to use a pre-configured set of rules in AWS WAF to protect against threats listed in the OWASP Top 10. What is the easiest way to accomplish this?
 
-A. Create custom rules for each OWASP Top 10 threat.
-B. Subscribe to a Managed Rule Group from the AWS Marketplace.
-C. Use the AWS Managed Rules for WAF.
-D. Use AWS Shield Advanced, which includes these protections automatically.
+Question #: 5
+Which of the following services can AWS WAF be directly associated with? (Choose TWO)
 
-Answer: C
-
----
-Question #: 20
-A company has multiple AWS accounts and wants to consolidate all AWS CloudTrail logs into a single, central S3 bucket for security analysis. What is the best way to achieve this?
-
-A. Configure CloudTrail in each account to deliver logs to the central S3 bucket and apply the necessary bucket policy.
-B. Manually download logs from each account's S3 bucket and upload them to the central bucket.
-C. Use AWS Organizations to create an organization trail.
-D. Use an S3 replication rule on each account's log bucket.
-
-Answer: C
-
----
-Question #: 21
-What is a CloudWatch metric?
-
-A. A log of API calls made within your AWS account.
-B. A time-ordered set of data points that represent a variable over time.
-C. A rule that triggers a notification based on a specific event.
-D. A detailed record of network traffic to and from your resources.
-
-Answer: B
-
----
-Question #: 22
-A security engineer wants to be alerted if there is an unusually high number of IAM policy changes or EC2 instance terminations in the account, which could indicate a compromise. Which service can detect this anomalous API activity?
-
-A. Amazon GuardDuty
-B. Amazon Inspector
-C. CloudTrail Insights
-D. AWS Security Hub
-
-Answer: C
-
----
-Question #: 23
-AWS WAF rules can be applied to which of the following AWS resources? (Choose TWO)
-
-A. Amazon Route 53
-B. Amazon API Gateway
-C. Network Load Balancer
-D. Amazon CloudFront
-E. NAT Gateway
-
-Answer: B, D
-
----
-Question #: 24
-What is the primary difference between a Security Group and AWS WAF?
-
-A. Security Groups operate at the instance level (Layer 4), while WAF operates at the application level (Layer 7).
-B. Security Groups can block traffic from specific countries, while WAF cannot.
-C. Security Groups are stateful, while WAF is stateless.
-D. Security Groups are a regional service, while WAF is a global service.
-
-Answer: A
-
----
-Question #: 25
-You need to record all object-level API activity (e.g., `GetObject`, `PutObject`) for a specific, sensitive S3 bucket. How do you configure this in CloudTrail?
-
-A. This is enabled by default for all buckets.
-B. Enable Management Events for S3 in your trail's settings.
-C. Configure a trail and enable Data Events, specifying the S3 bucket.
-D. Create a CloudWatch alarm that monitors S3 bucket access.
-
-Answer: C
-
----
-Question #: 26
-A CloudWatch alarm has three states. What are they?
-
-A. OK, ALARM, INSUFFICIENT_DATA
-B. GREEN, YELLOW, RED
-C. PASS, FAIL, PENDING
-D. ACTIVE, INACTIVE, DELETED
-
-Answer: A
-
----
-Question #: 27
-If you are using AWS Shield Advanced and your protected resource experiences a DDoS attack that causes a spike in usage charges, what benefit might you be eligible for?
-
-A. A free consultation with the AWS DDoS Response Team.
-B. A credit for the usage charges incurred as a result of the attack (DDoS cost protection).
-C. Automatic deployment of an AWS WAF Web ACL.
-D. A 50% discount on your next month's AWS bill.
-
-Answer: B
-
----
-Question #: 28
-Which part of a web request can an AWS WAF rule inspect? (Choose TWO)
-
-A. The TCP sequence number
-B. The source IP address
-C. The HTTP headers
-D. The Ethernet frame MAC address
-E. The SSL/TLS handshake version
+A. Amazon EC2 Instance
+B. Amazon CloudFront Distribution
+C. Application Load Balancer (ALB)
+D. Network Load Balancer (NLB)
+E. Amazon S3 Bucket
 
 Answer: B, C
 
----
-Question #: 29
-To ensure compliance with a new regulation, a company must retain all audit logs for 7 years. How can they configure AWS CloudTrail to meet this requirement?
+Explanation: AWS WAF is designed to protect web applications at the edge. It can be directly integrated with Amazon CloudFront, Application Load Balancers (ALB), Amazon API Gateway, and AWS AppSync. It cannot be attached directly to an EC2 instance (A), an NLB (D, which operates at Layer 4), or an S3 bucket (E).
 
-A. CloudTrail automatically stores logs indefinitely.
-B. Configure the trail to deliver logs to an S3 bucket and set up an S3 Lifecycle policy to archive logs to S3 Glacier Deep Archive.
-C. The maximum retention for CloudTrail is 1 year.
-D. Configure the trail to deliver logs to CloudWatch Logs and set the retention period to 7 years.
+---
+
+Question #: 6
+By default, where does CloudTrail deliver its log files?
+
+A. To an Amazon CloudWatch Logs log group.
+B. To an Amazon S3 bucket.
+C. To an Amazon Kinesis Data Stream.
+D. To an encrypted EBS volume.
 
 Answer: B
 
----
-Question #: 30
-What is a CloudWatch dashboard?
+Explanation: When you create a CloudTrail trail, you must specify an Amazon S3 bucket where the log files will be delivered. You can optionally configure the trail to also deliver logs to CloudWatch Logs for easier real-time analysis and alarming, but S3 is the primary and mandatory destination for the log files themselves.
 
-A. A service that automatically responds to security findings.
-B. A customizable home page in the CloudWatch console for monitoring resources in a single view.
-C. A log of all metrics available in an AWS account.
-D. A configuration template for creating new alarms.
+---
+
+Question #: 7
+A company is using AWS Shield Advanced to protect its public-facing web application. What is a key benefit of using this service over Shield Standard?
+
+A. It provides protection against web application layer attacks like cross-site scripting (XSS).
+B. It provides access to the AWS DDoS Response Team (DRT) and cost protection for scaling charges incurred during a DDoS attack.
+C. It is enabled by default on all AWS accounts at no extra charge.
+D. It encrypts all traffic between the application and the end-users.
 
 Answer: B
 
----
-Question #: 31
-A company wants to prevent users from embedding malicious scripts in the query strings of their URLs (Cross-site scripting). Which AWS WAF rule is designed for this?
-
-A. A size constraint rule.
-B. An IP match rule.
-C. A SQL injection match rule.
-D. A cross-site scripting (XSS) match rule.
-
-Answer: D
+Explanation: AWS Shield Advanced is a premium, paid service. Its key benefits include more sophisticated and powerful protections, near real-time visibility into attacks, and 24/7 access to the AWS DDoS Response Team (DRT) for assistance during an attack. It also provides "DDoS cost protection," which helps safeguard against scaling charges resulting from a DDoS attack. WAF (A) protects against XSS. Shield Standard (C) is the free tier.
 
 ---
-Question #: 32
-Is AWS Shield Standard an optional, paid service?
 
-A. Yes, you must opt-in and pay a monthly fee.
-B. No, it is automatically enabled for all AWS customers at no additional charge.
-C. It is free, but you must manually enable it for each resource.
-D. It is only available for Enterprise support customers.
+Question #: 8
+What is a "metric" in the context of Amazon CloudWatch?
+
+A. A log entry generated by an application.
+B. A time-ordered set of data points, such as the CPU utilization of an EC2 instance or the latency of an ELB.
+C. A rule in AWS WAF that blocks malicious traffic.
+D. An API call recorded by CloudTrail.
 
 Answer: B
 
----
-Question #: 33
-A developer is troubleshooting an issue where an IAM role permission is not working as expected. They want to see a history of all API calls made by that specific IAM role. How can they filter the CloudTrail Event History to find this?
+Explanation: A metric is the fundamental concept in CloudWatch. It represents a variable that you can monitor over time. AWS services publish metrics automatically (e.g., EC2 `CPUUtilization`), and you can also publish your own custom metrics. These time-series data points are what you use to create graphs and set alarms.
 
-A. By filtering by Event Source.
-B. By filtering by Resource Name.
-C. By filtering by User Name and selecting the role's name.
-D. This level of filtering is not possible in Event History.
+---
+
+Question #: 9
+An organization wants to prevent users in their AWS account from creating overly permissive security group rules (e.g., allowing SSH from 0.0.0.0/0). They also want to be notified if such a rule is created. Which services can help them achieve this?
+
+A. AWS WAF to block the `ec2:AuthorizeSecurityGroupIngress` action.
+B. AWS Config to detect non-compliant resources and AWS Systems Manager to remediate them.
+C. AWS Shield to protect the security groups from being modified.
+D. CloudTrail to delete the non-compliant rule automatically.
+
+Answer: B
+
+Explanation: AWS Config is the ideal service for this. You can create a Config rule (e.g., the `restricted-ssh` managed rule) that continuously checks security groups for compliance. If a non-compliant rule is created, AWS Config can flag it and trigger a remediation action, such as an AWS Systems Manager Automation document that removes the rule, and also send an SNS notification.
+
+---
+
+Question #: 10
+What is a CloudTrail "trail"?
+
+A. A collection of CloudWatch alarms.
+B. A specific path that network traffic takes through a VPC.
+C. A configuration that enables the delivery of CloudTrail events to a specified S3 bucket and optionally to CloudWatch Logs.
+D. A set of rules in a WebACL.
 
 Answer: C
 
+Explanation: To actively log API calls with CloudTrail, you must create a "trail". A trail is a configuration that defines where the event log files are sent (the S3 bucket) and what events are logged (e.g., management events, data events). You can create a trail that applies to a single region or all regions.
+
 ---
-Question #: 34
-You have created a custom metric in CloudWatch (e.g., `user_logins`). What is the default resolution at which this metric data is stored?
+
+Question #: 11
+AWS WAF uses Web Access Control Lists (Web ACLs) to protect resources. What does a Web ACL contain?
+
+A. A collection of metrics and alarms.
+B. A set of rules that define the criteria for inspecting web requests and the action to take (allow, block, or count).
+C. A list of IAM users who are allowed to modify the WAF configuration.
+D. A log of all DDoS attacks that have been mitigated.
+
+Answer: B
+
+Explanation: A Web ACL is the core component of AWS WAF. It is a container for a set of rules. Each rule specifies a condition to look for in a web request (e.g., a malicious script, a specific source IP) and an action to take if the condition is met. The Web ACL applies these rules to all requests that it receives from the associated resource (like an ALB or CloudFront).
+
+---
+
+Question #: 12
+You need to retain CloudTrail logs for 7 years for compliance reasons. How can you achieve this in the most cost-effective manner?
+
+A. Store the logs in CloudWatch Logs with an infinite retention period.
+B. Configure the CloudTrail trail to deliver logs to an S3 bucket and use S3 Glacier Deep Archive storage class with an S3 Lifecycle policy.
+C. Store the logs on an encrypted EBS volume.
+D. Enable CloudTrail log file validation.
+
+Answer: B
+
+Explanation: The most cost-effective solution for long-term archival is to use Amazon S3's archival storage classes. You would configure CloudTrail to deliver logs to an S3 bucket. Then, you would create an S3 Lifecycle policy to automatically transition the log files to S3 Glacier Deep Archive (the cheapest storage class) after a certain period (e.g., 90 days) for long-term retention.
+
+---
+
+Question #: 13
+What is the difference between a CloudWatch basic monitoring and detailed monitoring for EC2 instances?
+
+A. Basic monitoring is free, while detailed monitoring has a cost.
+B. Basic monitoring sends metric data every 5 minutes, while detailed monitoring sends it every 1 minute.
+C. Basic monitoring includes CPU and Network metrics, while detailed monitoring adds Memory and Disk metrics.
+D. Basic monitoring stores metrics for 15 months, while detailed monitoring stores them for 5 years.
+
+Answer: B
+
+Explanation: The primary difference is the frequency of metric publication. Standard (basic) monitoring for EC2 instances publishes metrics at a 5-minute interval. If you enable detailed monitoring, the EC2 service will publish metrics for that instance at a 1-minute interval, allowing for more granular monitoring and faster alarm response times. Detailed monitoring does have an additional cost.
+
+---
+
+Question #: 14
+Which AWS WAF rule type would you use to block traffic from a country where your business does not operate?
+
+A. IP set match rule
+B. Geographic match rule
+C. SQL injection match rule
+D. Size constraint rule
+
+Answer: B
+
+Explanation: AWS WAF provides a geographic match rule condition that allows you to inspect web requests based on the country of origin. You can use this to create a rule that blocks all requests from countries you specify.
+
+---
+
+Question #: 15
+A company wants to be alerted if the root user of their AWS account is ever used. How can this be configured?
+
+A. This is not possible as root user activity is not logged.
+B. Create an AWS WAF rule to block root user logins.
+C. Create a CloudWatch Alarm that monitors the `Root` identity in CloudTrail logs.
+D. Create an Amazon CloudWatch Events (EventBridge) rule that triggers on a `ConsoleLogin` event from the root user and sends an SNS notification.
+
+Answer: D
+
+Explanation: This is a critical security best practice. CloudTrail captures all console login events. You can create an EventBridge rule with an event pattern that specifically matches the `ConsoleLogin` event where the `userIdentity.type` is `Root`. The target for this rule would be an SNS topic that notifies your security team immediately.
+
+---
+
+Question #: 16
+What is the function of "CloudTrail Log File Validation"?
+
+A. It validates that the IAM permissions for the destination S3 bucket are correct.
+B. It checks the log files for syntax errors.
+C. It provides a way to verify the integrity of the log files, ensuring they have not been tampered with or altered after being delivered by CloudTrail.
+D. It validates that the API calls recorded in the logs were successful.
+
+Answer: C
+
+Explanation: When you enable log file validation, CloudTrail creates a digitally signed digest file for each log. You can use these digest files to mathematically verify that the log files have not been modified since they were written. This is a critical feature for compliance and legal auditing scenarios where log integrity is paramount.
+
+---
+
+Question #: 17
+A web application is experiencing a DDoS attack that is overwhelming the servers with a flood of SYN packets (a common TCP-based attack). Which service is designed to mitigate this type of attack automatically?
+
+A. AWS WAF
+B. Amazon GuardDuty
+C. AWS Shield
+D. Amazon Inspector
+
+Answer: C
+
+Explanation: SYN floods are a classic example of a network/transport layer (Layer 3/4) DDoS attack. AWS Shield (both Standard and Advanced) is the service designed to automatically detect and mitigate these types of infrastructure-level attacks before they reach your application. WAF (A) operates at Layer 7 and would not be the primary defense against a SYN flood.
+
+---
+
+Question #: 18
+You want to collect the memory utilization percentage metric from a fleet of EC2 instances. What must you do?
+
+A. Enable detailed monitoring on the instances.
+B. Install the CloudWatch agent on the instances and configure it to collect the memory metric.
+C. This metric is collected by default with basic monitoring.
+D. Use VPC Flow Logs to calculate memory usage.
+
+Answer: B
+
+Explanation: By default, the EC2 service does not have visibility into the operating system's memory usage. To get this metric into CloudWatch, you must install the unified CloudWatch agent on your EC2 instances. The agent can then collect system-level metrics (like memory and disk usage) as well as logs, and publish them to CloudWatch as custom metrics.
+
+---
+
+Question #: 19
+Which of the following actions can a CloudWatch alarm be configured to perform? (Choose TWO)
+
+A. Stop, terminate, or reboot an EC2 instance.
+B. Send a notification to an Amazon SNS topic.
+C. Block an IP address using AWS WAF.
+D. Create a new CloudTrail trail.
+E. Execute a Lambda function.
+
+Answer: A, B
+
+Explanation: CloudWatch alarms can be configured with multiple actions. Common actions include sending a notification to an SNS topic (which can then fan out to email, SMS, etc.) (B), and performing an EC2 action like stopping, terminating, or rebooting an instance (A). You can also trigger an Auto Scaling action. To execute a Lambda function (E), you would typically use SNS as an intermediary.
+
+---
+
+Question #: 20
+To comply with a data residency requirement, a company must ensure that all CloudTrail logs are processed and stored only within their designated AWS region. What should they do?
+
+A. This is the default behavior; CloudTrail is a regional service.
+B. Create a single-region trail in their designated region.
+C. Create a multi-region trail and then use a bucket policy to deny access from other regions.
+D. Use AWS WAF to block API calls from outside the region.
+
+Answer: B
+
+Explanation: By default, a trail created in the console is a multi-region trail, which logs events from all regions. To meet the data residency requirement, you must explicitly create a trail and configure it to be a single-region trail, applying it only to the desired region. This ensures that only events from that region are logged and stored in the S3 bucket.
+
+---
+
+Question #: 21
+An AWS WAF rule is configured with the action "Count". What happens when a web request matches this rule?
+
+A. The request is blocked, and the WAF logs the request.
+B. The request is allowed, and the WAF logs the request.
+C. The request is allowed to proceed, but the match is counted in the WAF metrics, and the request is logged.
+D. The request is sent to a Lambda function for custom processing.
+
+Answer: C
+
+Explanation: The "Count" action is used for testing rules without affecting traffic. When a request matches a rule set to Count, WAF increments a metric for that rule and logs the request, but it does not interfere with the request's path to the backend resource. This allows you to evaluate how a rule would behave before changing it to "Block" or "Allow".
+
+---
+
+Question #: 22
+A company is concerned about unauthorized API activity in their AWS account. They want to set up an alert that fires if there are more than 10 console login failures within a 5-minute period. How can this be achieved?
+
+A. Use AWS Shield Advanced to detect brute-force login attempts.
+B. Create a metric filter on a CloudTrail log stream in CloudWatch Logs, and create a CloudWatch alarm based on the resulting metric.
+C. Create a WAF rule that counts login failures.
+D. This requires a third-party security tool, as AWS services cannot monitor this.
+
+Answer: B
+
+Explanation: This is a classic CloudWatch Logs use case. First, you configure a CloudTrail trail to deliver logs to a CloudWatch Logs log group. Then, you create a Metric Filter for that log group with a pattern that matches console login failure events. This filter generates a custom metric. Finally, you create a CloudWatch Alarm that watches this new metric and triggers if the count exceeds 10 in 5 minutes.
+
+---
+
+Question #: 23
+What is a CloudTrail "Data Event"?
+
+A. An API call that modifies a resource, such as `ec2:RunInstances`.
+B. An API call that reads or writes data within a resource, such as `s3:GetObject` or `lambda:InvokeFunction`.
+C. A login event to the AWS Management Console.
+D. A non-API event, such as a scheduled instance retirement.
+
+Answer: B
+
+Explanation: CloudTrail separates events into two main types. Management Events (A, C) are operations that are performed on the resources in your account (e.g., creating an instance, modifying a security group). Data Events, which are high-volume, provide visibility into the data-plane operations performed on or within a resource (e.g., getting an S3 object, invoking a Lambda function). Data events are disabled by default and must be explicitly enabled.
+
+---
+
+Question #: 24
+You are viewing a CloudWatch graph for the `CPUUtilization` of an EC2 instance. The graph shows a single data point every 5 minutes. What does this indicate?
+
+A. The instance is stopped.
+B. The instance has detailed monitoring enabled.
+C. The instance has basic (standard) monitoring enabled.
+D. The CloudWatch agent is not installed on the instance.
+
+Answer: C
+
+Explanation: The interval between data points on a CloudWatch graph indicates the monitoring frequency. A 5-minute interval is the period for basic (standard) EC2 monitoring. If detailed monitoring were enabled, you would see data points at a 1-minute interval.
+
+---
+
+Question #: 25
+What is the primary purpose of a "rate-based rule" in AWS WAF?
+
+A. To block requests that exceed a certain size.
+B. To block requests based on their geographic origin.
+C. To block requests from a specific IP address if that address sends more than a defined number of requests in a 5-minute period.
+D. To rank the severity of different types of attacks.
+
+Answer: C
+
+Explanation: A rate-based rule is designed to mitigate web-layer DDoS attacks, brute-force login attempts, or web scraping. It tracks the rate of requests from individual source IP addresses. If the number of requests from a single IP exceeds the threshold you set (e.g., 2000 requests in 5 minutes), the rule's action (typically "Block") is triggered for that IP.
+
+---
+
+Question #: 26
+For an organization-wide CloudTrail trail, where must the trail be created?
+
+A. In each member account of the organization.
+B. In the management account of the AWS Organization.
+C. In a dedicated, centralized logging account.
+D. In the region with the most resources.
+
+Answer: B
+
+Explanation: To create a trail that collects events from all accounts within an AWS Organization, you must create the trail from within the organization's management (formerly master) account. When you configure the trail, you can specify that it should apply to the entire organization.
+
+---
+
+Question #: 27
+Which of the following is a feature provided by AWS Shield Advanced but NOT by Shield Standard?
+
+A. Protection against network layer DDoS attacks.
+B. Always-on detection and mitigation.
+C. Health-based detection and advanced attack mitigation.
+D. No additional charges for data transfer out of AWS.
+
+Answer: C
+
+Explanation: Shield Advanced provides more sophisticated detection and mitigation capabilities. It can use the health of your application (e.g., via Route 53 health checks) as a signal to more quickly and aggressively mitigate attacks. It also employs more advanced routing techniques to scrub malicious traffic. Standard protection (A, B) is more generic.
+
+---
+
+Question #: 28
+You have created a CloudWatch custom metric called "PageLoadTime". What is the default resolution at which this metric is stored?
 
 A. 1 second
 B. 10 seconds
@@ -376,732 +388,987 @@ D. 5 minutes
 
 Answer: C
 
----
-Question #: 35
-An ALB is protected by an AWS WAF Web ACL. A new rule is added to the Web ACL to block a new threat. How long does it typically take for this rule to be propagated and take effect?
-
-A. About an hour
-B. 10-15 minutes
-C. Under a minute
-D. 24 hours
-
-Answer: C
+Explanation: When you publish a custom metric to CloudWatch without specifying a storage resolution, it is stored at the standard resolution of 1 minute. You can optionally choose to publish it as a high-resolution metric, which allows for storage at 1-second resolution (at a higher cost).
 
 ---
-Question #: 36
-Which of the following is an example of an application layer (Layer 7) DDoS attack that AWS Shield Advanced helps protect against?
 
-A. UDP reflection attack
-B. TCP SYN flood
-C. HTTP flood
-D. DNS amplification attack
-
-Answer: C
-
----
-Question #: 37
-By default, CloudTrail log files stored in S3 are encrypted using which method?
-
-A. SSE-KMS
-B. SSE-C
-C. SSE-S3
-D. They are not encrypted by default.
-
-Answer: C
-
----
-Question #: 38
-A metric filter in CloudWatch Logs is used to...
-
-A. search for terms and patterns in log data and turn them into a CloudWatch metric.
-B. deliver a real-time feed of log events to another service like Lambda or Kinesis.
-C. archive old log data to Amazon S3.
-D. define the retention period for a log group.
-
-Answer: A
-
----
-Question #: 39
-A solutions architect has configured a Web ACL in AWS WAF. They notice that some legitimate traffic is being blocked. What feature can be used to test a new rule without actually blocking traffic?
-
-A. The rule's "Override" action.
-B. The rule's "Count" action.
-C. The Web ACL's "Dry Run" mode.
-D. The rule's "Allow" action.
-
-Answer: B
-
----
-Question #: 40
-An organization has a requirement that all AWS API calls must originate from within their corporate network. Which AWS service can be used to enforce this policy by logging all API calls and their source IP addresses for auditing?
-
-A. Amazon CloudWatch
-B. AWS Config
-C. AWS WAF
-D. AWS CloudTrail
-
-Answer: D
-
----
-Question #: 41
-What is a dimension in Amazon CloudWatch?
-
-A. The time period over which a metric is aggregated.
-B. The unit of a metric (e.g., Percent, Bytes).
-C. A name-value pair that uniquely identifies a metric.
-D. The state of an alarm.
-
-Answer: C
-
----
-Question #: 42
-You are using AWS Shield Advanced and are under a DDoS attack. You need immediate help. What is the first step you should take?
-
-A. Create a new AWS WAF rule to block the traffic.
-B. Open a high-priority support case with the AWS DDoS Response Team.
-C. Increase the capacity of your backend fleet.
-D. Shut down the application until the attack subsides.
-
-Answer: B
-
----
-Question #: 43
-When configuring AWS WAF on a CloudFront distribution, where is the Web ACL applied and the traffic inspected?
-
-A. In the AWS Region where the CloudFront distribution is configured.
-B. At the AWS Edge Locations.
-C. In the AWS Region where the origin server is located.
-D. In a centralized WAF processing facility in us-east-1.
-
-Answer: B
-
----
-Question #: 44
-A company needs to monitor the number of objects in a specific S3 bucket. How can they achieve this using CloudWatch?
-
-A. This is not possible; CloudWatch cannot monitor S3 bucket metrics.
-B. Enable S3 Storage Class Analysis, which sends data to CloudWatch.
-C. Enable S3 Storage Lens, which provides metrics that can be viewed in CloudWatch.
-D. Enable S3 bucket metrics in the bucket's properties, which will then publish metrics to CloudWatch.
-
-Answer: D
-
----
-Question #: 45
-What is the difference between a CloudTrail trail and the CloudTrail Event History?
-
-A. Event History is a paid feature, while a trail is free.
-B. Event History shows the last 90 days of activity, while a trail is a configurable, long-term record delivered to S3.
-C. A trail only records Management Events, while Event History records both Management and Data Events.
-D. Event History provides log file integrity validation, while a trail does not.
-
-Answer: B
-
----
-Question #: 46
-Which component of AWS WAF would you use to define a reusable set of rules that you can add to multiple Web ACLs?
-
-A. An IP set
-B. A rule group
-C. A regular expression pattern set
-D. A Web ACL template
-
-Answer: B
-
----
-Question #: 47
-AWS Shield Advanced provides near real-time visibility into DDoS events. How can you access these details and diagnostics?
-
-A. Through the AWS CloudTrail console.
-B. Through the AWS Shield Advanced console and its associated CloudWatch metrics.
-C. By contacting the AWS DDoS Response Team, who will email you a report.
-D. Through VPC Flow Logs.
-
-Answer: B
-
----
-Question #: 48
-You are analyzing CloudTrail logs and see an event with `"readOnly": true`. What does this indicate?
-
-A. The log file is encrypted and cannot be modified.
-B. The API call did not change the state of any resources (e.g., a `DescribeInstances` call).
-C. The user who made the call has read-only permissions.
-D. The event is a Data Event, not a Management Event.
-
-Answer: B
-
----
-Question #: 49
-What is the maximum retention period you can configure for a log group in Amazon CloudWatch Logs?
-
-A. 30 days
-B. 90 days
-C. 1 year
-D. Never expires (indefinite)
-
-Answer: D
-
----
-Question #: 50
-A web application allows users to upload files. A security review has determined that the application is vulnerable to attacks where an attacker uploads a file larger than the application can handle, causing a denial of service. Which AWS WAF rule can help mitigate this?
-
-A. Rate-based rule
-B. XSS match rule
-C. Size constraint rule
-D. IP match rule
-
-Answer: C
-
----
-Question #: 51
-A company has a critical application running on an EC2 instance. They need to create a high-resolution CloudWatch alarm that checks the instance's status every 10 seconds. What must be true for this to work?
-
-A. The instance must have detailed monitoring enabled.
-B. The alarm must use an SNS topic in the same region.
-C. The instance must be an HVM type.
-D. The instance must be part of an Auto Scaling group.
-
-Answer: A
-
----
-Question #: 52
-Which service helps you detect and respond to security threats by centrally managing and automating security checks for your AWS account and resources? It can ingest findings from services like GuardDuty, Inspector, and Macie.
-
-A. AWS Security Hub
-B. AWS Control Tower
-C. AWS Organizations
-D. AWS CloudTrail
-
-Answer: A
-
----
-Question #: 53
-A rule in a Web ACL can have which of the following actions? (Choose TWO)
-
-A. COUNT
-B. REJECT
-C. ALLOW
-D. IGNORE
-E. DELAY
-
-Answer: A, C
-
----
-Question #: 54
-Which statement accurately describes a key function of AWS CloudTrail?
-
-A. It provides real-time monitoring of application performance.
-B. It acts as a web application firewall to block malicious traffic.
-C. It serves as an audit log for all actions and API calls made within an AWS account.
-D. It automatically remediates security misconfigurations.
-
-Answer: C
-
----
-Question #: 55
-A team wants to stream log data from CloudWatch Logs to their external analytics platform for near real-time processing. Which CloudWatch Logs feature should they use?
-
-A. Metric Filter
-B. Export to S3
-C. Subscription Filter
-D. Log Group Insights
-
-Answer: C
-
----
-Question #: 56
-When you create a trail in CloudTrail, what is the default setting for logging management events?
-
-A. It logs all management events (read and write).
-B. It only logs write management events.
-C. It only logs read management events.
-D. It is disabled by default.
-
-Answer: A
-
----
-Question #: 57
-Which of the following would you use to protect a web application from a known bad bot that uses a specific `User-Agent` string in its HTTP headers?
-
-A. A Security Group rule
-B. A Network ACL rule
-C. An AWS WAF rule that inspects the `User-Agent` header
-D. AWS Shield Standard
-
-Answer: C
-
----
-Question #: 58
-The default monitoring for an EC2 instance sends metric data to CloudWatch at what frequency?
-
-A. Every 1 minute
-B. Every 5 minutes
-C. Every 10 minutes
-D. Every 15 minutes
-
-Answer: B
-
----
-Question #: 59
-A trail is created with the "Apply trail to all regions" option set to "Yes". What does this mean?
-
-A. The trail will log events from all AWS regions and deliver all log files to a single S3 bucket.
-B. A new trail and a new S3 bucket will be created in each AWS region.
-C. The trail will only log events related to global services like IAM and CloudFront.
-D. The trail configuration will be replicated to all regions, but you must select a destination S3 bucket in each region.
-
-Answer: A
-
----
-Question #: 60
-An alarm is configured to monitor the `CPUUtilization` metric. The alarm threshold is 70%, the period is 5 minutes, and the evaluation periods is 2. When will the alarm transition to the ALARM state?
-
-A. When the CPU utilization is above 70% for at least one data point in a 5-minute period.
-B. When the CPU utilization is above 70% for 2 consecutive 5-minute periods (10 minutes total).
-C. When the CPU utilization is above 70% for 5 consecutive 2-minute periods.
-D. When the average CPU utilization over a 10-minute period is greater than 70%.
-
-Answer: B
-
----
-Question #: 61
-Which service provides a foundational layer of DDoS protection that is always-on and automatically applied to your AWS resources?
-
-A. AWS WAF
-B. AWS Shield Standard
-C. AWS Firewall Manager
-D. Amazon GuardDuty
-
-Answer: B
-
----
-Question #: 62
-A company wants to centrally manage and deploy AWS WAF rules across multiple accounts in their AWS Organization. Which service is designed for this purpose?
-
-A. AWS Control Tower
-B. AWS Service Catalog
-C. AWS Firewall Manager
-D. AWS Systems Manager
-
-Answer: C
-
----
-Question #: 63
-How can you ensure that a CloudTrail trail created in one account can write log files to an S3 bucket in a different account?
-
-A. By attaching an IAM role to the trail with permissions to the bucket.
-B. By configuring a bucket policy on the destination S3 bucket that grants `s3:PutObject` permission to the CloudTrail service principal for the logging account.
-C. By enabling S3 cross-origin resource sharing (CORS) on the destination bucket.
-D. This is not a supported configuration.
-
-Answer: B
-
----
-Question #: 64
-You need to create a visualization of the `NetworkIn` metric for a fleet of EC2 instances, showing the average, maximum, and minimum values over the past week. Which service would you use to build this graph?
-
-A. AWS CloudTrail
-B. Amazon QuickSight
-C. Amazon CloudWatch
-D. AWS Cost Explorer
-
-Answer: C
-
----
-Question #: 65
-In an AWS WAF Web ACL, rules are evaluated in what order?
-
-A. In a random order for performance.
-B. In the order that they are listed, from top to bottom.
-C. In alphabetical order by rule name.
-D. Based on the rule's complexity, with simpler rules evaluated first.
-
-Answer: B
-
----
-Question #: 66
-What is the primary purpose of CloudWatch Events (now part of Amazon EventBridge)?
-
-A. To store and analyze application log files.
-B. To deliver a stream of system events describing changes in AWS resources to target services like Lambda or SNS.
-C. To provide long-term storage for AWS metrics.
-D. To audit all API calls made within an AWS account.
-
-Answer: B
-
----
-Question #: 67
-You are reviewing CloudTrail logs for a security incident. What information is contained in a CloudTrail event record? (Choose TWO)
-
-A. The IAM user or role that made the request.
-B. The source IP address of the request.
-C. The full data payload of the API request.
-D. The CPU utilization of the resource at the time of the request.
-E. The result of the API call (success or failure).
-
-Answer: A, B, E (The prompt asks for two, A and B are the most prominent. E is also correct.)
-*Correction for a 2-answer question:*
-Answer: A, B
-
----
-Question #: 68
-What is a CloudWatch Log Group?
-
-A. A collection of dashboards for a specific application.
-B. A group of alarms that are related to each other.
-C. A container for log streams that share the same retention, monitoring, and access control settings.
-D. A set of metrics that belong to the same AWS service.
-
-Answer: C
-
----
-Question #: 69
-A company is being targeted by an HTTP flood attack originating from thousands of different IP addresses, making IP-based blocking ineffective. The attack requests are all for the same URL path, `/search.php`. What is the most effective way to mitigate this with AWS WAF?
-
-A. Block the IP addresses of the attackers.
-B. Create a rate-based rule on the `/search.php` URL to limit requests.
-C. Block the country where the attack is originating.
-D. Increase the size of the web servers.
-
-Answer: B
-
----
-Question #: 70
-Which of the following is a key benefit of using AWS CloudTrail?
-
-A. It improves application performance by caching frequently accessed data.
-B. It provides visibility into user and resource activity, simplifying operational analysis and security auditing.
-C. It protects web applications from common exploits like SQL injection.
-D. It automatically scales EC2 instances based on demand.
-
-Answer: B
-
----
-Question #: 71
-Can a single AWS WAF Web ACL be associated with multiple resources?
-
-A. No, a Web ACL can only be associated with a single resource.
-B. Yes, but only if the resources are in the same Availability Zone.
-C. Yes, it can be associated with multiple resources like several CloudFront distributions or ALBs.
-D. Yes, but only if you use AWS Firewall Manager.
-
-Answer: C
-
----
-Question #: 72
-A CloudWatch alarm is based on a metric that has not reported any data for the past hour. The alarm configuration for "treat missing data as" is set to "breaching". What state will the alarm be in?
-
-A. OK
-B. ALARM
-C. INSUFFICIENT_DATA
-D. It depends on the previous state.
-
-Answer: B
-
----
-Question #: 73
-To track object-level operations on all S3 buckets in an account, a solutions architect should configure Data Events in CloudTrail. What is a key consideration when enabling this?
-
-A. It is included in the free tier of CloudTrail.
-B. It can generate a very high volume of events and may result in significant costs.
-C. It can only be enabled for up to 5 buckets per account.
-D. It only logs `PutObject` events and ignores `GetObject` events.
-
-Answer: B
-
----
-Question #: 74
-What is the default namespace for metrics related to Amazon EC2 instances?
-
-A. `AWS/EC2`
-B. `EC2/AWS`
-C. `Amazon/EC2`
-D. `EC2/Instances`
-
-Answer: A
-
----
-Question #: 75
-A company wants to block any requests to their web application where the request body is larger than 8 KB (8,192 bytes). Which AWS WAF rule should be used?
-
-A. An IP set match rule
-B. A geo match rule
-C. A size constraint rule
-D. A rate-based rule
-
-Answer: C
-
----
-Question #: 76
-A new regulation requires that all access to a specific Lambda function must be logged for auditing. How can a solutions architect achieve this?
-
-A. Enable logging within the Lambda function's code to write to CloudWatch.
-B. Configure a CloudTrail trail and enable Data Events for AWS Lambda, specifying the function.
-C. This is not possible as Lambda invocations are not logged.
-D. Enable VPC Flow Logs for the VPC where the Lambda function resides.
-
-Answer: B
-
----
-Question #: 77
-What feature of CloudWatch allows you to correlate, search, and visualize log data from multiple sources in a single query interface?
-
-A. CloudWatch Alarms
-B. CloudWatch Logs Insights
-C. CloudWatch ServiceLens
-D. CloudWatch Synthetics
-
-Answer: B
-
----
-Question #: 78
-AWS Shield Advanced is integrated with which other AWS service to provide visibility and mitigation against application layer DDoS attacks?
+Question #: 29
+A security team wants to be proactively notified of potential threats and suspicious activity in their AWS accounts, such as EC2 instances communicating with known malicious IPs or unusual API call patterns. Which service is designed to provide this?
 
 A. Amazon Inspector
-B. AWS WAF
-C. Amazon Macie
-D. AWS Config
+B. AWS Trusted Advisor
+C. Amazon GuardDuty
+D. AWS WAF
+
+Answer: C
+
+Explanation: Amazon GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior. It analyzes multiple data sources, including VPC Flow Logs, CloudTrail logs, and DNS logs, using threat intelligence feeds and machine learning to identify potential threats.
+
+---
+
+Question #: 30
+You have associated a WebACL with a CloudFront distribution. Where are the WAF rules for this WebACL executed?
+
+A. In the AWS region where the CloudFront distribution was created.
+B. In the AWS region of the origin server.
+C. At the AWS Edge Locations, close to the end-user.
+D. In a centralized WAF processing region.
+
+Answer: C
+
+Explanation: When you associate AWS WAF with CloudFront, the rules are distributed and executed globally across all of CloudFront's edge locations. This means that malicious requests are inspected and blocked at the edge of the AWS network, as close as possible to the user, before they can travel further into your infrastructure.
+
+---
+
+Question #: 31
+What is a CloudWatch "Namespace"?
+
+A. A unique identifier for a specific alarm.
+B. A container for CloudWatch metrics. Metrics from different services or applications are separated by namespaces.
+C. A way to group related dashboards together.
+D. The ARN of a log group.
 
 Answer: B
 
----
-Question #: 79
-What is the purpose of the `aws-waf-token` in AWS WAF?
+Explanation: A namespace is a way to isolate metrics from one another. All AWS services that report data to CloudWatch use a namespace (e.g., `AWS/EC2`, `AWS/ELB`, `AWS/S3`). When you publish your own custom metrics, you must also define a custom namespace for them.
 
-A. It is used to authenticate API calls to the WAF service.
-B. It is a label that WAF adds to requests that have been inspected.
-C. It is part of the CAPTCHA and challenge features to distinguish human users from bots.
-D. It is used to encrypt WAF logs.
+---
+
+Question #: 32
+Is it possible to record API calls made to the AWS KMS service in CloudTrail?
+
+A. No, KMS calls are security-sensitive and are never logged.
+B. Yes, all KMS management and cryptographic API calls are recorded as events in CloudTrail.
+C. Only management calls like `CreateKey` and `DeleteKey` are logged, not cryptographic calls like `Encrypt`.
+D. Only when using AWS Shield Advanced.
+
+Answer: B
+
+Explanation: Auditing key usage is a critical security function. All API calls to KMS, including both management actions (`CreateKey`, `EnableKeyRotation`) and cryptographic actions (`Encrypt`, `Decrypt`, `GenerateDataKey`), are captured as events in CloudTrail. This provides a full audit trail of who is using your keys and when.
+
+---
+
+Question #: 33
+An attacker is attempting to exploit a SQL injection vulnerability in your web application. Which service is most effective at preventing this type of attack?
+
+A. Network ACL
+B. AWS Shield Standard
+C. AWS WAF
+D. Security Group
 
 Answer: C
 
----
-Question #: 80
-An operations team member wants to create a single graph that shows the CPU Utilization of all EC2 instances that have a specific tag (e.g., `Project:Blue`). How can this be done in CloudWatch?
-
-A. Create a custom metric that aggregates the data.
-B. This is not possible; you must graph each instance individually.
-C. In the CloudWatch console, use the "Search" feature in the metrics section and filter by the tag.
-D. Use CloudTrail to find the instances and then add them to the graph one by one.
-
-Answer: C
+Explanation: SQL injection is an application layer (Layer 7) attack. AWS WAF is designed to operate at this layer and inspect the content of HTTP/S requests. It has built-in, managed rule sets specifically designed to detect and block the patterns associated with SQL injection attacks. The other services operate at lower network layers and do not have this capability.
 
 ---
-Question #: 81
-A company has a requirement that all CloudTrail logs must be immutable. What is the best way to achieve this?
 
-A. Enable Log File Integrity Validation on the trail and use an S3 bucket with Object Lock in compliance mode.
-B. Store the logs in an encrypted EBS volume.
-C. Stream the logs to a Kinesis Data Firehose with encryption enabled.
-D. Grant only read-only permissions to the S3 bucket where logs are stored.
+Question #: 34
+You need to aggregate logs from hundreds of EC2 instances into a central location for analysis. What is the standard AWS architecture for this?
+
+A. Configure each instance to write logs to its own EBS volume and then snapshot them daily.
+B. Configure the CloudWatch agent on each instance to send logs to a central Amazon CloudWatch Logs log group.
+C. Configure CloudTrail to pull logs from the EC2 instances.
+D. Use AWS WAF to capture the logs.
+
+Answer: B
+
+Explanation: The standard and scalable solution is to use the unified CloudWatch agent. You install and configure the agent on all your instances to monitor specific log files (e.g., `/var/log/httpd/access_log`). The agent then streams these log events in near real-time to a centralized log group in CloudWatch Logs, where you can search, analyze, and create alarms.
+
+---
+
+Question #: 35
+A CloudWatch alarm has entered the `INSUFFICIENT_DATA` state. What does this mean?
+
+A. The alarm threshold has been breached.
+B. The metric being monitored has stopped reporting data, or there isn't enough data to make a determination.
+C. The alarm has been manually disabled.
+D. The alarm's action failed to execute.
+
+Answer: B
+
+Explanation: The `INSUFFICIENT_DATA` state indicates that CloudWatch does not have enough data points within the alarm's evaluation period to determine if the state is `OK` or `ALARM`. This commonly happens when an EC2 instance is stopped (so it stops reporting metrics) or when a custom metric has not been published recently.
+
+---
+
+Question #: 36
+What is the purpose of an "Aggregate" CloudWatch dashboard?
+
+A. It can display graphs from multiple AWS regions on a single dashboard.
+B. It can only display graphs of custom metrics.
+C. It aggregates all metrics in the account into a single graph.
+D. It is a dashboard that is shared across multiple AWS accounts.
 
 Answer: A
 
----
-Question #: 82
-A rule group in AWS WAF has its own capacity units. When you add a rule group to a Web ACL, how does it affect the Web ACL's capacity?
-
-A. It has no effect on the Web ACL's capacity.
-B. The capacity of the rule group is added to the Web ACL's total capacity usage.
-C. It reduces the Web ACL's capacity by a fixed amount, regardless of the rule group's size.
-D. It doubles the Web ACL's capacity.
-
-Answer: B
+Explanation: A key feature of CloudWatch dashboards is the ability to create cross-region views. An "aggregate" dashboard allows you to add widgets (graphs and metrics) from different AWS regions, providing a single pane of glass to monitor a geographically distributed application.
 
 ---
-Question #: 83
-Which of the following is NOT a valid target for a CloudWatch Events rule (EventBridge)?
 
-A. AWS Lambda function
-B. Amazon SQS queue
-C. Amazon S3 bucket
-D. SNS topic
+Question #: 37
+Which feature of AWS CloudTrail helps ensure that log files delivered to your S3 bucket are encrypted?
+
+A. CloudTrail Log File Validation
+B. CloudTrail integration with AWS Organizations
+C. Server-Side Encryption (SSE) for the S3 bucket
+D. CloudTrail Insights
 
 Answer: C
 
----
-Question #: 84
-A security audit requires a report of every IAM user who has logged into the AWS console in the last 30 days. Which service provides this information?
+Explanation: CloudTrail itself does not perform encryption, but it relies on the features of its delivery destination, S3. To encrypt the CloudTrail log files at rest, you must enable server-side encryption (either SSE-S3 or SSE-KMS) on the destination S3 bucket.
 
-A. AWS Config
-B. Amazon CloudWatch
-C. AWS CloudTrail
-D. IAM Credential Report
+---
+
+Question #: 38
+You are being targeted by a large, volumetric DDoS attack that is saturating your network bandwidth. You have AWS Shield Advanced. What is the first thing you should do?
+
+A. Manually create WAF rules to block the attacking IPs.
+B. Stop all your EC2 instances to reduce costs.
+C. Contact the AWS DDoS Response Team (DRT) for assistance.
+D. Increase the size of your EC2 instances to handle the traffic.
 
 Answer: C
 
----
-Question #: 85
-Which service provides automated, managed protection for your AWS resources against Distributed Denial of Service (DDoS) attacks?
+Explanation: A major benefit of AWS Shield Advanced is access to the 24/7 DDoS Response Team. For complex or high-severity attacks, you should engage the DRT immediately. They can help analyze the attack and apply additional, non-public mitigations to protect your application. While Shield Advanced provides automatic protection, the DRT can provide expert assistance.
 
-A. AWS WAF
-B. Amazon Inspector
-C. AWS Shield
-D. Network ACLs
+---
+
+Question #: 39
+A company has a web application that is vulnerable to the "OWASP Top 10" security risks. What is the quickest way to protect the application using AWS WAF?
+
+A. Create a custom rule for each of the OWASP Top 10 vulnerabilities.
+B. Use a rate-based rule to block high-traffic sources.
+C. Subscribe to and use an AWS Managed Rule group, such as the `Core rule set`.
+D. Use a geographic match rule to block high-risk countries.
 
 Answer: C
 
----
-Question #: 86
-You have set up a CloudWatch alarm that sends a notification to an SNS topic. The SNS topic has an email subscriber. The subscriber has received the confirmation email but has not yet confirmed the subscription. What will happen when the alarm is triggered?
+Explanation: AWS Managed Rules for WAF are a curated set of rules maintained by AWS and AWS Marketplace Sellers that help protect against common threats. The `Core rule set` is specifically designed to protect against vulnerabilities identified in the OWASP Top 10 publications. Using this managed rule group is much faster and more effective than trying to create and maintain custom rules for all these threats yourself.
 
-A. The email will be sent to the subscriber.
-B. The alarm will fail to trigger the SNS action.
-C. The email will not be sent to that specific subscriber, but other confirmed subscribers will receive it.
-D. The SNS topic will be automatically deleted.
+---
+
+Question #: 40
+You want to search and analyze your CloudTrail logs using standard SQL queries. What is a common way to achieve this?
+
+A. Configure the trail to deliver logs to an RDS database.
+B. Use the search functionality in the CloudTrail console.
+C. Configure the trail to deliver logs to S3, and then use Amazon Athena to query the log files.
+D. Enable CloudTrail Insights.
 
 Answer: C
 
----
-Question #: 87
-What is the primary goal of enabling log file integrity validation for AWS CloudTrail?
-
-A. To encrypt the log files.
-B. To determine if a log file was modified, deleted, or unchanged after CloudTrail delivered it.
-C. To compress the log files to save space.
-D. To validate the format of the log files.
-
-Answer: B
+Explanation: Amazon Athena is a serverless, interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. A common and powerful pattern is to point Athena at the S3 bucket containing your CloudTrail logs. This allows you to perform complex ad-hoc queries on your logs without needing to load them into a database.
 
 ---
-Question #: 88
-A company wants to block requests that appear to be a command injection attack (e.g., contains `/bin/bash`). Which AWS service should be used?
 
-A. AWS Shield
-B. A Security Group
-C. An AWS WAF Managed Rule Group for Linux attacks
-D. A Network ACL
+Question #: 41
+What is the default retention period for log events stored in an Amazon CloudWatch Logs log group?
 
-Answer: C
-
----
-Question #: 89
-What is a CloudWatch Log Stream?
-
-A. A sequence of log events that share the same source.
-B. A real-time feed of metrics from an AWS service.
-C. A query used in CloudWatch Logs Insights.
-D. A filter that extracts metric data from logs.
-
-Answer: A
-
----
-Question #: 90
-Can CloudTrail log API calls made from the AWS CLI and AWS SDKs?
-
-A. No, it only logs calls made from the AWS Management Console.
-B. Yes, it logs API calls from any source, including the console, CLI, and SDKs.
-C. It only logs calls made from the CLI, not the SDKs.
-D. It only logs calls that result in a change to a resource.
-
-Answer: B
-
----
-Question #: 91
-What happens if a web request matches a rule with a "BLOCK" action in a Web ACL?
-
-A. The request is allowed, but an alert is logged in CloudWatch.
-B. AWS WAF responds with a 403 (Forbidden) HTTP status code and does not forward the request to the resource.
-C. The request is forwarded to the resource, but with a special header indicating it should be blocked.
-D. The source IP address of the request is permanently added to a denylist.
-
-Answer: B
-
----
-Question #: 92
-You are troubleshooting an issue and want to view the last few minutes of log data from a Lambda function. Where would you look?
-
-A. In the AWS CloudTrail Event History.
-B. In the Amazon CloudWatch Logs console, within the log group for that function.
-C. In the VPC Flow Logs for the VPC where the function is running.
-D. On the Lambda function's "Monitoring" tab, which shows CloudTrail events.
-
-Answer: B
-
----
-Question #: 93
-Which of the following is an example of a CloudTrail management event?
-
-A. An S3 `GetObject` request.
-B. A Lambda function invocation.
-C. An EC2 `RunInstances` API call.
-D. A DynamoDB `GetItem` request.
-
-Answer: C
-
----
-Question #: 94
-If you associate a Web ACL with an ALB, what happens to the logs for requests that are blocked by AWS WAF?
-
-A. They are not logged anywhere.
-B. They appear in the ALB access logs with a `WAF-Blocked` status.
-C. They are sent to AWS CloudTrail automatically.
-D. They can be configured to be sent to CloudWatch Logs, S3, or Kinesis Data Firehose.
+A. 1 day
+B. 30 days
+C. 1 year
+D. Never expire
 
 Answer: D
 
----
-Question #: 95
-A composite alarm in Amazon CloudWatch is an alarm that...
+Explanation: By default, when you create a new log group, its retention policy is set to "Never expire". Log events will be stored indefinitely until you manually change the retention setting for that log group. You can configure it to be as short as one day or keep logs forever.
 
-A. monitors multiple metrics at the same time.
-B. can take multiple actions when it is triggered.
-C. combines the states of several other alarms into an overall state.
-D. is created using a combination of AWS services.
+---
+
+Question #: 42
+A company is launching a new API using Amazon API Gateway. They want to protect it from common web exploits and control traffic based on IP address. What should they do?
+
+A. Associate an AWS WAF WebACL with the API Gateway stage.
+B. Enable AWS Shield Advanced for the API Gateway.
+C. Configure a Network ACL for the API Gateway.
+D. Launch the API Gateway into a private subnet.
+
+Answer: A
+
+Explanation: AWS WAF can be natively integrated with Amazon API Gateway. By creating a WebACL with the desired rules (e.g., managed rules for common exploits, IP set rules) and associating it with your API stage, you can filter and protect the traffic before it reaches your backend integration.
+
+---
+
+Question #: 43
+Which CloudTrail feature uses machine learning to analyze your account's normal API activity patterns and create a baseline, then alerts you to unusual activity that might indicate a security threat?
+
+A. CloudTrail Log File Validation
+B. CloudTrail Insights
+C. Organization Trails
+D. Data Events
+
+Answer: B
+
+Explanation: CloudTrail Insights is a feature that automatically analyzes your CloudTrail management events to detect unusual patterns. It establishes a baseline of normal API call volume and then identifies and alerts on activity that deviates from this baseline, such as spikes in resource provisioning or IAM actions, which could signify a breach.
+
+---
+
+Question #: 44
+A CloudWatch alarm for an ELB is configured to watch the `HealthyHostCount` metric. The threshold is set to `< 1` for 3 consecutive periods. What does this alarm signify?
+
+A. The ELB is receiving too much traffic.
+B. The ELB has no healthy, in-service instances registered behind it.
+C. The latency of the ELB is too high.
+D. The ELB has been deleted.
+
+Answer: B
+
+Explanation: The `HealthyHostCount` metric tracks the number of healthy instances registered with a load balancer. An alarm that triggers when this count is less than 1 indicates that there are no backend instances available to serve traffic, which usually means the application is down.
+
+---
+
+Question #: 45
+What is the main difference between an AWS WAF "managed rule group" and a "custom rule"?
+
+A. Managed rules are created and maintained by AWS or Marketplace sellers, while custom rules are created and managed by you.
+B. Managed rules are free, while custom rules have a monthly cost.
+C. Managed rules can only block traffic, while custom rules can allow, block, or count.
+D. Managed rules are updated daily, while custom rules are static.
+
+Answer: A
+
+Explanation: This is the key distinction. Managed rule groups (like the Core rule set or Amazon IP reputation list) are pre-configured sets of rules that you can easily add to your WebACL. They are automatically updated by their provider (AWS or a third-party seller) to protect against new threats. Custom rules are rules that you write and manage yourself to address your application's specific needs.
+
+---
+
+Question #: 46
+A security incident has occurred, and you need to investigate which IAM user deleted a specific S3 bucket last Tuesday. What is the most direct way to find this information?
+
+A. Check the CloudWatch metrics for the S3 service.
+B. Look up the `DeleteBucket` event in the AWS CloudTrail Event history, filtering by the event time and resource name.
+C. Run an Amazon Inspector assessment on the S3 service.
+D. Check the server access logs for the S3 bucket.
+
+Answer: B
+
+Explanation: The CloudTrail Event history provides a searchable, 90-day record of your account's management events. The most direct way to investigate is to go to the Event history, set a time range for last Tuesday, and filter for the event name `DeleteBucket`. The resulting event will show the user identity that made the API call.
+
+---
+
+Question #: 47
+You are being charged for AWS Shield Advanced, but you only have one Application Load Balancer. To get the full benefits of the service, what else should you do?
+
+A. Nothing, Shield Advanced protects all resources automatically.
+B. Associate an AWS WAF WebACL with the Application Load Balancer.
+C. Add your Application Load Balancer to the list of protected resources in the Shield Advanced console.
+D. Install the CloudWatch agent on the ALB.
 
 Answer: C
 
----
-Question #: 96
-AWS WAF is considered a regional service, with one exception. When used with which service does AWS WAF become a global service?
+Explanation: For AWS Shield Advanced to provide its full suite of protections (including advanced mitigations, health-based detection, and cost protection), you must explicitly add your resources (like an ALB, CloudFront distribution, or Elastic IP) to the "Protected Resources" list in the Shield Advanced configuration.
 
-A. Amazon API Gateway
-B. Application Load Balancer
-C. Amazon CloudFront
-D. AWS AppSync
+---
+
+Question #: 48
+What is a CloudWatch "dimension"?
+
+A. A name-value pair that helps you uniquely identify a metric.
+B. The unit of a metric (e.g., Percent, Bytes, Count).
+C. The time period over which a metric is aggregated.
+D. A threshold for an alarm.
+
+Answer: A
+
+Explanation: A dimension is a key-value pair that is part of a metric's identity. For example, the `CPUUtilization` metric for EC2 has a dimension of `InstanceId` to distinguish between different instances. You can have up to 10 dimensions per metric, allowing you to slice and dice your metrics for more detailed analysis.
+
+---
+
+Question #: 49
+An application is experiencing intermittent errors. You suspect that some EC2 instances are being terminated unexpectedly. How can you confirm which instances were terminated and by whom?
+
+A. Create a CloudWatch alarm on the `StatusCheckFailed` metric.
+B. Check the AWS Personal Health Dashboard for service events.
+C. Search AWS CloudTrail for the `TerminateInstances` event.
+D. Enable detailed monitoring for the instances.
 
 Answer: C
 
----
-Question #: 97
-You need to ensure that CloudTrail is enabled in all existing and future AWS accounts within your AWS Organization. What is the most efficient way to manage this?
+Explanation: AWS CloudTrail is the definitive source for auditing API activity. By searching the CloudTrail event history for the `TerminateInstances` event, you can see a record of every time an instance was terminated, including the instance ID, the timestamp, and the user or role that initiated the action.
 
-A. Manually create a trail in each member account.
-B. Use AWS CloudFormation StackSets to deploy a trail to all accounts.
-C. Create an AWS Organization trail from the management account.
-D. Write a script that uses the AWS CLI to create trails in each account.
+---
+
+Question #: 50
+Which of the following attack types is AWS WAF specifically designed to mitigate? (Choose TWO)
+
+A. DDoS SYN Flood
+B. SQL Injection
+C. Cross-Site Scripting (XSS)
+D. UDP Reflection Attack
+E. DNS Query Flood
+
+Answer: B, C
+
+Explanation: AWS WAF operates at Layer 7 (the application layer) and is designed to protect against web application exploits. SQL Injection (B) and Cross-Site Scripting (XSS) (C) are two of the most common Layer 7 attacks that WAF is built to prevent. The other attacks (A, D, E) are network or transport layer DDoS attacks, which are mitigated by AWS Shield.
+
+---
+
+Question #: 51
+You need to create a graph that shows the average, maximum, and minimum CPU utilization for an entire Auto Scaling group of EC2 instances, not just a single instance. How can you do this in CloudWatch?
+
+A. This is not possible; you must graph each instance separately.
+B. Create a custom metric that averages the CPU of all instances.
+C. In the CloudWatch console, select the `CPUUtilization` metric and aggregate it across the `AutoScalingGroupName` dimension.
+D. Use a Lambda function to calculate the aggregates and publish them as a new metric.
 
 Answer: C
 
+Explanation: CloudWatch allows you to aggregate metrics across dimensions. When you select a metric like `CPUUtilization`, instead of choosing a specific `InstanceId`, you can choose to graph the metric by `AutoScalingGroupName`. CloudWatch will then automatically aggregate the data from all instances in that group and allow you to graph the average, max, min, or sum.
+
 ---
-Question #: 98
-Which service can be used to create a dashboard that displays graphs of metrics, text, and the current state of alarms?
+
+Question #: 52
+When creating a CloudTrail trail, you are given the option to log "Data Events". For which two services are Data Events commonly enabled for security monitoring?
+
+A. Amazon EC2
+B. Amazon S3
+C. AWS Lambda
+D. Amazon VPC
+E. AWS IAM
+
+Answer: B, C
+
+Explanation: While Data Events are available for several services, they are most frequently used for Amazon S3 and AWS Lambda. Enabling S3 Data Events lets you log object-level API operations (like `GetObject`, `PutObject`, `DeleteObject`), which is critical for data security auditing. Enabling Lambda Data Events lets you log function invocations (`InvokeFunction`), which is useful for tracking application execution.
+
+---
+
+Question #: 53
+A company wants to apply a consistent set of WAF rules to dozens of different Application Load Balancers across multiple accounts in their AWS Organization. What is the most efficient way to manage this?
+
+A. Manually create the same WebACL in each account.
+B. Use AWS CloudFormation StackSets to deploy the same WAF configuration to all accounts.
+C. Use AWS Firewall Manager to centrally configure and deploy WAF rules across the organization.
+D. Use a Lambda function to periodically sync the WAF rules.
+
+Answer: C
+
+Explanation: AWS Firewall Manager is a security management service specifically designed for this purpose. It allows you to centrally configure and manage firewall rules (including AWS WAF, AWS Shield Advanced, and Security Groups) across all the accounts and resources in your AWS Organization. This ensures consistent policy enforcement and simplifies administration.
+
+---
+
+Question #: 54
+What is the maximum retention period for metrics in Amazon CloudWatch?
+
+A. 14 days
+B. 90 days
+C. 15 months
+D. Indefinitely
+
+Answer: C
+
+Explanation: CloudWatch retains metric data for 15 months. However, the resolution of the data changes over time. High-resolution data is kept for a short period, then it's rolled up into 1-minute data points, then 5-minute, then 1-hour, and so on. This allows for long-term trend analysis while managing storage costs.
+
+---
+
+Question #: 55
+You receive a notification from Amazon GuardDuty about a "Trojan" finding related to one of your EC2 instances. What does this likely indicate?
+
+A. The instance has a port open to the internet that should be closed.
+B. The instance is making DNS requests to a domain associated with malware.
+C. The instance's CPU utilization is unusually high.
+D. The instance has failed its system status checks.
+
+Answer: B
+
+Explanation: GuardDuty uses threat intelligence feeds that contain lists of known malicious domains and IP addresses. A "Trojan" finding often means that GuardDuty has detected that your EC2 instance is communicating with a command-and-control (C&C) server or another IP address known to be associated with malware or botnets.
+
+---
+
+Question #: 56
+You want to create a filter in CloudWatch Logs to find all log events that contain the words "ERROR" or "WARN". What is the correct filter pattern syntax?
+
+A. `ERROR AND WARN`
+B. `ERROR OR WARN`
+C. `?ERROR ?WARN`
+D. `[ERROR, WARN]`
+
+Answer: C
+
+Explanation: The CloudWatch Logs filter pattern syntax uses a question mark `?` to indicate an optional term. The pattern `?ERROR ?WARN` will match any log event that contains either the term "ERROR" or the term "WARN" (or both).
+
+---
+
+Question #: 57
+Which of the following is a valid action that can be taken based on an AWS WAF rule?
+
+A. `ALLOW`
+B. `DENY` (which is `BLOCK`)
+C. `COUNT`
+D. All of the above.
+
+Answer: D
+
+Explanation: AWS WAF rules have three primary terminal actions. `ALLOW` explicitly permits the request, bypassing any lower-priority rules. `BLOCK` denies the request. `COUNT` allows the request but logs it and increments a metric, which is useful for testing.
+
+---
+
+Question #: 58
+How long is CloudTrail event history retained and searchable in the CloudTrail console?
+
+A. 7 days
+B. 30 days
+C. 90 days
+D. 1 year
+
+Answer: C
+
+Explanation: The CloudTrail console provides the "Event history" feature, which allows you to view, search, and download the past 90 days of your account's management events. For retention beyond 90 days, you must configure a trail to deliver logs to an S3 bucket.
+
+---
+
+Question #: 59
+What is a CloudWatch Logs "Subscription Filter"?
+
+A. A filter that determines which logs are sent from EC2 to CloudWatch Logs.
+B. A way to get a real-time feed of log events from a log group and have them delivered to another service like Amazon Kinesis, Kinesis Data Firehose, or AWS Lambda.
+C. A filter that controls which IAM users can subscribe to a log group.
+D. A filter that automatically deletes log events that match a certain pattern.
+
+Answer: B
+
+Explanation: A subscription filter allows you to perform real-time processing of your log data. You can match log events with a specific pattern and have them streamed to another service. A common use case is streaming logs to a Kinesis stream for complex real-time analytics or to a Lambda function for custom alerting or remediation.
+
+---
+
+Question #: 60
+An Application Load Balancer is protected by AWS WAF. A user reports that their legitimate request is being blocked. What is the first step you should take to troubleshoot the issue?
+
+A. Disable WAF entirely.
+B. Check the AWS Shield dashboard for DDoS events.
+C. Check the WAF logs to see which rule is matching and blocking the request.
+D. Check the Security Group of the backend instance.
+
+Answer: C
+
+Explanation: AWS WAF provides detailed logs of the requests it inspects. The first step in troubleshooting a false positive (a blocked legitimate request) is to analyze the WAF logs. The logs will show the details of the request and, most importantly, which specific rule in your WebACL was matched, leading to the "BLOCK" action. You can then refine that rule to be more specific.
+
+---
+
+Question #: 61
+Which service provides a detailed report on the configuration of your AWS resources and can track changes to those configurations over time?
 
 A. AWS CloudTrail
 B. Amazon CloudWatch
-C. AWS Personal Health Dashboard
-D. AWS Cost Explorer
+C. AWS Config
+D. AWS Trusted Advisor
+
+Answer: C
+
+Explanation: AWS Config is the service that provides a resource inventory, configuration history, and configuration change notifications. It allows you to discover your AWS resources, record their configurations, and see how a resource and its relationships have changed over time. This is invaluable for auditing, security analysis, and change management.
+
+---
+
+Question #: 62
+You have a CloudWatch alarm that sends a notification to an SNS topic when it enters the ALARM state. The issue is resolved, and the alarm returns to the OK state. By default, will another notification be sent?
+
+A. Yes, a notification is sent for every state change.
+B. No, notifications are only sent when the alarm enters the ALARM state.
+C. It depends on the metric being monitored.
+D. Only if you have configured a separate action for the OK state.
 
 Answer: B
 
----
-Question #: 99
-A security team wants to prevent developers from accidentally making an S3 bucket public. They can use AWS Config to detect this, but what service can be used to log the `PutBucketAcl` API call that made the bucket public?
+Explanation: By default, an alarm action (like sending an SNS notification) is configured to trigger only on the transition into the `ALARM` state. You can, however, configure separate actions for the `OK` and `INSUFFICIENT_DATA` states if you want to be notified when the situation is resolved.
 
-A. VPC Flow Logs
-B. AWS Shield
-C. S3 Server Access Logs
-D. AWS CloudTrail
+---
+
+Question #: 63
+Which type of AWS WAF rule would you use to block requests that appear to be trying to exploit a Log4j vulnerability by looking for specific patterns in the URI or request body?
+
+A. IP set match rule
+B. Rate-based rule
+C. Regular expression (regex) match rule
+D. Geographic match rule
+
+Answer: C
+
+Explanation: To find specific, complex patterns within a request, you would use a regex match rule. This allows you to define a regular expression pattern (e.g., looking for `${jndi:ldap...}`) and have WAF block any request where a component (like the URI, a header, or the body) matches that pattern. AWS also provides managed rules for this specific vulnerability.
+
+---
+
+Question #: 64
+What is the primary difference in scope between Amazon GuardDuty and Amazon Inspector?
+
+A. GuardDuty monitors network traffic, while Inspector monitors API calls.
+B. GuardDuty is a threat detection service that monitors for malicious activity, while Inspector is a vulnerability assessment service that checks for known vulnerabilities on EC2 instances.
+C. GuardDuty is a regional service, while Inspector is a global service.
+D. GuardDuty is free, while Inspector is a paid service.
+
+Answer: B
+
+Explanation: This is a key distinction. GuardDuty is a detective service that analyzes logs in near real-time to find evidence of active threats (e.g., an instance communicating with a C&C server). Inspector is a preventative scanning service. It runs assessments on your EC2 instances to check for common vulnerabilities and exposures (CVEs) and deviations from security best practices *before* they are exploited.
+
+---
+
+Question #: 65
+You want to view the top 10 source IP addresses making requests to your Application Load Balancer over the past hour. How could you achieve this using CloudWatch?
+
+A. This is not possible with CloudWatch.
+B. Enable detailed monitoring on the ALB.
+C. Use CloudWatch Logs Insights to run a query against your ALB access logs.
+D. Create a CloudWatch dashboard with a metric for each IP address.
+
+Answer: C
+
+Explanation: CloudWatch Logs Insights is a powerful interactive query tool. Assuming you have enabled access logs for your ALB and are sending them to CloudWatch Logs, you can use Logs Insights to write SQL-like queries. A query like `stats count(*) by sourceIP | sort @count desc | limit 10` would give you exactly the information you need.
+
+---
+
+Question #: 66
+A CloudTrail trail can be configured to deliver events from all AWS regions to a single S3 bucket. What is this type of trail called?
+
+A. A global trail
+B. A multi-region trail
+C. A centralized trail
+D. An organization trail
+
+Answer: B
+
+Explanation: When you create a trail, you have the option to apply it to "All regions". This is known as a multi-region trail, and it is a best practice as it ensures you capture API activity regardless of the region in which it occurs. This creates a consolidated log of all activity in your account.
+
+---
+
+Question #: 67
+What is the purpose of the "Bot Control" managed rule group in AWS WAF?
+
+A. To block all traffic that is not from a human user.
+B. To provide visibility into and control over common and pervasive bot traffic, such as scrapers, scanners, and crawlers.
+C. To allow traffic only from specific, approved bots like search engine crawlers.
+D. To challenge requests with a CAPTCHA to prove the user is human.
+
+Answer: B
+
+Explanation: The Bot Control rule group is designed to identify and manage automated bot traffic. It uses various detection techniques to categorize bots (e.g., scrapers, search engines, site monitors). It can then provide visibility into this traffic and allow you to block or rate-limit the undesirable bots while allowing the legitimate ones.
+
+---
+
+Question #: 68
+What is the minimum period you can set for a CloudWatch alarm?
+
+A. 1 second
+B. 10 seconds
+C. 30 seconds
+D. 1 minute
+
+Answer: B
+
+Explanation: For standard resolution metrics, the minimum alarm period is 1 minute. However, if you are using high-resolution custom metrics (published at a 1-second interval), you can set the alarm period to either 10 seconds or 30 seconds for much faster alerting.
+
+---
+
+Question #: 69
+To ensure the integrity and authenticity of CloudTrail logs, which two features should be enabled? (Choose TWO)
+
+A. Log file validation
+B. Log file encryption using SSE-KMS
+C. Log file aggregation from all regions
+D. Log file delivery to CloudWatch Logs
+E. Log file lifecycle policies
+
+Answer: A, B
+
+Explanation: Log file integrity is about ensuring the logs are not tampered with. Log file validation (A) creates a digital signature for the logs, allowing you to prove they haven't been changed. Log file encryption (B), especially with a customer-managed KMS key where you control access, adds another layer of protection by preventing unauthorized users from even reading the logs.
+
+---
+
+Question #: 70
+You are being targeted by a complex application-layer DDoS attack (e.g., an HTTP flood) that AWS Shield is not automatically mitigating. You have Shield Advanced. What should you do?
+
+A. Increase the size of your web servers.
+B. Engage the AWS DDoS Response Team (DRT) and work with them to create custom AWS WAF rules.
+C. Temporarily shut down your application.
+D. Switch to a Network Load Balancer.
+
+Answer: B
+
+Explanation: For application-layer (Layer 7) attacks, the primary mitigation tool is AWS WAF. While Shield Advanced provides some automatic L7 mitigation, complex attacks often require custom rules. Engaging the DRT is the best course of action. They can help analyze the attack traffic and craft specific WAF rules to block the malicious requests while allowing legitimate traffic through.
+
+---
+
+Question #: 71
+What does a single data point in a CloudWatch metric represent?
+
+A. An aggregation of measurements collected over a specific time period (e.g., the average over 1 minute).
+B. A single log entry from an application.
+C. An individual API call.
+D. The last known value for a measurement.
+
+Answer: A
+
+Explanation: CloudWatch works by aggregating data over a time interval called a period. When you publish data points for a metric, CloudWatch groups them by the period (e.g., 1 minute). A single data point on a graph for that period represents a statistic (like Average, Sum, Maximum) calculated from all the measurements received during that minute.
+
+---
+
+Question #: 72
+An organization has a strict policy that no S3 buckets should ever be made public. How can they be automatically notified if a bucket policy is changed to allow public access?
+
+A. Use Amazon Macie to scan for public buckets.
+B. Use AWS Shield to prevent public access.
+C. Use AWS Config to monitor S3 bucket policies for compliance and send an SNS notification if a change is detected.
+D. Use AWS WAF to block requests to public buckets.
+
+Answer: C
+
+Explanation: AWS Config is the ideal service for this. You can enable the managed Config rule `s3-bucket-public-read-prohibited`. This rule will continuously monitor your S3 buckets. If any bucket's policy or ACLs are changed to allow public read access, the bucket will be flagged as non-compliant, and you can configure AWS Config to send a notification via SNS.
+
+---
+
+Question #: 73
+Which of the following is an example of a "Management Event" in CloudTrail?
+
+A. An S3 `GetObject` request.
+B. An EC2 `RunInstances` API call.
+C. A user logging into an application running on EC2.
+D. A DynamoDB `PutItem` operation.
+
+Answer: B
+
+Explanation: Management events are operations that modify the state or configuration of resources in your account. `RunInstances` creates a new EC2 resource, so it is a management event. The others are data events (A, D) or application-level events not captured by CloudTrail (C).
+
+---
+
+Question #: 74
+What is the purpose of a "composite alarm" in CloudWatch?
+
+A. It combines metrics from multiple AWS accounts.
+B. It allows you to create an alarm that is based on the state of several other alarms.
+C. It combines logs and metrics into a single alarm.
+D. It is an alarm that can trigger multiple actions.
+
+Answer: B
+
+Explanation: A composite alarm allows you to create more complex alarming logic. It takes as input the state of other CloudWatch alarms. For example, you could create a composite alarm that only enters the `ALARM` state if `Alarm-CPU` is in ALARM *AND* `Alarm-Latency` is in ALARM, reducing alerting noise.
+
+---
+
+Question #: 75
+What is the function of the AWS Managed IP Lists in AWS WAF?
+
+A. They are lists of your own company's IP addresses that should always be allowed.
+B. They are lists, maintained by AWS, of IP addresses known to be associated with threats like botnets or scanners.
+C. They are lists of IP addresses belonging to AWS services.
+D. They are lists of IP addresses that have been blocked by AWS Shield.
+
+Answer: B
+
+Explanation: AWS WAF provides several AWS Managed Rule groups, including IP reputation lists. These are lists of IP addresses that AWS has identified through its own threat intelligence as being associated with malicious actors, botnets, etc. You can easily add these rule groups to your WebACL to block traffic from these known bad sources.
+
+---
+
+Question #: 76
+You want to search through several weeks of application logs stored in CloudWatch Logs to find a specific error message. What is the most efficient tool for this?
+
+A. CloudWatch Logs Insights
+B. CloudWatch Dashboards
+C. CloudWatch ServiceLens
+D. Manually downloading the logs and using `grep`.
+
+Answer: A
+
+Explanation: CloudWatch Logs Insights is a purpose-built, high-performance query engine for your log data. It allows you to write powerful queries to search and analyze terabytes of log data in seconds, which is far more efficient than manual searching or downloading.
+
+---
+
+Question #: 77
+A trail is configured in `us-east-1` to deliver logs to an S3 bucket in `us-west-2`. The trail is configured to apply to all regions. If a user launches an EC2 instance in `eu-central-1`, where will the event be logged?
+
+A. It will not be logged.
+B. It will be logged and the log file will be delivered to the S3 bucket in `us-west-2`.
+C. The log file will be delivered to a bucket in `eu-central-1`.
+D. The log file will be delivered to a bucket in `us-east-1`.
+
+Answer: B
+
+Explanation: A multi-region trail captures events from all regions and consolidates them into a single, specified S3 bucket. Even though the API call happened in `eu-central-1` and the trail was defined in `us-east-1`, the log file containing that event will be delivered to the single destination bucket, which in this case is in `us-west-2`.
+
+---
+
+Question #: 80
+Which of the following would you use to protect a web application from a Slowloris attack (an application-layer DDoS attack that tries to keep many connections to the web server open for as long as possible)?
+
+A. AWS Shield Standard
+B. Network ACLs
+C. AWS WAF and an Application Load Balancer
+D. VPC Flow Logs
+
+Answer: C
+
+Explanation: A Slowloris attack is a Layer 7 attack. An Application Load Balancer, combined with AWS WAF, is effective at mitigating it. The ALB can handle a large number of connections, and you can configure WAF with rate-based rules or other rules that can identify and block the slow, lingering connections characteristic of this attack.
+
+---
+
+Question #: 81
+You need to be notified via email when a specific CloudWatch alarm is triggered. What is the correct sequence of services to use?
+
+A. CloudWatch Alarm -> AWS Lambda -> Amazon SES
+B. CloudWatch Alarm -> Amazon SQS -> EC2 worker
+C. CloudWatch Alarm -> Amazon SNS -> Email Subscription
+D. CloudWatch Alarm -> Amazon EventBridge -> Amazon SQS
+
+Answer: C
+
+Explanation: This is the standard pattern for notifications. You configure the CloudWatch alarm's action to be "notify" an Amazon SNS (Simple Notification Service) topic. You then create an email subscription to that SNS topic. When the alarm fires, it publishes a message to the topic, and SNS then sends that message to all its subscribers, including your email address.
+
+---
+
+Question #: 82
+Which statement about CloudTrail is true?
+
+A. CloudTrail is enabled by default for all AWS accounts and records the last 90 days of management events.
+B. CloudTrail must be manually enabled by creating a trail.
+C. CloudTrail only logs API calls made from the AWS Management Console.
+D. CloudTrail only logs read-only API calls.
+
+Answer: A
+
+Explanation: Since 2017, CloudTrail has been enabled by default on all AWS accounts. It automatically records the past 90 days of management event history, which is viewable in the CloudTrail console's "Event history". To retain logs beyond 90 days or to log data events, you must create a trail.
+
+---
+
+Question #: 83
+What is the primary purpose of a CloudWatch Dashboard?
+
+A. To configure new alarms and metrics.
+B. To provide a customizable, single-view console of metrics and alarms from your AWS resources.
+C. To store log data from applications.
+D. To audit API calls made in the account.
+
+Answer: B
+
+Explanation: A CloudWatch Dashboard allows you to create a customized view with widgets that display graphs of your most important metrics, the current state of alarms, and other visualizations. It serves as a "single pane of glass" for monitoring the health and performance of your applications.
+
+---
+
+Question #: 84
+You want to block any request to your website that contains a specific malicious string in the "User-Agent" header. What AWS WAF rule component would you use?
+
+A. IP set
+B. String match condition
+C. Size constraint condition
+D. Geographic match condition
+
+Answer: B
+
+Explanation: A string match condition (or in WAFv2, a rule statement that inspects a header) is used to look for specific text within a part of the web request. You would configure it to inspect the `User-Agent` header and block the request if it contains the malicious string you've identified.
+
+---
+
+Question #: 85
+Which AWS service can be used to automatically remediate a non-compliant resource detected by AWS Config?
+
+A. AWS Systems Manager
+B. AWS CloudTrail
+C. AWS Trusted Advisor
+D. Amazon GuardDuty
+
+Answer: A
+
+Explanation: AWS Config integrates with AWS Systems Manager to provide auto-remediation. When a Config rule flags a resource as non-compliant, it can be configured to trigger a Systems Manager Automation document. This document can contain the steps needed to automatically bring the resource back into a compliant state (e.g., remove a permissive security group rule).
+
+---
+
+Question #: 86
+A CloudTrail log entry shows that the `invokedBy` field is `ec2.amazonaws.com`. What does this indicate?
+
+A. The API call was made by a user logged into an EC2 instance.
+B. The API call was made by an AWS service (in this case, EC2) on your behalf.
+C. The API call was made from the EC2 console.
+D. The API call originated from a malicious IP address.
+
+Answer: B
+
+Explanation: The `invokedBy` field indicates when an AWS service makes an API call on your behalf. For example, if an EC2 Auto Scaling policy launches a new instance, the `RunInstances` event in CloudTrail would show that it was invoked by the EC2 service principal.
+
+---
+
+Question #: 87
+What is the difference in scope between an AWS WAF WebACL and a Security Group?
+
+A. WAF protects against network-layer attacks, while Security Groups protect against application-layer attacks.
+B. WAF is applied at the subnet level, while Security Groups are applied at the VPC level.
+C. WAF inspects the content of web requests (Layer 7), while Security Groups act as a stateful firewall for an instance, filtering traffic based on port and protocol (Layers 3/4).
+D. WAF is a global service, while Security Groups are regional.
+
+Answer: C
+
+Explanation: This is the fundamental difference. WAF is a web application firewall that understands HTTP/S and can inspect things like headers, body content, and URIs. Security Groups are network firewalls that control access to an ENI/instance based on protocol, port, and source/destination IP, without looking inside the packets.
+
+---
+
+Question #: 88
+You need to create a CloudWatch alarm that triggers when a specific error message appears in your application's log file. What is the first step?
+
+A. Create the CloudWatch alarm and specify the error message as the threshold.
+B. Configure the CloudWatch agent to stream the log file to CloudWatch Logs.
+C. Create an SNS topic for the notification.
+D. Enable detailed monitoring on the EC2 instance.
+
+Answer: B
+
+Explanation: Before you can alarm on log data, that data must be in CloudWatch. The first step is to install and configure the CloudWatch agent on the server to monitor the application log file and send its contents to a CloudWatch Logs log group. After that, you can create a metric filter and an alarm.
+
+---
+
+Question #: 89
+When an organization trail is created, what does CloudTrail do in the member accounts?
+
+A. It creates a new S3 bucket in each member account.
+B. It creates a read-only IAM role that the management account can assume.
+C. It does nothing; member accounts must opt-in manually.
+D. It creates a new trail in each member account that points to the central S3 bucket.
 
 Answer: D
 
----
-Question #: 100
-An application is experiencing an attack where requests are malformed and contain attempts to exploit a known vulnerability in a popular content management system. What is the BEST way to block this specific exploit without impacting legitimate traffic?
+Explanation: When you enable an organization trail from the management account, CloudTrail automatically creates a trail with the same name in each member account. This trail in the member account is configured to send its logs to the centralized S3 bucket specified in the management account's configuration.
 
-A. Block the IP addresses of the attackers.
-B. Use a Security Group to restrict access to the application.
-C. Use a specific rule from an AWS Managed Rule Group in WAF that targets that CMS's vulnerabilities.
-D. Use AWS Shield Standard to mitigate the attack.
+---
+
+Question #: 90
+What type of protection does AWS WAF provide?
+
+A. Protection against network-layer DDoS attacks.
+B. Protection against common web exploits and malicious bots.
+C. Protection against malware on EC2 instances.
+D. Protection against unauthorized API calls.
+
+Answer: B
+
+Explanation: AWS WAF is a web application firewall. Its primary purpose is to protect web applications or APIs from common web exploits (like SQL injection, XSS) and from malicious bots (like scrapers and scanners) that could affect availability, compromise security, or consume excessive resources.
+
+---
+
+Question #: 91
+You want to collect logs from multiple sources, including EC2 instances, on-premises servers, and Lambda functions, and store them in a centralized, searchable location. Which service is best suited for this?
+
+A. AWS CloudTrail
+B. Amazon S3
+C. Amazon CloudWatch Logs
+D. VPC Flow Logs
 
 Answer: C
+
+Explanation: Amazon CloudWatch Logs is designed as a centralized log aggregation service. The unified CloudWatch agent can send logs from EC2 and on-premises servers. Lambda functions have native integration to write their output to CloudWatch Logs. This makes it the central hub for collecting and analyzing logs from diverse sources.
+
+---
+
+Question #: 92
+You are using AWS Shield Advanced and are under a DDoS attack. You need to contact the DDoS Response Team (DRT). How do you do this?
+
+A. Send an email to a public AWS security alias.
+B. Create a high-priority support case in the AWS Support Center.
+C. The DRT will contact you automatically.
+D. Post a message on the AWS developer forums.
+
+Answer: B
+
+Explanation: To engage the DRT, you open a support case through the AWS Support Center. As a Shield Advanced customer, you have access to specialized support tiers. You would open a case with a high severity level, and it will be routed to the DRT for immediate assistance.
+
+---
+
+Question #: 93
+What is a key benefit of using AWS WAF Managed Rules over creating all your own custom rules?
+
+A. Managed rules are less expensive to run.
+B. Managed rules are updated automatically by security experts to protect against new and emerging threats.
+C. Managed rules have lower latency than custom rules.
+D. Managed rules can be applied to Network Load Balancers.
+
+Answer: B
+
+Explanation: The most significant advantage of managed rules is that you benefit from the expertise of the provider (AWS or a Marketplace seller). They continuously analyze the threat landscape and update the rule sets to protect against new vulnerabilities and attack vectors, saving you the effort and risk of managing this yourself.
+
+---
+
+Question #: 94
+Which statistics can you use when creating a CloudWatch alarm?
+
+A. Average, Sum, Minimum, Maximum, SampleCount
+B. Only Average and Sum
+C. Any custom calculation using a Lambda function
+D. All of the above are valid in some context.
+
+Answer: D
+
+Explanation: For standard metrics, you can alarm on basic statistics like Average, Sum, Min, Max, and SampleCount (A). CloudWatch also supports more advanced alarming features like percentile statistics (`p95`, `p99`) and metric math, which allows you to perform calculations on metrics and alarm on the result. A Lambda function could be used to create a custom metric, which could then be alarmed on. So, in a broad sense, all are possible.
+
+---
+
+Question #: 95
+A company wants to ensure that CloudTrail is enabled in all of its AWS accounts and that no user can disable it. The company uses AWS Organizations. What is the best way to enforce this?
+
+A. Use an IAM policy in each account to deny `cloudtrail:StopLogging`.
+B. Use a Service Control Policy (SCP) attached to the organization root to deny `cloudtrail:StopLogging` and `cloudtrail:DeleteTrail`.
+C. Run a daily audit script to check if CloudTrail is enabled.
+D. Use AWS WAF to block the CloudTrail API calls.
+
+Answer: B
+
+Explanation: A Service Control Policy (SCP) is the most powerful and effective way to enforce this. By attaching an SCP to the organization's root or a specific OU, you can create a preventative guardrail that applies to all accounts, including the root user of those accounts. Denying the actions to stop or delete trails ensures that CloudTrail remains active.
+
+---
+
+Question #: 96
+You want to graph the 99th percentile (`p99`) latency of your Application Load Balancer. What must be true?
+
+A. The ALB must have detailed monitoring enabled.
+B. The ALB must be sending its metrics to CloudWatch as high-resolution metrics.
+C. You can simply select the `p99` statistic for the ALB's latency metric in the CloudWatch console.
+D. You must calculate the percentile yourself using a Lambda function.
+
+Answer: C
+
+Explanation: Many AWS services, including Application Load Balancers, publish metrics that support percentile statistics directly. In the CloudWatch console, when you graph the `TargetConnectionErrorCount` or `Latency` metrics for an ALB, you can simply choose a percentile statistic like `p95`, `p99`, or `p99.9` from the list of available statistics.
+
+---
+
+Question #: 97
+Which AWS service would you use to find out if one of your EC2 instances is part of a Bitcoin mining operation?
+
+A. Amazon Inspector
+B. AWS Trusted Advisor
+C. Amazon GuardDuty
+D. AWS CloudTrail
+
+Answer: C
+
+Explanation: Amazon GuardDuty is specifically designed to detect this type of threat. It analyzes network traffic patterns from VPC Flow Logs and DNS logs. If it detects that your EC2 instance is communicating with IP addresses or domains known to be associated with cryptocurrency mining, it will generate a `CryptoCurrency` finding to alert you.
+
+---
+
+Question #: 98
+What is the purpose of the `aws-waf-logs-` S3 bucket that gets created when you enable WAF logging?
+
+A. To store the WAF WebACL configuration as a JSON file.
+B. To store detailed, request-by-request logs of the traffic that AWS WAF has inspected.
+C. To store metrics about how many requests have been blocked or allowed.
+D. To store a backup of your protected application.
+
+Answer: B
+
+Explanation: When you enable logging for a WebACL, AWS WAF sends detailed logs for each inspected request to a delivery stream (usually Kinesis Data Firehose), which then typically stores them in a designated S3 bucket. This bucket contains the raw log data that you can use for detailed analysis and troubleshooting.
+
+---
+
+Question #: 99
+You have configured a CloudTrail trail to deliver logs to CloudWatch Logs. You want to be alerted in near real-time when a security group is changed. What should you do?
+
+A. Create a CloudWatch alarm on the `CPUUtilization` of the CloudTrail service.
+B. Create a metric filter on the CloudTrail log group that matches the `AuthorizeSecurityGroupIngress` event, and create an alarm on the resulting metric.
+C. Use Amazon Athena to query the logs every 5 minutes.
+D. Manually inspect the CloudTrail console every hour.
+
+Answer: B
+
+Explanation: This is the standard method for real-time alerting on API activity. The log event is sent to CloudWatch Logs. The metric filter matches the specific event pattern in near real-time and increments a custom metric. The CloudWatch alarm watches this metric and can trigger an action (like an SNS notification) within a minute or two of the actual event occurring.
+
+---
+
+Question #: 100
+An application is consistently being scanned by vulnerability assessment tools from various unknown IP addresses. What is the most effective and lowest-maintenance way to block this activity using AWS WAF?
+
+A. Create a custom rule to block the user agent of each scanner.
+B. Subscribe to the Amazon IP reputation list managed rule group.
+C. Create a rate-based rule to block the IPs.
+D. Manually add each scanner's IP address to an IP set.
+
+Answer: B
+
+Explanation: The Amazon IP reputation list is a managed rule group that contains IP addresses known to be associated with threats like scanners and bots. By subscribing to this list, you leverage AWS's threat intelligence to automatically block these scanners without having to identify them or maintain the IP list yourself. This is far more efficient than manual methods.
