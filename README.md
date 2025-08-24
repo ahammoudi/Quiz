@@ -12,7 +12,7 @@ This tool was created to address a need for a better way to identify knowledge g
 
 **Try it now**: <a href="https://ahammoudi.github.io/Quiz" target="_blank" rel="noopener noreferrer">https://ahammoudi.github.io/Quiz</a>
 
-> **Note**: The live demo on Cloudflare Pages runs in **read-only mode**. The quiz management features (creating/deleting quizzes) require Python server functionality and are only available when running locally. The demo includes pre-loaded sample quizzes for testing.
+> **Note**: The live demo on GitHub Pages runs in **read-only mode**. The quiz management features (creating/deleting quizzes) require Python server functionality and are only available when running locally. The demo includes pre-loaded sample quizzes for testing.
 
 ## 🚀 Features
 
@@ -54,7 +54,7 @@ Quiz/
 ## 🚀 Quick Start
 
 ### 🌐 Try Online (No Installation)
-**Live Demo**: [https://quiz-dyc.pages.dev](https://quiz-dyc.pages.dev)
+**Live Demo**: [https://ahammoudi.github.io/Quiz](https://ahammoudi.github.io/Quiz)
 - Instant access with pre-loaded sample quizzes
 - No setup required - works in any browser
 - **Limitation**: Quiz management features not available (read-only)
@@ -138,7 +138,7 @@ chmod +x start_quiz.sh quick_start.sh
 
 ## 🤖 Creating & Managing Quizzes
 
-> **💡 Deployment Note**: Quiz creation and management features require Python server functionality and are **only available when running locally**. The [live demo](https://quiz-dyc.pages.dev) runs on Cloudflare Pages (serverless) and operates in read-only mode with pre-loaded quizzes.
+> **💡 Deployment Note**: Quiz creation and management features require Python server functionality and are **only available when running locally**. The [live demo](https://ahammoudi.github.io/Quiz) runs on GitHub Pages (static hosting) and operates in read-only mode with pre-loaded quizzes.
 
 **Create new quizzes instantly through the web interface (local installation only):**
 
@@ -265,14 +265,14 @@ Your quiz platform is complete with:
 - ✅ **Modern responsive design** with progress tracking
 - ✅ **Dynamic scoring system** with configurable thresholds
 - ✅ **Generic platform** that works with any subject matter
-- ✅ **Live demo deployment** on Cloudflare Pages: [quiz-dyc.pages.dev](https://quiz-dyc.pages.dev)
+- ✅ **Live demo deployment** on GitHub Pages: [ahammoudi.github.io/Quiz](https://ahammoudi.github.io/Quiz)
 
 ### 🚀 Deployment Options
 
-**🌐 Live Demo (Cloudflare Pages)**
-- **URL**: [https://quiz-dyc.pages.dev](https://quiz-dyc.pages.dev)
+**🌐 Live Demo (GitHub Pages)**
+- **URL**: [https://ahammoudi.github.io/Quiz](https://ahammoudi.github.io/Quiz)
 - **Features**: Quiz taking with pre-loaded sample questions
-- **Limitations**: Read-only mode - no quiz creation/management (serverless environment)
+- **Limitations**: Read-only mode - no quiz creation/management (static hosting environment)
 - **Best for**: Trying the platform, sharing with others, demonstration purposes
 
 **💻 Local Installation**
