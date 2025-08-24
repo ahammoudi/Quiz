@@ -17,15 +17,15 @@ class FinalWorkingHandler(BaseHTTPRequestHandler):
         """Handle GET requests"""
         print(f"GET request: {self.path}")
         
-        # Handle root
-        if self.path == '/':
-            self.path = '/index.html'
-        elif self.path == '/config':
-            self.path = '/config.html'
-        
-        # Remove query parameters
-        clean_path = self.path.split('?')[0]
-        file_path = clean_path.lstrip('/')
+        # Handle root and config with query parameters
+        if self.path == '/' or self.path.startswith('/?'):
+            file_path = 'index.html'
+        elif self.path == '/config' or self.path.startswith('/config?'):
+            file_path = 'config.html'
+        else:
+            # Remove query parameters
+            clean_path = self.path.split('?')[0]
+            file_path = clean_path.lstrip('/')
         
         try:
             if os.path.isfile(file_path):
