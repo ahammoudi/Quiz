@@ -12,11 +12,110 @@
       "verified": true,
       "recommended": true,
       "quality": "High"
+    },
+    "quiz_vpc_network_security.json": {
+      "name": "AWS VPC and Network Security (100 questions)",
+      "description": "VPC and Network Security, including Security Groups, Network ACLs, public vs. private subnets, NAT Gateways, and Bastion Hosts.",
+      "difficulty": "Mixed",
+      "question_count": 100,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
+    },
+    "quiz_data_encryption.json": {
+      "name": "AWS Data Encryption (100 questions)",
+      "description": "Data Encryption, including AWS KMS, encrypting data at rest (for S3, EBS, RDS), and encrypting data in transit (SSL/TLS).",
+      "difficulty": "Mixed",
+      "question_count": 100,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
+    },
+    "quiz_application_security_logging.json": {
+      "name": "AWS Application Security and Logging (98 questions)",
+      "description": "Application Security and Logging, including AWS WAF, AWS Shield, AWS CloudTrail, and Amazon CloudWatch.",
+      "difficulty": "Mixed",
+      "question_count": 98,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
+    },
+    "quiz_high_availability_scalability.json": {
+      "name": "AWS High Availability and Scalability (100 questions)",
+      "description": "High Availability and Scalability, including Elastic Load Balancing (ELB), Auto Scaling groups, and multi-AZ architectures.",
+      "difficulty": "Mixed",
+      "question_count": 100,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
+    },
+    "quiz_decoupled_architectures.json": {
+      "name": "AWS Decoupled Architectures (100 questions)",
+      "description": "Decoupled Architectures, including Amazon SQS, Amazon SNS, and event-driven designs with AWS Lambda.",
+      "difficulty": "Mixed",
+      "question_count": 100,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
+    },
+    "quiz_disaster_recovery.json": {
+      "name": "AWS Disaster Recovery (100 questions)",
+      "description": "Disaster Recovery (DR), including RTO/RPO concepts and strategies like Backup & Restore, Pilot Light, and Warm Standby.",
+      "difficulty": "Mixed",
+      "question_count": 100,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
+    },
+    "quiz_high_performance_compute_storage.json": {
+      "name": "AWS High-Performance Compute and Storage (100 questions)",
+      "description": "High-Performance Compute and Storage, including EC2 instance types, EBS volume types (gp3, io2), Amazon EFS, and Amazon S3 performance.",
+      "difficulty": "Mixed",
+      "question_count": 100,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
+    },
+    "quiz_high_performance_networking.json": {
+      "name": "AWS High-Performance Networking (100 questions)",
+      "description": "High-Performance Networking, including Amazon CloudFront, AWS Global Accelerator, and VPC networking (VPC Peering, Transit Gateway).",
+      "difficulty": "Mixed",
+      "question_count": 100,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
+    },
+    "quiz_high_performance_databases.json": {
+      "name": "AWS High-Performance Databases (100 questions)",
+      "description": "High-Performance Databases, including Amazon RDS Read Replicas, Amazon Aurora, DynamoDB, and caching with ElastiCache and DAX.",
+      "difficulty": "Mixed",
+      "question_count": 100,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
+    },
+    "quiz_cost_optimized_compute_storage.json": {
+      "name": "AWS Cost-Optimized Compute and Storage (100 questions)",
+      "description": "about Cost-Optimized Compute and Storage, including EC2 purchasing options (Spot, Reserved, Savings Plans) and S3 storage classes with lifecycle policies.",
+      "difficulty": "Mixed",
+      "question_count": 100,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
+    },
+    "quiz_cost_management_tools_serverless.json": {
+      "name": "AWS Cost Management Tools and Serverless (100 questions)",
+      "description": "Cost Management and Serverless Architectures, including AWS Budgets, Cost Explorer, AWS Lambda, and other pay-per-use services.",
+      "difficulty": "Mixed",
+      "question_count": 100,
+      "auto_generated": true,
+      "created_date": "2025-08-24",
+      "source": "automated_conversion"
     }
   },
   "metadata": {
-    "total_quiz_sets": 1,
-    "last_updated": "2025-08-23 23:36:37",
+    "total_quiz_sets": 12,
+    "last_updated": "2025-08-24",
     "version": "1.0.0",
     "quality_assured": true,
     "notes": "Clean quiz platform ready for new quiz uploads",
